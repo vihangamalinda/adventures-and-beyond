@@ -8,7 +8,7 @@ public class GamePanel extends JPanel {
 
     final int tileSize = originalTileSize * scale;// 48*48 tile
 
-    // maintianing 4:3 size ratio on width to height ratio
+    // maintaining 4:3 size ratio on width to height ratio
     final int maxScreenColumn = 16;
     final int maxScreenRow = 12;
     final int maxScreenWidth = maxScreenColumn * tileSize; //768 pixels
