@@ -40,9 +40,9 @@ public class GamePanel extends JPanel implements Runnable {
         this.gameThread.start();
     }
 
-    /*
+    /**
         Game loop iteration is control by **Thread sleeping technique**
-     */
+     **/
 //    @Override
 //    public void run() {
 //        double drawInterval = (double) 1000000000 / this.fps; // 0.0166 seconds
