@@ -78,6 +78,37 @@ public class GamePanel extends JPanel implements Runnable {
 //        }
 //    }
 
+    /**
+     * Game loop iteration is control by Delta time (Accumulator)
+     **/
+    @Override
+    public void run() {
+        double drawInterval = (double) 1000000000 / this.fps; // 0.0166 seconds
+        double delta = 0;
+        long lastTime = System.nanoTime();
+
+        while (this.gameThread != null) {
+           /*
+           Game loop :
+           Responsibilities of game loop:
+                1) UPDATE : update information such as character positions
+
+                2) DRAW : draw the screen with the updated information
+            */
+            long currentTime = System.nanoTime();
+            delta += (currentTime - lastTime) / drawInterval;
+            lastTime = currentTime;
+
+            if (delta >= 1) {
+                // Update responsibility
+                update();
+                // Draw
+                repaint();
+                delta--;
+            }
+        }
+    }
+
     public void update() {
         if (keyHandler.upPressed) {
             playerY -= playerSpeed;
