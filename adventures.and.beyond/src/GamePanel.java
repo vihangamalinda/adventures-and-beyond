@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     /**
-        Game loop iteration is control by **Thread sleeping technique**
+     Game loop iteration is control by **Thread sleeping technique**
      **/
 //    @Override
 //    public void run() {
