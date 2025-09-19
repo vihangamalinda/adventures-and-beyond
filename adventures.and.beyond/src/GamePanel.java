@@ -77,40 +77,6 @@ public class GamePanel extends JPanel implements Runnable {
 //            }
 //        }
 //    }
-    @Override
-    public void run() {
-        double drawInterval = (double) 1000000000 / this.fps; // 0.0166 seconds
-        double nextDrawInterval = System.nanoTime() + drawInterval;
-
-        while (this.gameThread != null) {
-           /*
-           Game loop :
-           Responsibilities of game loop:
-                1) UPDATE : update information such as character positions
-
-                2) DRAW : draw the screen with the updated information
-            */
-
-
-            // Update responsibility
-            update();
-            // Draw
-            repaint();
-
-            try {
-                double currentTime = System.nanoTime();
-                double remainingMilliSec = (nextDrawInterval - currentTime) / 1000000;
-
-                if (remainingMilliSec > 0) {
-                    Thread.sleep((long) remainingMilliSec);
-                }
-                nextDrawInterval += drawInterval;
-
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
 
     public void update() {
         if (keyHandler.upPressed) {
