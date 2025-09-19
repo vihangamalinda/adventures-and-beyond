@@ -34,8 +34,24 @@ public class GamePanel extends JPanel implements Runnable {
            Game loop :
            Responsibilities of game loop:
                 1) UPDATE : update information such as character positions
+
                 2) DRAW : draw the screen with the updated information
             */
+            // Update responsibility
+            update();
+            // Draw
+            repaint();
+
         }
+    }
+    @Override
+    public void paintComponent(Graphics graphic) {
+        super.paintComponent(graphic);
+
+        Graphics2D graphics2D = (Graphics2D) graphic;
+        graphics2D.setColor(Color.WHITE);
+        graphics2D.fillRect(100, 100, tileSize, tileSize);
+        //Disposes of this graphics context and releases any system resources that it is using.
+        graphics2D.dispose();
     }
 }
