@@ -29,5 +29,13 @@ public class GamePanel extends JPanel implements Runnable {
 
     @Override
     public void run() {
+        while (this.gameThread != null) {
+           /*
+           Game loop :
+           Responsibilities of game loop:
+                1) UPDATE : update information such as character positions
+                2) DRAW : draw the screen with the updated information
+            */
+        }
     }
 }
