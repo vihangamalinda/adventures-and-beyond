@@ -1,5 +1,6 @@
 package entity;
 
+import directionEnum.Direction;
 import helper.Helper;
 import main.GamePanel;
 import main.KeyHandler;
@@ -9,6 +10,9 @@ import java.awt.*;
 public class Player extends Entity {
     private GamePanel gamePanel;
     private KeyHandler keyHandler;
+
+    int frameIndex =0;
+    int counter =0;
 
     public Player(int positionX, int positionY, int speed, GamePanel gamePanel, KeyHandler keyHandler) {
         super(positionX, positionY, speed,Direction.FACING_FORWARD,true);
@@ -34,11 +38,24 @@ public class Player extends Entity {
         } else if (hasRightPressed) {
             this.moveRightDirection();
         }
+
+        counter++;
+
     }
 
     public void draw(Graphics2D graphics2D) {
+        if(counter%30 ==0){
+            if(frameIndex >=5){
+                frameIndex =0;
+            }else {
+                frameIndex++;
+            }
+        }
+
+        int scaledPlayer = 48 *3;
         graphics2D.setColor(Color.WHITE);
         graphics2D.fillRect(this.getPositionX(), this.getPositionY(), Helper.TILE_SIZE, Helper.TILE_SIZE);
+        graphics2D.fillRect(this.getPositionX(), this.getPositionY(), scaledPlayer,scaledPlayer);
     }
 
     private void moveUpDirection() {
