@@ -1,7 +1,12 @@
+package main;
+
+import helper.PlayerSpriteManager;
+
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
+        PlayerSpriteManager.initializeSpriteMap();
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
