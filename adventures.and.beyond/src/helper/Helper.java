@@ -1,5 +1,10 @@
 package helper;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+
 public class Helper {
     //Screen settings
     public static final int ORIGINAL_TILE_SIZE = 48;// 16*16 tile
@@ -15,5 +20,18 @@ public class Helper {
 
     public static final int FRAME_RATE_PER_SECOND = 60;//fps=60
 
+    public static BufferedImage getImage(String imgPath) {
+        try {
+            InputStream resource = Helper.class.getResourceAsStream(imgPath);
+            if (resource == null) {
+                throw new IOException("Custom error:Image resource is null.Given path: " + imgPath);
+            }
+
+            return ImageIO.read(resource);
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+        return null;
+    }
 
 }
