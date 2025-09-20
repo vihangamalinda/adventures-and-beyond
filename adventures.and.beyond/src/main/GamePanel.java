@@ -1,5 +1,6 @@
 package main;
 
+import entity.Player;
 import helper.Helper;
 
 import javax.swing.*;
@@ -15,6 +16,7 @@ public class GamePanel extends JPanel implements Runnable {
     int playerY = 100;
     int playerSpeed = 4;
 
+    private Player player;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(Helper.WINDOW_MAX_SCREEN_WIDTH, Helper.WINDOW_MAX_SCREEN_HEIGHT));// defining panel size
@@ -23,6 +25,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.keyHandler = new KeyHandler();
         this.addKeyListener(this.keyHandler);
         this.setFocusable(true);
+        this.player = new Player(100, 100, 4, this, this.keyHandler);
     }
 
     public void startGameThread() {
@@ -100,15 +103,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        if (keyHandler.upPressed) {
-            playerY -= playerSpeed;
-        } else if (keyHandler.downPressed) {
-            playerY += playerSpeed;
-        } else if (keyHandler.leftPressed) {
-            playerX -= playerSpeed;
-        } else if (keyHandler.rightPressed) {
-            playerX += playerSpeed;
-        }
+        this.player.update();
     }
 
     @Override
@@ -116,8 +111,7 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(graphic);
 
         Graphics2D graphics2D = (Graphics2D) graphic;
-        graphics2D.setColor(Color.WHITE);
-        graphics2D.fillRect(playerX, playerY, Helper.TILE_SIZE, Helper.TILE_SIZE);
+        this.player.paintComponent(graphics2D);
         //Disposes of this graphics context and releases any system resources that it is using.
         graphics2D.dispose();
     }
