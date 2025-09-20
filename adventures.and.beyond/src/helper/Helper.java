@@ -1,3 +1,5 @@
+package helper;
+
 public class Helper {
     //Screen settings
     static final int ORIGINAL_TILE_SIZE = 16;// 16*16 tile

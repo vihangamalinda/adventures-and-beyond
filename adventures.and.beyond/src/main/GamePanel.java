@@ -1,3 +1,7 @@
+package main;
+
+import helper.Helper;
+
 import javax.swing.*;
 import java.awt.*;
 
