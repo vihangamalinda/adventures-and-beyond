@@ -6,6 +6,9 @@ import main.GamePanel;
 import main.KeyHandler;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+
+import static helper.PlayerSpriteManager.getPlayerImageByIndex;
 
 public class Player extends Entity {
     private GamePanel gamePanel;
