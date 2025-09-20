@@ -2,23 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable {
-    //Screen settings
-    final int originalTileSize = 16; // 16*16 tile
-    final int scale = 3;
-
-    final int tileSize = originalTileSize * scale;// 48*48 tile
-
-    // maintaining 4:3 size ratio on width to height ratio
-    final int maxScreenColumn = 16;
-    final int maxScreenRow = 12;
-    final int maxScreenWidth = maxScreenColumn * tileSize; //768 pixels
-    final int getMaxScreenHeight = maxScreenRow * tileSize; //576 pixels
     // Game will be run on this thread
     Thread gameThread;
     final KeyHandler keyHandler;
-
-    //FPS
-    int fps = 60;
 
     // Set Player's default position
     int playerX = 100;
@@ -27,7 +13,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     public GamePanel() {
-        this.setPreferredSize(new Dimension(maxScreenWidth, getMaxScreenHeight));// defining panel size
+        this.setPreferredSize(new Dimension(Helper.WINDOW_MAX_SCREEN_WIDTH, Helper.WINDOW_MAX_SCREEN_HEIGHT));// defining panel size
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true); // improve game's rendering performance
         this.keyHandler = new KeyHandler();
@@ -83,7 +69,7 @@ public class GamePanel extends JPanel implements Runnable {
      **/
     @Override
     public void run() {
-        double drawInterval = (double) 1000000000 / this.fps; // 0.0166 seconds
+        double drawInterval = (double) 1000000000 / Helper.FRAME_RATE_PER_SECOND; // 0.0166 seconds
         double delta = 0;
         long lastTime = System.nanoTime();
 
@@ -127,7 +113,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D graphics2D = (Graphics2D) graphic;
         graphics2D.setColor(Color.WHITE);
-        graphics2D.fillRect(playerX, playerY, tileSize, tileSize);
+        graphics2D.fillRect(playerX, playerY, Helper.TILE_SIZE, Helper.TILE_SIZE);
         //Disposes of this graphics context and releases any system resources that it is using.
         graphics2D.dispose();
     }
