@@ -28,7 +28,7 @@ public class Player extends Entity {
         }
     }
 
-    public void paintComponent(Graphics2D graphics2D) {
+    public void draw(Graphics2D graphics2D) {
         graphics2D.setColor(Color.WHITE);
         graphics2D.fillRect(this.getPositionX(), this.getPositionY(), Helper.TILE_SIZE, Helper.TILE_SIZE);
     }
