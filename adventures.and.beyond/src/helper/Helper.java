@@ -2,8 +2,8 @@ package helper;
 
 public class Helper {
     //Screen settings
-    static final int ORIGINAL_TILE_SIZE = 16;// 16*16 tile
-    static final int UP_SCALE = 3;
+    public static final int ORIGINAL_TILE_SIZE = 48;// 16*16 tile
+    static final int UP_SCALE = 1;
     public static final int TILE_SIZE = ORIGINAL_TILE_SIZE * UP_SCALE;// 48*48 tile
 
     // maintaining 4:3 size ratio on width to height ratio
