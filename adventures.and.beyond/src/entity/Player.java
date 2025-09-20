@@ -53,6 +53,7 @@ public class Player extends Entity {
             }else {
                 frameIndex++;
             }
+            counter =0;
         }
 
         int scaledPlayer = 48 *3;
