@@ -2,8 +2,10 @@ package helper;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class Helper {
     //Screen settings
@@ -12,8 +14,8 @@ public class Helper {
     public static final int TILE_SIZE = ORIGINAL_TILE_SIZE * UP_SCALE;// 48*48 tile
 
     // maintaining 4:3 size ratio on width to height ratio
-    final static int MAX_SCREEN_COLUMN = 16;
-    final static int MAX_SCREEN_ROW = 12;
+    public final static int MAX_SCREEN_COLUMN = 16;
+    public final static int MAX_SCREEN_ROW = 12;
 
     public static final int WINDOW_MAX_SCREEN_WIDTH = MAX_SCREEN_COLUMN * TILE_SIZE;//768 pixels
     public static final int WINDOW_MAX_SCREEN_HEIGHT = MAX_SCREEN_ROW * TILE_SIZE;//576 pixels
@@ -32,6 +34,50 @@ public class Helper {
             exception.printStackTrace();
         }
         return null;
+    }
+
+    public static BufferedReader readTextFile(String filePath){
+        try{
+            InputStream resource =Helper.class.getResourceAsStream(filePath);
+
+            if (resource == null) {
+                throw new IOException("Custom error:Image resource is null.Given path: " + filePath);
+            }
+
+            return new BufferedReader(new InputStreamReader(resource));
+        }catch (Exception exception){
+            System.out.println("Custom Error: Error occurred when loading the map. Given File path: "+filePath);
+            exception.fillInStackTrace();
+        }
+        return null;
+    }
+
+    public static  int[][] getMapMatrix(String filePath){
+        BufferedReader reader = readTextFile(filePath);
+        assert reader != null;
+        int totalRows = Helper.MAX_SCREEN_ROW;
+        int totalColumns= Helper.MAX_SCREEN_COLUMN;
+
+        int[][] matrix = new int[totalRows][totalColumns];
+        try {
+
+            for (int row = 0; row < totalRows; row++) {
+
+                String line = reader.readLine();
+                String[] numericStr = line.split("");
+                System.out.println("");
+                for (int col = 0; col < totalColumns; col++) {
+                    int value = Integer.parseInt(numericStr[col]);
+                    System.out.print(value);
+                    matrix[row][col]=value;
+                }
+
+            }
+        }catch (IOException exception){
+            System.out.println("Custom Error:Error occurred when reading the map line by line.FilePath: "+filePath);
+            exception.fillInStackTrace();
+        }
+        return matrix;
     }
 
 }

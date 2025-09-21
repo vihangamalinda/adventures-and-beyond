@@ -2,6 +2,7 @@ package main;
 
 import entity.Player;
 import helper.Helper;
+import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +19,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     private Player player;
 
+    private final TileManager tileManager;
+
     public GamePanel() {
         this.setPreferredSize(new Dimension(Helper.WINDOW_MAX_SCREEN_WIDTH, Helper.WINDOW_MAX_SCREEN_HEIGHT));// defining panel size
         this.setBackground(Color.BLACK);
@@ -26,6 +29,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(this.keyHandler);
         this.setFocusable(true);
         this.player = new Player(100, 100, 4, this, this.keyHandler);
+        this.tileManager= new TileManager(this);
     }
 
     public void startGameThread() {
@@ -111,6 +115,8 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(graphic);
 
         Graphics2D graphics2D = (Graphics2D) graphic;
+
+        this.tileManager.draw(graphics2D);
         this.player.draw(graphics2D);
         //Disposes of this graphics context and releases any system resources that it is using.
         graphics2D.dispose();
