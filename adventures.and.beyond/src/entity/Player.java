@@ -13,13 +13,14 @@ import static helper.PlayerSpriteManager.getPlayerImageByIndex;
 public class Player extends Entity {
     private GamePanel gamePanel;
     private KeyHandler keyHandler;
+    private static final int movementSpeed =4;
 
     int frameIndex = 0;
     int counter = 0;
 
 
-    public Player(int positionX, int positionY, int speed, GamePanel gamePanel, KeyHandler keyHandler) {
-        super(positionX, positionY, speed, Direction.FACING_FORWARD, true);
+    public Player(int positionX, int positionY, GamePanel gamePanel, KeyHandler keyHandler) {
+        super(positionX, positionY, movementSpeed, Direction.FACING_FORWARD, true);
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
     }
