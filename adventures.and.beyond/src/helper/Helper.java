@@ -22,6 +22,8 @@ public class Helper {
 
     public static final int FRAME_RATE_PER_SECOND = 60;//fps=60
 
+    public  static final int PLAYER_UP_SCALE=2;
+
     public static BufferedImage getImage(String imgPath) {
         try {
             InputStream resource = Helper.class.getResourceAsStream(imgPath);

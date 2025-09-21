@@ -1,13 +1,13 @@
 package entity;
 
 import directionEnum.Direction;
-import helper.Helper;
 import main.GamePanel;
 import main.KeyHandler;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import static helper.Helper.PLAYER_UP_SCALE;
 import static helper.PlayerSpriteManager.getPlayerImageByIndex;
 
 public class Player extends Entity {
@@ -16,6 +16,7 @@ public class Player extends Entity {
 
     int frameIndex = 0;
     int counter = 0;
+
 
     public Player(int positionX, int positionY, int speed, GamePanel gamePanel, KeyHandler keyHandler) {
         super(positionX, positionY, speed, Direction.FACING_FORWARD, true);
@@ -56,14 +57,14 @@ public class Player extends Entity {
             counter = 0;
         }
 
-        int scaledPlayer = 48 * 2;
+        int scaledPlayer = 48 * PLAYER_UP_SCALE;
         graphics2D.setColor(Color.WHITE);
-        graphics2D.fillRect(this.getPositionX(), this.getPositionY(), scaledPlayer, scaledPlayer);
+        graphics2D.fillRect(this.getWorldPositionX(), this.getWorldPositionY(), scaledPlayer, scaledPlayer);
         BufferedImage image = getPlayerImageByIndex(this.getDirection(), this.isIdle(), this.frameIndex);
 //        BufferedImage image =imageArr[index];
 
 
-        graphics2D.drawImage(image, this.getPositionX(), this.getPositionY(), scaledPlayer, scaledPlayer, null);
+        graphics2D.drawImage(image, this.getWorldPositionX(), this.getWorldPositionY(), scaledPlayer, scaledPlayer, null);
 
 
 //        graphics2D.setColor(Color.WHITE);
@@ -74,26 +75,26 @@ public class Player extends Entity {
 
     private void moveUpDirection() {
         this.setDirection(Direction.FACING_BACKWARD);
-        int newPositionY = this.getPositionY() - this.getSpeed();
-        this.setPositionY(newPositionY);
+        int newPositionY = this.getWorldPositionY() - this.getSpeed();
+        this.setWorldPositionY(newPositionY);
     }
 
     private void moveDownDirection() {
         this.setDirection(Direction.FACING_FORWARD);
-        int newPositionY = this.getPositionY() + this.getSpeed();
-        this.setPositionY(newPositionY);
+        int newPositionY = this.getWorldPositionY() + this.getSpeed();
+        this.setWorldPositionY(newPositionY);
     }
 
     private void moveLeftDirection() {
         this.setDirection(Direction.FACING_LEFTWARD);
-        int newPositionX = this.getPositionX() - this.getSpeed();
-        this.setPositionX(newPositionX);
+        int newPositionX = this.getWorldPositionX() - this.getSpeed();
+        this.setWorldPositionX(newPositionX);
     }
 
     private void moveRightDirection() {
         this.setDirection(Direction.FACING_RIGHTWARD);
-        int newPositionX = this.getPositionX() + this.getSpeed();
-        this.setPositionX(newPositionX);
+        int newPositionX = this.getWorldPositionX() + this.getSpeed();
+        this.setWorldPositionX(newPositionX);
     }
 
     public GamePanel getGamePanel() {
