@@ -1,14 +1,14 @@
 package entity;
 
 import directionEnum.Direction;
-import helper.Helper;
+import helper.Constant;
 import main.GamePanel;
 import main.KeyHandler;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static helper.Helper.PLAYER_UP_SCALE;
+import static helper.Constant.PLAYER_UP_SCALE;
 import static helper.PlayerSpriteManager.getPlayerImageByIndex;
 
 public class Player extends Entity {
