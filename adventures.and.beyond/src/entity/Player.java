@@ -43,6 +43,7 @@ public class Player extends Entity {
         super(positionX, positionY, movementSpeed, Direction.FACING_FORWARD, true);
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
+        this.initializeCentralizeCamera();
     }
 
     public void update() {
@@ -91,6 +92,14 @@ public class Player extends Entity {
 //        graphics2D.fillRect(this.getPositionX() +200, this.getPositionY() +300, Helper.TILE_SIZE, Helper.TILE_SIZE);
 //        BufferedImage blueImg =Helper.blueImg;
 //        graphics2D.drawImage(blueImg,this.getPositionX() +200,this.getPositionY() +300,Helper.TILE_SIZE,Helper.TILE_SIZE,null);
+    }
+
+    private void initializeCentralizeCamera(){
+        int centerX = (Helper.TILE_SIZE / 2) * PLAYER_UP_SCALE;
+        int centerY = (Helper.TILE_SIZE / 2) * PLAYER_UP_SCALE;
+        int playerImgActualCenterY = (Helper.TILE_SIZE / 4) * PLAYER_UP_SCALE;
+        this.screenPositionX = (Helper.WINDOW_MAX_SCREEN_WIDTH) / 2 - (centerX);
+        this.screenPositionY = (Helper.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (centerY + playerImgActualCenterY);
     }
 
     private void moveUpDirection() {
