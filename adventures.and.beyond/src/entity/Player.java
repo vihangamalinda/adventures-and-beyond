@@ -14,22 +14,22 @@ public class Player extends Entity {
     private GamePanel gamePanel;
     private KeyHandler keyHandler;
 
-    int frameIndex =0;
-    int counter =0;
+    int frameIndex = 0;
+    int counter = 0;
 
     public Player(int positionX, int positionY, int speed, GamePanel gamePanel, KeyHandler keyHandler) {
-        super(positionX, positionY, speed,Direction.FACING_FORWARD,true);
+        super(positionX, positionY, speed, Direction.FACING_FORWARD, true);
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
     }
 
     public void update() {
-        boolean hasUpPressed =keyHandler.upPressed;
+        boolean hasUpPressed = keyHandler.upPressed;
         boolean hasDownPressed = keyHandler.downPressed;
         boolean hasLeftPressed = keyHandler.leftPressed;
         boolean hasRightPressed = keyHandler.rightPressed;
 
-        boolean isIdle =!hasUpPressed && !hasDownPressed && !hasLeftPressed && !hasRightPressed;
+        boolean isIdle = !hasUpPressed && !hasDownPressed && !hasLeftPressed && !hasRightPressed;
         setIdle(isIdle);
 
         if (hasUpPressed) {
@@ -47,24 +47,23 @@ public class Player extends Entity {
     }
 
     public void draw(Graphics2D graphics2D) {
-        if(counter%30 ==0){
-            if(frameIndex >=5){
-                frameIndex =0;
-            }else {
+        if (counter % 30 == 0) {
+            if (frameIndex >= 5) {
+                frameIndex = 0;
+            } else {
                 frameIndex++;
             }
-            counter =0;
+            counter = 0;
         }
 
-        int scaledPlayer = 48 *3;
+        int scaledPlayer = 48 * 2;
         graphics2D.setColor(Color.WHITE);
-        graphics2D.fillRect(this.getPositionX(), this.getPositionY(), scaledPlayer,scaledPlayer);
-        BufferedImage image =getPlayerImageByIndex(this.getDirection(),this.isIdle(),this.frameIndex);
+        graphics2D.fillRect(this.getPositionX(), this.getPositionY(), scaledPlayer, scaledPlayer);
+        BufferedImage image = getPlayerImageByIndex(this.getDirection(), this.isIdle(), this.frameIndex);
 //        BufferedImage image =imageArr[index];
 
 
-        graphics2D.drawImage(image,this.getPositionX(),this.getPositionY(),scaledPlayer,scaledPlayer,null);
-
+        graphics2D.drawImage(image, this.getPositionX(), this.getPositionY(), scaledPlayer, scaledPlayer, null);
 
 
 //        graphics2D.setColor(Color.WHITE);
