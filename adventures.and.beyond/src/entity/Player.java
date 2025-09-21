@@ -95,11 +95,11 @@ public class Player extends Entity {
     }
 
     private void initializeCentralizeCamera(){
-        int centerX = (Helper.TILE_SIZE / 2) * PLAYER_UP_SCALE;
-        int centerY = (Helper.TILE_SIZE / 2) * PLAYER_UP_SCALE;
-        int playerImgActualCenterY = (Helper.TILE_SIZE / 4) * PLAYER_UP_SCALE;
-        this.screenPositionX = (Helper.WINDOW_MAX_SCREEN_WIDTH) / 2 - (centerX);
-        this.screenPositionY = (Helper.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (centerY + playerImgActualCenterY);
+        int centerX = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
+        int centerY = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
+        int playerImgActualCenterY = (Constant.TILE_SIZE / 4) * PLAYER_UP_SCALE;
+        this.screenPositionX = (Constant.WINDOW_MAX_SCREEN_WIDTH) / 2 - (centerX);
+        this.screenPositionY = (Constant.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (centerY + playerImgActualCenterY);
     }
 
     private void moveUpDirection() {

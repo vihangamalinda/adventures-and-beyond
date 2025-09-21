@@ -1,12 +1,12 @@
 package tile;
 
-import helper.Helper;
+import helper.Constant;
 import main.GamePanel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static helper.Helper.*;
+import static helper.Constant.*;
 
 public class TileManager {
     private GamePanel gamePanel;
@@ -77,10 +77,10 @@ public class TileManager {
         for (int row=0;row<this.mapTileMatrix.length;row++){
             int[] columValues =this.mapTileMatrix[row];
             for (int col=0;col<columValues.length;col++){
-                int positionX =col*Helper.TILE_SIZE;
-                int positionY =row*Helper.TILE_SIZE;
+                int positionX =col* Constant.TILE_SIZE;
+                int positionY =row* Constant.TILE_SIZE;
                 BufferedImage image =getTileByIndex(columValues[col]).getBufferedImage();
-                graphics2D.drawImage(image,positionX,positionY, Helper.TILE_SIZE,Helper.TILE_SIZE,null);
+                graphics2D.drawImage(image,positionX,positionY, Constant.TILE_SIZE, Constant.TILE_SIZE,null);
             }
         }
 

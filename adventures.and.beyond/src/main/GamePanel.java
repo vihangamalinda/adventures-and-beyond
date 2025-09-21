@@ -1,7 +1,7 @@
 package main;
 
 import entity.Player;
-import helper.Helper;
+import helper.Constant;
 import tile.TileManager;
 
 import javax.swing.*;
@@ -22,7 +22,7 @@ public class GamePanel extends JPanel implements Runnable {
     private final TileManager tileManager;
 
     public GamePanel() {
-        this.setPreferredSize(new Dimension(Helper.WINDOW_MAX_SCREEN_WIDTH, Helper.WINDOW_MAX_SCREEN_HEIGHT));// defining panel size
+        this.setPreferredSize(new Dimension(Constant.WINDOW_MAX_SCREEN_WIDTH, Constant.WINDOW_MAX_SCREEN_HEIGHT));// defining panel size
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true); // improve game's rendering performance
         this.keyHandler = new KeyHandler();
@@ -80,7 +80,7 @@ public class GamePanel extends JPanel implements Runnable {
      **/
     @Override
     public void run() {
-        double drawInterval = (double) 1000000000 / Helper.FRAME_RATE_PER_SECOND; // 0.0166 seconds
+        double drawInterval = (double) 1000000000 / Constant.FRAME_RATE_PER_SECOND; // 0.0166 seconds
         double delta = 0;
         long lastTime = System.nanoTime();
 

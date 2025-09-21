@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
-import static helper.Helper.getImage;
+import static helper.Constant.getImage;
 
 public class PlayerSpriteManager {
     private static final String[] movementKeys = {

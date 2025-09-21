@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class Helper {
+public class Constant {
     //Screen settings
     public static final int ORIGINAL_TILE_SIZE = 48;// 16*16 tile
     static final int UP_SCALE = 1;
@@ -26,7 +26,7 @@ public class Helper {
 
     public static BufferedImage getImage(String imgPath) {
         try {
-            InputStream resource = Helper.class.getResourceAsStream(imgPath);
+            InputStream resource = Constant.class.getResourceAsStream(imgPath);
             if (resource == null) {
                 throw new IOException("Custom error:Image resource is null.Given path: " + imgPath);
             }
@@ -40,7 +40,7 @@ public class Helper {
 
     public static BufferedReader readTextFile(String filePath){
         try{
-            InputStream resource =Helper.class.getResourceAsStream(filePath);
+            InputStream resource = Constant.class.getResourceAsStream(filePath);
 
             if (resource == null) {
                 throw new IOException("Custom error:Image resource is null.Given path: " + filePath);
@@ -57,8 +57,8 @@ public class Helper {
     public static  int[][] getMapMatrix(String filePath){
         BufferedReader reader = readTextFile(filePath);
         assert reader != null;
-        int totalRows = Helper.MAX_SCREEN_ROW;
-        int totalColumns= Helper.MAX_SCREEN_COLUMN;
+        int totalRows = Constant.MAX_SCREEN_ROW;
+        int totalColumns= Constant.MAX_SCREEN_COLUMN;
 
         int[][] matrix = new int[totalRows][totalColumns];
         try {
