@@ -2,8 +2,10 @@ package helper;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class Helper {
     //Screen settings
@@ -30,6 +32,22 @@ public class Helper {
             return ImageIO.read(resource);
         } catch (IOException exception) {
             exception.printStackTrace();
+        }
+        return null;
+    }
+
+    public static BufferedReader readTextFile(String filePath){
+        try{
+            InputStream resource =Helper.class.getResourceAsStream(filePath);
+
+            if (resource == null) {
+                throw new IOException("Custom error:Image resource is null.Given path: " + filePath);
+            }
+
+            return new BufferedReader(new InputStreamReader(resource));
+        }catch (Exception exception){
+            System.out.println("Custom Error: Error occurred when loading the map. Given File path: "+filePath);
+            exception.fillInStackTrace();
         }
         return null;
     }
