@@ -80,8 +80,8 @@ public class Player extends Entity {
         }
 
         int scaledPlayer = 48 * PLAYER_UP_SCALE;
-        graphics2D.setColor(Color.WHITE);
-        graphics2D.fillRect(this.getWorldPositionX(), this.getWorldPositionY(), scaledPlayer, scaledPlayer);
+//        graphics2D.setColor(Color.WHITE);
+//        graphics2D.fillRect( this.screenPositionX,  this.screenPositionY, scaledPlayer, scaledPlayer);
         BufferedImage image = getPlayerImageByIndex(this.getDirection(), this.isIdle(), this.frameIndex);
 //        BufferedImage image =imageArr[index];
 
