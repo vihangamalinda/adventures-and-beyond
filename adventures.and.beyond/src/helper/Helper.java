@@ -52,4 +52,32 @@ public class Helper {
         return null;
     }
 
+    public static  int[][] getMapMatrix(String filePath){
+        BufferedReader reader = readTextFile(filePath);
+        assert reader != null;
+        int totalRows = Helper.MAX_SCREEN_ROW;
+        int totalColumns= Helper.MAX_SCREEN_COLUMN;
+
+        int[][] matrix = new int[totalRows][totalColumns];
+        try {
+
+            for (int row = 0; row < totalRows; row++) {
+
+                String line = reader.readLine();
+                String[] numericStr = line.split("");
+                System.out.println("");
+                for (int col = 0; col < totalColumns; col++) {
+                    int value = Integer.parseInt(numericStr[col]);
+                    System.out.print(value);
+                    matrix[row][col]=value;
+                }
+
+            }
+        }catch (IOException exception){
+            System.out.println("Custom Error:Error occurred when reading the map line by line.FilePath: "+filePath);
+            exception.fillInStackTrace();
+        }
+        return matrix;
+    }
+
 }
