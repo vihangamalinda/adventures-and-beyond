@@ -1,6 +1,7 @@
 package entity;
 
 import directionEnum.Direction;
+import helper.Helper;
 import main.GamePanel;
 import main.KeyHandler;
 
@@ -13,7 +14,26 @@ import static helper.PlayerSpriteManager.getPlayerImageByIndex;
 public class Player extends Entity {
     private GamePanel gamePanel;
     private KeyHandler keyHandler;
+
+    private int screenPositionX;
+    private int screenPositionY;
     private static final int movementSpeed =4;
+
+    public int getScreenPositionX() {
+        return screenPositionX;
+    }
+
+    public void setScreenPositionX(int screenPositionX) {
+        this.screenPositionX = screenPositionX;
+    }
+
+    public int getScreenPositionY() {
+        return screenPositionY;
+    }
+
+    public void setScreenPositionY(int screenPositionY) {
+        this.screenPositionY = screenPositionY;
+    }
 
     int frameIndex = 0;
     int counter = 0;
@@ -65,8 +85,7 @@ public class Player extends Entity {
 //        BufferedImage image =imageArr[index];
 
 
-        graphics2D.drawImage(image, this.getWorldPositionX(), this.getWorldPositionY(), scaledPlayer, scaledPlayer, null);
-
+        graphics2D.drawImage(image, this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer, null);
 
 //        graphics2D.setColor(Color.WHITE);
 //        graphics2D.fillRect(this.getPositionX() +200, this.getPositionY() +300, Helper.TILE_SIZE, Helper.TILE_SIZE);
