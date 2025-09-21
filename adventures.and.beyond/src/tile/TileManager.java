@@ -1,12 +1,13 @@
 package tile;
 
-import helper.Constant;
+import helper.Loader;
 import main.GamePanel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static helper.Constant.*;
+import static helper.Constant.TILE_SIZE;
+
 
 public class TileManager {
     private GamePanel gamePanel;
@@ -64,7 +65,7 @@ public class TileManager {
     }
 
     private Tile createTile(String imgPath){
-        BufferedImage image =getImage(imgPath);
+        BufferedImage image =Loader.getImage(imgPath);
         return new Tile(image,false);
     }
 
