@@ -15,8 +15,8 @@ public class Entity {
         this.worldPositionX = worldPositionX;
         this.worldPositionY = worldPositionY;
         this.speed = speed;
-        this.direction=direction;
-        this.isIdle=isIdle;
+        this.direction = direction;
+        this.isIdle = isIdle;
     }
 
     public int getWorldPositionX() {

@@ -29,7 +29,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(this.keyHandler);
         this.setFocusable(true);
         this.player = new Player(1500, 1500, this, this.keyHandler);
-        this.tileManager= new TileManager(this);
+        this.tileManager = new TileManager(this);
     }
 
     public void startGameThread() {

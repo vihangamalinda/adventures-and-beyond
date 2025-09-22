@@ -20,29 +20,30 @@ public class PlayerSpriteManager {
             "face_rightward_moving"
     };
     private static final Map<String, BufferedImage[]> spriteMap = new HashMap<>();
-    private static final int lastIndex=5;
+    private static final int lastIndex = 5;
 
-    public static void initializeSpriteMap(){
-        spriteMap.put(movementKeys[0],getImageArray("forward","idle"));
-        spriteMap.put(movementKeys[1],getImageArray("forward","walking"));
-        spriteMap.put(movementKeys[2],getImageArray("backward","idle"));
-        spriteMap.put(movementKeys[3],getImageArray("backward","walking"));
-        spriteMap.put(movementKeys[4],getImageArray("left","idle"));
-        spriteMap.put(movementKeys[5],getImageArray("left","walking"));
-        spriteMap.put(movementKeys[6],getImageArray("right","idle"));
-        spriteMap.put(movementKeys[7],getImageArray("right","walking"));
+    public static void initializeSpriteMap() {
+        spriteMap.put(movementKeys[0], getImageArray("forward", "idle"));
+        spriteMap.put(movementKeys[1], getImageArray("forward", "walking"));
+        spriteMap.put(movementKeys[2], getImageArray("backward", "idle"));
+        spriteMap.put(movementKeys[3], getImageArray("backward", "walking"));
+        spriteMap.put(movementKeys[4], getImageArray("left", "idle"));
+        spriteMap.put(movementKeys[5], getImageArray("left", "walking"));
+        spriteMap.put(movementKeys[6], getImageArray("right", "idle"));
+        spriteMap.put(movementKeys[7], getImageArray("right", "walking"));
     }
-    private static BufferedImage[] getImageArray(String direction,String state){
-        BufferedImage[] arr= new BufferedImage[lastIndex+1];
-        for(int i=0;i<=lastIndex;i++){
-            arr[i]= getImage(getPath(direction,state,i));
+
+    private static BufferedImage[] getImageArray(String direction, String state) {
+        BufferedImage[] arr = new BufferedImage[lastIndex + 1];
+        for (int i = 0; i <= lastIndex; i++) {
+            arr[i] = getImage(getPath(direction, state, i));
         }
-        return  arr;
+        return arr;
     }
 
 
-    private static String getPath(String direction,String state,int index){
-        return "/player"+"/"+direction+"/"+state+"/"+index+".png";
+    private static String getPath(String direction, String state, int index) {
+        return "/player" + "/" + direction + "/" + state + "/" + index + ".png";
     }
 
     public static BufferedImage getPlayerImageByIndex(Direction direction, boolean idle, int frameIndex) {

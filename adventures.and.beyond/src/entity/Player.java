@@ -17,7 +17,7 @@ public class Player extends Entity {
 
     private int screenPositionX;
     private int screenPositionY;
-    private static final int movementSpeed =4;
+    private static final int movementSpeed = 4;
 
     public int getScreenPositionX() {
         return screenPositionX;
@@ -94,7 +94,7 @@ public class Player extends Entity {
 //        graphics2D.drawImage(blueImg,this.getPositionX() +200,this.getPositionY() +300,Helper.TILE_SIZE,Helper.TILE_SIZE,null);
     }
 
-    private void initializeCentralizeCamera(){
+    private void initializeCentralizeCamera() {
         int centerX = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
         int centerY = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
         int playerImgActualCenterY = (Constant.TILE_SIZE / 4) * PLAYER_UP_SCALE;
@@ -142,13 +142,14 @@ public class Player extends Entity {
         this.keyHandler = keyHandler;
     }
 
-    public int getPlayerAbsoluteCenterX(){
+    public int getPlayerAbsoluteCenterX() {
         int centerX = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
-        return this.getWorldPositionX()+centerX;
+        return this.getWorldPositionX() + centerX;
     }
-    public int getPlayerAbsoluteCenterY(){
+
+    public int getPlayerAbsoluteCenterY() {
         int centerY = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
         int playerImgActualCenterY = (Constant.TILE_SIZE / 4) * PLAYER_UP_SCALE;
-        return this.getWorldPositionY()+centerY+playerImgActualCenterY;
+        return this.getWorldPositionY() + centerY + playerImgActualCenterY;
     }
 }
