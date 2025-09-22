@@ -11,8 +11,8 @@ public class Loader {
     public static  int[][] getMapMatrix(String filePath){
         BufferedReader reader = readTextFile(filePath);
         assert reader != null;
-        int totalRows = Constant.MAX_SCREEN_ROW;
-        int totalColumns= Constant.MAX_SCREEN_COLUMN;
+        int totalRows = Constant.MAX_WORLD_ROWS;
+        int totalColumns= Constant.MAX_WORLD_COLUMNS;
 
         int[][] matrix = new int[totalRows][totalColumns];
         try {
