@@ -1,7 +1,7 @@
 package main;
 
 import entity.Player;
-import helper.Helper;
+import helper.Constant;
 import tile.TileManager;
 
 import javax.swing.*;
@@ -17,19 +17,19 @@ public class GamePanel extends JPanel implements Runnable {
     int playerY = 100;
     int playerSpeed = 4;
 
-    private Player player;
+    private final Player player;
 
     private final TileManager tileManager;
 
     public GamePanel() {
-        this.setPreferredSize(new Dimension(Helper.WINDOW_MAX_SCREEN_WIDTH, Helper.WINDOW_MAX_SCREEN_HEIGHT));// defining panel size
+        this.setPreferredSize(new Dimension(Constant.WINDOW_MAX_SCREEN_WIDTH, Constant.WINDOW_MAX_SCREEN_HEIGHT));// defining panel size
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true); // improve game's rendering performance
         this.keyHandler = new KeyHandler();
         this.addKeyListener(this.keyHandler);
         this.setFocusable(true);
-        this.player = new Player(100, 100, 4, this, this.keyHandler);
-        this.tileManager= new TileManager(this);
+        this.player = new Player(1500, 1500, this, this.keyHandler);
+        this.tileManager = new TileManager(this);
     }
 
     public void startGameThread() {
@@ -80,7 +80,7 @@ public class GamePanel extends JPanel implements Runnable {
      **/
     @Override
     public void run() {
-        double drawInterval = (double) 1000000000 / Helper.FRAME_RATE_PER_SECOND; // 0.0166 seconds
+        double drawInterval = (double) 1000000000 / Constant.FRAME_RATE_PER_SECOND; // 0.0166 seconds
         double delta = 0;
         long lastTime = System.nanoTime();
 
@@ -120,5 +120,9 @@ public class GamePanel extends JPanel implements Runnable {
         this.player.draw(graphics2D);
         //Disposes of this graphics context and releases any system resources that it is using.
         graphics2D.dispose();
+    }
+
+    public Player getPlayer() {
+        return this.player;
     }
 }

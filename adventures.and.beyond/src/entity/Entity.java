@@ -2,23 +2,25 @@ package entity;
 
 import directionEnum.Direction;
 
+import static helper.Constant.*;
+
 public class Entity {
-    private int positionX;
-    private int positionY;
+    private int worldPositionX;
+    private int worldPositionY;
     private int speed;
     private Direction direction;
     private boolean isIdle;
 
-    public Entity(int positionX, int positionY, int speed,Direction direction,boolean isIdle) {
-        this.positionX = positionX;
-        this.positionY = positionY;
+    public Entity(int worldPositionX, int worldPositionY, int speed, Direction direction, boolean isIdle) {
+        this.worldPositionX = worldPositionX;
+        this.worldPositionY = worldPositionY;
         this.speed = speed;
-        this.direction=direction;
-        this.isIdle=isIdle;
+        this.direction = direction;
+        this.isIdle = isIdle;
     }
 
-    public int getPositionX() {
-        return positionX;
+    public int getWorldPositionX() {
+        return worldPositionX;
     }
 
     public Direction getDirection() {
@@ -37,16 +39,24 @@ public class Entity {
         isIdle = idle;
     }
 
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
+    public void setWorldPositionX(int worldPositionX) {
+        boolean isWithinRange = worldPositionX - WINDOW_MAX_SCREEN_WIDTH / 2 > 0 && worldPositionX + WINDOW_MAX_SCREEN_WIDTH / 2 < WORLD_MAP_WIDTH;
+        if (isWithinRange) {
+            this.worldPositionX = worldPositionX;
+        }
+
     }
 
-    public int getPositionY() {
-        return positionY;
+    public int getWorldPositionY() {
+        return worldPositionY;
     }
 
-    public void setPositionY(int positionY) {
-        this.positionY = positionY;
+    public void setWorldPositionY(int worldPositionY) {
+        boolean isWithinRange = worldPositionY - WINDOW_MAX_SCREEN_HEIGHT / 2 > 0 && worldPositionY + WINDOW_MAX_SCREEN_HEIGHT / 2 < WORLD_MAP_HEIGHT;
+        if (isWithinRange) {
+            this.worldPositionY = worldPositionY;
+        }
+
     }
 
     public int getSpeed() {
