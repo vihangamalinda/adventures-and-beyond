@@ -141,4 +141,14 @@ public class Player extends Entity {
     public void setKeyHandler(KeyHandler keyHandler) {
         this.keyHandler = keyHandler;
     }
+
+    public int getPlayerAbsoluteCenterX(){
+        int centerX = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
+        return this.getWorldPositionX()+centerX;
+    }
+    public int getPlayerAbsoluteCenterY(){
+        int centerY = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
+        int playerImgActualCenterY = (Constant.TILE_SIZE / 4) * PLAYER_UP_SCALE;
+        return this.getWorldPositionY()+centerY+playerImgActualCenterY;
+    }
 }
