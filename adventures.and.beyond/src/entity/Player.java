@@ -86,7 +86,9 @@ public class Player extends Entity {
 //        BufferedImage image =imageArr[index];
 
 
-        graphics2D.drawImage(image, this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer, null);
+//        graphics2D.drawImage(image, this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer, null);
+          graphics2D.setColor(Color.WHITE);
+          graphics2D.fillRect( this.screenPositionX,  this.screenPositionY, scaledPlayer, scaledPlayer);
 
 //        graphics2D.setColor(Color.WHITE);
 //        graphics2D.fillRect(this.getPositionX() +200, this.getPositionY() +300, Helper.TILE_SIZE, Helper.TILE_SIZE);
@@ -98,8 +100,10 @@ public class Player extends Entity {
         int centerX = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
         int centerY = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
         int playerImgActualCenterY = (Constant.TILE_SIZE / 4) * PLAYER_UP_SCALE;
+//        this.screenPositionX = (Constant.WINDOW_MAX_SCREEN_WIDTH) / 2 - (centerX);
+//        this.screenPositionY = (Constant.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (centerY + playerImgActualCenterY);
         this.screenPositionX = (Constant.WINDOW_MAX_SCREEN_WIDTH) / 2 - (centerX);
-        this.screenPositionY = (Constant.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (centerY + playerImgActualCenterY);
+        this.screenPositionY = (Constant.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (centerY);
     }
 
     private void moveUpDirection() {

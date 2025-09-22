@@ -111,7 +111,7 @@ public class TileManager {
     }
 
     private static int getDrawMapStarterRow(Player player) {
-        int drawMapRow = (player.getPlayerAbsoluteCenterY() / TILE_SIZE) - (MAX_SCREEN_COLUMN / 2);
+        int drawMapRow = (player.getWorldPositionY() / TILE_SIZE) - (MAX_SCREEN_COLUMN / 2);
 
         if (drawMapRow < 0) {
             drawMapRow = 0;
@@ -122,7 +122,7 @@ public class TileManager {
     }
 
     private static int getDrawMapStarterCol(Player player) {
-        int drawMapCol = (player.getPlayerAbsoluteCenterX() / TILE_SIZE) - (MAX_SCREEN_COLUMN / 2);
+        int drawMapCol = (player.getWorldPositionX() / TILE_SIZE) - (MAX_SCREEN_COLUMN / 2);
 
         if (drawMapCol < 0) {
             drawMapCol = 0;
