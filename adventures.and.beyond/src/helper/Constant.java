@@ -27,7 +27,7 @@ public class Constant {
     // World settings
     public final static int MAX_WORLD_ROWS=50;
     public final static int MAX_WORLD_COLUMNS =50;
-    public final int WORLD_MAP_WIDTH=TILE_SIZE*MAX_WORLD_COLUMNS;
-    public final int WORLD_MAP_HEIGHT=TILE_SIZE*MAX_WORLD_ROWS;
+    public final static int WORLD_MAP_WIDTH=TILE_SIZE*MAX_WORLD_COLUMNS;
+    public final static int WORLD_MAP_HEIGHT=TILE_SIZE*MAX_WORLD_ROWS;
 
 }
