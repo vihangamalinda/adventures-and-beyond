@@ -80,22 +80,13 @@ public class TileManager {
 //        int drawCol =(player.getWorldPositionX()/TILE_SIZE)- (MAX_SCREEN_COLUMN/2);
 //        int drawRow =(player.getWorldPositionY()/TILE_SIZE)- (MAX_SCREEN_COLUMN/2);
 
-        int drawMapCol =(player.getPlayerAbsoluteCenterX()/TILE_SIZE)- (MAX_SCREEN_COLUMN/2);
-        int drawMapRow =(player.getPlayerAbsoluteCenterY()/TILE_SIZE)- (MAX_SCREEN_COLUMN/2);
+        int drawMapCol = getDrawMapStarterCol(player);
+
+
+        int drawMapRow = getDrawMapStarterRow(player);
 
 
 
-        if(drawMapRow<0){
-            drawMapRow=0;
-        }else if((drawMapRow+MAX_SCREEN_ROW)>MAX_WORLD_ROWS){
-            drawMapRow =MAX_WORLD_ROWS-MAX_SCREEN_ROW;
-        }
-
-        if(drawMapCol<0){
-            drawMapCol=0;
-        }else if(drawMapCol+MAX_SCREEN_COLUMN>MAX_WORLD_COLUMNS){
-            drawMapCol =MAX_WORLD_COLUMNS-MAX_SCREEN_COLUMN;
-        }
 
 
 
