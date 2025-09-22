@@ -137,7 +137,7 @@ public class TileManager {
     }
 
     private int[][] loadMapMatrix(){
-        return getMapMatrix("/maps/map1.txt");
+        return Loader.getMapMatrix("/maps/world_map_01.txt");
     }
 
 }
