@@ -53,8 +53,10 @@ public class TileManager {
       Tile tileWall =createTile("/tiles/wall.png");
       Tile tileRockWall =createTile("/tiles/rock_wall.png");
 
+        Tile tileTest=createTile("/tiles/grass_custom.png");
 
-        return new Tile[]{tileGrass,tilePath,tileWater,tileWall,tileRockWall};
+
+        return new Tile[]{tileGrass,tilePath,tileWater,tileWall,tileRockWall,tileTest};
     }
 
     public Tile getTileByIndex(int tileIndex){
