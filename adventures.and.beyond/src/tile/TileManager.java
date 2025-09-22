@@ -121,6 +121,28 @@ public class TileManager {
 
     }
 
+    private static int getDrawMapStarterRow(Player player) {
+        int drawMapRow =(player.getPlayerAbsoluteCenterY()/TILE_SIZE)- (MAX_SCREEN_COLUMN/2);
+
+        if(drawMapRow<0){
+            drawMapRow=0;
+        }else if((drawMapRow+MAX_SCREEN_ROW)>MAX_WORLD_ROWS){
+            drawMapRow =MAX_WORLD_ROWS-MAX_SCREEN_ROW;
+        }
+        return drawMapRow;
+    }
+
+    private static int getDrawMapStarterCol(Player player) {
+        int drawMapCol =(player.getPlayerAbsoluteCenterX()/TILE_SIZE)- (MAX_SCREEN_COLUMN/2);
+
+        if(drawMapCol<0){
+            drawMapCol=0;
+        }else if(drawMapCol+MAX_SCREEN_COLUMN>MAX_WORLD_COLUMNS){
+            drawMapCol =MAX_WORLD_COLUMNS-MAX_SCREEN_COLUMN;
+        }
+        return drawMapCol;
+    }
+
     private int[][] loadMapMatrix(){
         return getMapMatrix("/maps/map1.txt");
     }
