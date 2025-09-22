@@ -2,6 +2,8 @@ package entity;
 
 import directionEnum.Direction;
 
+import static helper.Constant.*;
+
 public class Entity {
     private int worldPositionX;
     private int worldPositionY;
@@ -38,7 +40,11 @@ public class Entity {
     }
 
     public void setWorldPositionX(int worldPositionX) {
-        this.worldPositionX = worldPositionX;
+        boolean isWithinRange = worldPositionX - WINDOW_MAX_SCREEN_WIDTH / 2 > 0 && worldPositionX + WINDOW_MAX_SCREEN_WIDTH / 2 < WORLD_MAP_WIDTH;
+        if (isWithinRange) {
+            this.worldPositionX = worldPositionX;
+        }
+
     }
 
     public int getWorldPositionY() {
@@ -46,7 +52,11 @@ public class Entity {
     }
 
     public void setWorldPositionY(int worldPositionY) {
-        this.worldPositionY = worldPositionY;
+        boolean isWithinRange = worldPositionY - WINDOW_MAX_SCREEN_HEIGHT / 2 > 0 && worldPositionY + WINDOW_MAX_SCREEN_HEIGHT / 2 < WORLD_MAP_HEIGHT;
+        if (isWithinRange) {
+            this.worldPositionY = worldPositionY;
+        }
+
     }
 
     public int getSpeed() {
