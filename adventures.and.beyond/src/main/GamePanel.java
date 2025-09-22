@@ -17,7 +17,7 @@ public class GamePanel extends JPanel implements Runnable {
     int playerY = 100;
     int playerSpeed = 4;
 
-    private Player player;
+    private final Player player;
 
     private final TileManager tileManager;
 
@@ -28,7 +28,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.keyHandler = new KeyHandler();
         this.addKeyListener(this.keyHandler);
         this.setFocusable(true);
-        this.player = new Player(100, 100, this, this.keyHandler);
+        this.player = new Player(1500, 1500, this, this.keyHandler);
         this.tileManager= new TileManager(this);
     }
 
@@ -120,5 +120,9 @@ public class GamePanel extends JPanel implements Runnable {
         this.player.draw(graphics2D);
         //Disposes of this graphics context and releases any system resources that it is using.
         graphics2D.dispose();
+    }
+
+    public Player getPlayer() {
+        return this.player;
     }
 }
