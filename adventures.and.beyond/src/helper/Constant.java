@@ -23,4 +23,11 @@ public class Constant {
     public static final int FRAME_RATE_PER_SECOND = 60;//fps=60
 
     public  static final int PLAYER_UP_SCALE=2;
+
+    // World settings
+    public final static int MAX_WORLD_ROWS=50;
+    public final static int MAX_WORLD_COLUMNS =50;
+    public final int WORLD_MAP_WIDTH=TILE_SIZE*MAX_WORLD_COLUMNS;
+    public final int WORLD_MAP_HEIGHT=TILE_SIZE*MAX_WORLD_ROWS;
+
 }
