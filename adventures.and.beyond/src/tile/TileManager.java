@@ -55,9 +55,12 @@ public class TileManager {
         Tile tileRockWall = createTile("/tiles/rock_wall.png",false);
 
         Tile tileTest = createTile("/tiles/grass_custom.png",true);
+        Tile tilePurpleTreeDark =createTile("/tiles/tree/purple_dark_tree.png",false);
+        Tile tilePurpleTreeLight =createTile("/tiles/tree/purple_light_tree.png",false);
 
 
-        return new Tile[]{tileGrass, tilePath, tileWater, tileWall, tileRockWall, tileTest};
+
+        return new Tile[]{tileGrass, tilePath, tileWater, tileWall, tileRockWall, tileTest,tilePurpleTreeDark,tilePurpleTreeLight};
     }
 
     public Tile getTileByIndex(int tileIndex) {
