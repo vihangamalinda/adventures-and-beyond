@@ -109,6 +109,14 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    public CollisionDetector getCollisionDetector() {
+        return collisionDetector;
+    }
+
+    public TileManager getTileManager() {
+        return tileManager;
+    }
+
     public void update() {
         this.player.update();
     }
