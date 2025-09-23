@@ -47,6 +47,17 @@ public class Player extends Entity {
     }
 
     public void update() {
+        // handle idle or not
+        checkIdleState();
+
+        changeDirection();
+        performMovement();
+
+        counter++;
+
+    }
+
+    private void checkIdleState() {
         boolean hasUpPressed = keyHandler.upPressed;
         boolean hasDownPressed = keyHandler.downPressed;
         boolean hasLeftPressed = keyHandler.leftPressed;
@@ -54,19 +65,35 @@ public class Player extends Entity {
 
         boolean isIdle = !hasUpPressed && !hasDownPressed && !hasLeftPressed && !hasRightPressed;
         setIdle(isIdle);
+    }
 
-        if (hasUpPressed) {
+    private void changeDirection(){
+        Direction direction =this.getDirection();
+        if (this.keyHandler.upPressed) {
+            direction = Direction.FACING_BACKWARD;
+        } else if (this.keyHandler.downPressed) {
+            direction = Direction.FACING_FORWARD;
+        } else if (this.keyHandler.leftPressed) {
+            direction = Direction.FACING_LEFTWARD;
+        } else if (this.keyHandler.rightPressed) {
+            direction = Direction.FACING_RIGHTWARD;
+        }
+       if(!this.isIdle()) {
+           this.setDirection(direction);
+       }
+    }
+
+    private void performMovement() {
+
+        if (this.keyHandler.upPressed) {
             this.moveUpDirection();
-        } else if (hasDownPressed) {
+        } else if (this.keyHandler.downPressed) {
             this.moveDownDirection();
-        } else if (hasLeftPressed) {
+        } else if (this.keyHandler.leftPressed) {
             this.moveLeftDirection();
-        } else if (hasRightPressed) {
+        } else if (this.keyHandler.rightPressed) {
             this.moveRightDirection();
         }
-
-        counter++;
-
     }
 
     public void draw(Graphics2D graphics2D) {
@@ -115,25 +142,21 @@ public class Player extends Entity {
     }
 
     private void moveUpDirection() {
-        this.setDirection(Direction.FACING_BACKWARD);
         int newPositionY = this.getWorldPositionY() - this.getSpeed();
         this.setWorldPositionY(newPositionY);
     }
 
     private void moveDownDirection() {
-        this.setDirection(Direction.FACING_FORWARD);
         int newPositionY = this.getWorldPositionY() + this.getSpeed();
         this.setWorldPositionY(newPositionY);
     }
 
     private void moveLeftDirection() {
-        this.setDirection(Direction.FACING_LEFTWARD);
         int newPositionX = this.getWorldPositionX() - this.getSpeed();
         this.setWorldPositionX(newPositionX);
     }
 
     private void moveRightDirection() {
-        this.setDirection(Direction.FACING_RIGHTWARD);
         int newPositionX = this.getWorldPositionX() + this.getSpeed();
         this.setWorldPositionX(newPositionX);
     }
