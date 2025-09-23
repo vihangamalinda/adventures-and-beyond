@@ -105,7 +105,7 @@ public class TileManager {
                 graphics2D.drawImage(image, windowPositionX, windowPositionY, TILE_SIZE, TILE_SIZE, null);
 
                 drawScale(graphics2D, windowPositionX, windowPositionY);
-
+                drawRowAndColNumbers(graphics2D,drawMapRow,drawMapCol,windowPositionX,windowPositionY);
                 currentMapColumn++;
             }
             drawMapRow++;
@@ -150,6 +150,16 @@ public class TileManager {
             throw new RuntimeException(message);
         }
         return this.mapTileMatrix[row][col];
+    }
+
+    private void drawRowAndColNumbers(Graphics2D graphics2D, int row, int col, int windowStartX, int windowStartY) {
+        String message = String.format("(%d,%d)", row, col);
+        int tileHalf = TILE_SIZE / 2;
+        Font boldFont = new Font("Arial", Font.BOLD, 14);
+        graphics2D.setFont(boldFont);
+
+        graphics2D.drawString(message, windowStartX + 5, windowStartY + tileHalf);
+
     }
 
     private int[][] loadMapMatrix() {
