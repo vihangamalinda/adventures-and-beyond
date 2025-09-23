@@ -110,6 +110,14 @@ public class TileManager {
 
     }
 
+    private void drawScale(Graphics2D graphics2D, int windowPositionX, int windowPositionY) {
+        int thickness = 2;
+        Stroke oldStroke = graphics2D.getStroke();
+        graphics2D.setStroke(new BasicStroke(thickness));
+        graphics2D.drawRect(windowPositionX, windowPositionY, TILE_SIZE, TILE_SIZE);
+        graphics2D.setStroke(oldStroke);
+    }
+
     private int getDrawMapStarterRow(Player player) {
         int drawMapRow = (player.getWorldPositionY() / TILE_SIZE) - (MAX_SCREEN_COLUMN / 2);
 
