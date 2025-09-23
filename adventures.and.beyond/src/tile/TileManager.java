@@ -71,7 +71,7 @@ public class TileManager {
 
     private Tile createTile(String imgPath,boolean canCollide) {
         BufferedImage image = Loader.getImage(imgPath);
-        return new Tile(image, false);
+        return new Tile(image, canCollide);
     }
 
     public void draw(Graphics2D graphics2D) {
@@ -132,7 +132,7 @@ public class TileManager {
         return drawMapCol;
     }
 
-    private int getTileTypeIndexByRowAndCol(int row, int col) {
+    public int getTileTypeIndexByRowAndCol(int row, int col) {
         boolean isInvalid = row < 0 || col < 0 || row > MAX_WORLD_ROWS - 1 || col > MAX_WORLD_COLUMNS - 1;
         if (isInvalid) {
             String message = String.format("Custom Error Given row and col are not within range. Row: %d, Col: %d", row, col);
