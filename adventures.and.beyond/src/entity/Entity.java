@@ -2,6 +2,8 @@ package entity;
 
 import directionEnum.Direction;
 
+import java.awt.*;
+
 import static helper.Constant.*;
 
 public class Entity {
@@ -10,13 +12,29 @@ public class Entity {
     private int speed;
     private Direction direction;
     private boolean isIdle;
+    private Rectangle solidArea;
+    private boolean onCollision;
 
-    public Entity(int worldPositionX, int worldPositionY, int speed, Direction direction, boolean isIdle) {
+    public Entity(int worldPositionX, int worldPositionY, int speed, Direction direction, boolean isIdle,Rectangle solidArea,boolean onCollision) {
         this.worldPositionX = worldPositionX;
         this.worldPositionY = worldPositionY;
         this.speed = speed;
         this.direction = direction;
         this.isIdle = isIdle;
+        this.solidArea = solidArea;
+        this.onCollision =onCollision;
+    }
+
+    public Rectangle getSolidArea() {
+        return solidArea;
+    }
+
+    public boolean isOnCollision() {
+        return onCollision;
+    }
+
+    public void setOnCollision(boolean onCollision) {
+        this.onCollision = onCollision;
     }
 
     public int getWorldPositionX() {

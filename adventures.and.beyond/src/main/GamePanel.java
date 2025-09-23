@@ -21,6 +21,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     private final TileManager tileManager;
 
+    private CollisionDetector collisionDetector;
+
     public GamePanel() {
         this.setPreferredSize(new Dimension(Constant.WINDOW_MAX_SCREEN_WIDTH, Constant.WINDOW_MAX_SCREEN_HEIGHT));// defining panel size
         this.setBackground(Color.BLACK);
@@ -30,6 +32,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
         this.player = new Player(1500, 1500, this, this.keyHandler);
         this.tileManager = new TileManager(this);
+        this.collisionDetector = new CollisionDetector(this);
     }
 
     public void startGameThread() {
@@ -104,6 +107,14 @@ public class GamePanel extends JPanel implements Runnable {
                 delta--;
             }
         }
+    }
+
+    public CollisionDetector getCollisionDetector() {
+        return collisionDetector;
+    }
+
+    public TileManager getTileManager() {
+        return tileManager;
     }
 
     public void update() {

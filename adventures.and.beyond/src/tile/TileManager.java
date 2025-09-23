@@ -48,16 +48,19 @@ public class TileManager {
 
 
     private Tile[] initializeTiles() {
-        Tile tileGrass = createTile("/tiles/grass_2.png");
-        Tile tilePath = createTile("/tiles/path.png");
-        Tile tileWater = createTile("/tiles/water_custom.png");
-        Tile tileWall = createTile("/tiles/wall.png");
-        Tile tileRockWall = createTile("/tiles/rock_wall.png");
+        Tile tileGrass = createTile("/tiles/grass_2.png",true);
+        Tile tilePath = createTile("/tiles/path.png",true);
+        Tile tileWater = createTile("/tiles/water_custom.png",false);
+        Tile tileWall = createTile("/tiles/wall.png",false);
+        Tile tileRockWall = createTile("/tiles/rock_wall.png",false);
 
-        Tile tileTest = createTile("/tiles/grass_custom.png");
+        Tile tileTest = createTile("/tiles/grass_custom.png",true);
+        Tile tilePurpleTreeDark =createTile("/tiles/tree/purple_dark_tree.png",false);
+        Tile tilePurpleTreeLight =createTile("/tiles/tree/purple_light_tree.png",false);
 
 
-        return new Tile[]{tileGrass, tilePath, tileWater, tileWall, tileRockWall, tileTest};
+
+        return new Tile[]{tileGrass, tilePath, tileWater, tileWall, tileRockWall, tileTest,tilePurpleTreeDark,tilePurpleTreeLight};
     }
 
     public Tile getTileByIndex(int tileIndex) {
@@ -69,9 +72,9 @@ public class TileManager {
         return this.tiles[tileIndex];
     }
 
-    private Tile createTile(String imgPath) {
+    private Tile createTile(String imgPath,boolean canCollide) {
         BufferedImage image = Loader.getImage(imgPath);
-        return new Tile(image, false);
+        return new Tile(image, canCollide);
     }
 
     public void draw(Graphics2D graphics2D) {
@@ -103,6 +106,9 @@ public class TileManager {
                 BufferedImage image = getTileByIndex(columValues[currentMapColumn]).getBufferedImage();
 
                 graphics2D.drawImage(image, windowPositionX, windowPositionY, TILE_SIZE, TILE_SIZE, null);
+
+                drawScale(graphics2D, windowPositionX, windowPositionY);
+                drawRowAndColNumbers(graphics2D,drawMapRow,currentMapColumn,windowPositionX,windowPositionY);
                 currentMapColumn++;
             }
             drawMapRow++;
@@ -110,19 +116,28 @@ public class TileManager {
 
     }
 
-    private static int getDrawMapStarterRow(Player player) {
-        int drawMapRow = (player.getWorldPositionY() / TILE_SIZE) - (MAX_SCREEN_COLUMN / 2);
+    private void drawScale(Graphics2D graphics2D, int windowPositionX, int windowPositionY) {
+        int thickness = 1;
+        Stroke oldStroke = graphics2D.getStroke();
+        graphics2D.setStroke(new BasicStroke(thickness));
+        graphics2D.drawRect(windowPositionX, windowPositionY, TILE_SIZE, TILE_SIZE);
+        graphics2D.setStroke(oldStroke);
+    }
+
+    private int getDrawMapStarterRow(Player player) {
+        int drawMapRow = (player.getCurrentRowOnWorldMap()- (MAX_SCREEN_ROW/2));
 
         if (drawMapRow < 0) {
             drawMapRow = 0;
         } else if ((drawMapRow + MAX_SCREEN_ROW) > MAX_WORLD_ROWS) {
             drawMapRow = MAX_WORLD_ROWS - MAX_SCREEN_ROW;
         }
+//        System.out.println("Currently drawing starting from row:"+drawMapRow);
         return drawMapRow;
     }
 
-    private static int getDrawMapStarterCol(Player player) {
-        int drawMapCol = (player.getWorldPositionX() / TILE_SIZE) - (MAX_SCREEN_COLUMN / 2);
+    private int getDrawMapStarterCol(Player player) {
+        int drawMapCol = (player.getCurrentColOnWorldMap()) - (MAX_SCREEN_COLUMN / 2);
 
         if (drawMapCol < 0) {
             drawMapCol = 0;
@@ -130,6 +145,25 @@ public class TileManager {
             drawMapCol = MAX_WORLD_COLUMNS - MAX_SCREEN_COLUMN;
         }
         return drawMapCol;
+    }
+
+    public int getTileTypeIndexByRowAndCol(int row, int col) {
+        boolean isInvalid = row < 0 || col < 0 || row > MAX_WORLD_ROWS - 1 || col > MAX_WORLD_COLUMNS - 1;
+        if (isInvalid) {
+            String message = String.format("Custom Error Given row and col are not within range. Row: %d, Col: %d", row, col);
+            throw new RuntimeException(message);
+        }
+        return this.mapTileMatrix[row][col];
+    }
+
+    private void drawRowAndColNumbers(Graphics2D graphics2D, int row, int col, int windowStartX, int windowStartY) {
+        String message = String.format("(%d,%d)", row, col);
+        int tileHalf = TILE_SIZE / 2;
+        Font boldFont = new Font("Arial", Font.BOLD, 14);
+        graphics2D.setFont(boldFont);
+
+        graphics2D.drawString(message, windowStartX + 5, windowStartY + tileHalf);
+
     }
 
     private int[][] loadMapMatrix() {
