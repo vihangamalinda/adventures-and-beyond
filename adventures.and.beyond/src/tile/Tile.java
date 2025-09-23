@@ -4,11 +4,11 @@ import java.awt.image.BufferedImage;
 
 public class Tile {
     BufferedImage bufferedImage;
-    boolean isCollided;
+    boolean canCollide;
 
-    public Tile(BufferedImage bufferedImage, boolean isCollided) {
+    public Tile(BufferedImage bufferedImage, boolean canCollide) {
         this.bufferedImage = bufferedImage;
-        this.isCollided = isCollided;
+        this.canCollide = canCollide;
     }
 
     public BufferedImage getBufferedImage() {
@@ -19,11 +19,11 @@ public class Tile {
         this.bufferedImage = bufferedImage;
     }
 
-    public boolean isCollided() {
-        return isCollided;
+    public boolean isCanCollide() {
+        return canCollide;
     }
 
-    public void setCollided(boolean collided) {
-        isCollided = collided;
+    public void setCanCollide(boolean canCollide) {
+        this.canCollide = canCollide;
     }
 }

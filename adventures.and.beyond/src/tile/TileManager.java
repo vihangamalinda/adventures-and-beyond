@@ -48,13 +48,13 @@ public class TileManager {
 
 
     private Tile[] initializeTiles() {
-        Tile tileGrass = createTile("/tiles/grass_2.png");
-        Tile tilePath = createTile("/tiles/path.png");
-        Tile tileWater = createTile("/tiles/water_custom.png");
-        Tile tileWall = createTile("/tiles/wall.png");
-        Tile tileRockWall = createTile("/tiles/rock_wall.png");
+        Tile tileGrass = createTile("/tiles/grass_2.png",true);
+        Tile tilePath = createTile("/tiles/path.png",true);
+        Tile tileWater = createTile("/tiles/water_custom.png",false);
+        Tile tileWall = createTile("/tiles/wall.png",false);
+        Tile tileRockWall = createTile("/tiles/rock_wall.png",false);
 
-        Tile tileTest = createTile("/tiles/grass_custom.png");
+        Tile tileTest = createTile("/tiles/grass_custom.png",true);
 
 
         return new Tile[]{tileGrass, tilePath, tileWater, tileWall, tileRockWall, tileTest};
@@ -69,7 +69,7 @@ public class TileManager {
         return this.tiles[tileIndex];
     }
 
-    private Tile createTile(String imgPath) {
+    private Tile createTile(String imgPath,boolean canCollide) {
         BufferedImage image = Loader.getImage(imgPath);
         return new Tile(image, false);
     }
