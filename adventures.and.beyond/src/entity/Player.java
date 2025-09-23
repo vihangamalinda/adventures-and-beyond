@@ -123,11 +123,16 @@ public class Player extends Entity {
           graphics2D.fillRect( this.screenPositionX,  this.screenPositionY, scaledPlayer, scaledPlayer);
 
         drawSolidArea(graphics2D);
-
+        logPlayerCurrentRowAndCol();
 //        graphics2D.setColor(Color.WHITE);
 //        graphics2D.fillRect(this.getPositionX() +200, this.getPositionY() +300, Helper.TILE_SIZE, Helper.TILE_SIZE);
 //        BufferedImage blueImg =Helper.blueImg;
 //        graphics2D.drawImage(blueImg,this.getPositionX() +200,this.getPositionY() +300,Helper.TILE_SIZE,Helper.TILE_SIZE,null);
+    }
+
+    private void logPlayerCurrentRowAndCol() {
+        String message = String.format("Player current (Row,Col):(%d,%d)", getCurrentRow(), getCurrentCol());
+        System.out.println(message);
     }
 
     private void drawSolidArea(Graphics2D graphics2D) {
@@ -186,6 +191,23 @@ public class Player extends Entity {
         int centerX = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
         return this.getWorldPositionX() + centerX;
     }
+
+    private int getCurrentCol() {
+        return (this.getWorldPositionX() + getPlayerCenterX()) / TILE_SIZE;
+    }
+
+    private int getCurrentRow() {
+        return (this.getWorldPositionY() + getPlayerCenterY()) / TILE_SIZE;
+    }
+
+    private int getPlayerCenterX() {
+        return (TILE_SIZE / 2) * PLAYER_UP_SCALE;
+    }
+
+    private int getPlayerCenterY() {
+        return (TILE_SIZE / 2) * PLAYER_UP_SCALE;
+    }
+
 
     public int getPlayerAbsoluteCenterY() {
         int centerY = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
