@@ -103,6 +103,9 @@ public class TileManager {
                 BufferedImage image = getTileByIndex(columValues[currentMapColumn]).getBufferedImage();
 
                 graphics2D.drawImage(image, windowPositionX, windowPositionY, TILE_SIZE, TILE_SIZE, null);
+
+                drawScale(graphics2D, windowPositionX, windowPositionY);
+
                 currentMapColumn++;
             }
             drawMapRow++;
