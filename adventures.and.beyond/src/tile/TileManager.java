@@ -132,6 +132,15 @@ public class TileManager {
         return drawMapCol;
     }
 
+    private int getTileTypeByRowAndCol(int row, int col) {
+        boolean isInvalid = row < 0 || col < 0 || row > MAX_WORLD_ROWS - 1 || col > MAX_WORLD_COLUMNS - 1;
+        if (isInvalid) {
+            String message = String.format("Custom Error Given row and col are not within range. Row: %d, Col: %d", row, col);
+            throw new RuntimeException(message);
+        }
+        return this.mapTileMatrix[row][col];
+    }
+
     private int[][] loadMapMatrix() {
         return Loader.getMapMatrix("/maps/world_map_01.txt");
     }
