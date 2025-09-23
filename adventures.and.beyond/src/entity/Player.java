@@ -51,7 +51,12 @@ public class Player extends Entity {
         checkIdleState();
 
         changeDirection();
-        performMovement();
+
+        this.gamePanel.getCollisionDetector().checkCollision(this);
+        System.out.println(!this.isOnCollision());
+        if (!this.isOnCollision()) {
+            performMovement();
+        }
 
         counter++;
 
