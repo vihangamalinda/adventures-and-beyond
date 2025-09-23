@@ -131,7 +131,7 @@ public class Player extends Entity {
     }
 
     private void logPlayerCurrentRowAndCol() {
-        String message = String.format("Player current (Row,Col):(%d,%d)", getCurrentRow(), getCurrentCol());
+        String message = String.format("Player current (Row,Col):(%d,%d)", getCurrentRowOnWorldMap(), getCurrentColOnWorldMap());
         System.out.println(message);
     }
 
@@ -192,11 +192,11 @@ public class Player extends Entity {
         return this.getWorldPositionX() + centerX;
     }
 
-    private int getCurrentCol() {
+    public int getCurrentColOnWorldMap() {
         return (this.getWorldPositionX() + getPlayerCenterX()) / TILE_SIZE;
     }
 
-    private int getCurrentRow() {
+    public int getCurrentRowOnWorldMap() {
         return (this.getWorldPositionY() + getPlayerCenterY()) / TILE_SIZE;
     }
 

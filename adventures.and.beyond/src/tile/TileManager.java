@@ -105,7 +105,7 @@ public class TileManager {
                 graphics2D.drawImage(image, windowPositionX, windowPositionY, TILE_SIZE, TILE_SIZE, null);
 
                 drawScale(graphics2D, windowPositionX, windowPositionY);
-                drawRowAndColNumbers(graphics2D,drawMapRow,drawMapCol,windowPositionX,windowPositionY);
+                drawRowAndColNumbers(graphics2D,drawMapRow,currentMapColumn,windowPositionX,windowPositionY);
                 currentMapColumn++;
             }
             drawMapRow++;
@@ -114,7 +114,7 @@ public class TileManager {
     }
 
     private void drawScale(Graphics2D graphics2D, int windowPositionX, int windowPositionY) {
-        int thickness = 2;
+        int thickness = 1;
         Stroke oldStroke = graphics2D.getStroke();
         graphics2D.setStroke(new BasicStroke(thickness));
         graphics2D.drawRect(windowPositionX, windowPositionY, TILE_SIZE, TILE_SIZE);
@@ -122,18 +122,19 @@ public class TileManager {
     }
 
     private int getDrawMapStarterRow(Player player) {
-        int drawMapRow = (player.getWorldPositionY() / TILE_SIZE) - (MAX_SCREEN_COLUMN / 2);
+        int drawMapRow = (player.getCurrentRowOnWorldMap()- (MAX_SCREEN_ROW/2));
 
         if (drawMapRow < 0) {
             drawMapRow = 0;
         } else if ((drawMapRow + MAX_SCREEN_ROW) > MAX_WORLD_ROWS) {
             drawMapRow = MAX_WORLD_ROWS - MAX_SCREEN_ROW;
         }
+//        System.out.println("Currently drawing starting from row:"+drawMapRow);
         return drawMapRow;
     }
 
     private int getDrawMapStarterCol(Player player) {
-        int drawMapCol = (player.getWorldPositionX() / TILE_SIZE) - (MAX_SCREEN_COLUMN / 2);
+        int drawMapCol = (player.getCurrentColOnWorldMap()) - (MAX_SCREEN_COLUMN / 2);
 
         if (drawMapCol < 0) {
             drawMapCol = 0;
