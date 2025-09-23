@@ -33,6 +33,10 @@ public class Entity {
         return onCollision;
     }
 
+    public void setOnCollision(boolean onCollision) {
+        this.onCollision = onCollision;
+    }
+
     public int getWorldPositionX() {
         return worldPositionX;
     }
