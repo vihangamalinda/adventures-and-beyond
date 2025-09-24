@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 
 import static helper.Constant.TILE_SIZE;
 
-public class InteractableObject {
+public abstract class InteractableObject {
     private BufferedImage image;
     private String name;
     private boolean onCollision;
