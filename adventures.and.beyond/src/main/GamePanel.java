@@ -2,6 +2,8 @@ package main;
 
 import entity.Player;
 import helper.Constant;
+
+import object.InteractableObjectManager;
 import tile.TileManager;
 
 import javax.swing.*;
@@ -22,6 +24,7 @@ public class GamePanel extends JPanel implements Runnable {
     private final TileManager tileManager;
 
     private CollisionDetector collisionDetector;
+    public final InteractableObjectManager interactableObjectManager;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(Constant.WINDOW_MAX_SCREEN_WIDTH, Constant.WINDOW_MAX_SCREEN_HEIGHT));// defining panel size
@@ -33,6 +36,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.player = new Player(1500, 1500, this, this.keyHandler);
         this.tileManager = new TileManager(this);
         this.collisionDetector = new CollisionDetector(this);
+        this.interactableObjectManager = new InteractableObjectManager(this);
     }
 
     public void startGameThread() {
@@ -128,6 +132,7 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D graphics2D = (Graphics2D) graphic;
 
         this.tileManager.draw(graphics2D);
+        this.interactableObjectManager.drawInteractiveObjects(graphics2D);
         this.player.draw(graphics2D);
         //Disposes of this graphics context and releases any system resources that it is using.
         graphics2D.dispose();
