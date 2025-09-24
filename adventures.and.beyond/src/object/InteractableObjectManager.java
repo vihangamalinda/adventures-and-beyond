@@ -16,9 +16,11 @@ public class InteractableObjectManager {
         this.interactableObjects = initializeInteractableObjects();
     }
     private InteractableObject[] initializeInteractableObjects() {
-        InteractableObject key = new KeyObject(false,24*TILE_SIZE,22*TILE_SIZE,"KEY_07");
+        InteractableObject key = new KeyObject(false,28*TILE_SIZE,10*TILE_SIZE,"KEY_07");
+        InteractableObject door = new DoorObject(false,25*TILE_SIZE,9*TILE_SIZE,"DOOR_5","KEY_07");
+        InteractableObject treasure = new TreasureObject(false,21*TILE_SIZE,8*TILE_SIZE,"TREASURE_5","KEY_08");
 
-       return new InteractableObject[]{key};
+       return new InteractableObject[]{key,door,treasure};
     }
 
     public void drawInteractiveObjects(Graphics2D graphics2D){
