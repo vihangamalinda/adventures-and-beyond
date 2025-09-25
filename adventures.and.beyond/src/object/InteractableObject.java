@@ -89,10 +89,13 @@ public abstract class InteractableObject {
     public void draw(Graphics2D graphics2D,Player player){
        boolean isWithinWindowRange = DrawHelper.isWithinWindow(this.worldPositionX,this.worldPositionY,player);
        if(isWithinWindowRange){
-           int windowPositionX =DrawHelper.getObjWindowPositionXRespectiveToPlayer(this.worldPositionX,player);
-           int windowPositionY =DrawHelper.getObjWindowPositionYRespectiveToPlayer(this.worldPositionY,player);
+           if(this.isActive){
+               int windowPositionX =DrawHelper.getObjWindowPositionXRespectiveToPlayer(this.worldPositionX,player);
+               int windowPositionY =DrawHelper.getObjWindowPositionYRespectiveToPlayer(this.worldPositionY,player);
 
-           graphics2D.drawImage(this.image,windowPositionX,windowPositionY,TILE_SIZE,TILE_SIZE,null);
+               graphics2D.drawImage(this.image,windowPositionX,windowPositionY,TILE_SIZE,TILE_SIZE,null);
+           }
+
        }
     }
 }
