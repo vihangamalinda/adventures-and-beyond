@@ -16,12 +16,17 @@ public abstract class InteractableObject {
     private  int worldPositionX;
     private int worldPositionY;
 
-    public InteractableObject(String imagePath, String name, boolean onCollision, int worldPositionX, int worldPositionY) {
+    private boolean isActive;
+
+    private final Rectangle solidArea = new Rectangle(0,0,TILE_SIZE,TILE_SIZE);
+
+    public InteractableObject(String imagePath, String name, boolean onCollision, int worldPositionX, int worldPositionY,boolean isActive) {
         this.image = Loader.getImage(imagePath);
         this.name = name;
         this.onCollision = onCollision;
         this.worldPositionX = worldPositionX;
         this.worldPositionY = worldPositionY;
+        this.isActive =isActive;
     }
 
     public BufferedImage getImage() {
@@ -64,6 +69,13 @@ public abstract class InteractableObject {
         this.worldPositionY = worldPositionY;
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
     public void draw(Graphics2D graphics2D,Player player){
        boolean isWithinWindowRange = DrawHelper.isWithinWindow(this.worldPositionX,this.worldPositionY,player);
        if(isWithinWindowRange){
