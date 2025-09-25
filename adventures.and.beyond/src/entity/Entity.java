@@ -15,14 +15,14 @@ public class Entity {
     private Rectangle solidArea;
     private boolean onCollision;
 
-    public Entity(int worldPositionX, int worldPositionY, int speed, Direction direction, boolean isIdle,Rectangle solidArea,boolean onCollision) {
+    public Entity(int worldPositionX, int worldPositionY, int speed, Direction direction, boolean isIdle, Rectangle solidArea, boolean onCollision) {
         this.worldPositionX = worldPositionX;
         this.worldPositionY = worldPositionY;
         this.speed = speed;
         this.direction = direction;
         this.isIdle = isIdle;
         this.solidArea = solidArea;
-        this.onCollision =onCollision;
+        this.onCollision = onCollision;
     }
 
     public Rectangle getSolidArea() {

@@ -48,19 +48,18 @@ public class TileManager {
 
 
     private Tile[] initializeTiles() {
-        Tile tileGrass = createTile("/tiles/grass_2.png",true);
-        Tile tilePath = createTile("/tiles/path.png",true);
-        Tile tileWater = createTile("/tiles/water_custom.png",false);
-        Tile tileWall = createTile("/tiles/wall.png",false);
-        Tile tileRockWall = createTile("/tiles/rock_wall.png",false);
+        Tile tileGrass = createTile("/tiles/grass_2.png", true);
+        Tile tilePath = createTile("/tiles/path.png", true);
+        Tile tileWater = createTile("/tiles/water_custom.png", false);
+        Tile tileWall = createTile("/tiles/wall.png", false);
+        Tile tileRockWall = createTile("/tiles/rock_wall.png", false);
 
-        Tile tileTest = createTile("/tiles/grass_custom.png",true);
-        Tile tilePurpleTreeDark =createTile("/tiles/tree/purple_dark_tree.png",false);
-        Tile tilePurpleTreeLight =createTile("/tiles/tree/purple_light_tree.png",false);
+        Tile tileTest = createTile("/tiles/grass_custom.png", true);
+        Tile tilePurpleTreeDark = createTile("/tiles/tree/purple_dark_tree.png", false);
+        Tile tilePurpleTreeLight = createTile("/tiles/tree/purple_light_tree.png", false);
 
 
-
-        return new Tile[]{tileGrass, tilePath, tileWater, tileWall, tileRockWall, tileTest,tilePurpleTreeDark,tilePurpleTreeLight};
+        return new Tile[]{tileGrass, tilePath, tileWater, tileWall, tileRockWall, tileTest, tilePurpleTreeDark, tilePurpleTreeLight};
     }
 
     public Tile getTileByIndex(int tileIndex) {
@@ -72,7 +71,7 @@ public class TileManager {
         return this.tiles[tileIndex];
     }
 
-    private Tile createTile(String imgPath,boolean canCollide) {
+    private Tile createTile(String imgPath, boolean canCollide) {
         BufferedImage image = Loader.getImage(imgPath);
         return new Tile(image, canCollide);
     }
@@ -108,7 +107,7 @@ public class TileManager {
                 graphics2D.drawImage(image, windowPositionX, windowPositionY, TILE_SIZE, TILE_SIZE, null);
 
                 drawScale(graphics2D, windowPositionX, windowPositionY);
-                drawRowAndColNumbers(graphics2D,drawMapRow,currentMapColumn,windowPositionX,windowPositionY);
+                drawRowAndColNumbers(graphics2D, drawMapRow, currentMapColumn, windowPositionX, windowPositionY);
                 currentMapColumn++;
             }
             drawMapRow++;
@@ -125,7 +124,7 @@ public class TileManager {
     }
 
     private int getDrawMapStarterRow(Player player) {
-        int drawMapRow = (player.getCurrentRowOnWorldMap()- (MAX_SCREEN_ROW/2));
+        int drawMapRow = (player.getCurrentRowOnWorldMap() - (MAX_SCREEN_ROW / 2));
 
         if (drawMapRow < 0) {
             drawMapRow = 0;
