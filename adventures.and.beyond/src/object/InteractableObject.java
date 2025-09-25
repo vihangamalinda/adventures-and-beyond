@@ -81,6 +81,11 @@ public abstract class InteractableObject {
       Rectangle currentSolidArea = this.solidArea;
       return  new Rectangle(this.worldPositionX,this.worldPositionY,currentSolidArea.width,currentSolidArea.height);
     }
+
+    public boolean doCollideWithPlayer(Player player){
+        return player.getSolidAreaWithWorldPositions().intersects(getSolidAreaWithWorldPositions());
+    }
+
     public void draw(Graphics2D graphics2D,Player player){
        boolean isWithinWindowRange = DrawHelper.isWithinWindow(this.worldPositionX,this.worldPositionY,player);
        if(isWithinWindowRange){
