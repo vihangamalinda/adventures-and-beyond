@@ -18,7 +18,7 @@ public class TreasureObject extends InteractableObject {
     public void performAction(Player player) {
         if (player.hasKeyCode(this.openCode)) {
             this.setActive(false);
-        }else {
+        } else {
             player.setOnCollision(true);
         }
     }

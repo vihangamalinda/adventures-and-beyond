@@ -18,7 +18,7 @@ public class DoorObject extends InteractableObject {
     public void performAction(Player player) {
         if (player.hasKeyCode(this.openCode)) {
             this.setActive(false);
-        }else {
+        } else {
             System.out.println("Player does not have key");
             player.setOnCollision(true);
         }

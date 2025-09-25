@@ -23,7 +23,7 @@ public class InteractableObjectManager {
         InteractableObject treasure = new TreasureObject(false, 21 * TILE_SIZE, 8 * TILE_SIZE, "TREASURE_05", "KEY_08", true);
         InteractableObject key2 = new KeyObject(false, 16 * TILE_SIZE, 11 * TILE_SIZE, "KEY_08", true);
 
-        return new InteractableObject[]{key, door, treasure,key2};
+        return new InteractableObject[]{key, door, treasure, key2};
     }
 
     public void drawInteractiveObjects(Graphics2D graphics2D) {

@@ -28,6 +28,7 @@ public abstract class InteractableObject {
         this.worldPositionY = worldPositionY;
         this.isActive = isActive;
     }
+
     public abstract void performAction(Player player);
 
     public BufferedImage getImage() {

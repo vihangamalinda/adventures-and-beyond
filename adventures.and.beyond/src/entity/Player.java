@@ -66,7 +66,6 @@ public class Player extends Entity {
         }
 
 
-
         counter++;
 
     }
@@ -74,8 +73,9 @@ public class Player extends Entity {
     public ArrayList<String> getCollectedKeyCode() {
         return collectedKeyCode;
     }
-    public void collectKeyCode(String keyCode){
-        if(!hasKeyCode(keyCode)) {
+
+    public void collectKeyCode(String keyCode) {
+        if (!hasKeyCode(keyCode)) {
             this.collectedKeyCode.add(keyCode);
         }
     }
@@ -255,15 +255,15 @@ public class Player extends Entity {
         return new Rectangle(this.getWorldPositionX() + x, getWorldPositionY() + y, currentSolidArea.width, currentSolidArea.height);
     }
 
-    public boolean hasKeyCode(String keyCode){
-        boolean hasKey =false;
-        for (String ownKey :this.collectedKeyCode){
-            if(ownKey.equals(keyCode)){
-                hasKey =true;
+    public boolean hasKeyCode(String keyCode) {
+        boolean hasKey = false;
+        for (String ownKey : this.collectedKeyCode) {
+            if (ownKey.equals(keyCode)) {
+                hasKey = true;
                 break;
             }
         }
-        return  hasKey;
+        return hasKey;
     }
 
     public int getPlayerAbsoluteCenterY() {
