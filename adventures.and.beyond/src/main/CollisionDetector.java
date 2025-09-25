@@ -80,7 +80,7 @@ public class CollisionDetector {
 
             boolean isColliding = obj.doCollideWithPlayer(player);
             if (isColliding) {
-                obj.setActive(false);
+                obj.performAction(player);
             }
 
         }
