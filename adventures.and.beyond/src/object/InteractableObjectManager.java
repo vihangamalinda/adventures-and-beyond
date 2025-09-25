@@ -32,6 +32,7 @@ public class InteractableObjectManager {
         }
     }
 
-
-
+    public InteractableObject[] getInteractableObjects() {
+        return interactableObjects;
+    }
 }
