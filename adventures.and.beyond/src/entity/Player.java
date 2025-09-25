@@ -58,6 +58,8 @@ public class Player extends Entity {
             performMovement();
         }
 
+        this.gamePanel.getCollisionDetector().checkObjectCollision(this);
+
         counter++;
 
     }

@@ -1,6 +1,8 @@
 package main;
 
 import entity.Entity;
+import entity.Player;
+import object.InteractableObject;
 import tile.Tile;
 import tile.TileManager;
 
@@ -9,7 +11,7 @@ import java.awt.*;
 import static helper.Constant.TILE_SIZE;
 
 public class CollisionDetector {
-    private GamePanel gamePanel;
+    private final GamePanel gamePanel;
 
     public CollisionDetector(GamePanel gamePanel){
         this.gamePanel = gamePanel;
@@ -67,5 +69,20 @@ public class CollisionDetector {
             boolean canCollied = collideOne && collideTwo;
             entity.setOnCollision(!canCollied);
         }
+    }
+
+    public void checkObjectCollision(Player player){
+
+        InteractableObject[] interactableObjects = this.gamePanel.interactableObjectManager.getInteractableObjects();
+        for (int i=0;i<interactableObjects.length;i++){
+            InteractableObject obj =interactableObjects[i];
+
+            boolean isColliding =obj.doCollideWithPlayer(player);
+            if(isColliding){
+                obj.setActive(false);
+            }
+
+        }
+
     }
 }
