@@ -1,5 +1,7 @@
 package object;
 
+import entity.Player;
+
 import static object.ObjectResourcePath.TREASURE_IMG_PATH;
 
 public class TreasureObject extends InteractableObject {
@@ -10,5 +12,14 @@ public class TreasureObject extends InteractableObject {
         super(TREASURE_IMG_PATH, "Treasure", onCollision, worldPositionX, worldPositionY, isActive);
         this.treasureNumber = treasureNumber;
         this.openCode = openCode;
+    }
+
+    @Override
+    public void performAction(Player player) {
+        if (player.hasKeyCode(this.openCode)) {
+            this.setActive(false);
+        }else {
+            player.setOnCollision(true);
+        }
     }
 }
