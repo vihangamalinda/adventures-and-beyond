@@ -211,6 +211,27 @@ public class Player extends Entity {
         return (TILE_SIZE / 2) * PLAYER_UP_SCALE;
     }
 
+    public Rectangle getSolidAreaWithWorldPositions(){
+        Rectangle currentSolidArea = this.getSolidArea();
+        int speed = this.getSpeed();
+        boolean isMoving = !this.isIdle();
+
+        int x =0;
+        int y=0;
+        // if player is moving its speed should be included
+        if(isMoving){
+            switch (this.getDirection()){
+                case FACING_FORWARD -> y=speed;
+                case FACING_BACKWARD ->y=-speed;
+                case FACING_LEFTWARD -> x = -speed;
+                case FACING_RIGHTWARD ->x=speed;
+                default -> System.out.println("Custom Error:this.getDirection() runs default case on player.getSolidAreaWithWorldPosition()");
+            }
+        }
+
+        return new Rectangle(this.getWorldPositionX()+x,getWorldPositionY()+y,currentSolidArea.width,currentSolidArea.height);
+    }
+
 
     public int getPlayerAbsoluteCenterY() {
         int centerY = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
