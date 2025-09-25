@@ -76,6 +76,11 @@ public abstract class InteractableObject {
     public void setActive(boolean active) {
         isActive = active;
     }
+
+    private Rectangle getSolidAreaWithWorldPositions(){
+      Rectangle currentSolidArea = this.solidArea;
+      return  new Rectangle(this.worldPositionX,this.worldPositionY,currentSolidArea.width,currentSolidArea.height);
+    }
     public void draw(Graphics2D graphics2D,Player player){
        boolean isWithinWindowRange = DrawHelper.isWithinWindow(this.worldPositionX,this.worldPositionY,player);
        if(isWithinWindowRange){
