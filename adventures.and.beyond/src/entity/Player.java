@@ -40,7 +40,7 @@ public class Player extends Entity {
 
 
     public Player(int positionX, int positionY, GamePanel gamePanel, KeyHandler keyHandler) {
-        super(positionX, positionY, movementSpeed, Direction.FACING_FORWARD, true,new Rectangle(PLAYER_SOLID_AREA_START_X,PLAYER_SOLID_AREA_START_Y,PLAYER_SOLID_AREA_WIDTH,PLAYER_SOLID_AREA_HEIGHT),false);
+        super(positionX, positionY, movementSpeed, Direction.FACING_FORWARD, true, new Rectangle(PLAYER_SOLID_AREA_START_X, PLAYER_SOLID_AREA_START_Y, PLAYER_SOLID_AREA_WIDTH, PLAYER_SOLID_AREA_HEIGHT), false);
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
         this.initializeCentralizeCamera();
@@ -74,8 +74,8 @@ public class Player extends Entity {
         setIdle(isIdle);
     }
 
-    private void changeDirection(){
-        Direction direction =this.getDirection();
+    private void changeDirection() {
+        Direction direction = this.getDirection();
         if (this.keyHandler.upPressed) {
             direction = Direction.FACING_BACKWARD;
         } else if (this.keyHandler.downPressed) {
@@ -85,9 +85,9 @@ public class Player extends Entity {
         } else if (this.keyHandler.rightPressed) {
             direction = Direction.FACING_RIGHTWARD;
         }
-       if(!this.isIdle()) {
-           this.setDirection(direction);
-       }
+        if (!this.isIdle()) {
+            this.setDirection(direction);
+        }
     }
 
     private void performMovement() {
@@ -121,8 +121,8 @@ public class Player extends Entity {
 
 
 //        graphics2D.drawImage(image, this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer, null);
-          graphics2D.setColor(Color.WHITE);
-          graphics2D.fillRect( this.screenPositionX,  this.screenPositionY, scaledPlayer, scaledPlayer);
+        graphics2D.setColor(Color.WHITE);
+        graphics2D.fillRect(this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer);
 
         drawSolidArea(graphics2D);
 //        logPlayerCurrentRowAndCol();
@@ -136,14 +136,14 @@ public class Player extends Entity {
     private void logPlayerCurrentRowAndCol() {
         String message = String.format("Player current (Row,Col):(%d,%d)", getCurrentRowOnWorldMap(), getCurrentColOnWorldMap());
         System.out.println(message);
-        int  firstRowDrawnOnColumn =(this.getWorldPositionX()-(WINDOW_MAX_SCREEN_HEIGHT)/2)/TILE_SIZE;
-        System.out.println("Should start from row: "+firstRowDrawnOnColumn);
+        int firstRowDrawnOnColumn = (this.getWorldPositionX() - (WINDOW_MAX_SCREEN_HEIGHT) / 2) / TILE_SIZE;
+        System.out.println("Should start from row: " + firstRowDrawnOnColumn);
     }
 
     private void drawSolidArea(Graphics2D graphics2D) {
         graphics2D.setColor(Color.RED);
         Rectangle rectangle = this.getSolidArea();
-        graphics2D.fillRect( this.screenPositionX +rectangle.x,  this.screenPositionY+rectangle.y, rectangle.width, rectangle.height);
+        graphics2D.fillRect(this.screenPositionX + rectangle.x, this.screenPositionY + rectangle.y, rectangle.width, rectangle.height);
     }
 
     private void initializeCentralizeCamera() {
@@ -213,25 +213,26 @@ public class Player extends Entity {
         return (TILE_SIZE / 2) * PLAYER_UP_SCALE;
     }
 
-    public Rectangle getSolidAreaWithWorldPositions(){
+    public Rectangle getSolidAreaWithWorldPositions() {
         Rectangle currentSolidArea = this.getSolidArea();
         int speed = this.getSpeed();
         boolean isMoving = !this.isIdle();
 
-        int x =0;
-        int y=0;
+        int x = 0;
+        int y = 0;
         // if player is moving its speed should be included
-        if(isMoving){
-            switch (this.getDirection()){
-                case FACING_FORWARD -> y=speed;
-                case FACING_BACKWARD ->y=-speed;
+        if (isMoving) {
+            switch (this.getDirection()) {
+                case FACING_FORWARD -> y = speed;
+                case FACING_BACKWARD -> y = -speed;
                 case FACING_LEFTWARD -> x = -speed;
-                case FACING_RIGHTWARD ->x=speed;
-                default -> System.out.println("Custom Error:this.getDirection() runs default case on player.getSolidAreaWithWorldPosition()");
+                case FACING_RIGHTWARD -> x = speed;
+                default ->
+                        System.out.println("Custom Error:this.getDirection() runs default case on player.getSolidAreaWithWorldPosition()");
             }
         }
 
-        return new Rectangle(this.getWorldPositionX()+x,getWorldPositionY()+y,currentSolidArea.width,currentSolidArea.height);
+        return new Rectangle(this.getWorldPositionX() + x, getWorldPositionY() + y, currentSolidArea.width, currentSolidArea.height);
     }
 
 
