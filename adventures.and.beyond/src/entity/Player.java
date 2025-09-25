@@ -7,6 +7,7 @@ import main.KeyHandler;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import static helper.Constant.*;
 import static helper.PlayerSpriteManager.getPlayerImageByIndex;
@@ -14,6 +15,9 @@ import static helper.PlayerSpriteManager.getPlayerImageByIndex;
 public class Player extends Entity {
     private GamePanel gamePanel;
     private KeyHandler keyHandler;
+
+
+    private ArrayList<String> collectedKeyCode;
 
     private int screenPositionX;
     private int screenPositionY;
@@ -43,6 +47,7 @@ public class Player extends Entity {
         super(positionX, positionY, movementSpeed, Direction.FACING_FORWARD, true, new Rectangle(PLAYER_SOLID_AREA_START_X, PLAYER_SOLID_AREA_START_Y, PLAYER_SOLID_AREA_WIDTH, PLAYER_SOLID_AREA_HEIGHT), false);
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
+        this.collectedKeyCode = new ArrayList<>();
         this.initializeCentralizeCamera();
     }
 
@@ -62,6 +67,19 @@ public class Player extends Entity {
 
         counter++;
 
+    }
+
+    public ArrayList<String> getCollectedKeyCode() {
+        return collectedKeyCode;
+    }
+    public void collectKeyCode(String keyCode){
+        if(!hasKeyCode(keyCode)) {
+            this.collectedKeyCode.add(keyCode);
+        }
+    }
+
+    public void setCollectedKeyCode(ArrayList<String> collectedKeyCode) {
+        this.collectedKeyCode = collectedKeyCode;
     }
 
     private void checkIdleState() {
@@ -235,6 +253,16 @@ public class Player extends Entity {
         return new Rectangle(this.getWorldPositionX() + x, getWorldPositionY() + y, currentSolidArea.width, currentSolidArea.height);
     }
 
+    public boolean hasKeyCode(String keyCode){
+        boolean hasKey =false;
+        for (String ownKey :this.collectedKeyCode){
+            if(ownKey.equals(keyCode)){
+                hasKey =true;
+                break;
+            }
+        }
+        return  hasKey;
+    }
 
     public int getPlayerAbsoluteCenterY() {
         int centerY = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
