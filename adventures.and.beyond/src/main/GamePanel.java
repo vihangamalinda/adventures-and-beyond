@@ -42,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.tileManager = new TileManager(this);
         this.collisionDetector = new CollisionDetector(this);
         this.interactableObjectManager = new InteractableObjectManager(this);
-        this.soundManager = new SoundManager();
+        this.soundManager = SoundManager.getInstance();
         playThemeMusic();
     }
 

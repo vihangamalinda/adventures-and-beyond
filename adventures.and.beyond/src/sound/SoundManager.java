@@ -12,8 +12,16 @@ public class SoundManager {
     Clip clip;
     HashMap<String,URL> soundURL;
 
-    public SoundManager(){
+    private static class Holder {
+        private static final SoundManager INSTANCE = new SoundManager();
+    }
+
+    private SoundManager(){
             this.soundURL= this.initializeSoundEffects();
+    }
+
+    public static SoundManager getInstance() {
+        return Holder.INSTANCE;
     }
 
     private HashMap<String,URL> initializeSoundEffects() {
