@@ -4,10 +4,13 @@ import entity.Player;
 import helper.Constant;
 
 import object.InteractableObjectManager;
+import sound.SoundManager;
 import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
+
+import static sound.SoundKey.THEME_1_KEY;
 
 public class GamePanel extends JPanel implements Runnable {
     // Game will be run on this thread
@@ -26,6 +29,8 @@ public class GamePanel extends JPanel implements Runnable {
     private CollisionDetector collisionDetector;
     public final InteractableObjectManager interactableObjectManager;
 
+    private final SoundManager soundManager;
+
     public GamePanel() {
         this.setPreferredSize(new Dimension(Constant.WINDOW_MAX_SCREEN_WIDTH, Constant.WINDOW_MAX_SCREEN_HEIGHT));// defining panel size
         this.setBackground(Color.BLACK);
@@ -37,6 +42,8 @@ public class GamePanel extends JPanel implements Runnable {
         this.tileManager = new TileManager(this);
         this.collisionDetector = new CollisionDetector(this);
         this.interactableObjectManager = new InteractableObjectManager(this);
+        this.soundManager = new SoundManager();
+        playThemeMusic();
     }
 
     public void startGameThread() {
@@ -137,6 +144,20 @@ public class GamePanel extends JPanel implements Runnable {
         //Disposes of this graphics context and releases any system resources that it is using.
         graphics2D.dispose();
     }
+
+    public void playThemeMusic(){
+        this.soundManager.setSoundFile(THEME_1_KEY);
+        this.soundManager.playSound();
+    }
+
+    public void stopMusic(){
+        this.soundManager.stop();
+    }
+
+    public void addSoundEffects(String soundKey){
+        this.soundManager.setSoundFile(soundKey);
+    }
+
 
     public Player getPlayer() {
         return this.player;
