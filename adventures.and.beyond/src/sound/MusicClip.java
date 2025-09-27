@@ -34,6 +34,18 @@ public class MusicClip {
 
         this.clip.loop(1);
     }
+    public void playForTimePeriod(int seconds){
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
 
-//    }
+        Runnable task = () -> {
+            System.out.println("Sheduled task");
+            this.stop();
+        };
+
+
+        this.playForOnce();
+
+        scheduledExecutorService.schedule(task, seconds, TimeUnit.SECONDS);
+        scheduledExecutorService.shutdown();
+    }
 }
