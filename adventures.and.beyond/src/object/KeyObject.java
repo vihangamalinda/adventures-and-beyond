@@ -21,11 +21,7 @@ public class KeyObject extends InteractableObject {
     public void performAction(Player player) {
         player.collectKeyCode(this.keyCode);
 
-        SoundManager soundManager=SoundManager.getInstance();
-//        soundManager.setSoundFile(SoundKey.KEY_COLLECTED);
-//        soundManager.playSound();
-        soundManager.setSoundEffectMusicClip(SoundKey.KEY_COLLECTED);
-        soundManager.playSoundEffectForPeriod(2);
+        SoundManager.getInstance().performSoundEffects(SoundKey.KEY_COLLECTED,2);
 
         this.setActive(false);
     }

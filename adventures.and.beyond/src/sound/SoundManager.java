@@ -46,6 +46,11 @@ public class SoundManager {
         this.soundEffectMusicClip.playForTimePeriod(seconds);
     }
 
+    public void performSoundEffects(String soundKey,int seconds){
+        this.setSoundEffectMusicClip(soundKey);
+        this.playSoundEffectForPeriod(seconds);
+    }
+
     public void playSound(){
         this.mainMusicClip.play();
     }
