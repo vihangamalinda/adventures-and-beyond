@@ -1,6 +1,8 @@
 package object;
 
 import entity.Player;
+import sound.SoundKey;
+import sound.SoundManager;
 
 import static object.ObjectResourcePath.TREASURE_IMG_PATH;
 
@@ -17,6 +19,9 @@ public class TreasureObject extends InteractableObject {
     @Override
     public void performAction(Player player) {
         if (player.hasKeyCode(this.openCode)) {
+            SoundManager soundManager =SoundManager.getInstance();
+            soundManager.setSoundEffectMusicClip(SoundKey.TREASURE_BOX_OPENING);
+            soundManager.playSoundEffectForPeriod(2);
             this.setActive(false);
         } else {
             player.setOnCollision(true);
