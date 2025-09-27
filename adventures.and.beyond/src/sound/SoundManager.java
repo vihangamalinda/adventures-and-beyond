@@ -1,6 +1,5 @@
 package sound;
 
-import javax.sound.sampled.Clip;
 import java.net.URL;
 import java.util.HashMap;
 
@@ -27,7 +26,10 @@ public class SoundManager {
     private HashMap<String,URL> initializeSoundEffects() {
         HashMap<String,URL> map =new HashMap<>();
 
-        map.put(THEME_1_KEY,getURL(THEME_1_PATH));
+        map.put(SoundKey.THEME_1_KEY, getResourceURL(SoundResourcePath.THEME_1_PATH));
+        map.put(SoundKey.KEY_COLLECTED, getResourceURL(SoundResourcePath.KEY_COLLECTED));
+        map.put((SoundKey.DOOR_OPENING),getResourceURL(SoundResourcePath.DOOR_OPENING));
+        map.put((SoundKey.TREASURE_BOX_OPENING),getResourceURL(SoundResourcePath.TREASURE_BOX_OPENING));
         return map;
     }
 
