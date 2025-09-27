@@ -10,6 +10,7 @@ import tile.TileManager;
 import javax.swing.*;
 import java.awt.*;
 
+import static helper.Constant.TILE_SIZE;
 import static sound.SoundKey.THEME_1_KEY;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -29,8 +30,6 @@ public class GamePanel extends JPanel implements Runnable {
     private CollisionDetector collisionDetector;
     public final InteractableObjectManager interactableObjectManager;
 
-    private final SoundManager soundManager;
-
     public GamePanel() {
         this.setPreferredSize(new Dimension(Constant.WINDOW_MAX_SCREEN_WIDTH, Constant.WINDOW_MAX_SCREEN_HEIGHT));// defining panel size
         this.setBackground(Color.BLACK);
@@ -38,11 +37,10 @@ public class GamePanel extends JPanel implements Runnable {
         this.keyHandler = new KeyHandler();
         this.addKeyListener(this.keyHandler);
         this.setFocusable(true);
-        this.player = new Player(1500, 1500, this, this.keyHandler);
+        this.player = new Player(28*TILE_SIZE, 12*TILE_SIZE, this, this.keyHandler);
         this.tileManager = new TileManager(this);
         this.collisionDetector = new CollisionDetector(this);
         this.interactableObjectManager = new InteractableObjectManager(this);
-        this.soundManager = SoundManager.getInstance();
         playThemeMusic();
     }
 
@@ -146,18 +144,8 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void playThemeMusic(){
-        this.soundManager.setSoundFile(THEME_1_KEY);
-        this.soundManager.playSound();
+        SoundManager.getInstance().performMainMusicSound(THEME_1_KEY);
     }
-
-    public void stopMusic(){
-        this.soundManager.stop();
-    }
-
-    public void addSoundEffects(String soundKey){
-        this.soundManager.setSoundFile(soundKey);
-    }
-
 
     public Player getPlayer() {
         return this.player;

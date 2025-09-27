@@ -34,12 +34,12 @@ public class SoundManager {
         return map;
     }
 
-    public void setSoundFile(String soundKey){
+    public void setMainMusicClipFile(String soundKey){
         URL urlPath = getURLBySoundKey(soundKey);
         this.mainMusicClip.setUpSoundFile(urlPath);
     }
 
-    public void setSoundEffectMusicClip(String soundKey){
+    public void setSoundEffectMusicClipFile(String soundKey){
         URL urlPath = getURLBySoundKey(soundKey);
         this.soundEffectMusicClip.setUpSoundFile(urlPath);
     }
@@ -49,11 +49,16 @@ public class SoundManager {
     }
 
     public void performSoundEffects(String soundKey,int seconds){
-        this.setSoundEffectMusicClip(soundKey);
+        this.setSoundEffectMusicClipFile(soundKey);
         this.playSoundEffectForPeriod(seconds);
     }
 
-    public void playSound(){
+    public void performMainMusicSound(String soundKey){
+        this.setMainMusicClipFile(soundKey);
+        this.playMainMusicSound();
+    }
+
+    public void playMainMusicSound(){
         this.mainMusicClip.play();
     }
 
