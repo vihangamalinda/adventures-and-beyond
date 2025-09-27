@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.keyHandler = new KeyHandler();
         this.addKeyListener(this.keyHandler);
         this.setFocusable(true);
-        this.player = new Player(28*TILE_SIZE, 12*TILE_SIZE, this, this.keyHandler);
+        this.player = new Player(28 * TILE_SIZE, 12 * TILE_SIZE, this, this.keyHandler);
         this.tileManager = new TileManager(this);
         this.collisionDetector = new CollisionDetector(this);
         this.interactableObjectManager = new InteractableObjectManager(this);
@@ -143,7 +143,7 @@ public class GamePanel extends JPanel implements Runnable {
         graphics2D.dispose();
     }
 
-    public void playThemeMusic(){
+    public void playThemeMusic() {
         SoundManager.getInstance().performMainMusicSound(THEME_1_KEY);
     }
 

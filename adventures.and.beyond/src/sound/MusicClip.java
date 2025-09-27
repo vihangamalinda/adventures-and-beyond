@@ -12,29 +12,31 @@ import static java.util.Objects.isNull;
 public class MusicClip {
     private Clip clip;
 
-    MusicClip(){
+    MusicClip() {
     }
 
-    public void setUpSoundFile(URL soundFilePath){
+    public void setUpSoundFile(URL soundFilePath) {
         this.clip = loadSoundFile(soundFilePath);
     }
 
-    public void play(){
-        if(isNull(this.clip))return;
+    public void play() {
+        if (isNull(this.clip)) return;
 
         this.clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
-    public void stop(){
-        if (isNull(this.clip))return;
+
+    public void stop() {
+        if (isNull(this.clip)) return;
         this.clip.stop();
     }
 
-    public void playForOnce(){
-        if(isNull(this.clip))return;
+    public void playForOnce() {
+        if (isNull(this.clip)) return;
 
         this.clip.loop(1);
     }
-    public void playForTimePeriod(int seconds){
+
+    public void playForTimePeriod(int seconds) {
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
 
         Runnable task = () -> {

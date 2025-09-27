@@ -41,6 +41,14 @@ public class Entity {
         return worldPositionX;
     }
 
+    public void setWorldPositionX(int worldPositionX) {
+        boolean isWithinRange = worldPositionX - WINDOW_MAX_SCREEN_WIDTH / 2 > 0 && worldPositionX + WINDOW_MAX_SCREEN_WIDTH / 2 < WORLD_MAP_WIDTH;
+        if (isWithinRange) {
+            this.worldPositionX = worldPositionX;
+        }
+
+    }
+
     public Direction getDirection() {
         return direction;
     }
@@ -55,14 +63,6 @@ public class Entity {
 
     public void setIdle(boolean idle) {
         isIdle = idle;
-    }
-
-    public void setWorldPositionX(int worldPositionX) {
-        boolean isWithinRange = worldPositionX - WINDOW_MAX_SCREEN_WIDTH / 2 > 0 && worldPositionX + WINDOW_MAX_SCREEN_WIDTH / 2 < WORLD_MAP_WIDTH;
-        if (isWithinRange) {
-            this.worldPositionX = worldPositionX;
-        }
-
     }
 
     public int getWorldPositionY() {
