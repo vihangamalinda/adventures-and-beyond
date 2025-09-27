@@ -1,6 +1,8 @@
 package object;
 
 import entity.Player;
+import sound.SoundKey;
+import sound.SoundManager;
 
 import static object.ObjectResourcePath.DOOR_IMG_PATH;
 
