@@ -4,10 +4,14 @@ import entity.Player;
 import helper.Constant;
 
 import object.InteractableObjectManager;
+import sound.SoundManager;
 import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
+
+import static helper.Constant.TILE_SIZE;
+import static sound.SoundKey.THEME_1_KEY;
 
 public class GamePanel extends JPanel implements Runnable {
     // Game will be run on this thread
@@ -33,10 +37,11 @@ public class GamePanel extends JPanel implements Runnable {
         this.keyHandler = new KeyHandler();
         this.addKeyListener(this.keyHandler);
         this.setFocusable(true);
-        this.player = new Player(1500, 1500, this, this.keyHandler);
+        this.player = new Player(28 * TILE_SIZE, 12 * TILE_SIZE, this, this.keyHandler);
         this.tileManager = new TileManager(this);
         this.collisionDetector = new CollisionDetector(this);
         this.interactableObjectManager = new InteractableObjectManager(this);
+        playThemeMusic();
     }
 
     public void startGameThread() {
@@ -136,6 +141,10 @@ public class GamePanel extends JPanel implements Runnable {
         this.player.draw(graphics2D);
         //Disposes of this graphics context and releases any system resources that it is using.
         graphics2D.dispose();
+    }
+
+    public void playThemeMusic() {
+        SoundManager.getInstance().performMainMusicSound(THEME_1_KEY);
     }
 
     public Player getPlayer() {

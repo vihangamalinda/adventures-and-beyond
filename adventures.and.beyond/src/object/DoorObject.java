@@ -1,6 +1,8 @@
 package object;
 
 import entity.Player;
+import sound.SoundKey;
+import sound.SoundManager;
 
 import static object.ObjectResourcePath.DOOR_IMG_PATH;
 
@@ -17,6 +19,9 @@ public class DoorObject extends InteractableObject {
     @Override
     public void performAction(Player player) {
         if (player.hasKeyCode(this.openCode)) {
+            SoundManager.getInstance().performSoundEffects(SoundKey.DOOR_OPENING, 1);
+//            soundManager.setSoundEffectMusicClip(SoundKey.DOOR_OPENING);
+//            soundManager.playSoundEffectForPeriod(1);
             this.setActive(false);
         } else {
             System.out.println("Player does not have key");

@@ -1,11 +1,15 @@
 package helper;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 
 public class Loader {
     public static int[][] getMapMatrix(String filePath) {
@@ -30,7 +34,8 @@ public class Loader {
 
             }
         } catch (IOException exception) {
-            System.out.println("Custom Error:Error occurred when reading the map line by line.FilePath: " + filePath);
+            String message = getErrorMessage("Error occurred when reading the map line by line.FilePath: " + filePath);
+            System.out.println(message);
             exception.fillInStackTrace();
         }
         return matrix;
@@ -38,15 +43,17 @@ public class Loader {
 
     private static BufferedReader readTextFile(String filePath) {
         try {
-            InputStream resource = Constant.class.getResourceAsStream(filePath);
+            InputStream resource = Loader.class.getResourceAsStream(filePath);
 
             if (resource == null) {
-                throw new IOException("Custom error:Image resource is null.Given path: " + filePath);
+                String message = String.format("Image resource is null.Given path: %s", filePath);
+                throw new IOException(getErrorMessage(message));
             }
 
             return new BufferedReader(new InputStreamReader(resource));
         } catch (Exception exception) {
-            System.out.println("Custom Error: Error occurred when loading the map. Given File path: " + filePath);
+            String message = String.format("Error occurred when loading the map. Given File path: %s", filePath);
+            System.out.println(getErrorMessage(message));
             exception.fillInStackTrace();
         }
         return null;
@@ -54,9 +61,10 @@ public class Loader {
 
     public static BufferedImage getImage(String imgPath) {
         try {
-            InputStream resource = Constant.class.getResourceAsStream(imgPath);
+            InputStream resource = Loader.class.getResourceAsStream(imgPath);
             if (resource == null) {
-                throw new IOException("Custom error:Image resource is null.Given path: " + imgPath);
+                String message = String.format("Image resource is null.Given path: %s", imgPath);
+                throw new IOException(getErrorMessage(message));
             }
 
             return ImageIO.read(resource);
@@ -66,4 +74,25 @@ public class Loader {
         return null;
     }
 
+    private static String getErrorMessage(String message) {
+
+        return String.format("Custom Error: %s", message);
+    }
+
+    public static Clip loadSoundFile(URL urlPath) {
+        try {
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(urlPath);
+            Clip clip = AudioSystem.getClip();
+            clip.open(inputStream);
+            return clip;
+        } catch (Exception exception) {
+            String message = String.format("Error occurred when loading & opening sound files. url path: %s ", urlPath);
+            System.out.println(getErrorMessage(message));
+        }
+        return null;
+    }
+
+    public static URL getResourceURL(String resourcePath) {
+        return Loader.class.getResource(resourcePath);
+    }
 }

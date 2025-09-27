@@ -79,7 +79,7 @@ public class CollisionDetector {
             InteractableObject obj = interactableObjects[i];
 
             boolean isColliding = obj.doCollideWithPlayer(player);
-            if (isColliding) {
+            if (isColliding && obj.isActive()) {
                 obj.performAction(player);
             }
 
