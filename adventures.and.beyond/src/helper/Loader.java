@@ -91,4 +91,8 @@ public class Loader {
         }
         return null;
     }
+
+    public static URL  getResourceURL(String resourcePath){
+        return Loader.class.getResource(resourcePath);
+    }
 }

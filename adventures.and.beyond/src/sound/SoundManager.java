@@ -3,6 +3,8 @@ package sound;
 import java.net.URL;
 import java.util.HashMap;
 
+import static helper.Loader.getResourceURL;
+
 public class SoundManager {
     MusicClip mainMusicClip;
     MusicClip soundEffectMusicClip;
@@ -61,9 +63,5 @@ public class SoundManager {
 
     private URL getURLBySoundKey(String soundKey){
         return this.soundURL.get(soundKey);
-    }
-
-    private URL getResourceURL(String resourcePath){
-        return getClass().getResource(resourcePath);
     }
 }
