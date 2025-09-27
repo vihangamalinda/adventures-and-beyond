@@ -43,7 +43,7 @@ public class Loader {
 
     private static BufferedReader readTextFile(String filePath) {
         try {
-            InputStream resource = Constant.class.getResourceAsStream(filePath);
+            InputStream resource = Loader.class.getResourceAsStream(filePath);
 
             if (resource == null) {
                 String message = String.format("Image resource is null.Given path: %s",filePath);
@@ -61,7 +61,7 @@ public class Loader {
 
     public static BufferedImage getImage(String imgPath) {
         try {
-            InputStream resource = Constant.class.getResourceAsStream(imgPath);
+            InputStream resource = Loader.class.getResourceAsStream(imgPath);
             if (resource == null) {
                 String message = String.format("Image resource is null.Given path: %s",imgPath);
                 throw new IOException(getErrorMessage(message));
