@@ -3,12 +3,9 @@ package sound;
 import java.net.URL;
 import java.util.HashMap;
 
-import static helper.Loader.loadSoundFile;
-import static sound.SoundKey.*;
-import static sound.SoundResourcePath.*;
-
 public class SoundManager {
-    Clip clip;
+    MusicClip mainMusicClip;
+    MusicClip soundEffectMusicClip;
     HashMap<String,URL> soundURL;
 
     private static class Holder {
@@ -16,7 +13,9 @@ public class SoundManager {
     }
 
     private SoundManager(){
-            this.soundURL= this.initializeSoundEffects();
+        this.mainMusicClip = new MusicClip();
+        this.soundEffectMusicClip = new MusicClip();
+        this.soundURL= this.initializeSoundEffects();
     }
 
     public static SoundManager getInstance() {
@@ -34,21 +33,32 @@ public class SoundManager {
     }
 
     public void setSoundFile(String soundKey){
-        URL urlPath = soundURL.get(soundKey);
-        this.clip =loadSoundFile(urlPath);
+        URL urlPath = getURLBySoundKey(soundKey);
+        this.mainMusicClip.setUpSoundFile(urlPath);
+    }
+
+    public void setSoundEffectMusicClip(String soundKey){
+        URL urlPath = getURLBySoundKey(soundKey);
+        this.soundEffectMusicClip.setUpSoundFile(urlPath);
+    }
+
+    public void playSoundEffectForPeriod(int seconds){
+        this.soundEffectMusicClip.playForTimePeriod(seconds);
     }
 
     public void playSound(){
-        this.clip.loop(Clip.LOOP_CONTINUOUSLY);
+        this.mainMusicClip.play();
     }
 
     public void stop(){
-        this.clip.stop();
+        this.mainMusicClip.stop();
     }
 
+    private URL getURLBySoundKey(String soundKey){
+        return this.soundURL.get(soundKey);
+    }
 
-
-    private URL getURL(String resourcePath){
+    private URL getResourceURL(String resourcePath){
         return getClass().getResource(resourcePath);
     }
 }
