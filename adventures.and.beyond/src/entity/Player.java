@@ -84,6 +84,10 @@ public class Player extends Entity {
         this.collectedKeyCode = collectedKeyCode;
     }
 
+    public int hasManyKey(){
+        return this.collectedKeyCode.size();
+    }
+
     private void checkIdleState() {
         boolean hasUpPressed = keyHandler.upPressed;
         boolean hasDownPressed = keyHandler.downPressed;
