@@ -6,6 +6,7 @@ import helper.Constant;
 import object.InteractableObjectManager;
 import sound.SoundManager;
 import tile.TileManager;
+import ui.UserInterfaceManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,6 +31,8 @@ public class GamePanel extends JPanel implements Runnable {
     private CollisionDetector collisionDetector;
     public final InteractableObjectManager interactableObjectManager;
 
+    private UserInterfaceManager userInterfaceManager;
+
     public GamePanel() {
         this.setPreferredSize(new Dimension(Constant.WINDOW_MAX_SCREEN_WIDTH, Constant.WINDOW_MAX_SCREEN_HEIGHT));// defining panel size
         this.setBackground(Color.BLACK);
@@ -41,6 +44,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.tileManager = new TileManager(this);
         this.collisionDetector = new CollisionDetector(this);
         this.interactableObjectManager = new InteractableObjectManager(this);
+        this.userInterfaceManager = new UserInterfaceManager(this);
         playThemeMusic();
     }
 
@@ -139,6 +143,8 @@ public class GamePanel extends JPanel implements Runnable {
         this.tileManager.draw(graphics2D);
         this.interactableObjectManager.drawInteractiveObjects(graphics2D);
         this.player.draw(graphics2D);
+
+        this.userInterfaceManager.draw(graphics2D);
         //Disposes of this graphics context and releases any system resources that it is using.
         graphics2D.dispose();
     }
