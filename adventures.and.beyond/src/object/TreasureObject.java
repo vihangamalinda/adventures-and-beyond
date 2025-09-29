@@ -18,8 +18,10 @@ public class TreasureObject extends InteractableObject {
 
     @Override
     public void performAction(Player player) {
-        if (player.hasKeyCode(this.openCode)) {
+        String openCode = this.openCode;
+        if (player.hasKeyCode(openCode)) {
             SoundManager.getInstance().performSoundEffects(SoundKey.TREASURE_BOX_OPENING, 2);
+            player.removeKey(openCode);
             this.setActive(false);
         } else {
             player.setOnCollision(true);

@@ -87,6 +87,11 @@ public class Player extends Entity {
     public int hasManyKey(){
         return this.collectedKeyCode.size();
     }
+    public void removeKey(String keyCode){
+        if(this.hasKeyCode(keyCode)){
+            this.collectedKeyCode.remove(keyCode);
+        }
+    }
 
     private void checkIdleState() {
         boolean hasUpPressed = keyHandler.upPressed;
