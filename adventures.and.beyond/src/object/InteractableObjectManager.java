@@ -2,6 +2,10 @@ package object;
 
 import entity.Player;
 import main.GamePanel;
+import object.interactable.objects.DoorObject;
+import object.interactable.objects.InteractableObject;
+import object.interactable.objects.KeyObject;
+import object.interactable.objects.TreasureObject;
 
 import java.awt.*;
 

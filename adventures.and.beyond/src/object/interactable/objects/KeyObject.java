@@ -1,11 +1,8 @@
-package object;
+package object.interactable.objects;
 
 import entity.Player;
 import sound.SoundKey;
 import sound.SoundManager;
-
-import java.awt.image.BufferedImage;
-import java.util.Timer;
 
 import static object.ObjectResourcePath.KEY_IMG_PATH;
 
