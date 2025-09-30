@@ -93,10 +93,10 @@ public class Player extends Entity {
 
     private void checkIdleState() {
         KeyHandler keyHandler = KeyHandler.getInstance();
-        boolean hasUpPressed = keyHandler.upPressed;
-        boolean hasDownPressed = keyHandler.downPressed;
-        boolean hasLeftPressed = keyHandler.leftPressed;
-        boolean hasRightPressed = keyHandler.rightPressed;
+        boolean hasUpPressed = keyHandler.isUpPressed();
+        boolean hasDownPressed = keyHandler.isDownPressed();
+        boolean hasLeftPressed = keyHandler.isLeftPressed();
+        boolean hasRightPressed = keyHandler.isRightPressed();
 
         boolean isIdle = !hasUpPressed && !hasDownPressed && !hasLeftPressed && !hasRightPressed;
         setIdle(isIdle);
@@ -106,13 +106,13 @@ public class Player extends Entity {
         Direction direction = this.getDirection();
         KeyHandler keyHandler = KeyHandler.getInstance();
 
-        if (keyHandler.upPressed) {
+        if (keyHandler.isUpPressed()) {
             direction = Direction.FACING_BACKWARD;
-        } else if (keyHandler.downPressed) {
+        } else if (keyHandler.isDownPressed()) {
             direction = Direction.FACING_FORWARD;
-        } else if (keyHandler.leftPressed) {
+        } else if (keyHandler.isLeftPressed()) {
             direction = Direction.FACING_LEFTWARD;
-        } else if (keyHandler.rightPressed) {
+        } else if (keyHandler.isRightPressed()) {
             direction = Direction.FACING_RIGHTWARD;
         }
         if (!this.isIdle()) {
@@ -122,13 +122,13 @@ public class Player extends Entity {
 
     private void performMovement() {
         KeyHandler keyHandler = KeyHandler.getInstance();
-        if (keyHandler.upPressed) {
+        if (keyHandler.isUpPressed()) {
             this.moveUpDirection();
-        } else if (keyHandler.downPressed) {
+        } else if (keyHandler.isDownPressed()) {
             this.moveDownDirection();
-        } else if (keyHandler.leftPressed) {
+        } else if (keyHandler.isLeftPressed()) {
             this.moveLeftDirection();
-        } else if (keyHandler.rightPressed) {
+        } else if (keyHandler.isRightPressed()) {
             this.moveRightDirection();
         }
     }
