@@ -17,7 +17,6 @@ import static sound.SoundKey.THEME_1_KEY;
 public class GamePanel extends JPanel implements Runnable {
     // Game will be run on this thread
     Thread gameThread;
-    final KeyHandler keyHandler;
 
     // Set Player's default position
     int playerX = 100;
@@ -34,10 +33,10 @@ public class GamePanel extends JPanel implements Runnable {
         this.setPreferredSize(new Dimension(Constant.WINDOW_MAX_SCREEN_WIDTH, Constant.WINDOW_MAX_SCREEN_HEIGHT));// defining panel size
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true); // improve game's rendering performance
-        this.keyHandler = new KeyHandler();
-        this.addKeyListener(this.keyHandler);
+        // Registering key handler to component
+        this.addKeyListener(KeyHandler.getInstance());
         this.setFocusable(true);
-        this.player = new Player(28 * TILE_SIZE, 12 * TILE_SIZE,  this.keyHandler);
+        this.player = new Player(28 * TILE_SIZE, 12 * TILE_SIZE);
         playThemeMusic();
     }
 
