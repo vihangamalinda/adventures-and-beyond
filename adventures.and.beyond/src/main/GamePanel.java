@@ -31,7 +31,9 @@ public class GamePanel extends JPanel implements Runnable {
     private CollisionDetector collisionDetector;
     public final InteractableObjectManager interactableObjectManager;
 
-    private UserInterfaceManager userInterfaceManager;
+    private static class Holder{
+        private static final GamePanel INSTANCE = new GamePanel();
+    }
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(Constant.WINDOW_MAX_SCREEN_WIDTH, Constant.WINDOW_MAX_SCREEN_HEIGHT));// defining panel size
@@ -46,6 +48,10 @@ public class GamePanel extends JPanel implements Runnable {
         this.interactableObjectManager = new InteractableObjectManager(this);
         this.userInterfaceManager = new UserInterfaceManager(this);
         playThemeMusic();
+    }
+
+    public static GamePanel getInstance(){
+        return Holder.INSTANCE;
     }
 
     public void startGameThread() {

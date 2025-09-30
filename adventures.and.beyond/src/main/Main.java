@@ -12,7 +12,7 @@ public class Main {
         window.setResizable(false);
         window.setTitle("Adventures and Beyond");
 
-        GamePanel gamePanel = new GamePanel();
+        GamePanel gamePanel = GamePanel.getInstance();
         window.add(gamePanel);
         //to inform window to be sized to fit the preferred size and layouts of subcomponents( gamePanel)
         window.pack();
