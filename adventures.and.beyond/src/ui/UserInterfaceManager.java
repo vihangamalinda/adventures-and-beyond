@@ -19,7 +19,7 @@ public class UserInterfaceManager {
 
     private UserInterfaceManager(){
         this.playerDetailNotifier = new PlayerDetailNotifier(true);
-        this.gameDetailNotifier = new GameDetailNotifier(true);
+        this.gameDetailNotifier = new GameDetailNotifier(false);
     }
 
     public static UserInterfaceManager getInstance(){
