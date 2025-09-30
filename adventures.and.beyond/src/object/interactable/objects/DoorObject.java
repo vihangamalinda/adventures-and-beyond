@@ -3,6 +3,7 @@ package object.interactable.objects;
 import entity.Player;
 import sound.SoundKey;
 import sound.SoundManager;
+import ui.UserInterfaceManager;
 
 import static object.ObjectResourcePath.DOOR_IMG_PATH;
 
@@ -26,6 +27,8 @@ public class DoorObject extends InteractableObject {
             player.removeKey(openCode);
             this.setActive(false);
         } else {
+            String message ="Player does not have key";
+            UserInterfaceManager.getInstance().notifyGameDetails(message);
             System.out.println("Player does not have key");
             player.setOnCollision(true);
         }
