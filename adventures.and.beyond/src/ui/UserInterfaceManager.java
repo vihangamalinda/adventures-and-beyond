@@ -2,6 +2,7 @@ package ui;
 
 import main.GamePanel;
 import ui.notifier.GameDetailNotifier;
+import ui.notifier.MainDetailNotifier;
 import ui.notifier.PlayerDetailNotifier;
 
 import java.awt.*;
@@ -31,6 +32,10 @@ public class UserInterfaceManager {
 
     public void notifyGameDetails(String message){
         this.gameDetailNotifier.notifyForPeriod(message,1);
+    }
+
+    public void triggerMainNotification(String message){
+        this.mainDetailNotifier.triggerNotification(message);
     }
 
     public void draw(Graphics2D graphics2D){
