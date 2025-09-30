@@ -8,11 +8,12 @@ import static helper.Constant.TILE_SIZE;
 import static ui.RegisteredFonts.STANDARD_ARIAL;
 import static ui.UserInterfaceIcons.ICON_KEY_IMAGE;
 
-public class PlayerDetailNotifier {
+public class PlayerDetailNotifier extends AbstractDetailNotifier{
 
     private final Player player;
     public PlayerDetailNotifier(Player player){
         this.player =player;
+        super(isActive);
     }
 
     public void draw(Graphics2D graphics2D){
