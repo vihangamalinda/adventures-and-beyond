@@ -43,9 +43,9 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(this.keyHandler);
         this.setFocusable(true);
         this.player = new Player(28 * TILE_SIZE, 12 * TILE_SIZE, this, this.keyHandler);
-        this.tileManager = new TileManager(this);
-        this.collisionDetector = new CollisionDetector(this);
-        this.interactableObjectManager = new InteractableObjectManager(this);
+        this.tileManager = new TileManager();
+        this.collisionDetector = new CollisionDetector();
+        this.interactableObjectManager = new InteractableObjectManager();
         playThemeMusic();
     }
 

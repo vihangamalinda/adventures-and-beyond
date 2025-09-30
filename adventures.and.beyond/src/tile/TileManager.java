@@ -12,12 +12,10 @@ import static helper.Constant.*;
 
 
 public class TileManager {
-    private GamePanel gamePanel;
     private Tile[] tiles;
     private int[][] mapTileMatrix;
 
-    public TileManager(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
+    public TileManager() {
         this.tiles = initializeTiles();
         this.mapTileMatrix = loadMapMatrix();
     }
@@ -28,14 +26,6 @@ public class TileManager {
 
     public void setMapTileMatrix(int[][] mapTileMatrix) {
         this.mapTileMatrix = mapTileMatrix;
-    }
-
-    public GamePanel getGamePanel() {
-        return gamePanel;
-    }
-
-    public void setGamePanel(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
     }
 
     public Tile[] getTiles() {
@@ -81,7 +71,7 @@ public class TileManager {
 //        graphics2D.drawImage(getTileByIndex(1).getBufferedImage(),48,0, Helper.TILE_SIZE,Helper.TILE_SIZE,null);
 //        graphics2D.drawImage(getTileByIndex(2).getBufferedImage(),96,0, Helper.TILE_SIZE,Helper.TILE_SIZE,null);
 
-        Player player = gamePanel.getPlayer();
+        Player player = GamePanel.getInstance().getPlayer();
 //        int drawCol =(player.getWorldPositionX()/TILE_SIZE)- (MAX_SCREEN_COLUMN/2);
 //        int drawRow =(player.getWorldPositionY()/TILE_SIZE)- (MAX_SCREEN_COLUMN/2);
 

@@ -12,11 +12,9 @@ import java.awt.*;
 import static helper.Constant.TILE_SIZE;
 
 public class InteractableObjectManager {
-    private final GamePanel gamePanel;
     private final InteractableObject[] interactableObjects;
 
-    public InteractableObjectManager(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
+    public InteractableObjectManager() {
         this.interactableObjects = initializeInteractableObjects();
     }
 
@@ -31,7 +29,7 @@ public class InteractableObjectManager {
     }
 
     public void drawInteractiveObjects(Graphics2D graphics2D) {
-        Player player = gamePanel.getPlayer();
+        Player player = GamePanel.getInstance().getPlayer();
 
         for (int currentIndex = 0; currentIndex <= this.interactableObjects.length - 1; currentIndex++) {
             InteractableObject obj = this.interactableObjects[currentIndex];

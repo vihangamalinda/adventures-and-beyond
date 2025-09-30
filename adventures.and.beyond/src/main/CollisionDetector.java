@@ -11,10 +11,7 @@ import java.awt.*;
 import static helper.Constant.TILE_SIZE;
 
 public class CollisionDetector {
-    private final GamePanel gamePanel;
-
-    public CollisionDetector(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
+    public CollisionDetector() {
     }
 
     public void checkCollision(Entity entity) {
@@ -33,7 +30,7 @@ public class CollisionDetector {
         int tileTypeNum2 = -1;
 
         int speed = entity.getSpeed();
-        TileManager tileManager = gamePanel.getTileManager();
+        TileManager tileManager = GamePanel.getInstance().getTileManager();;
 
         switch (entity.getDirection()) {
             case FACING_BACKWARD -> {
@@ -74,7 +71,7 @@ public class CollisionDetector {
 
     public void checkObjectCollision(Player player) {
 
-        InteractableObject[] interactableObjects = this.gamePanel.interactableObjectManager.getInteractableObjects();
+        InteractableObject[] interactableObjects = GamePanel.getInstance().interactableObjectManager.getInteractableObjects();
         for (int i = 0; i < interactableObjects.length; i++) {
             InteractableObject obj = interactableObjects[i];
 
