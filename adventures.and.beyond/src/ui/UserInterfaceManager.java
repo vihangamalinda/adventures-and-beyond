@@ -13,6 +13,8 @@ public class UserInterfaceManager {
     // Add game notifier related logic
     private final GameDetailNotifier gameDetailNotifier;
 
+    private final MainDetailNotifier mainDetailNotifier;
+
     private static class Holder{
         private static final UserInterfaceManager INSTANCE = new UserInterfaceManager();
     }
@@ -20,6 +22,7 @@ public class UserInterfaceManager {
     private UserInterfaceManager(){
         this.playerDetailNotifier = new PlayerDetailNotifier(true);
         this.gameDetailNotifier = new GameDetailNotifier(false);
+        this.mainDetailNotifier =new MainDetailNotifier(false);
     }
 
     public static UserInterfaceManager getInstance(){
@@ -33,5 +36,6 @@ public class UserInterfaceManager {
     public void draw(Graphics2D graphics2D){
         this.playerDetailNotifier.draw(graphics2D);
         this.gameDetailNotifier.draw(graphics2D);
+        this.mainDetailNotifier.draw(graphics2D);
     }
 }
