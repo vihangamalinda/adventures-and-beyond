@@ -29,7 +29,7 @@ public class DoorObject extends InteractableObject {
         } else {
             String message ="Player does not have key";
             UserInterfaceManager.getInstance().notifyGameDetails(message);
-            System.out.println("Player does not have key");
+            System.out.println("Player does not have key: "+this.openCode);
             player.setOnCollision(true);
         }
     }

@@ -3,6 +3,7 @@ package object.interactable.objects;
 import entity.Player;
 import sound.SoundKey;
 import sound.SoundManager;
+import ui.UserInterfaceManager;
 
 import static object.ObjectResourcePath.TREASURE_IMG_PATH;
 
@@ -24,6 +25,8 @@ public class TreasureObject extends InteractableObject {
             player.removeKey(openCode);
             this.setActive(false);
         } else {
+            String message = "Player does not have correct key: "+this.openCode;
+            UserInterfaceManager.getInstance().notifyGameDetails(message);
             player.setOnCollision(true);
         }
     }
