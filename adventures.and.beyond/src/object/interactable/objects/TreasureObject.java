@@ -1,6 +1,7 @@
 package object.interactable.objects;
 
 import entity.Player;
+import main.GamePanel;
 import sound.SoundKey;
 import sound.SoundManager;
 import ui.UserInterfaceManager;
@@ -24,6 +25,7 @@ public class TreasureObject extends InteractableObject {
             SoundManager.getInstance().performSoundEffects(SoundKey.TREASURE_BOX_OPENING, 2);
             player.removeKey(openCode);
             this.setActive(false);
+            GamePanel.getInstance().stopGame();
         } else {
             String message = "Player does not have correct key: "+this.openCode;
             UserInterfaceManager.getInstance().notifyGameDetails(message);
