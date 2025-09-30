@@ -1,6 +1,7 @@
 package ui.notifier;
 
 import entity.Player;
+import main.GamePanel;
 
 import java.awt.*;
 
