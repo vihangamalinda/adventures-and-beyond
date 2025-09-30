@@ -2,6 +2,7 @@ package entity;
 
 import directionEnum.Direction;
 import helper.Constant;
+import main.CollisionDetector;
 import main.GamePanel;
 import main.KeyHandler;
 
@@ -13,7 +14,6 @@ import static helper.Constant.*;
 import static helper.PlayerSpriteManager.getPlayerImageByIndex;
 
 public class Player extends Entity {
-    private GamePanel gamePanel;
     private KeyHandler keyHandler;
 
 
@@ -57,8 +57,9 @@ public class Player extends Entity {
 
         changeDirection();
 
-        this.gamePanel.getCollisionDetector().checkCollision(this);
-        this.gamePanel.getCollisionDetector().checkObjectCollision(this);
+        CollisionDetector collisionDetector = CollisionDetector.getInstance();
+        collisionDetector.checkCollision(this);
+        collisionDetector.checkObjectCollision(this);
 
 //        System.out.println(!this.isOnCollision());
         if (!this.isOnCollision()) {
@@ -203,14 +204,6 @@ public class Player extends Entity {
     private void moveRightDirection() {
         int newPositionX = this.getWorldPositionX() + this.getSpeed();
         this.setWorldPositionX(newPositionX);
-    }
-
-    public GamePanel getGamePanel() {
-        return gamePanel;
-    }
-
-    public void setGamePanel(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
     }
 
     public KeyHandler getKeyHandler() {

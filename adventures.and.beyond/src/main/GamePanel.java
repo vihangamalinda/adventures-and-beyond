@@ -25,7 +25,6 @@ public class GamePanel extends JPanel implements Runnable {
     int playerSpeed = 4;
 
     private final Player player;
-    private CollisionDetector collisionDetector;
 
     private static class Holder{
         private static final GamePanel INSTANCE = new GamePanel();
@@ -38,10 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.keyHandler = new KeyHandler();
         this.addKeyListener(this.keyHandler);
         this.setFocusable(true);
-        this.player = new Player(28 * TILE_SIZE, 12 * TILE_SIZE, this, this.keyHandler);
-        this.tileManager = new TileManager();
-        this.collisionDetector = new CollisionDetector();
-        this.interactableObjectManager = new InteractableObjectManager();
+        this.player = new Player(28 * TILE_SIZE, 12 * TILE_SIZE,  this.keyHandler);
         playThemeMusic();
     }
 
@@ -122,11 +118,6 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
     }
-
-    public CollisionDetector getCollisionDetector() {
-        return collisionDetector;
-    }
-
 
     public void update() {
         this.player.update();
