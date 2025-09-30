@@ -30,7 +30,7 @@ public class CollisionDetector {
         int tileTypeNum2 = -1;
 
         int speed = entity.getSpeed();
-        TileManager tileManager = GamePanel.getInstance().getTileManager();;
+        TileManager tileManager = TileManager.getInstance();
 
         switch (entity.getDirection()) {
             case FACING_BACKWARD -> {

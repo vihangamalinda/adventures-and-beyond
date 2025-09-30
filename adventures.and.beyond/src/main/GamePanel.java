@@ -25,9 +25,6 @@ public class GamePanel extends JPanel implements Runnable {
     int playerSpeed = 4;
 
     private final Player player;
-
-    private final TileManager tileManager;
-
     private CollisionDetector collisionDetector;
     public final InteractableObjectManager interactableObjectManager;
 
@@ -131,9 +128,6 @@ public class GamePanel extends JPanel implements Runnable {
         return collisionDetector;
     }
 
-    public TileManager getTileManager() {
-        return tileManager;
-    }
 
     public void update() {
         this.player.update();
@@ -150,8 +144,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D graphics2D = (Graphics2D) graphic;
 
-        this.tileManager.draw(graphics2D);
         this.interactableObjectManager.drawInteractiveObjects(graphics2D);
+        TileManager.getInstance().draw(graphics2D);
         this.player.draw(graphics2D);
 
         // Notify

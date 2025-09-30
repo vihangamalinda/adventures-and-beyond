@@ -15,9 +15,17 @@ public class TileManager {
     private Tile[] tiles;
     private int[][] mapTileMatrix;
 
-    public TileManager() {
+    private static class Holder{
+        private static TileManager INSTANCE = new TileManager();
+    }
+
+    private TileManager() {
         this.tiles = initializeTiles();
         this.mapTileMatrix = loadMapMatrix();
+    }
+
+    public static TileManager getInstance(){
+        return Holder.INSTANCE;
     }
 
     public int[][] getMapTileMatrix() {
