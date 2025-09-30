@@ -139,6 +139,11 @@ public class GamePanel extends JPanel implements Runnable {
         this.player.update();
     }
 
+    public void stopGame(){
+        UserInterfaceManager.getInstance().triggerMainNotification("You won the game");
+        this.gameThread =null;
+    }
+
     @Override
     public void paintComponent(Graphics graphic) {
         super.paintComponent(graphic);
