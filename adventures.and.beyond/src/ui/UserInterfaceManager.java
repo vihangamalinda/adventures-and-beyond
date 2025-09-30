@@ -27,7 +27,7 @@ public class UserInterfaceManager {
     }
 
     public void notifyGameDetails(String message){
-        this.gameDetailNotifier.triggerNotification(message);
+        this.gameDetailNotifier.notifyForPeriod(message,1);
     }
 
     public void draw(Graphics2D graphics2D){

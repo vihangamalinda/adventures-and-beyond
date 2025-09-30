@@ -1,6 +1,9 @@
 package ui.notifier;
 
 import java.awt.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import static helper.Constant.TILE_SIZE;
 import static ui.RegisteredFonts.PlAIN_ARIAL_XSM;
@@ -13,8 +16,26 @@ public class GameDetailNotifier extends AbstractDetailNotifier{
         this.message ="";
     }
 
-    public void triggerNotification(String message){
+    private void triggerNotification(String message){
         this.setMessage(message);
+    }
+
+    public void notifyForPeriod(String message, int seconds){
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+
+        Runnable task = () -> {
+            System.out.println("Sheduled task");
+            this.setActive(false);
+            this.message ="";
+        };
+
+
+        this.message = message;
+        this.setActive(true);
+
+        scheduledExecutorService.schedule(task,seconds, TimeUnit.SECONDS);
+        scheduledExecutorService.shutdown();
+
     }
 
     private void setMessage(String message){
