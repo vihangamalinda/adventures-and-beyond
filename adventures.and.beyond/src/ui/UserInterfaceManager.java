@@ -17,6 +17,10 @@ public class UserInterfaceManager {
         this.gameDetailNotifier = new GameDetailNotifier(true);
     }
 
+    public void notifyGameDetails(String message){
+        this.gameDetailNotifier.triggerNotification(message);
+    }
+
     public void draw(Graphics2D graphics2D){
         this.playerDetailNotifier.draw(graphics2D);
         this.gameDetailNotifier.draw(graphics2D);
