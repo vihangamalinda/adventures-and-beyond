@@ -11,9 +11,10 @@ import static ui.UserInterfaceIcons.ICON_KEY_IMAGE;
 public class PlayerDetailNotifier extends AbstractDetailNotifier{
 
     private final Player player;
-    public PlayerDetailNotifier(Player player){
-        this.player =player;
+    public PlayerDetailNotifier(boolean isActive){
         super(isActive);
+        GamePanel gamePanel =GamePanel.getInstance();
+        this.player =gamePanel.getPlayer();
     }
 
     public void draw(Graphics2D graphics2D){
