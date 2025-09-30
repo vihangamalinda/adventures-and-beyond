@@ -10,11 +10,20 @@ public class UserInterfaceManager {
 
     private final PlayerDetailNotifier playerDetailNotifier;
 
-    public UserInterfaceManager(GamePanel gamePanel){
-        this.playerDetailNotifier = new PlayerDetailNotifier(gamePanel.getPlayer());
     // Add game notifier related logic
     private final GameDetailNotifier gameDetailNotifier;
+
+    private static class Holder{
+        private static final UserInterfaceManager INSTANCE = new UserInterfaceManager();
+    }
+
+    private UserInterfaceManager(){
+        this.playerDetailNotifier = new PlayerDetailNotifier(true);
         this.gameDetailNotifier = new GameDetailNotifier(true);
+    }
+
+    public static UserInterfaceManager getInstance(){
+        return Holder.INSTANCE;
     }
 
     public void notifyGameDetails(String message){
