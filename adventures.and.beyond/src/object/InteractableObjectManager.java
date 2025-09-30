@@ -14,8 +14,16 @@ import static helper.Constant.TILE_SIZE;
 public class InteractableObjectManager {
     private final InteractableObject[] interactableObjects;
 
-    public InteractableObjectManager() {
+    private static class Holder{
+        private static final InteractableObjectManager INSTANCE = new InteractableObjectManager();
+    }
+
+    private InteractableObjectManager() {
         this.interactableObjects = initializeInteractableObjects();
+    }
+
+    public static InteractableObjectManager getInstance(){
+        return Holder.INSTANCE;
     }
 
     private InteractableObject[] initializeInteractableObjects() {

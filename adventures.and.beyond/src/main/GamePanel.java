@@ -26,7 +26,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     private final Player player;
     private CollisionDetector collisionDetector;
-    public final InteractableObjectManager interactableObjectManager;
 
     private static class Holder{
         private static final GamePanel INSTANCE = new GamePanel();
@@ -144,8 +143,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D graphics2D = (Graphics2D) graphic;
 
-        this.interactableObjectManager.drawInteractiveObjects(graphics2D);
         TileManager.getInstance().draw(graphics2D);
+       InteractableObjectManager.getInstance().drawInteractiveObjects(graphics2D);
         this.player.draw(graphics2D);
 
         // Notify

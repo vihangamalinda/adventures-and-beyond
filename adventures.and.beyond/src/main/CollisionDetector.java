@@ -2,6 +2,7 @@ package main;
 
 import entity.Entity;
 import entity.Player;
+import object.InteractableObjectManager;
 import object.interactable.objects.InteractableObject;
 import tile.Tile;
 import tile.TileManager;
@@ -71,7 +72,7 @@ public class CollisionDetector {
 
     public void checkObjectCollision(Player player) {
 
-        InteractableObject[] interactableObjects = GamePanel.getInstance().interactableObjectManager.getInteractableObjects();
+        InteractableObject[] interactableObjects = InteractableObjectManager.getInstance().getInteractableObjects();
         for (int i = 0; i < interactableObjects.length; i++) {
             InteractableObject obj = interactableObjects[i];
 
