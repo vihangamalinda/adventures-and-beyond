@@ -1,6 +1,8 @@
 package ui.notifier;
 
-public class AbstractDetailNotifier {
+import java.awt.*;
+
+public abstract class AbstractDetailNotifier {
     private boolean isActive;
     AbstractDetailNotifier(boolean isActive){
         this.isActive =isActive;
@@ -15,4 +17,6 @@ public class AbstractDetailNotifier {
     }
 
     // need to have a method to set background size of the canvas on that message should be displayed (opacity should be considered)
+    public abstract void  drawBackgroud(Graphics2D graphics2D);
+    public abstract void draw(Graphics2D graphics2D);
 }
