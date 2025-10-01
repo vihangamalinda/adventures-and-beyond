@@ -15,7 +15,7 @@ public class TileManager {
     private Tile[] tiles;
     private int[][] mapTileMatrix;
 
-    private static class Holder{
+    private static class Holder {
         private static TileManager INSTANCE = new TileManager();
     }
 
@@ -24,7 +24,7 @@ public class TileManager {
         this.mapTileMatrix = loadMapMatrix();
     }
 
-    public static TileManager getInstance(){
+    public static TileManager getInstance() {
         return Holder.INSTANCE;
     }
 

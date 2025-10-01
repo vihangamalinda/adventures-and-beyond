@@ -13,13 +13,14 @@ import static helper.Constant.TILE_SIZE;
 
 public class CollisionDetector {
 
-    private static class Holder{
-        private static final CollisionDetector INSTANCE= new CollisionDetector();
+    private static class Holder {
+        private static final CollisionDetector INSTANCE = new CollisionDetector();
     }
+
     public CollisionDetector() {
     }
 
-    public static CollisionDetector getInstance(){
+    public static CollisionDetector getInstance() {
         return Holder.INSTANCE;
     }
 

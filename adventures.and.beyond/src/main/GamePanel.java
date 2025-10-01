@@ -25,7 +25,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     private final Player player;
 
-    private static class Holder{
+    private static class Holder {
         private static final GamePanel INSTANCE = new GamePanel();
     }
 
@@ -40,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable {
         playThemeMusic();
     }
 
-    public static GamePanel getInstance(){
+    public static GamePanel getInstance() {
         return Holder.INSTANCE;
     }
 
@@ -122,9 +122,9 @@ public class GamePanel extends JPanel implements Runnable {
         this.player.update();
     }
 
-    public void stopGame(){
+    public void stopGame() {
         UserInterfaceManager.getInstance().triggerMainNotification("You won the game");
-        this.gameThread =null;
+        this.gameThread = null;
     }
 
     @Override
@@ -134,7 +134,7 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D graphics2D = (Graphics2D) graphic;
 
         TileManager.getInstance().draw(graphics2D);
-       InteractableObjectManager.getInstance().drawInteractiveObjects(graphics2D);
+        InteractableObjectManager.getInstance().drawInteractiveObjects(graphics2D);
         this.player.draw(graphics2D);
 
         // Notify

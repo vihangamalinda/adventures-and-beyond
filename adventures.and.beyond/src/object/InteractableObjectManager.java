@@ -14,7 +14,7 @@ import static helper.Constant.TILE_SIZE;
 public class InteractableObjectManager {
     private final InteractableObject[] interactableObjects;
 
-    private static class Holder{
+    private static class Holder {
         private static final InteractableObjectManager INSTANCE = new InteractableObjectManager();
     }
 
@@ -22,7 +22,7 @@ public class InteractableObjectManager {
         this.interactableObjects = initializeInteractableObjects();
     }
 
-    public static InteractableObjectManager getInstance(){
+    public static InteractableObjectManager getInstance() {
         return Holder.INSTANCE;
     }
 

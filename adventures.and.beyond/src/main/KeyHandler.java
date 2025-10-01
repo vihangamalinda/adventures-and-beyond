@@ -5,13 +5,15 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
     private boolean upPressed, downPressed, leftPressed, rightPressed;
-    private KeyHandler(){}
 
-    private static class Holder{
-        private final static  KeyHandler INSTANCE = new KeyHandler();
+    private KeyHandler() {
     }
 
-    public static KeyHandler getInstance(){
+    private static class Holder {
+        private final static KeyHandler INSTANCE = new KeyHandler();
+    }
+
+    public static KeyHandler getInstance() {
         return Holder.INSTANCE;
     }
 

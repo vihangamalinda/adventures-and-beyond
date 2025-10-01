@@ -82,11 +82,12 @@ public class Player extends Entity {
         this.collectedKeyCode = collectedKeyCode;
     }
 
-    public int hasManyKey(){
+    public int hasManyKey() {
         return this.collectedKeyCode.size();
     }
-    public void removeKey(String keyCode){
-        if(this.hasKeyCode(keyCode)){
+
+    public void removeKey(String keyCode) {
+        if (this.hasKeyCode(keyCode)) {
             this.collectedKeyCode.remove(keyCode);
         }
     }

@@ -20,7 +20,7 @@ public class KeyObject extends InteractableObject {
         player.collectKeyCode(this.keyCode);
 
         SoundManager.getInstance().performSoundEffects(SoundKey.KEY_COLLECTED, 2);
-        UserInterfaceManager.getInstance().notifyGameDetails("Collected key: "+this.keyCode);
+        UserInterfaceManager.getInstance().notifyGameDetails("Collected key: " + this.keyCode);
         this.setActive(false);
     }
 }

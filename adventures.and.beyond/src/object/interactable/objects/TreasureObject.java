@@ -27,7 +27,7 @@ public class TreasureObject extends InteractableObject {
             this.setActive(false);
             GamePanel.getInstance().stopGame();
         } else {
-            String message = "Player does not have correct key: "+this.openCode;
+            String message = "Player does not have correct key: " + this.openCode;
             UserInterfaceManager.getInstance().notifyGameDetails(message);
             player.setOnCollision(true);
         }

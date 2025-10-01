@@ -27,9 +27,9 @@ public class DoorObject extends InteractableObject {
             player.removeKey(openCode);
             this.setActive(false);
         } else {
-            String message ="Player does not have key";
+            String message = "Player does not have key";
             UserInterfaceManager.getInstance().notifyGameDetails(message);
-            System.out.println("Player does not have key: "+this.openCode);
+            System.out.println("Player does not have key: " + this.openCode);
             player.setOnCollision(true);
         }
     }
