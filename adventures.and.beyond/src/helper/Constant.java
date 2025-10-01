@@ -16,18 +16,10 @@ public class Constant {
 
     public static final int FRAME_RATE_PER_SECOND = 60;//fps=60
 
-    public static final int PLAYER_UP_SCALE = 1;
-
     // World settings
     public final static int MAX_WORLD_ROWS = 50;
     public final static int MAX_WORLD_COLUMNS = 50;
     public final static int WORLD_MAP_WIDTH = TILE_SIZE * MAX_WORLD_COLUMNS;
     public final static int WORLD_MAP_HEIGHT = TILE_SIZE * MAX_WORLD_ROWS;
-
-    //Player Solid Area
-    public final static int PLAYER_SOLID_AREA_START_X = 8 * PLAYER_UP_SCALE;
-    public final static int PLAYER_SOLID_AREA_START_Y = 16 * PLAYER_UP_SCALE;
-    public final static int PLAYER_SOLID_AREA_WIDTH = 32 * PLAYER_UP_SCALE;
-    public final static int PLAYER_SOLID_AREA_HEIGHT = 28 * PLAYER_UP_SCALE;
 
 }

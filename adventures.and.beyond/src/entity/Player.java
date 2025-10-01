@@ -9,8 +9,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import static entity.PlayerConstant.*;
 import static helper.Constant.*;
-import static helper.PlayerSpriteManager.getPlayerImageByIndex;
+import static entity.PlayerSpriteManager.getPlayerImageByIndex;
 
 public class Player extends Entity {
     private KeyHandler keyHandler;
