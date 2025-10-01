@@ -1,4 +1,4 @@
-package object;
+package object.interactable.objects;
 
 import entity.Player;
 import helper.DrawHelper;

@@ -2,7 +2,8 @@ package main;
 
 import entity.Entity;
 import entity.Player;
-import object.InteractableObject;
+import object.InteractableObjectManager;
+import object.interactable.objects.InteractableObject;
 import tile.Tile;
 import tile.TileManager;
 
@@ -11,10 +12,16 @@ import java.awt.*;
 import static helper.Constant.TILE_SIZE;
 
 public class CollisionDetector {
-    private final GamePanel gamePanel;
 
-    public CollisionDetector(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
+    private static class Holder {
+        private static final CollisionDetector INSTANCE = new CollisionDetector();
+    }
+
+    public CollisionDetector() {
+    }
+
+    public static CollisionDetector getInstance() {
+        return Holder.INSTANCE;
     }
 
     public void checkCollision(Entity entity) {
@@ -33,7 +40,7 @@ public class CollisionDetector {
         int tileTypeNum2 = -1;
 
         int speed = entity.getSpeed();
-        TileManager tileManager = gamePanel.getTileManager();
+        TileManager tileManager = TileManager.getInstance();
 
         switch (entity.getDirection()) {
             case FACING_BACKWARD -> {
@@ -74,7 +81,7 @@ public class CollisionDetector {
 
     public void checkObjectCollision(Player player) {
 
-        InteractableObject[] interactableObjects = this.gamePanel.interactableObjectManager.getInteractableObjects();
+        InteractableObject[] interactableObjects = InteractableObjectManager.getInstance().getInteractableObjects();
         for (int i = 0; i < interactableObjects.length; i++) {
             InteractableObject obj = interactableObjects[i];
 

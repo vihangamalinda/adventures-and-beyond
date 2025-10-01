@@ -6,6 +6,7 @@ import helper.Constant;
 import object.InteractableObjectManager;
 import sound.SoundManager;
 import tile.TileManager;
+import ui.UserInterfaceManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +17,6 @@ import static sound.SoundKey.THEME_1_KEY;
 public class GamePanel extends JPanel implements Runnable {
     // Game will be run on this thread
     Thread gameThread;
-    final KeyHandler keyHandler;
 
     // Set Player's default position
     int playerX = 100;
@@ -25,23 +25,23 @@ public class GamePanel extends JPanel implements Runnable {
 
     private final Player player;
 
-    private final TileManager tileManager;
-
-    private CollisionDetector collisionDetector;
-    public final InteractableObjectManager interactableObjectManager;
+    private static class Holder {
+        private static final GamePanel INSTANCE = new GamePanel();
+    }
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(Constant.WINDOW_MAX_SCREEN_WIDTH, Constant.WINDOW_MAX_SCREEN_HEIGHT));// defining panel size
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true); // improve game's rendering performance
-        this.keyHandler = new KeyHandler();
-        this.addKeyListener(this.keyHandler);
+        // Registering key handler to component
+        this.addKeyListener(KeyHandler.getInstance());
         this.setFocusable(true);
-        this.player = new Player(28 * TILE_SIZE, 12 * TILE_SIZE, this, this.keyHandler);
-        this.tileManager = new TileManager(this);
-        this.collisionDetector = new CollisionDetector(this);
-        this.interactableObjectManager = new InteractableObjectManager(this);
+        this.player = new Player(28 * TILE_SIZE, 12 * TILE_SIZE);
         playThemeMusic();
+    }
+
+    public static GamePanel getInstance() {
+        return Holder.INSTANCE;
     }
 
     public void startGameThread() {
@@ -118,16 +118,13 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    public CollisionDetector getCollisionDetector() {
-        return collisionDetector;
-    }
-
-    public TileManager getTileManager() {
-        return tileManager;
-    }
-
     public void update() {
         this.player.update();
+    }
+
+    public void stopGame() {
+        UserInterfaceManager.getInstance().triggerMainNotification("You won the game");
+        this.gameThread = null;
     }
 
     @Override
@@ -136,9 +133,13 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D graphics2D = (Graphics2D) graphic;
 
-        this.tileManager.draw(graphics2D);
-        this.interactableObjectManager.drawInteractiveObjects(graphics2D);
+        TileManager.getInstance().draw(graphics2D);
+        InteractableObjectManager.getInstance().drawInteractiveObjects(graphics2D);
         this.player.draw(graphics2D);
+
+        // Notify
+        UserInterfaceManager.getInstance().draw(graphics2D);
+
         //Disposes of this graphics context and releases any system resources that it is using.
         graphics2D.dispose();
     }

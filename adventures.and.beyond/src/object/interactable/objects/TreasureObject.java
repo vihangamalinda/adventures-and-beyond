@@ -1,8 +1,10 @@
-package object;
+package object.interactable.objects;
 
 import entity.Player;
+import main.GamePanel;
 import sound.SoundKey;
 import sound.SoundManager;
+import ui.UserInterfaceManager;
 
 import static object.ObjectResourcePath.TREASURE_IMG_PATH;
 
@@ -18,10 +20,15 @@ public class TreasureObject extends InteractableObject {
 
     @Override
     public void performAction(Player player) {
-        if (player.hasKeyCode(this.openCode)) {
+        String openCode = this.openCode;
+        if (player.hasKeyCode(openCode)) {
             SoundManager.getInstance().performSoundEffects(SoundKey.TREASURE_BOX_OPENING, 2);
+            player.removeKey(openCode);
             this.setActive(false);
+            GamePanel.getInstance().stopGame();
         } else {
+            String message = "Player does not have correct key: " + this.openCode;
+            UserInterfaceManager.getInstance().notifyGameDetails(message);
             player.setOnCollision(true);
         }
     }

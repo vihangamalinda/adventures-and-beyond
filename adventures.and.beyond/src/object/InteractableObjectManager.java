@@ -2,18 +2,28 @@ package object;
 
 import entity.Player;
 import main.GamePanel;
+import object.interactable.objects.DoorObject;
+import object.interactable.objects.InteractableObject;
+import object.interactable.objects.KeyObject;
+import object.interactable.objects.TreasureObject;
 
 import java.awt.*;
 
 import static helper.Constant.TILE_SIZE;
 
 public class InteractableObjectManager {
-    private final GamePanel gamePanel;
     private final InteractableObject[] interactableObjects;
 
-    public InteractableObjectManager(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
+    private static class Holder {
+        private static final InteractableObjectManager INSTANCE = new InteractableObjectManager();
+    }
+
+    private InteractableObjectManager() {
         this.interactableObjects = initializeInteractableObjects();
+    }
+
+    public static InteractableObjectManager getInstance() {
+        return Holder.INSTANCE;
     }
 
     private InteractableObject[] initializeInteractableObjects() {
@@ -27,7 +37,7 @@ public class InteractableObjectManager {
     }
 
     public void drawInteractiveObjects(Graphics2D graphics2D) {
-        Player player = gamePanel.getPlayer();
+        Player player = GamePanel.getInstance().getPlayer();
 
         for (int currentIndex = 0; currentIndex <= this.interactableObjects.length - 1; currentIndex++) {
             InteractableObject obj = this.interactableObjects[currentIndex];

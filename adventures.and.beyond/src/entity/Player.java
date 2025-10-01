@@ -2,7 +2,7 @@ package entity;
 
 import directionEnum.Direction;
 import helper.Constant;
-import main.GamePanel;
+import main.CollisionDetector;
 import main.KeyHandler;
 
 import java.awt.*;
@@ -13,7 +13,6 @@ import static helper.Constant.*;
 import static helper.PlayerSpriteManager.getPlayerImageByIndex;
 
 public class Player extends Entity {
-    private GamePanel gamePanel;
     private KeyHandler keyHandler;
 
 
@@ -43,10 +42,8 @@ public class Player extends Entity {
     int counter = 0;
 
 
-    public Player(int positionX, int positionY, GamePanel gamePanel, KeyHandler keyHandler) {
+    public Player(int positionX, int positionY) {
         super(positionX, positionY, movementSpeed, Direction.FACING_FORWARD, true, new Rectangle(PLAYER_SOLID_AREA_START_X, PLAYER_SOLID_AREA_START_Y, PLAYER_SOLID_AREA_WIDTH, PLAYER_SOLID_AREA_HEIGHT), false);
-        this.gamePanel = gamePanel;
-        this.keyHandler = keyHandler;
         this.collectedKeyCode = new ArrayList<>();
         this.initializeCentralizeCamera();
     }
@@ -57,8 +54,9 @@ public class Player extends Entity {
 
         changeDirection();
 
-        this.gamePanel.getCollisionDetector().checkCollision(this);
-        this.gamePanel.getCollisionDetector().checkObjectCollision(this);
+        CollisionDetector collisionDetector = CollisionDetector.getInstance();
+        collisionDetector.checkCollision(this);
+        collisionDetector.checkObjectCollision(this);
 
 //        System.out.println(!this.isOnCollision());
         if (!this.isOnCollision()) {
@@ -84,11 +82,22 @@ public class Player extends Entity {
         this.collectedKeyCode = collectedKeyCode;
     }
 
+    public int hasManyKey() {
+        return this.collectedKeyCode.size();
+    }
+
+    public void removeKey(String keyCode) {
+        if (this.hasKeyCode(keyCode)) {
+            this.collectedKeyCode.remove(keyCode);
+        }
+    }
+
     private void checkIdleState() {
-        boolean hasUpPressed = keyHandler.upPressed;
-        boolean hasDownPressed = keyHandler.downPressed;
-        boolean hasLeftPressed = keyHandler.leftPressed;
-        boolean hasRightPressed = keyHandler.rightPressed;
+        KeyHandler keyHandler = KeyHandler.getInstance();
+        boolean hasUpPressed = keyHandler.isUpPressed();
+        boolean hasDownPressed = keyHandler.isDownPressed();
+        boolean hasLeftPressed = keyHandler.isLeftPressed();
+        boolean hasRightPressed = keyHandler.isRightPressed();
 
         boolean isIdle = !hasUpPressed && !hasDownPressed && !hasLeftPressed && !hasRightPressed;
         setIdle(isIdle);
@@ -96,13 +105,15 @@ public class Player extends Entity {
 
     private void changeDirection() {
         Direction direction = this.getDirection();
-        if (this.keyHandler.upPressed) {
+        KeyHandler keyHandler = KeyHandler.getInstance();
+
+        if (keyHandler.isUpPressed()) {
             direction = Direction.FACING_BACKWARD;
-        } else if (this.keyHandler.downPressed) {
+        } else if (keyHandler.isDownPressed()) {
             direction = Direction.FACING_FORWARD;
-        } else if (this.keyHandler.leftPressed) {
+        } else if (keyHandler.isLeftPressed()) {
             direction = Direction.FACING_LEFTWARD;
-        } else if (this.keyHandler.rightPressed) {
+        } else if (keyHandler.isRightPressed()) {
             direction = Direction.FACING_RIGHTWARD;
         }
         if (!this.isIdle()) {
@@ -111,14 +122,14 @@ public class Player extends Entity {
     }
 
     private void performMovement() {
-
-        if (this.keyHandler.upPressed) {
+        KeyHandler keyHandler = KeyHandler.getInstance();
+        if (keyHandler.isUpPressed()) {
             this.moveUpDirection();
-        } else if (this.keyHandler.downPressed) {
+        } else if (keyHandler.isDownPressed()) {
             this.moveDownDirection();
-        } else if (this.keyHandler.leftPressed) {
+        } else if (keyHandler.isLeftPressed()) {
             this.moveLeftDirection();
-        } else if (this.keyHandler.rightPressed) {
+        } else if (keyHandler.isRightPressed()) {
             this.moveRightDirection();
         }
     }
@@ -194,14 +205,6 @@ public class Player extends Entity {
     private void moveRightDirection() {
         int newPositionX = this.getWorldPositionX() + this.getSpeed();
         this.setWorldPositionX(newPositionX);
-    }
-
-    public GamePanel getGamePanel() {
-        return gamePanel;
-    }
-
-    public void setGamePanel(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
     }
 
     public KeyHandler getKeyHandler() {
