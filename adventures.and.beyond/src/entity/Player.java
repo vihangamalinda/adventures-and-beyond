@@ -154,8 +154,9 @@ public class Player extends Entity {
 
 //        graphics2D.drawImage(image, this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer, null);
         graphics2D.setColor(Color.WHITE);
-        graphics2D.fillRect(this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer);
+        graphics2D.drawRect(this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer);
 
+        graphics2D.drawImage(image, this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer, null);
         drawSolidArea(graphics2D);
 //        logPlayerCurrentRowAndCol();
 
@@ -175,7 +176,7 @@ public class Player extends Entity {
     private void drawSolidArea(Graphics2D graphics2D) {
         graphics2D.setColor(Color.RED);
         Rectangle rectangle = this.getSolidArea();
-        graphics2D.fillRect(this.screenPositionX + rectangle.x, this.screenPositionY + rectangle.y, rectangle.width, rectangle.height);
+        graphics2D.drawRect(this.screenPositionX + rectangle.x, this.screenPositionY + rectangle.y, rectangle.width, rectangle.height);
     }
 
     private void initializeCentralizeCamera() {
