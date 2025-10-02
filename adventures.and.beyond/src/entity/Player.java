@@ -242,6 +242,11 @@ public class Player extends Entity {
 
     private int getPlayerCenterY() {
         return (TILE_SIZE / 2) * PLAYER_UP_SCALE;
+    public int getPlayerAbsoluteScreenX(){
+        return this.screenPositionX+this.getPlayerCenterX();
+    }
+    public int getPlayerAbsoluteScreenY(){
+        return this.screenPositionY+this.getPlayerCenterY();
     }
 
     public Rectangle getSolidAreaWithWorldPositions() {
@@ -263,7 +268,16 @@ public class Player extends Entity {
             }
         }
 
-        return new Rectangle(this.getWorldPositionX() + x, getWorldPositionY() + y, currentSolidArea.width, currentSolidArea.height);
+
+        return new Rectangle(this.getPlayerAbsoluteWorldPositionX() + x, this.getPlayerAbsoluteWorldPositionY() + y, currentSolidArea.width, currentSolidArea.height);
+    }
+
+    private int getPlayerAbsoluteWorldPositionY() {
+        return this.getWorldPositionY() + this.getPlayerCenterY();
+    }
+
+    private int getPlayerAbsoluteWorldPositionX() {
+        return this.getWorldPositionX() + this.getPlayerCenterX();
     }
 
     public boolean hasKeyCode(String keyCode) {
