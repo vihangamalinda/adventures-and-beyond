@@ -9,8 +9,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import static entity.PlayerConstant.*;
 import static helper.Constant.*;
-import static helper.PlayerSpriteManager.getPlayerImageByIndex;
+import static entity.PlayerSpriteManager.getPlayerImageByIndex;
 
 public class Player extends Entity {
     private KeyHandler keyHandler;
@@ -153,10 +154,12 @@ public class Player extends Entity {
 
 //        graphics2D.drawImage(image, this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer, null);
         graphics2D.setColor(Color.WHITE);
-        graphics2D.fillRect(this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer);
+        graphics2D.drawRect(this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer);
 
+        graphics2D.drawImage(image, this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer, null);
         drawSolidArea(graphics2D);
 //        logPlayerCurrentRowAndCol();
+//        logPlayerScreenColRow();
 
 //        graphics2D.setColor(Color.WHITE);
 //        graphics2D.fillRect(this.getPositionX() +200, this.getPositionY() +300, Helper.TILE_SIZE, Helper.TILE_SIZE);
@@ -171,20 +174,22 @@ public class Player extends Entity {
         System.out.println("Should start from row: " + firstRowDrawnOnColumn);
     }
 
+    private void logPlayerScreenColRow() {
+        String message = String.format("Player Screen (Row,Col):(%d,%d)", this.getPlayerAbsoluteScreenY() / TILE_SIZE, this.getPlayerAbsoluteScreenX() / TILE_SIZE);
+        System.out.println(message);
+    }
+
     private void drawSolidArea(Graphics2D graphics2D) {
         graphics2D.setColor(Color.RED);
         Rectangle rectangle = this.getSolidArea();
-        graphics2D.fillRect(this.screenPositionX + rectangle.x, this.screenPositionY + rectangle.y, rectangle.width, rectangle.height);
+        graphics2D.drawRect(this.screenPositionX + rectangle.x, this.screenPositionY + rectangle.y, rectangle.width, rectangle.height);
     }
 
     private void initializeCentralizeCamera() {
-        int centerX = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
-        int centerY = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
-        int playerImgActualCenterY = (Constant.TILE_SIZE / 4) * PLAYER_UP_SCALE;
+        this.screenPositionX = (Constant.WINDOW_MAX_SCREEN_WIDTH) / 2 - (this.getPlayerCenterX());
+        this.screenPositionY = (Constant.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (this.getPlayerCenterY());
 //        this.screenPositionX = (Constant.WINDOW_MAX_SCREEN_WIDTH) / 2 - (centerX);
-//        this.screenPositionY = (Constant.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (centerY + playerImgActualCenterY);
-        this.screenPositionX = (Constant.WINDOW_MAX_SCREEN_WIDTH) / 2 - (centerX);
-        this.screenPositionY = (Constant.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (centerY);
+//        this.screenPositionY = (Constant.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (centerY);
     }
 
     private void moveUpDirection() {
@@ -215,10 +220,10 @@ public class Player extends Entity {
         this.keyHandler = keyHandler;
     }
 
-    public int getPlayerAbsoluteCenterX() {
-        int centerX = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
-        return this.getWorldPositionX() + centerX;
-    }
+//    public int getPlayerAbsoluteCenterX() {
+//        int centerX = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
+//        return this.getWorldPositionX() + centerX;
+//    }
 
     public int getCurrentColOnWorldMap() {
         return (this.getWorldPositionX() + getPlayerCenterX()) / TILE_SIZE;
@@ -233,7 +238,16 @@ public class Player extends Entity {
     }
 
     private int getPlayerCenterY() {
-        return (TILE_SIZE / 2) * PLAYER_UP_SCALE;
+        int playerImgActualCenterY = (Constant.TILE_SIZE / 4) * PLAYER_UP_SCALE;
+        return ((TILE_SIZE / 2) * PLAYER_UP_SCALE) + playerImgActualCenterY;
+    }
+
+    public int getPlayerAbsoluteScreenX() {
+        return this.screenPositionX + this.getPlayerCenterX();
+    }
+
+    public int getPlayerAbsoluteScreenY() {
+        return this.screenPositionY + this.getPlayerCenterY();
     }
 
     public Rectangle getSolidAreaWithWorldPositions() {
@@ -255,7 +269,16 @@ public class Player extends Entity {
             }
         }
 
-        return new Rectangle(this.getWorldPositionX() + x, getWorldPositionY() + y, currentSolidArea.width, currentSolidArea.height);
+
+        return new Rectangle(this.getPlayerAbsoluteWorldPositionX() + x, this.getPlayerAbsoluteWorldPositionY() + y, currentSolidArea.width, currentSolidArea.height);
+    }
+
+    private int getPlayerAbsoluteWorldPositionY() {
+        return this.getWorldPositionY() + this.getPlayerCenterY();
+    }
+
+    private int getPlayerAbsoluteWorldPositionX() {
+        return this.getWorldPositionX() + this.getPlayerCenterX();
     }
 
     public boolean hasKeyCode(String keyCode) {
@@ -269,9 +292,9 @@ public class Player extends Entity {
         return hasKey;
     }
 
-    public int getPlayerAbsoluteCenterY() {
-        int centerY = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
-        int playerImgActualCenterY = (Constant.TILE_SIZE / 4) * PLAYER_UP_SCALE;
-        return this.getWorldPositionY() + centerY + playerImgActualCenterY;
-    }
+//    public int getPlayerAbsoluteCenterY() {
+//        int centerY = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
+//        int playerImgActualCenterY = (Constant.TILE_SIZE / 4) * PLAYER_UP_SCALE;
+//        return this.getWorldPositionY() + centerY + playerImgActualCenterY;
+//    }
 }

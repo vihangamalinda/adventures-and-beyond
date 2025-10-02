@@ -1,4 +1,4 @@
-package helper;
+package entity;
 
 import directionEnum.Direction;
 
