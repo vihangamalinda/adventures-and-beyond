@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
+import static helper.ImageScaler.getPlayerScaledImage;
 import static helper.Loader.getImage;
 
 public class PlayerSpriteManager {
@@ -22,6 +23,7 @@ public class PlayerSpriteManager {
     private static final Map<String, BufferedImage[]> spriteMap = new HashMap<>();
     private static final int lastIndex = 5;
 
+
     public static void initializeSpriteMap() {
         spriteMap.put(movementKeys[0], getImageArray("forward", "idle"));
         spriteMap.put(movementKeys[1], getImageArray("forward", "walking"));
@@ -36,7 +38,8 @@ public class PlayerSpriteManager {
     private static BufferedImage[] getImageArray(String direction, String state) {
         BufferedImage[] arr = new BufferedImage[lastIndex + 1];
         for (int i = 0; i <= lastIndex; i++) {
-            arr[i] = getImage(getPath(direction, state, i));
+            BufferedImage original =getImage(getPath(direction, state, i));
+            arr[i] = getScaledImage(original);
         }
         return arr;
     }
@@ -80,5 +83,9 @@ public class PlayerSpriteManager {
             }
         }
         return keyIndex;
+    }
+
+    private static BufferedImage getScaledImage(BufferedImage image){
+        return getPlayerScaledImage(image);
     }
 }

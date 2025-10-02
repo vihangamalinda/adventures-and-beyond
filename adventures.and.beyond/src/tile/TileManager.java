@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static helper.Constant.*;
+import static helper.ImageScaler.getStandardScaledImage;
 
 
 public class TileManager {
@@ -70,8 +71,12 @@ public class TileManager {
     }
 
     private Tile createTile(String imgPath, boolean canCollide) {
-        BufferedImage image = Loader.getImage(imgPath);
+        BufferedImage original = Loader.getImage(imgPath);
+        BufferedImage image = getScaledImage(original);
         return new Tile(image, canCollide);
+    }
+    private BufferedImage getScaledImage(BufferedImage originalImage){
+        return getStandardScaledImage(originalImage);
     }
 
     public void draw(Graphics2D graphics2D) {
