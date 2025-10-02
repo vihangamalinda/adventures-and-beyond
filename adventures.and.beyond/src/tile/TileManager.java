@@ -75,7 +75,8 @@ public class TileManager {
         BufferedImage image = getScaledImage(original);
         return new Tile(image, canCollide);
     }
-    private BufferedImage getScaledImage(BufferedImage originalImage){
+
+    private BufferedImage getScaledImage(BufferedImage originalImage) {
         return getStandardScaledImage(originalImage);
     }
 
@@ -107,7 +108,7 @@ public class TileManager {
                 int windowPositionY = windowRow * TILE_SIZE;
                 BufferedImage image = getTileByIndex(columValues[currentMapColumn]).getBufferedImage();
 
-                graphics2D.drawImage(image, windowPositionX, windowPositionY,null);
+                graphics2D.drawImage(image, windowPositionX, windowPositionY, null);
 
                 drawScale(graphics2D, windowPositionX, windowPositionY);
                 drawRowAndColNumbers(graphics2D, drawMapRow, currentMapColumn, windowPositionX, windowPositionY);

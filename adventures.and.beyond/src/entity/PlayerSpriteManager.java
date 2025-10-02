@@ -38,7 +38,7 @@ public class PlayerSpriteManager {
     private static BufferedImage[] getImageArray(String direction, String state) {
         BufferedImage[] arr = new BufferedImage[lastIndex + 1];
         for (int i = 0; i <= lastIndex; i++) {
-            BufferedImage original =getImage(getPath(direction, state, i));
+            BufferedImage original = getImage(getPath(direction, state, i));
             arr[i] = getScaledImage(original);
         }
         return arr;
@@ -85,7 +85,7 @@ public class PlayerSpriteManager {
         return keyIndex;
     }
 
-    private static BufferedImage getScaledImage(BufferedImage image){
+    private static BufferedImage getScaledImage(BufferedImage image) {
         return getPlayerScaledImage(image);
     }
 }

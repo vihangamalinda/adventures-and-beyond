@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
-    private boolean upPressed, downPressed, leftPressed, rightPressed,onDevMood;
+    private boolean upPressed, downPressed, leftPressed, rightPressed, onDevMood;
 
     private KeyHandler() {
     }
@@ -33,7 +33,7 @@ public class KeyHandler implements KeyListener {
         return this.rightPressed;
     }
 
-    public boolean isOnDevMood(){
+    public boolean isOnDevMood() {
         return this.onDevMood;
     }
 
@@ -60,7 +60,7 @@ public class KeyHandler implements KeyListener {
                 this.rightPressed = true;
                 break;
             case KeyEvent.VK_I:
-                this.onDevMood =!this.onDevMood;
+                this.onDevMood = !this.onDevMood;
                 break;
             default:
 
