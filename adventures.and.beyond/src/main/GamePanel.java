@@ -3,6 +3,7 @@ package main;
 import entity.Player;
 import helper.Constant;
 
+import helper.Timer;
 import object.InteractableObjectManager;
 import sound.SoundManager;
 import tile.TileManager;
@@ -130,6 +131,7 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     public void paintComponent(Graphics graphic) {
         super.paintComponent(graphic);
+        long startTime =Timer.getStartingTime();
 
         Graphics2D graphics2D = (Graphics2D) graphic;
 
@@ -140,6 +142,7 @@ public class GamePanel extends JPanel implements Runnable {
         // Notify
         UserInterfaceManager.getInstance().draw(graphics2D);
 
+        Timer.evaluvateTimeSpent(startTime);
         //Disposes of this graphics context and releases any system resources that it is using.
         graphics2D.dispose();
     }
