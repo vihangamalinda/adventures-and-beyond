@@ -156,7 +156,7 @@ public class Player extends Entity {
         graphics2D.setColor(Color.WHITE);
         graphics2D.drawRect(this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer);
 
-        graphics2D.drawImage(image, this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer, null);
+        graphics2D.drawImage(image, this.screenPositionX, this.screenPositionY,null);
         drawSolidArea(graphics2D);
 //        logPlayerCurrentRowAndCol();
 //        logPlayerScreenColRow();
