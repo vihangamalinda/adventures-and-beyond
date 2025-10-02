@@ -174,8 +174,8 @@ public class Player extends Entity {
         System.out.println("Should start from row: " + firstRowDrawnOnColumn);
     }
 
-    private void logPlayerScreenColRow(){
-        String message = String.format("Player Screen (Row,Col):(%d,%d)",this.getPlayerAbsoluteScreenY()/TILE_SIZE,this.getPlayerAbsoluteScreenX()/TILE_SIZE);
+    private void logPlayerScreenColRow() {
+        String message = String.format("Player Screen (Row,Col):(%d,%d)", this.getPlayerAbsoluteScreenY() / TILE_SIZE, this.getPlayerAbsoluteScreenX() / TILE_SIZE);
         System.out.println(message);
     }
 
@@ -220,10 +220,10 @@ public class Player extends Entity {
         this.keyHandler = keyHandler;
     }
 
-    public int getPlayerAbsoluteCenterX() {
-        int centerX = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
-        return this.getWorldPositionX() + centerX;
-    }
+//    public int getPlayerAbsoluteCenterX() {
+//        int centerX = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
+//        return this.getWorldPositionX() + centerX;
+//    }
 
     public int getCurrentColOnWorldMap() {
         return (this.getWorldPositionX() + getPlayerCenterX()) / TILE_SIZE;
@@ -239,14 +239,15 @@ public class Player extends Entity {
 
     private int getPlayerCenterY() {
         int playerImgActualCenterY = (Constant.TILE_SIZE / 4) * PLAYER_UP_SCALE;
-        return ((TILE_SIZE / 2) * PLAYER_UP_SCALE) +playerImgActualCenterY;
+        return ((TILE_SIZE / 2) * PLAYER_UP_SCALE) + playerImgActualCenterY;
     }
 
-    public int getPlayerAbsoluteScreenX(){
-        return this.screenPositionX+this.getPlayerCenterX();
+    public int getPlayerAbsoluteScreenX() {
+        return this.screenPositionX + this.getPlayerCenterX();
     }
-    public int getPlayerAbsoluteScreenY(){
-        return this.screenPositionY+this.getPlayerCenterY();
+
+    public int getPlayerAbsoluteScreenY() {
+        return this.screenPositionY + this.getPlayerCenterY();
     }
 
     public Rectangle getSolidAreaWithWorldPositions() {
@@ -291,9 +292,9 @@ public class Player extends Entity {
         return hasKey;
     }
 
-    public int getPlayerAbsoluteCenterY() {
-        int centerY = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
-        int playerImgActualCenterY = (Constant.TILE_SIZE / 4) * PLAYER_UP_SCALE;
-        return this.getWorldPositionY() + centerY + playerImgActualCenterY;
-    }
+//    public int getPlayerAbsoluteCenterY() {
+//        int centerY = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
+//        int playerImgActualCenterY = (Constant.TILE_SIZE / 4) * PLAYER_UP_SCALE;
+//        return this.getWorldPositionY() + centerY + playerImgActualCenterY;
+//    }
 }

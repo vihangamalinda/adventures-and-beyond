@@ -41,7 +41,7 @@ public class DrawHelper {
 
     public static int getObjWindowPositionYRespectiveToPlayer(int positionY, Player player) {
         int objPlayerMapDifferance = player.getCurrentRowOnWorldMap() - (positionY / TILE_SIZE);
-        int playerScreenCol = (player.getPlayerAbsoluteScreenY())/ TILE_SIZE;
+        int playerScreenCol = (player.getPlayerAbsoluteScreenY()) / TILE_SIZE;
 
         int value;
         if (objPlayerMapDifferance < 0) {
