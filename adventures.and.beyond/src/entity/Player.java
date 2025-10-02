@@ -186,13 +186,10 @@ public class Player extends Entity {
     }
 
     private void initializeCentralizeCamera() {
-        int centerX = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
-        int centerY = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
-        int playerImgActualCenterY = (Constant.TILE_SIZE / 4) * PLAYER_UP_SCALE;
+        this.screenPositionX = (Constant.WINDOW_MAX_SCREEN_WIDTH) / 2 - (this.getPlayerCenterX());
+        this.screenPositionY = (Constant.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (this.getPlayerCenterY());
 //        this.screenPositionX = (Constant.WINDOW_MAX_SCREEN_WIDTH) / 2 - (centerX);
-//        this.screenPositionY = (Constant.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (centerY + playerImgActualCenterY);
-        this.screenPositionX = (Constant.WINDOW_MAX_SCREEN_WIDTH) / 2 - (centerX);
-        this.screenPositionY = (Constant.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (centerY);
+//        this.screenPositionY = (Constant.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (centerY);
     }
 
     private void moveUpDirection() {
@@ -241,7 +238,10 @@ public class Player extends Entity {
     }
 
     private int getPlayerCenterY() {
-        return (TILE_SIZE / 2) * PLAYER_UP_SCALE;
+        int playerImgActualCenterY = (Constant.TILE_SIZE / 4) * PLAYER_UP_SCALE;
+        return ((TILE_SIZE / 2) * PLAYER_UP_SCALE) +playerImgActualCenterY;
+    }
+
     public int getPlayerAbsoluteScreenX(){
         return this.screenPositionX+this.getPlayerCenterX();
     }
