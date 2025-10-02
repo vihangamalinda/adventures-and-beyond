@@ -2,7 +2,7 @@ package entity;
 
 public class PlayerConstant {
 
-    public static final int PLAYER_UP_SCALE = 1;
+    public static final int PLAYER_UP_SCALE =2;
 
     //Player Solid Area
     public final static int PLAYER_SOLID_AREA_START_X = 20 * PLAYER_UP_SCALE;
