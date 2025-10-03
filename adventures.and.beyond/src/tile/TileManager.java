@@ -4,6 +4,7 @@ import entity.Player;
 import helper.Constant;
 import helper.Loader;
 import main.GamePanel;
+import tile.registry.TileRegistry;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -106,7 +107,8 @@ public class TileManager {
             for (int windowCol = 0; windowCol < MAX_SCREEN_COLUMN; windowCol++) {
                 int windowPositionX = windowCol * TILE_SIZE;
                 int windowPositionY = windowRow * TILE_SIZE;
-                BufferedImage image = getTileByIndex(columValues[currentMapColumn]).getBufferedImage();
+                int tileKey = columValues[currentMapColumn];
+                BufferedImage image = TileRegistry.getInstance().getTileByKey("01").getBufferedImage();
 
                 graphics2D.drawImage(image, windowPositionX, windowPositionY, null);
 
