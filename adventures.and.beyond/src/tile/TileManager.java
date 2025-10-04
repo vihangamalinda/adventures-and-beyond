@@ -39,7 +39,7 @@ public class TileManager {
 
     public Tile getTileByIndex(int tileKey) {
 
-        Tile tile =TileRegistry.getInstance().getTileByKey(tileKey);
+        Tile tile = TileRegistry.getInstance().getTileByKey(tileKey);
         if (isNull(tile)) {
             System.out.println("Custom Error: Given tile key is not registered. Tile key " + tileKey);
             return null;
