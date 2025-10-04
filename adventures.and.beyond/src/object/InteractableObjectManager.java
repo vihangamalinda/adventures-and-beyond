@@ -27,10 +27,10 @@ public class InteractableObjectManager {
     }
 
     private InteractableObject[] initializeInteractableObjects() {
-        InteractableObject key = new KeyObject(false, 28 * TILE_SIZE, 10 * TILE_SIZE, "KEY_07", true);
-        InteractableObject door = new DoorObject(false, 25 * TILE_SIZE, 9 * TILE_SIZE, "DOOR_5", "KEY_07", true);
+        InteractableObject key = new KeyObject(false, 28 * TILE_SIZE, 17 * TILE_SIZE, "KEY_07", true);
+        InteractableObject door = new DoorObject(false, 22 * TILE_SIZE, 25 * TILE_SIZE, "DOOR_5", "KEY_07", true);
 
-        InteractableObject treasure = new TreasureObject(false, 21 * TILE_SIZE, 8 * TILE_SIZE, "TREASURE_05", "KEY_08", true);
+        InteractableObject treasure = new TreasureObject(false, 22 * TILE_SIZE, 27 * TILE_SIZE, "TREASURE_05", "KEY_08", true);
         InteractableObject key2 = new KeyObject(false, 16 * TILE_SIZE, 11 * TILE_SIZE, "KEY_08", true);
 
         return new InteractableObject[]{key, door, treasure, key2};
