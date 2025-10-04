@@ -11,10 +11,10 @@ import java.awt.image.BufferedImage;
 
 import static helper.Constant.*;
 import static helper.ImageScaler.getStandardScaledImage;
+import static java.util.Objects.isNull;
 
 
 public class TileManager {
-    private Tile[] tiles;
     private int[][] mapTileMatrix;
 
     private static class Holder {
@@ -22,7 +22,6 @@ public class TileManager {
     }
 
     private TileManager() {
-        this.tiles = initializeTiles();
         this.mapTileMatrix = loadMapMatrix();
     }
 
@@ -38,37 +37,14 @@ public class TileManager {
         this.mapTileMatrix = mapTileMatrix;
     }
 
-    public Tile[] getTiles() {
-        return tiles;
-    }
+    public Tile getTileByIndex(int tileKey) {
 
-    public void setTiles(Tile[] tiles) {
-        this.tiles = tiles;
-    }
-
-
-    private Tile[] initializeTiles() {
-        Tile tileGrass = createTile("/tiles/grass_2.png", true);
-        Tile tilePath = createTile("/tiles/path.png", true);
-        Tile tileWater = createTile("/tiles/water_custom.png", false);
-        Tile tileWall = createTile("/tiles/wall.png", false);
-        Tile tileRockWall = createTile("/tiles/rock_wall.png", false);
-
-        Tile tileTest = createTile("/tiles/grass_custom.png", true);
-        Tile tilePurpleTreeDark = createTile("/tiles/tree/purple_dark_tree.png", false);
-        Tile tilePurpleTreeLight = createTile("/tiles/tree/purple_light_tree.png", false);
-
-
-        return new Tile[]{tileGrass, tilePath, tileWater, tileWall, tileRockWall, tileTest, tilePurpleTreeDark, tilePurpleTreeLight};
-    }
-
-    public Tile getTileByIndex(int tileIndex) {
-        int arrLength = this.tiles.length;
-        if (tileIndex < 0 || tileIndex > arrLength - 1) {
-            System.out.println("Custom Error: Given index is not withing arr length. Array length: " + arrLength + ", given index: " + tileIndex);
+        Tile tile =TileRegistry.getInstance().getTileByKey(tileKey);
+        if (isNull(tile)) {
+            System.out.println("Custom Error: Given tile key is not registered. Tile key " + tileKey);
             return null;
         }
-        return this.tiles[tileIndex];
+        return tile;
     }
 
     private Tile createTile(String imgPath, boolean canCollide) {
