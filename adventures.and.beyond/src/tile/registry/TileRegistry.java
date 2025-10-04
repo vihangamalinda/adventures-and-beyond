@@ -18,13 +18,22 @@ public class TileRegistry {
         return Holder.INSTANCE;
     }
 
-    public Tile getTileByKey(String tileKey){
-        Tile tile= this.tileHashMap.get(tileKey);
+    public Tile getTileByKey(int tileKey){
+        String keyStr =getKeyStrValue(tileKey);
+        Tile tile= this.tileHashMap.get(keyStr);
 
         if(isNull(tile)){
            System.out.println("Custom Error: Given key is not registered on tileMap. Given key"+tileKey);
         }
         return tile;
+    }
+
+    private String getKeyStrValue(int tileKey){
+        if(tileKey >=0 && tileKey <=9){
+            return "0"+ tileKey;
+        }
+
+        return String.valueOf(tileKey);
     }
 
     private static class Holder{
