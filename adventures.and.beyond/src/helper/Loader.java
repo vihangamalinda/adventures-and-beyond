@@ -24,10 +24,10 @@ public class Loader {
             for (int row = 0; row < totalRows; row++) {
 
                 String line = reader.readLine();
-                String[] numericStr = line.split("");
-                System.out.println("");
+                String[] main = line.split("#");
+                String[] strArr = main[0].split(" ");
                 for (int col = 0; col < totalColumns; col++) {
-                    int value = Integer.parseInt(numericStr[col]);
+                    int value = Integer.parseInt(strArr[col]);
                     System.out.print(value);
                     matrix[row][col] = value;
                 }
