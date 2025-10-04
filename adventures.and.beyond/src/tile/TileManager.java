@@ -108,7 +108,8 @@ public class TileManager {
                 int windowPositionX = windowCol * TILE_SIZE;
                 int windowPositionY = windowRow * TILE_SIZE;
                 int tileKey = columValues[currentMapColumn];
-                BufferedImage image = TileRegistry.getInstance().getTileByKey("01").getBufferedImage();
+
+                BufferedImage image = TileRegistry.getInstance().getTileByKey(tileKey).getBufferedImage();
 
                 graphics2D.drawImage(image, windowPositionX, windowPositionY, null);
 
@@ -172,7 +173,7 @@ public class TileManager {
     }
 
     private int[][] loadMapMatrix() {
-        return Loader.getMapMatrix("/maps/world_map_01.txt");
+        return Loader.getMapMatrix("/maps/updated/world_map_01.txt");
     }
 
 }
