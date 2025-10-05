@@ -120,7 +120,12 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        this.player.update();
+        if (KeyHandler.getInstance().isOnPause()) {
+            showPauseModal();
+        } else {
+            UserInterfaceManager.getInstance().deactivateMainNotification();
+            this.player.update();
+        }
     }
 
     public void stopGame() {
@@ -145,6 +150,10 @@ public class GamePanel extends JPanel implements Runnable {
         Timer.evaluvateTimeSpent(startTime);
         //Disposes of this graphics context and releases any system resources that it is using.
         graphics2D.dispose();
+    }
+
+    private void showPauseModal(){
+        UserInterfaceManager.getInstance().triggerMainNotification("Game on Pause");
     }
 
     public void playThemeMusic() {

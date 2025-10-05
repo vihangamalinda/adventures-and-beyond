@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
-    private boolean upPressed, downPressed, leftPressed, rightPressed, onDevMood;
+    private boolean upPressed, downPressed, leftPressed, rightPressed, onDevMood,onPause;
 
     private KeyHandler() {
     }
@@ -37,6 +37,10 @@ public class KeyHandler implements KeyListener {
         return this.onDevMood;
     }
 
+    public boolean isOnPause() {
+        return onPause;
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -62,6 +66,8 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_I:
                 this.onDevMood = !this.onDevMood;
                 break;
+            case KeyEvent.VK_P:
+                this.onPause =!this.onPause;
             default:
 
         }
