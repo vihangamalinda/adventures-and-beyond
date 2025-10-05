@@ -1,6 +1,7 @@
-package entity;
+package entity.player;
 
 import directionEnum.Direction;
+import entity.Entity;
 import helper.Constant;
 import main.CollisionDetector;
 import main.KeyHandler;
@@ -9,9 +10,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import static entity.PlayerConstant.*;
+import static entity.player.PlayerConstant.*;
 import static helper.Constant.*;
-import static entity.PlayerSpriteManager.getPlayerImageByIndex;
+import static entity.player.PlayerSpriteManager.getPlayerImageByIndex;
 
 public class Player extends Entity {
     private KeyHandler keyHandler;

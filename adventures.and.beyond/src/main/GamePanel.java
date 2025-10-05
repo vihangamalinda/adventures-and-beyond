@@ -1,6 +1,6 @@
 package main;
 
-import entity.Player;
+import entity.player.Player;
 import helper.Constant;
 
 import helper.Timer;

@@ -1,6 +1,6 @@
 package main;
 
-import entity.PlayerSpriteManager;
+import entity.player.PlayerSpriteManager;
 
 import javax.swing.*;
 

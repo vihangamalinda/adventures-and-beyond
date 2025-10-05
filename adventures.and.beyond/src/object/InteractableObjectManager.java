@@ -1,6 +1,6 @@
 package object;
 
-import entity.Player;
+import entity.player.Player;
 import main.GamePanel;
 import object.interactable.objects.DoorObject;
 import object.interactable.objects.InteractableObject;

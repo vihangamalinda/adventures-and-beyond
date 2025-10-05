@@ -1,6 +1,6 @@
 package object.interactable.objects;
 
-import entity.Player;
+import entity.player.Player;
 import sound.SoundKey;
 import sound.SoundManager;
 import ui.UserInterfaceManager;

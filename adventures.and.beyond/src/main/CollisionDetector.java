@@ -1,7 +1,7 @@
 package main;
 
 import entity.Entity;
-import entity.Player;
+import entity.player.Player;
 import object.InteractableObjectManager;
 import object.interactable.objects.InteractableObject;
 import tile.Tile;
