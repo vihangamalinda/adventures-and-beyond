@@ -123,7 +123,6 @@ public class GamePanel extends JPanel implements Runnable {
         if (KeyHandler.getInstance().isOnPause()) {
             showPauseModal();
         } else {
-            UserInterfaceManager.getInstance().deactivateMainNotification();
             this.player.update();
         }
     }

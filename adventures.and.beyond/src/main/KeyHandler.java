@@ -1,5 +1,7 @@
 package main;
 
+import ui.UserInterfaceManager;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -67,7 +69,11 @@ public class KeyHandler implements KeyListener {
                 this.onDevMood = !this.onDevMood;
                 break;
             case KeyEvent.VK_P:
-                this.onPause =!this.onPause;
+                boolean isOnPause = this.onPause;
+                if(isOnPause){
+                    UserInterfaceManager.getInstance().deactivateMainNotification();
+                }
+                this.onPause =!isOnPause;
             default:
 
         }
