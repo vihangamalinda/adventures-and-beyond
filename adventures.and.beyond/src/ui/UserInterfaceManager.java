@@ -37,6 +37,10 @@ public class UserInterfaceManager {
         this.mainDetailNotifier.triggerNotification(message);
     }
 
+    public void deactivateMainNotification(){
+        this.mainDetailNotifier.deactivate();
+    }
+
     public void draw(Graphics2D graphics2D) {
         this.playerDetailNotifier.draw(graphics2D);
         this.gameDetailNotifier.draw(graphics2D);

@@ -19,12 +19,17 @@ public class MainDetailNotifier extends AbstractDetailNotifier {
         this.setMessage(message);
     }
 
-    public void setMessage(String message) {
+    private void setMessage(String message) {
         this.message = message;
     }
 
     private void setFont(Font font) {
         this.font = font;
+    }
+
+    public void deactivate(){
+        this.setActive(false);
+        this.setMessage("");
     }
 
     @Override
