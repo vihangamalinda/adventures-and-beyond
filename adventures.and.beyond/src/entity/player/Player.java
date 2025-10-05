@@ -168,6 +168,22 @@ public class Player extends Entity {
 //        graphics2D.drawImage(blueImg,this.getPositionX() +200,this.getPositionY() +300,Helper.TILE_SIZE,Helper.TILE_SIZE,null);
     }
 
+    @Override
+    public void setWorldPositionX(int worldPositionX) {
+        boolean isWithinRange = worldPositionX - WINDOW_MAX_SCREEN_WIDTH / 2 > 0 && worldPositionX + WINDOW_MAX_SCREEN_WIDTH / 2 < WORLD_MAP_WIDTH;
+        if (isWithinRange) {
+            super.setWorldPositionX(worldPositionX);
+        }
+    }
+
+    @Override
+    public void setWorldPositionY(int worldPositionY) {
+        boolean isWithinRange = worldPositionY - WINDOW_MAX_SCREEN_HEIGHT / 2 > 0 && worldPositionY + WINDOW_MAX_SCREEN_HEIGHT / 2 < WORLD_MAP_HEIGHT;
+        if (isWithinRange) {
+            super.setWorldPositionY(worldPositionY);
+        }
+    }
+
     private void logPlayerCurrentRowAndCol() {
         String message = String.format("Player current (Row,Col):(%d,%d)", getCurrentRowOnWorldMap(), getCurrentColOnWorldMap());
         System.out.println(message);
