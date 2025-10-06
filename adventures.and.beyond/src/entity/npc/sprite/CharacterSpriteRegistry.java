@@ -6,6 +6,7 @@ import helper.Loader;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
+import static entity.npc.sprite.CharacterSpritePath.*;
 import static helper.ImageScaler.getStandardScaledImage;
 
 public class CharacterSpriteRegistry {
