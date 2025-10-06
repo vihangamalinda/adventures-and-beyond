@@ -37,19 +37,14 @@ public class CharacterSpriteRegistry {
     }
 
     private void registerHumanCyanMovingSprites() {
-        String mainFolderPath = "/entity/character/human_cyan";
         HashMap<Direction, BufferedImage[]> map = new HashMap<>();
 
-        String faceBackward = mainFolderPath + "/face_backward_moving";
-        String faceForward = mainFolderPath + "/face_forward_moving";
-        String faceLeftForward = mainFolderPath + "/face_leftward_moving";
-        String faceRightForward = mainFolderPath + "/face_rightward_moving";
 
         int imgCount = 5;
-        BufferedImage[] backward = getImages(faceBackward, imgCount);
-        BufferedImage[] forward = getImages(faceForward, imgCount);
-        BufferedImage[] leftward = getImages(faceLeftForward, imgCount);
-        BufferedImage[] rightward = getImages(faceRightForward, imgCount);
+        BufferedImage[] backward = getImages(HUMAN_CYAN_MOVING_FACE_BACKWARD, imgCount);
+        BufferedImage[] forward = getImages(HUMAN_CYAN_MOVING_FACE_FORWARD, imgCount);
+        BufferedImage[] leftward = getImages(HUMAN_CYAN_MOVING_FACE_LEFTWARD, imgCount);
+        BufferedImage[] rightward = getImages(HUMAN_CYAN_MOVING_FACE_RIGHTWARD, imgCount);
 
         map.put(Direction.FACING_BACKWARD, backward);
         map.put(Direction.FACING_FORWARD, forward);
