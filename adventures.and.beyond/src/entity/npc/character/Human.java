@@ -5,6 +5,7 @@ import entity.npc.CharacterSpriteManager;
 import entity.npc.NonPlayerCharacter;
 import entity.player.Player;
 import helper.DrawHelper;
+import main.CollisionDetector;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
