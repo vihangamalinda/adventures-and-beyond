@@ -23,7 +23,9 @@ public class Human extends NonPlayerCharacter {
     }
 
     public void update(){
-        if(this.frameCounter %5==0){
+
+        CollisionDetector.getInstance().checkTileCollision(this);
+        if(shouldUpdatePosition() && !this.isOnCollision()){
             updatePosition();
         }
 
@@ -33,6 +35,10 @@ public class Human extends NonPlayerCharacter {
         }
 
         this.frameCounter++;
+    }
+
+    private boolean shouldUpdatePosition() {
+        return this.frameCounter % 5 == 0;
     }
 
     private void updatePosition(){
