@@ -24,7 +24,7 @@ public class CollisionDetector {
         return Holder.INSTANCE;
     }
 
-    public void checkCollision(Entity entity) {
+    public void checkTileCollision(Entity entity) {
         Rectangle solidArea = entity.getSolidArea();
         int entityLeftWorldX = entity.getWorldPositionX() + solidArea.x;
         int entityRightWorldX = entity.getWorldPositionX() + solidArea.x + solidArea.width;

@@ -57,7 +57,7 @@ public class Player extends Entity {
         changeDirection();
 
         CollisionDetector collisionDetector = CollisionDetector.getInstance();
-        collisionDetector.checkCollision(this);
+        collisionDetector.checkTileCollision(this);
         collisionDetector.checkObjectCollision(this);
 
 //        System.out.println(!this.isOnCollision());
