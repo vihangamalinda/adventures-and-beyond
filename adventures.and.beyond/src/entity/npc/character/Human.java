@@ -20,7 +20,7 @@ public class Human extends NonPlayerCharacter {
     private int currentFrameIndex=0;
 
     public Human(int worldPositionX, int worldPositionY, Direction direction, boolean onCollision,String characterAnimationKey) {
-        super(worldPositionX, worldPositionY, speed, direction, false, new Rectangle(0,0,48,48), onCollision,characterAnimationKey);
+        super(worldPositionX, worldPositionY, speed, direction, false, new Rectangle(10,10,30,30), onCollision,characterAnimationKey);
     }
 
     public void update(){
