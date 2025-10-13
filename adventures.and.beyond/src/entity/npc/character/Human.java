@@ -25,17 +25,27 @@ public class Human extends NonPlayerCharacter {
 
     public void update(){
 
-        CollisionDetector.getInstance().checkTileCollision(this);
-        if(shouldUpdatePosition() && !this.isOnCollision()){
+        checkForCollisions();
+//        System.out.println("On collision: "+this.isOnCollisionWithPlayer());
+
+        if(shouldUpdatePosition() && !this.isOnCollision() && !this.isOnCollisionWithPlayer()){
             updatePosition();
         }
 
-        if(shouldChangeDirection()) {
+        if(shouldChangeDirection() && !this.isOnCollisionWithPlayer()) {
             changeDirection();
             this.resetFrameCounter();
         }
 
-        this.frameCounter++;
+        if(!isOnCollisionWithPlayer()){
+            this.frameCounter++;
+        }
+    }
+
+    private void checkForCollisions() {
+        CollisionDetector collisionDetector = CollisionDetector.getInstance();
+        collisionDetector.checkTileCollision(this);
+        collisionDetector.checkCharacterPlayerCollision(this);
     }
 
     private boolean shouldUpdatePosition() {
@@ -92,6 +102,10 @@ public class Human extends NonPlayerCharacter {
 
         }
 
+    }
+
+    public boolean doCollideWithPlayer(Player player){
+        return player.getSolidAreaWithWorldPositions().intersects(getSolidAreaWithWorldPositions());
     }
 
     private BufferedImage getCurrentSpriteImage() {
