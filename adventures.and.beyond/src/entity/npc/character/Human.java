@@ -28,11 +28,11 @@ public class Human extends NonPlayerCharacter {
         checkForCollisions();
 //        System.out.println("On collision: "+this.isOnCollisionWithPlayer());
 
-        if(shouldUpdatePosition() && !this.isOnCollision() && !this.isOnCollisionWithPlayer()){
+        if (shouldUpdatePosition()) {
             updatePosition();
         }
 
-        if(shouldChangeDirection() && !this.isOnCollisionWithPlayer()) {
+        if (shouldChangeDirection()) {
             changeDirection();
             this.resetFrameCounter();
         }
@@ -49,7 +49,8 @@ public class Human extends NonPlayerCharacter {
     }
 
     private boolean shouldUpdatePosition() {
-        return this.frameCounter % 5 == 0;
+        boolean onUpdateRate = this.frameCounter % 5 == 0;
+        return onUpdateRate && !this.isOnCollision() && !this.isOnCollisionWithPlayer();
     }
 
     private void updatePosition(){
@@ -65,7 +66,8 @@ public class Human extends NonPlayerCharacter {
     }
 
     private boolean shouldChangeDirection() {
-        return this.frameCounter % 150 == 0;
+        boolean updateRate = this.frameCounter % 150 == 0;
+        return updateRate && !this.isOnCollisionWithPlayer();
     }
 
     private void setFrameCounter(int frameCounter) {
