@@ -1,6 +1,7 @@
 package main;
 
 import entity.Entity;
+import entity.npc.character.Human;
 import entity.player.Player;
 import object.InteractableObjectManager;
 import object.interactable.objects.InteractableObject;
@@ -90,6 +91,21 @@ public class CollisionDetector {
                 obj.performAction(player);
             }
 
+        }
+    }
+
+    public void checkCharacterPlayerCollision(Human human) {
+
+
+        Player player = GamePanel.getInstance().getPlayer();
+        boolean isColliding =human.doCollideWithPlayer(player);
+
+
+        if (isColliding){
+            player.setOnCollision(true);
+            human.associateWithPlayer();
+        }else {
+            human.disassociateWithPlayer();
         }
 
     }
