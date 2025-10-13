@@ -97,7 +97,10 @@ public class Human extends NonPlayerCharacter {
                 int windowPositionX = DrawHelper.getObjWindowPositionXRespectiveToPlayer(this.getWorldPositionX(), player);
                 int windowPositionY = DrawHelper.getObjWindowPositionYRespectiveToPlayer(this.getWorldPositionY(), player);
 
-                graphics2D.drawImage(image, windowPositionX, windowPositionY, TILE_SIZE, TILE_SIZE, null);
+            int width = (int) (TILE_SIZE *1);
+            int height = (int) (TILE_SIZE *1);
+
+            graphics2D.drawImage(image, windowPositionX, windowPositionY, width, height, null);
 //            }
 
         }
