@@ -98,14 +98,14 @@ public class CollisionDetector {
 
 
         Player player = GamePanel.getInstance().getPlayer();
-        boolean isColliding =human.doCollideWithPlayer(player);
+        boolean isColliding =character.doCollideWithPlayer(player);
 
 
         if (isColliding){
             player.setOnCollision(true);
-            human.associateWithPlayer();
+            character.associateWithPlayer();
         }else {
-            human.disassociateWithPlayer();
+            character.disassociateWithPlayer();
         }
 
     }
