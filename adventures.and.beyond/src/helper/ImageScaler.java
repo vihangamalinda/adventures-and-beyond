@@ -3,7 +3,7 @@ package helper;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static entity.PlayerConstant.PLAYER_UP_SCALE;
+import static entity.player.PlayerConstant.PLAYER_UP_SCALE;
 import static helper.Constant.TILE_SIZE;
 
 public class ImageScaler {

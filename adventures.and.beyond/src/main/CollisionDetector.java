@@ -1,7 +1,9 @@
 package main;
 
 import entity.Entity;
-import entity.Player;
+import entity.manager.EntityManagerFactory;
+import entity.npc.NonPlayerCharacter;
+import entity.player.Player;
 import object.InteractableObjectManager;
 import object.interactable.objects.InteractableObject;
 import tile.Tile;
@@ -24,7 +26,7 @@ public class CollisionDetector {
         return Holder.INSTANCE;
     }
 
-    public void checkCollision(Entity entity) {
+    public void checkTileCollision(Entity entity) {
         Rectangle solidArea = entity.getSolidArea();
         int entityLeftWorldX = entity.getWorldPositionX() + solidArea.x;
         int entityRightWorldX = entity.getWorldPositionX() + solidArea.x + solidArea.width;
@@ -90,6 +92,21 @@ public class CollisionDetector {
                 obj.performAction(player);
             }
 
+        }
+    }
+
+    public void checkCharacterPlayerCollision(NonPlayerCharacter character) {
+
+
+        Player player = EntityManagerFactory.getInstance().getPlayer();
+        boolean isColliding = character.doCollideWithPlayer(player);
+
+
+        if (isColliding) {
+            player.setOnCollision(true);
+            character.associateWithPlayer();
+        } else {
+            character.disassociateWithPlayer();
         }
 
     }

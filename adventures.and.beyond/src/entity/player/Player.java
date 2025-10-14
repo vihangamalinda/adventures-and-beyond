@@ -1,6 +1,7 @@
-package entity;
+package entity.player;
 
 import directionEnum.Direction;
+import entity.Entity;
 import helper.Constant;
 import main.CollisionDetector;
 import main.KeyHandler;
@@ -9,9 +10,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import static entity.PlayerConstant.*;
+import static entity.player.PlayerConstant.*;
 import static helper.Constant.*;
-import static entity.PlayerSpriteManager.getPlayerImageByIndex;
+import static entity.player.PlayerSpriteManager.getPlayerImageByIndex;
 
 public class Player extends Entity {
     private KeyHandler keyHandler;
@@ -56,7 +57,7 @@ public class Player extends Entity {
         changeDirection();
 
         CollisionDetector collisionDetector = CollisionDetector.getInstance();
-        collisionDetector.checkCollision(this);
+        collisionDetector.checkTileCollision(this);
         collisionDetector.checkObjectCollision(this);
 
 //        System.out.println(!this.isOnCollision());
@@ -165,6 +166,22 @@ public class Player extends Entity {
 //        graphics2D.fillRect(this.getPositionX() +200, this.getPositionY() +300, Helper.TILE_SIZE, Helper.TILE_SIZE);
 //        BufferedImage blueImg =Helper.blueImg;
 //        graphics2D.drawImage(blueImg,this.getPositionX() +200,this.getPositionY() +300,Helper.TILE_SIZE,Helper.TILE_SIZE,null);
+    }
+
+    @Override
+    public void setWorldPositionX(int worldPositionX) {
+        boolean isWithinRange = worldPositionX - WINDOW_MAX_SCREEN_WIDTH / 2 > 0 && worldPositionX + WINDOW_MAX_SCREEN_WIDTH / 2 < WORLD_MAP_WIDTH;
+        if (isWithinRange) {
+            super.setWorldPositionX(worldPositionX);
+        }
+    }
+
+    @Override
+    public void setWorldPositionY(int worldPositionY) {
+        boolean isWithinRange = worldPositionY - WINDOW_MAX_SCREEN_HEIGHT / 2 > 0 && worldPositionY + WINDOW_MAX_SCREEN_HEIGHT / 2 < WORLD_MAP_HEIGHT;
+        if (isWithinRange) {
+            super.setWorldPositionY(worldPositionY);
+        }
     }
 
     private void logPlayerCurrentRowAndCol() {

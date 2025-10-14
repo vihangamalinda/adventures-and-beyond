@@ -42,11 +42,7 @@ public class Entity {
     }
 
     public void setWorldPositionX(int worldPositionX) {
-        boolean isWithinRange = worldPositionX - WINDOW_MAX_SCREEN_WIDTH / 2 > 0 && worldPositionX + WINDOW_MAX_SCREEN_WIDTH / 2 < WORLD_MAP_WIDTH;
-        if (isWithinRange) {
-            this.worldPositionX = worldPositionX;
-        }
-
+        this.worldPositionX = worldPositionX;
     }
 
     public Direction getDirection() {
@@ -70,11 +66,7 @@ public class Entity {
     }
 
     public void setWorldPositionY(int worldPositionY) {
-        boolean isWithinRange = worldPositionY - WINDOW_MAX_SCREEN_HEIGHT / 2 > 0 && worldPositionY + WINDOW_MAX_SCREEN_HEIGHT / 2 < WORLD_MAP_HEIGHT;
-        if (isWithinRange) {
-            this.worldPositionY = worldPositionY;
-        }
-
+        this.worldPositionY = worldPositionY;
     }
 
     public int getSpeed() {

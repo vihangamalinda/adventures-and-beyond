@@ -1,7 +1,7 @@
 package object;
 
-import entity.Player;
-import main.GamePanel;
+import entity.manager.EntityManagerFactory;
+import entity.player.Player;
 import object.interactable.objects.DoorObject;
 import object.interactable.objects.InteractableObject;
 import object.interactable.objects.KeyObject;
@@ -37,7 +37,7 @@ public class InteractableObjectManager {
     }
 
     public void drawInteractiveObjects(Graphics2D graphics2D) {
-        Player player = GamePanel.getInstance().getPlayer();
+        Player player = EntityManagerFactory.getInstance().getPlayer();
 
         for (int currentIndex = 0; currentIndex <= this.interactableObjects.length - 1; currentIndex++) {
             InteractableObject obj = this.interactableObjects[currentIndex];

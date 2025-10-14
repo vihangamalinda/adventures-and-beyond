@@ -1,6 +1,8 @@
 package main;
 
-import entity.Player;
+import entity.manager.EntityManager;
+import entity.manager.EntityManagerFactory;
+
 import helper.Constant;
 
 import helper.Timer;
@@ -24,7 +26,7 @@ public class GamePanel extends JPanel implements Runnable {
     int playerY = 100;
     int playerSpeed = 4;
 
-    private final Player player;
+    private final EntityManager entityManager;
 
     private static class Holder {
         private static final GamePanel INSTANCE = new GamePanel();
@@ -37,7 +39,7 @@ public class GamePanel extends JPanel implements Runnable {
         // Registering key handler to component
         this.addKeyListener(KeyHandler.getInstance());
         this.setFocusable(true);
-        this.player = new Player(28 * TILE_SIZE, 12 * TILE_SIZE);
+        this.entityManager = EntityManagerFactory.getInstance();
         playThemeMusic();
     }
 
@@ -123,8 +125,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (KeyHandler.getInstance().isOnPause()) {
             showPauseModal();
         } else {
-            UserInterfaceManager.getInstance().deactivateMainNotification();
-            this.player.update();
+            this.entityManager.updateEntities();
         }
     }
 
@@ -136,13 +137,14 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     public void paintComponent(Graphics graphic) {
         super.paintComponent(graphic);
-        long startTime =Timer.getStartingTime();
+        long startTime = Timer.getStartingTime();
 
         Graphics2D graphics2D = (Graphics2D) graphic;
 
         TileManager.getInstance().draw(graphics2D);
         InteractableObjectManager.getInstance().drawInteractiveObjects(graphics2D);
-        this.player.draw(graphics2D);
+
+        this.entityManager.drawEntities(graphics2D);
 
         // Notify
         UserInterfaceManager.getInstance().draw(graphics2D);
@@ -152,7 +154,7 @@ public class GamePanel extends JPanel implements Runnable {
         graphics2D.dispose();
     }
 
-    private void showPauseModal(){
+    private void showPauseModal() {
         UserInterfaceManager.getInstance().triggerMainNotification("Game on Pause");
     }
 
@@ -160,7 +162,4 @@ public class GamePanel extends JPanel implements Runnable {
         SoundManager.getInstance().performMainMusicSound(THEME_1_KEY);
     }
 
-    public Player getPlayer() {
-        return this.player;
-    }
 }

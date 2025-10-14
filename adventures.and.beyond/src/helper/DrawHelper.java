@@ -1,6 +1,6 @@
 package helper;
 
-import entity.Player;
+import entity.player.Player;
 
 import static helper.Constant.*;
 

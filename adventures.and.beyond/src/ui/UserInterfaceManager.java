@@ -37,7 +37,7 @@ public class UserInterfaceManager {
         this.mainDetailNotifier.triggerNotification(message);
     }
 
-    public void deactivateMainNotification(){
+    public void deactivateMainNotification() {
         this.mainDetailNotifier.deactivate();
     }
 
