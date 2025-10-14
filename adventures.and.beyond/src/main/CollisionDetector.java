@@ -1,6 +1,7 @@
 package main;
 
 import entity.Entity;
+import entity.manager.EntityManagerFactory;
 import entity.npc.NonPlayerCharacter;
 import entity.player.Player;
 import object.InteractableObjectManager;
@@ -97,7 +98,7 @@ public class CollisionDetector {
     public void checkCharacterPlayerCollision(NonPlayerCharacter character) {
 
 
-        Player player = GamePanel.getInstance().getPlayer();
+        Player player = EntityManagerFactory.getInstance().getPlayer();
         boolean isColliding =character.doCollideWithPlayer(player);
 
 

@@ -1,5 +1,6 @@
 package ui.notifier;
 
+import entity.manager.EntityManagerFactory;
 import entity.player.Player;
 import main.GamePanel;
 
@@ -15,8 +16,7 @@ public class PlayerDetailNotifier extends AbstractDetailNotifier {
 
     public PlayerDetailNotifier(boolean isActive) {
         super(isActive);
-        GamePanel gamePanel = GamePanel.getInstance();
-        this.player = gamePanel.getPlayer();
+        this.player = EntityManagerFactory.getInstance().getPlayer();
     }
 
     @Override

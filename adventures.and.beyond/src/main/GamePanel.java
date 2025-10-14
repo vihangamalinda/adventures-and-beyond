@@ -1,9 +1,8 @@
 package main;
 
 import entity.manager.EntityManager;
-import entity.manager.EntityManagerImpl;
+import entity.manager.EntityManagerFactory;
 
-import entity.player.Player;
 import helper.Constant;
 
 import helper.Timer;
@@ -27,8 +26,6 @@ public class GamePanel extends JPanel implements Runnable {
     int playerY = 100;
     int playerSpeed = 4;
 
-    private final Player player;
-
     private final EntityManager entityManager;
 
     private static class Holder {
@@ -42,8 +39,7 @@ public class GamePanel extends JPanel implements Runnable {
         // Registering key handler to component
         this.addKeyListener(KeyHandler.getInstance());
         this.setFocusable(true);
-        this.entityManager = new EntityManagerImpl();
-        this.player = entityManager.getPlayer();
+        this.entityManager = EntityManagerFactory.getInstance();
         playThemeMusic();
     }
 
@@ -166,7 +162,4 @@ public class GamePanel extends JPanel implements Runnable {
         SoundManager.getInstance().performMainMusicSound(THEME_1_KEY);
     }
 
-    public Player getPlayer() {
-        return this.player;
-    }
 }

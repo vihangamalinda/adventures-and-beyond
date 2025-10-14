@@ -1,5 +1,6 @@
 package tile;
 
+import entity.manager.EntityManagerFactory;
 import entity.player.Player;
 import helper.Constant;
 import helper.Loader;
@@ -62,7 +63,7 @@ public class TileManager {
 //        graphics2D.drawImage(getTileByIndex(1).getBufferedImage(),48,0, Helper.TILE_SIZE,Helper.TILE_SIZE,null);
 //        graphics2D.drawImage(getTileByIndex(2).getBufferedImage(),96,0, Helper.TILE_SIZE,Helper.TILE_SIZE,null);
 
-        Player player = GamePanel.getInstance().getPlayer();
+        Player player =  EntityManagerFactory.getInstance().getPlayer();
 //        int drawCol =(player.getWorldPositionX()/TILE_SIZE)- (MAX_SCREEN_COLUMN/2);
 //        int drawRow =(player.getWorldPositionY()/TILE_SIZE)- (MAX_SCREEN_COLUMN/2);
 
