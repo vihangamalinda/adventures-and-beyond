@@ -137,7 +137,7 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     public void paintComponent(Graphics graphic) {
         super.paintComponent(graphic);
-        long startTime =Timer.getStartingTime();
+        long startTime = Timer.getStartingTime();
 
         Graphics2D graphics2D = (Graphics2D) graphic;
 
@@ -154,7 +154,7 @@ public class GamePanel extends JPanel implements Runnable {
         graphics2D.dispose();
     }
 
-    private void showPauseModal(){
+    private void showPauseModal() {
         UserInterfaceManager.getInstance().triggerMainNotification("Game on Pause");
     }
 

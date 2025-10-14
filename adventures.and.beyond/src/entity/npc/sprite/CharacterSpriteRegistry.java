@@ -11,29 +11,30 @@ import static helper.ImageScaler.getStandardScaledImage;
 
 public class CharacterSpriteRegistry {
 
-    private final HashMap<String,CharacterSprite> characterSpriteHashMap;
+    private final HashMap<String, CharacterSprite> characterSpriteHashMap;
 
-    private static class Holder{
+    private static class Holder {
         private static final CharacterSpriteRegistry INSTANCE = new CharacterSpriteRegistry();
     }
 
-    public CharacterSpriteRegistry(){
+    public CharacterSpriteRegistry() {
         this.characterSpriteHashMap = new HashMap<>();
         this.registerCharacterSprites();
     }
 
-    public static CharacterSpriteRegistry getInstance(){
+    public static CharacterSpriteRegistry getInstance() {
         return Holder.INSTANCE;
     }
 
-    public HashMap<String,CharacterSprite> getCharacterSpriteHashMap(){
+    public HashMap<String, CharacterSprite> getCharacterSpriteHashMap() {
         return this.characterSpriteHashMap;
     }
 
     private void registerCharacterSprites() {
         this.registerHumanCyanSprites();
     }
-    private void registerHumanCyanSprites(){
+
+    private void registerHumanCyanSprites() {
         this.registerHumanCyanMovingSprites();
     }
 
@@ -52,23 +53,23 @@ public class CharacterSpriteRegistry {
         map.put(Direction.FACING_LEFTWARD, leftward);
         map.put(Direction.FACING_RIGHTWARD, rightward);
 
-       CharacterSprite characterSprite = new CharacterSprite(CharacterSpriteKey.HUMAN_CYAN, map, imgCount);
-       this.characterSpriteHashMap.put(characterSprite.getName(),characterSprite);
+        CharacterSprite characterSprite = new CharacterSprite(CharacterSpriteKey.HUMAN_CYAN, map, imgCount);
+        this.characterSpriteHashMap.put(characterSprite.getName(), characterSprite);
     }
 
-    private BufferedImage[] getImages(String folderPath,int imgCount) {
-        BufferedImage[] imgArr=new BufferedImage[imgCount];
-        for(int i = 0; i< imgCount; i++){
-            String imgPath =String.format("/%d.png",i);
+    private BufferedImage[] getImages(String folderPath, int imgCount) {
+        BufferedImage[] imgArr = new BufferedImage[imgCount];
+        for (int i = 0; i < imgCount; i++) {
+            String imgPath = String.format("/%d.png", i);
 //            Need to call scaling
-            BufferedImage image = getImage(folderPath +imgPath);
-            imgArr[i]=image;
+            BufferedImage image = getImage(folderPath + imgPath);
+            imgArr[i] = image;
         }
         return imgArr;
     }
 
-    private BufferedImage getImage(String imgPath){
-        BufferedImage image =Loader.getImage(imgPath);
+    private BufferedImage getImage(String imgPath) {
+        BufferedImage image = Loader.getImage(imgPath);
         return getStandardScaledImage(image);
     }
 }

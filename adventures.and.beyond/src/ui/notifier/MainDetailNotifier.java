@@ -27,7 +27,7 @@ public class MainDetailNotifier extends AbstractDetailNotifier {
         this.font = font;
     }
 
-    public void deactivate(){
+    public void deactivate() {
         this.setActive(false);
         this.setMessage("");
     }

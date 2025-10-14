@@ -99,13 +99,13 @@ public class CollisionDetector {
 
 
         Player player = EntityManagerFactory.getInstance().getPlayer();
-        boolean isColliding =character.doCollideWithPlayer(player);
+        boolean isColliding = character.doCollideWithPlayer(player);
 
 
-        if (isColliding){
+        if (isColliding) {
             player.setOnCollision(true);
             character.associateWithPlayer();
-        }else {
+        } else {
             character.disassociateWithPlayer();
         }
 

@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
-    private boolean upPressed, downPressed, leftPressed, rightPressed, onDevMood,onPause;
+    private boolean upPressed, downPressed, leftPressed, rightPressed, onDevMood, onPause;
 
     private KeyHandler() {
     }
@@ -70,10 +70,10 @@ public class KeyHandler implements KeyListener {
                 break;
             case KeyEvent.VK_P:
                 boolean isOnPause = this.onPause;
-                if(isOnPause){
+                if (isOnPause) {
                     UserInterfaceManager.getInstance().deactivateMainNotification();
                 }
-                this.onPause =!isOnPause;
+                this.onPause = !isOnPause;
             default:
 
         }

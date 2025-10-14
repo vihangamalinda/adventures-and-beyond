@@ -28,7 +28,7 @@ public class CharacterSprite {
         return this.movingMotionAnimation;
     }
 
-    public BufferedImage[] getMovingMotionAnimationByDirection(Direction directionKey){
+    public BufferedImage[] getMovingMotionAnimationByDirection(Direction directionKey) {
         return this.getMovingMotionAnimation().get(directionKey);
     }
 }

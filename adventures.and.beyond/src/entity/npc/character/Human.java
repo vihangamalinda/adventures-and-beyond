@@ -14,10 +14,10 @@ import static directionEnum.Direction.*;
 import static helper.Constant.TILE_SIZE;
 
 public class Human extends NonPlayerCharacter {
-    private static final int speed =3;
+    private static final int speed = 3;
 
-    public Human(int worldPositionX, int worldPositionY, Direction direction, boolean onCollision,String characterAnimationKey) {
-        super(worldPositionX, worldPositionY, speed, direction, false, new Rectangle(10,10,30,30), onCollision,characterAnimationKey);
+    public Human(int worldPositionX, int worldPositionY, Direction direction, boolean onCollision, String characterAnimationKey) {
+        super(worldPositionX, worldPositionY, speed, direction, false, new Rectangle(10, 10, 30, 30), onCollision, characterAnimationKey);
     }
 
     @Override
