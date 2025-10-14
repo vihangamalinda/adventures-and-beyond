@@ -1,5 +1,8 @@
 package main;
 
+import entity.manager.EntityManager;
+import entity.manager.EntityManagerImpl;
+
 import entity.player.Player;
 import helper.Constant;
 
@@ -26,6 +29,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     private final Player player;
 
+    private final EntityManager entityManager;
+
     private static class Holder {
         private static final GamePanel INSTANCE = new GamePanel();
     }
@@ -37,7 +42,8 @@ public class GamePanel extends JPanel implements Runnable {
         // Registering key handler to component
         this.addKeyListener(KeyHandler.getInstance());
         this.setFocusable(true);
-        this.player = new Player(28 * TILE_SIZE, 12 * TILE_SIZE);
+        this.entityManager = new EntityManagerImpl();
+        this.player = entityManager.getPlayer();
         playThemeMusic();
     }
 
@@ -123,7 +129,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (KeyHandler.getInstance().isOnPause()) {
             showPauseModal();
         } else {
-            this.player.update();
+            this.entityManager.updateEntities();
         }
     }
 
@@ -141,7 +147,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         TileManager.getInstance().draw(graphics2D);
         InteractableObjectManager.getInstance().drawInteractiveObjects(graphics2D);
-        this.player.draw(graphics2D);
+
+        this.entityManager.drawEntities(graphics2D);
 
         // Notify
         UserInterfaceManager.getInstance().draw(graphics2D);
