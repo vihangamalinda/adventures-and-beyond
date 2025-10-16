@@ -11,7 +11,9 @@ public class UserInterfaceManager {
     // Add game notifier related logic
     private final Notifiable gameDetailNotifier;
 
-    private final MainDetailNotifier mainDetailNotifier;
+    private final Notifiable mainDetailNotifier;
+
+    private final Notifiable dialogueDetailNotifier;
 
     private static class Holder {
         private static final UserInterfaceManager INSTANCE = new UserInterfaceManager();
@@ -21,6 +23,7 @@ public class UserInterfaceManager {
         this.playerDetailNotifier = new PlayerDetailNotifier(true);
         this.gameDetailNotifier = new GameDetailNotifier(false);
         this.mainDetailNotifier = new MainDetailNotifier(false);
+        this.dialogueDetailNotifier =new DialogueDetailNotifier(false);
     }
 
     public static UserInterfaceManager getInstance() {
@@ -32,7 +35,11 @@ public class UserInterfaceManager {
     }
 
     public void triggerMainNotification(String message) {
-        this.mainDetailNotifier.triggerNotification(message);
+        this.mainDetailNotifier.notifyMessage(message);
+    }
+
+    public void triggerDetialNotification(String message){
+        this.dialogueDetailNotifier.notifyMessageForPeriod(message,2);
     }
 
     public void deactivateMainNotification() {
@@ -43,5 +50,6 @@ public class UserInterfaceManager {
         this.playerDetailNotifier.draw(graphics2D);
         this.gameDetailNotifier.draw(graphics2D);
         this.mainDetailNotifier.draw(graphics2D);
+        this.dialogueDetailNotifier.draw(graphics2D);
     }
 }
