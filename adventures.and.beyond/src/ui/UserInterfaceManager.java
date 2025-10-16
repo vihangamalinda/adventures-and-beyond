@@ -24,40 +24,14 @@ public class UserInterfaceManager {
     }
 
     private UserInterfaceManager() {
-        this.drawableNotifierList = new ArrayList<>();
-        this.playerDetailNotifier = getPlayerDetailNotifier();
-        this.gameDetailNotifier = getGameDetailNotifier();
-        this.mainDetailNotifier = getMainDetailNotifier();
-        this.dialogueDetailNotifier = getDialogueDetailNotifier();
+        DetailNotifierFactory detailNotifierFactory = new DetailNotifierFactoryImpl();
+        String[] definedTypes =detailNotifierFactory.getTypeList();
 
-    }
-
-    private  Notifiable getDialogueDetailNotifier() {
-        AbstractDetailNotifier notifier = new DialogueDetailNotifier(false);
-        appendDrawableItems(notifier);
-        return notifier;
-    }
-
-    private Notifiable getMainDetailNotifier() {
-        AbstractDetailNotifier notifier = new MainDetailNotifier(false);
-        appendDrawableItems(notifier);
-        return notifier;
-    }
-
-    private Notifiable getGameDetailNotifier() {
-        AbstractDetailNotifier notifier = new GameDetailNotifier(false);
-        appendDrawableItems(notifier);
-        return notifier;
-    }
-
-    private  Notifiable getPlayerDetailNotifier() {
-        AbstractDetailNotifier notifier = new PlayerDetailNotifier(true);
-        appendDrawableItems(notifier);
-        return notifier;
-    }
-
-    private void appendDrawableItems(AbstractDetailNotifier detailNotifier) {
-         this.drawableNotifierList.add(detailNotifier);
+        this.playerDetailNotifier = detailNotifierFactory.create(definedTypes[0]);
+        this.gameDetailNotifier = detailNotifierFactory.create(definedTypes[1]);
+        this.mainDetailNotifier =detailNotifierFactory.create(definedTypes[2]);
+        this.dialogueDetailNotifier = detailNotifierFactory.create(definedTypes[3]);
+        this.drawableNotifierList = detailNotifierFactory.getRegisteredDrawableNotifiers();
     }
 
 
