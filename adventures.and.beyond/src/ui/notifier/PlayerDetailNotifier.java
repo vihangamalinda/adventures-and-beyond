@@ -2,7 +2,6 @@ package ui.notifier;
 
 import entity.manager.EntityManagerFactory;
 import entity.player.Player;
-import main.GamePanel;
 
 import java.awt.*;
 
@@ -26,13 +25,23 @@ public class PlayerDetailNotifier extends AbstractDetailNotifier {
             graphics2D.setFont(STANDARD_ARIAL);
             graphics2D.setColor(Color.WHITE);
             graphics2D.drawImage(ICON_KEY_IMAGE, TILE_SIZE / 4, TILE_SIZE / 2, null);
-            String message = "x " + this.player.hasManyKey();
-            graphics2D.drawString(message, 70, 60);
+            updatedMessage();
+            graphics2D.drawString(this.getMessage(), 70, 60);
         }
     }
 
+    private void updatedMessage() {
+        String message = "x " + this.player.hasManyKey();
+        notifyMessage(message);
+    }
+
     @Override
-    public void drawBackgroud(Graphics2D graphics2D) {
+    public void notifyMessage(String message) {
+        this.setMessage(message);
+    }
+
+    @Override
+    protected void drawBackgroud(Graphics2D graphics2D) {
         graphics2D.setColor(Color.DARK_GRAY);
         graphics2D.fillRect(10, 10, TILE_SIZE * 4, TILE_SIZE * 2);
     }

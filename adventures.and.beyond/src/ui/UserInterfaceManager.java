@@ -1,17 +1,15 @@
 package ui;
 
-import ui.notifier.GameDetailNotifier;
-import ui.notifier.MainDetailNotifier;
-import ui.notifier.PlayerDetailNotifier;
+import ui.notifier.*;
 
 import java.awt.*;
 
 public class UserInterfaceManager {
 
-    private final PlayerDetailNotifier playerDetailNotifier;
+    private final Notifiable playerDetailNotifier;
 
     // Add game notifier related logic
-    private final GameDetailNotifier gameDetailNotifier;
+    private final Notifiable gameDetailNotifier;
 
     private final MainDetailNotifier mainDetailNotifier;
 
@@ -30,7 +28,7 @@ public class UserInterfaceManager {
     }
 
     public void notifyGameDetails(String message) {
-        this.gameDetailNotifier.notifyForPeriod(message, 1);
+        this.gameDetailNotifier.notifyMessageForPeriod(message, 1);
     }
 
     public void triggerMainNotification(String message) {
