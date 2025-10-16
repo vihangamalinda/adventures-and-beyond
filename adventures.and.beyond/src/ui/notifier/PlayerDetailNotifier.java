@@ -18,7 +18,6 @@ public class PlayerDetailNotifier extends AbstractDetailNotifier {
         this.player = EntityManagerFactory.getInstance().getPlayer();
     }
 
-    @Override
     public void draw(Graphics2D graphics2D) {
         if (this.isActive()) {
             this.drawBackgroud(graphics2D);

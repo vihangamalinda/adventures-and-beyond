@@ -3,6 +3,8 @@ package ui;
 import ui.notifier.*;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserInterfaceManager {
 
@@ -15,16 +17,49 @@ public class UserInterfaceManager {
 
     private final Notifiable dialogueDetailNotifier;
 
+    private final List<DrawableNotifier> drawableNotifierList;
+
     private static class Holder {
         private static final UserInterfaceManager INSTANCE = new UserInterfaceManager();
     }
 
     private UserInterfaceManager() {
-        this.playerDetailNotifier = new PlayerDetailNotifier(true);
-        this.gameDetailNotifier = new GameDetailNotifier(false);
-        this.mainDetailNotifier = new MainDetailNotifier(false);
-        this.dialogueDetailNotifier =new DialogueDetailNotifier(false);
+        this.drawableNotifierList = new ArrayList<>();
+        this.playerDetailNotifier = getPlayerDetailNotifier();
+        this.gameDetailNotifier = getGameDetailNotifier();
+        this.mainDetailNotifier = getMainDetailNotifier();
+        this.dialogueDetailNotifier = getDialogueDetailNotifier();
+
     }
+
+    private  Notifiable getDialogueDetailNotifier() {
+        AbstractDetailNotifier notifier = new DialogueDetailNotifier(false);
+        appendDrawableItems(notifier);
+        return notifier;
+    }
+
+    private Notifiable getMainDetailNotifier() {
+        AbstractDetailNotifier notifier = new MainDetailNotifier(false);
+        appendDrawableItems(notifier);
+        return notifier;
+    }
+
+    private Notifiable getGameDetailNotifier() {
+        AbstractDetailNotifier notifier = new GameDetailNotifier(false);
+        appendDrawableItems(notifier);
+        return notifier;
+    }
+
+    private  Notifiable getPlayerDetailNotifier() {
+        AbstractDetailNotifier notifier = new PlayerDetailNotifier(true);
+        appendDrawableItems(notifier);
+        return notifier;
+    }
+
+    private void appendDrawableItems(AbstractDetailNotifier detailNotifier) {
+         this.drawableNotifierList.add(detailNotifier);
+    }
+
 
     public static UserInterfaceManager getInstance() {
         return Holder.INSTANCE;
@@ -47,9 +82,8 @@ public class UserInterfaceManager {
     }
 
     public void draw(Graphics2D graphics2D) {
-        this.playerDetailNotifier.draw(graphics2D);
-        this.gameDetailNotifier.draw(graphics2D);
-        this.mainDetailNotifier.draw(graphics2D);
-        this.dialogueDetailNotifier.draw(graphics2D);
+        for (DrawableNotifier drawableNotifier: this.drawableNotifierList){
+            drawableNotifier.draw(graphics2D);
+        }
     }
 }

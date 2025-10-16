@@ -28,7 +28,6 @@ public class DialogueDetailNotifier extends  AbstractDetailNotifier{
         graphics2D.fillRect(starterX, starterY, width, TILE_SIZE * 2);
     }
 
-    @Override
     public void draw(Graphics2D graphics2D) {
 
         if (this.isActive()) {

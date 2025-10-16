@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public abstract class AbstractDetailNotifier implements Notifiable {
+public abstract class AbstractDetailNotifier implements Notifiable,DrawableNotifier {
     private boolean isActive;
     private String message;
 
@@ -32,8 +32,6 @@ public abstract class AbstractDetailNotifier implements Notifiable {
 
     // need to have a method to set background size of the canvas on that message should be displayed (opacity should be considered)
     protected abstract void drawBackgroud(Graphics2D graphics2D);
-
-    public abstract void draw(Graphics2D graphics2D);
 
     public void notifyMessageForPeriod(String message, int seconds){
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);

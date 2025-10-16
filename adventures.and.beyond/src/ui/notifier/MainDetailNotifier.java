@@ -26,7 +26,6 @@ public class MainDetailNotifier extends AbstractDetailNotifier {
 
 
 
-    @Override
     public void draw(Graphics2D graphics2D) {
         if (this.isActive()) {
 //            this.setFont(BOLD_ARIAL_XXL);
