@@ -1,5 +1,6 @@
 package entity.manager;
 
+import dialogue.manager.DialogueKey;
 import directionEnum.Direction;
 import entity.npc.NonPlayerCharacter;
 import entity.npc.character.Human;
@@ -31,8 +32,8 @@ public class EntityManagerImpl implements EntityManager {
     }
 
     private void registerSecondaryEntities() {
-        NonPlayerCharacter human = new Human(28 * TILE_SIZE, 12 * TILE_SIZE, Direction.FACING_FORWARD, false, CharacterSpriteKey.HUMAN_CYAN);
-        NonPlayerCharacter human2 = new Human(37 * TILE_SIZE, 12 * TILE_SIZE, Direction.FACING_FORWARD, false, CharacterSpriteKey.HUMAN_CYAN);
+        NonPlayerCharacter human = new Human(28 * TILE_SIZE, 12 * TILE_SIZE, Direction.FACING_FORWARD, false, CharacterSpriteKey.HUMAN_CYAN, DialogueKey.DIALOGUE_01);
+        NonPlayerCharacter human2 = new Human(37 * TILE_SIZE, 12 * TILE_SIZE, Direction.FACING_FORWARD, false, CharacterSpriteKey.HUMAN_CYAN,DialogueKey.DIALOGUE_02);
 
         this.secondaryEntities.add(human);
         this.secondaryEntities.add(human2);
