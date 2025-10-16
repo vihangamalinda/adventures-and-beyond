@@ -1,11 +1,14 @@
 package ui.notifier;
 
+import ui.DrawableNotifier;
+import ui.Notifiable;
+
 import java.awt.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public abstract class AbstractDetailNotifier implements Notifiable,DrawableNotifier {
+public abstract class AbstractDetailNotifier implements Notifiable, DrawableNotifier {
     private boolean isActive;
     private String message;
 

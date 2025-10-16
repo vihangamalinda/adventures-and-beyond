@@ -1,4 +1,4 @@
-package ui.notifier;
+package ui;
 
 import java.awt.*;
 

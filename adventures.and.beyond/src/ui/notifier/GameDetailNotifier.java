@@ -25,8 +25,6 @@ public class GameDetailNotifier extends AbstractDetailNotifier {
         this.setActive(true);
     }
 
-
-
     private void setFont(Font font) {
         this.font = font;
     }
