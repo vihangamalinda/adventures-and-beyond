@@ -78,7 +78,6 @@ public class GameDetailNotifier extends AbstractDetailNotifier {
         Rectangle2D stringBounds = graphics2D.getFontMetrics().getStringBounds(this.getMessage(), graphics2D);
         int textLength = (int) stringBounds.getWidth();
         int textHeight = (int) stringBounds.getHeight();
-        graphics2D.fillRect(10, (TILE_SIZE * 4) - 30, textLength + 20, textHeight + 40);
         this.setBackgroundWidth(textLength + 20);
         this.setBackgroundHeight(textHeight + 40);
     }
@@ -102,6 +101,12 @@ public class GameDetailNotifier extends AbstractDetailNotifier {
     private void resetBackgroundWidthHeight(){
         this.setBackgroundHeight(0);
         this.setBackgroundWidth(0);
+    }
+
+    @Override
+    protected void resetAttributes() {
+        super.resetAttributes();
+        this.resetBackgroundWidthHeight();
     }
 
 

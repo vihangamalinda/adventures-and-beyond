@@ -62,11 +62,15 @@ public abstract class AbstractDetailNotifier implements Notifiable, DrawableNoti
         this.setMessage("");
     }
 
+    protected void resetAttributes(){
+        this.resetMessage();
+    }
+
     public abstract void notifyMessage(String message);
 
     public void deactivate() {
         this.setActive(false);
-        this.resetMessage();
+        this.resetAttributes();
     }
 
     ;
