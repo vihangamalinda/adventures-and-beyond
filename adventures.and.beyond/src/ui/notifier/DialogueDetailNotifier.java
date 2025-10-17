@@ -76,8 +76,6 @@ public class DialogueDetailNotifier extends AbstractDetailNotifier {
         graphics2D.setColor(this.getBackgroundColour());
 
         graphics2D.fillRect(this.getStartX(), this.getStartY(), this.getWidth(), this.getHeight());
-
-        this.drawBackgroundBorder(graphics2D);
     }
 
     @Override
@@ -89,17 +87,12 @@ public class DialogueDetailNotifier extends AbstractDetailNotifier {
     }
 
     @Override
-    public void draw(Graphics2D graphics2D) {
-
-        if (this.isActive()) {
-
-            this.drawBackgroud(graphics2D);
-            graphics2D.setFont(this.font);
-            graphics2D.setColor(Color.BLACK);
-            int starterX =this.getStartX() +TILE_SIZE;
-            int starterY = this.getStartY()+TILE_SIZE;
-            graphics2D.drawString(this.getMessage(), starterX, starterY);
-        }
+    protected void drawContent(Graphics2D graphics2D) {
+        graphics2D.setFont(this.font);
+        graphics2D.setColor(Color.BLACK);
+        int starterX =this.getStartX() +TILE_SIZE;
+        int starterY = this.getStartY()+TILE_SIZE;
+        graphics2D.drawString(this.getMessage(), starterX, starterY);
     }
 
 

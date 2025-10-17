@@ -27,17 +27,6 @@ public class PlayerDetailNotifier extends AbstractDetailNotifier {
         this.height =TILE_SIZE * 2;
     }
 
-    public void draw(Graphics2D graphics2D) {
-        if (this.isActive()) {
-            this.drawBackgroud(graphics2D);
-            graphics2D.setFont(STANDARD_ARIAL);
-            graphics2D.setColor(Color.WHITE);
-            graphics2D.drawImage(ICON_KEY_IMAGE, TILE_SIZE / 4, TILE_SIZE / 2, null);
-            updatedMessage();
-            graphics2D.drawString(this.getMessage(), this.starterX+60, this.starterY+50);
-        }
-    }
-
     private void updatedMessage() {
         String message = "x " + this.player.hasManyKey();
         notifyMessage(message);
@@ -52,7 +41,6 @@ public class PlayerDetailNotifier extends AbstractDetailNotifier {
     protected void drawBackgroud(Graphics2D graphics2D) {
         graphics2D.setColor(this.getBackgroundColour());
         graphics2D.fillRect(this.getStarterX(), this.getStarterY(), this.getWidth(), this.getHeight());
-        this.drawBackgroundBorder(graphics2D);
     }
 
     public int getStarterX() {
@@ -76,5 +64,14 @@ public class PlayerDetailNotifier extends AbstractDetailNotifier {
         graphics2D.setStroke(new BasicStroke(5));
         graphics2D.setColor(CustomColours.GOLD_01);
         graphics2D.drawRoundRect(this.getStarterX(),this.getStarterY(),this.getWidth()+5,this.getHeight()+5,10,10);
+    }
+
+    @Override
+    protected void drawContent(Graphics2D graphics2D) {
+        graphics2D.setFont(STANDARD_ARIAL);
+        graphics2D.setColor(Color.WHITE);
+        graphics2D.drawImage(ICON_KEY_IMAGE, TILE_SIZE / 4, TILE_SIZE / 2, null);
+        updatedMessage();
+        graphics2D.drawString(this.getMessage(), this.starterX+60, this.starterY+50);
     }
 }

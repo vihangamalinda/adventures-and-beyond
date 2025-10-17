@@ -43,6 +43,16 @@ public abstract class AbstractDetailNotifier implements Notifiable, DrawableNoti
     protected abstract void drawBackgroud(Graphics2D graphics2D);
 
     protected abstract void drawBackgroundBorder(Graphics2D graphics2D);
+    protected abstract void drawContent(Graphics2D graphics2D);
+
+
+    public void draw(Graphics2D graphics2D){
+        if(this.isActive()){
+            this.drawBackgroud(graphics2D);
+            this.drawContent(graphics2D);
+            this.drawBackgroundBorder(graphics2D);
+        }
+    }
 
     public void notifyMessageForPeriod(String message, int seconds) {
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
