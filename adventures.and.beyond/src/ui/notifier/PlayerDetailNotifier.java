@@ -19,12 +19,12 @@ public class PlayerDetailNotifier extends AbstractDetailNotifier {
     private final int height;
 
     public PlayerDetailNotifier(boolean isActive) {
-        super(isActive,CustomColours.BLACK_01_LOW_OPACITY,STANDARD_ARIAL);
+        super(isActive, CustomColours.BLACK_01_LOW_OPACITY, STANDARD_ARIAL);
         this.player = EntityManagerFactory.getInstance().getPlayer();
-        this.starterX=10;
-        this.starterY=10;
-        this.width =TILE_SIZE * 4;
-        this.height =TILE_SIZE * 2;
+        this.starterX = 10;
+        this.starterY = 10;
+        this.width = TILE_SIZE * 4;
+        this.height = TILE_SIZE * 2;
     }
 
     private void updatedMessage() {
@@ -63,7 +63,7 @@ public class PlayerDetailNotifier extends AbstractDetailNotifier {
     protected void drawBackgroundBorder(Graphics2D graphics2D) {
         graphics2D.setStroke(new BasicStroke(5));
         graphics2D.setColor(CustomColours.GOLD_01);
-        graphics2D.drawRoundRect(this.getStarterX(),this.getStarterY(),this.getWidth()+5,this.getHeight()+5,10,10);
+        graphics2D.drawRoundRect(this.getStarterX(), this.getStarterY(), this.getWidth() + 5, this.getHeight() + 5, 10, 10);
     }
 
     @Override
@@ -71,6 +71,6 @@ public class PlayerDetailNotifier extends AbstractDetailNotifier {
         graphics2D.setColor(Color.WHITE);
         graphics2D.drawImage(ICON_KEY_IMAGE, TILE_SIZE / 4, TILE_SIZE / 2, null);
         updatedMessage();
-        graphics2D.drawString(this.getMessage(), this.starterX+60, this.starterY+50);
+        graphics2D.drawString(this.getMessage(), this.starterX + 60, this.starterY + 50);
     }
 }

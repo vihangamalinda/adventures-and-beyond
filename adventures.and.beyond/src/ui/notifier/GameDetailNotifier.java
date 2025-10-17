@@ -18,11 +18,10 @@ public class GameDetailNotifier extends AbstractDetailNotifier {
     private final int starterY;
 
 
-
     public GameDetailNotifier(boolean isActive) {
-        super(isActive, CustomColours.BLACK_01_LOW_OPACITY,PlAIN_ARIAL_XSM);
-        this.starterX=10;
-        this.starterY=(TILE_SIZE * 4) - 30;
+        super(isActive, CustomColours.BLACK_01_LOW_OPACITY, PlAIN_ARIAL_XSM);
+        this.starterX = 10;
+        this.starterY = (TILE_SIZE * 4) - 30;
     }
 
     private void triggerNotification(String message) {
@@ -77,7 +76,7 @@ public class GameDetailNotifier extends AbstractDetailNotifier {
         this.backgroundWidth = backgroundWidth;
     }
 
-    private void resetBackgroundWidthHeight(){
+    private void resetBackgroundWidthHeight() {
         this.setBackgroundHeight(0);
         this.setBackgroundWidth(0);
     }
@@ -94,13 +93,13 @@ public class GameDetailNotifier extends AbstractDetailNotifier {
         graphics2D.setStroke(new BasicStroke(5));
         graphics2D.setColor(CustomColours.GOLD_01);
 
-        graphics2D.drawRoundRect(this.getStarterX(),this.getStarterY(),this.getBackgroundWidth() ,this.getBackgroundHeight(),10,10);
+        graphics2D.drawRoundRect(this.getStarterX(), this.getStarterY(), this.getBackgroundWidth(), this.getBackgroundHeight(), 10, 10);
     }
 
     @Override
     protected void drawContent(Graphics2D graphics2D) {
         graphics2D.setColor(Color.WHITE);
-        graphics2D.drawString(this.getMessage(), this.getStarterX()+6, this.getStarterY()+30);
+        graphics2D.drawString(this.getMessage(), this.getStarterX() + 6, this.getStarterY() + 30);
     }
 
 }

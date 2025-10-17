@@ -16,9 +16,9 @@ public class MainDetailNotifier extends AbstractDetailNotifier {
 
 
     public MainDetailNotifier(boolean isActive) {
-        super(isActive, CustomColours.BLACK_01_LOW_OPACITY,BOLD_ARIAL_XXL);
-        this.starterX=(WINDOW_MAX_SCREEN_WIDTH / 4) - 20;
-        this.starterY=(WINDOW_MAX_SCREEN_HEIGHT / 2) - 100;
+        super(isActive, CustomColours.BLACK_01_LOW_OPACITY, BOLD_ARIAL_XXL);
+        this.starterX = (WINDOW_MAX_SCREEN_WIDTH / 4) - 20;
+        this.starterY = (WINDOW_MAX_SCREEN_HEIGHT / 2) - 100;
     }
 
     public int getStarterX() {
@@ -69,7 +69,7 @@ public class MainDetailNotifier extends AbstractDetailNotifier {
         this.backgroundWidth = backgroundWidth;
     }
 
-    private void resetBackgroundWidthHeight(){
+    private void resetBackgroundWidthHeight() {
         this.setBackgroundHeight(0);
         this.setBackgroundWidth(0);
     }
@@ -84,12 +84,12 @@ public class MainDetailNotifier extends AbstractDetailNotifier {
     protected void drawBackgroundBorder(Graphics2D graphics2D) {
         graphics2D.setStroke(new BasicStroke(5));
         graphics2D.setColor(CustomColours.GOLD_01);
-        graphics2D.drawRoundRect(this.getStarterX(),this.getStarterY(),this.getBackgroundWidth() ,this.getBackgroundHeight(),10,10);
+        graphics2D.drawRoundRect(this.getStarterX(), this.getStarterY(), this.getBackgroundWidth(), this.getBackgroundHeight(), 10, 10);
     }
 
     @Override
     protected void drawContent(Graphics2D graphics2D) {
         graphics2D.setColor(Color.BLACK);
-        graphics2D.drawString(this.getMessage(), this.getStarterX()+20, this.getStarterY()+100);
+        graphics2D.drawString(this.getMessage(), this.getStarterX() + 20, this.getStarterY() + 100);
     }
 }

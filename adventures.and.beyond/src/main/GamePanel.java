@@ -42,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
         this.entityManager = EntityManagerFactory.getInstance();
         this.userInterfaceManager = UserInterfaceManager.getInstance();
-        playThemeMusic();
+//        playThemeMusic();
     }
 
     public static GamePanel getInstance() {
