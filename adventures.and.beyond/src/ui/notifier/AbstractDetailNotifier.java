@@ -11,10 +11,16 @@ import java.util.concurrent.TimeUnit;
 public abstract class AbstractDetailNotifier implements Notifiable, DrawableNotifier {
     private boolean isActive;
     private String message;
+    private Color backgroundColour;
 
-    AbstractDetailNotifier(boolean isActive) {
+    AbstractDetailNotifier(boolean isActive,Color backgroundColour) {
         this.isActive = isActive;
         this.message = "";
+        this.backgroundColour =backgroundColour;
+    }
+
+    protected Color getBackgroundColour(){
+        return this.backgroundColour;
     }
 
     protected String getMessage() {
@@ -35,6 +41,8 @@ public abstract class AbstractDetailNotifier implements Notifiable, DrawableNoti
 
     // need to have a method to set background size of the canvas on that message should be displayed (opacity should be considered)
     protected abstract void drawBackgroud(Graphics2D graphics2D);
+
+    protected abstract void drawBackgroundBorder(Graphics2D graphics2D);
 
     public void notifyMessageForPeriod(String message, int seconds) {
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
