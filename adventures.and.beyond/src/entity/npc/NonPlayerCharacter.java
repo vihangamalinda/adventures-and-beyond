@@ -13,7 +13,7 @@ import static directionEnum.Direction.*;
 import static directionEnum.Direction.FACING_LEFTWARD;
 import static helper.Constant.TILE_SIZE;
 
-public abstract class NonPlayerCharacter extends Entity implements DrawableNonPlayerCharacter,UpdatableNonPlayerCharacter{
+public abstract class NonPlayerCharacter extends Entity implements DrawableNonPlayerCharacter, UpdatableNonPlayerCharacter {
 
     private final String characterAnimationKey;
     private boolean isOnCollisionWithPlayer;

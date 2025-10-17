@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(KeyHandler.getInstance());
         this.setFocusable(true);
         this.entityManager = EntityManagerFactory.getInstance();
-        this.userInterfaceManager =UserInterfaceManager.getInstance();
+        this.userInterfaceManager = UserInterfaceManager.getInstance();
         playThemeMusic();
     }
 

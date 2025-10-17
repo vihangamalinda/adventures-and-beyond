@@ -14,7 +14,7 @@ public abstract class AbstractDetailNotifier implements Notifiable, DrawableNoti
 
     AbstractDetailNotifier(boolean isActive) {
         this.isActive = isActive;
-        this.message ="";
+        this.message = "";
     }
 
     protected String getMessage() {
@@ -36,7 +36,7 @@ public abstract class AbstractDetailNotifier implements Notifiable, DrawableNoti
     // need to have a method to set background size of the canvas on that message should be displayed (opacity should be considered)
     protected abstract void drawBackgroud(Graphics2D graphics2D);
 
-    public void notifyMessageForPeriod(String message, int seconds){
+    public void notifyMessageForPeriod(String message, int seconds) {
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
 
         Runnable task = () -> {
@@ -49,14 +49,17 @@ public abstract class AbstractDetailNotifier implements Notifiable, DrawableNoti
         scheduledExecutorService.schedule(task, seconds, TimeUnit.SECONDS);
         scheduledExecutorService.shutdown();
     }
-    protected void resetMessage(){
+
+    protected void resetMessage() {
         this.setMessage("");
     }
 
     public abstract void notifyMessage(String message);
 
-    public  void deactivate(){
+    public void deactivate() {
         this.setActive(false);
         this.resetMessage();
-    };
+    }
+
+    ;
 }

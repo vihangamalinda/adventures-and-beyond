@@ -15,7 +15,7 @@ public class Human extends NonPlayerCharacter {
 
     public Human(int worldPositionX, int worldPositionY, Direction direction, boolean onCollision, String characterAnimationKey, String dialogueKey) {
         super(worldPositionX, worldPositionY, speed, direction, false, new Rectangle(10, 10, 30, 30), onCollision, characterAnimationKey);
-        this.dialogueKey =dialogueKey;
+        this.dialogueKey = dialogueKey;
     }
 
     @Override

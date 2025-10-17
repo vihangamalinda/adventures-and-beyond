@@ -25,11 +25,11 @@ public class UserInterfaceManager {
 
     private UserInterfaceManager() {
         DetailNotifierFactory detailNotifierFactory = new DetailNotifierFactoryImpl();
-        String[] definedTypes =detailNotifierFactory.getTypeList();
+        String[] definedTypes = detailNotifierFactory.getTypeList();
 
         this.playerDetailNotifier = detailNotifierFactory.create(definedTypes[0]);
         this.gameDetailNotifier = detailNotifierFactory.create(definedTypes[1]);
-        this.mainDetailNotifier =detailNotifierFactory.create(definedTypes[2]);
+        this.mainDetailNotifier = detailNotifierFactory.create(definedTypes[2]);
         this.dialogueDetailNotifier = detailNotifierFactory.create(definedTypes[3]);
         this.drawableNotifierList = detailNotifierFactory.getRegisteredDrawableNotifiers();
     }
@@ -47,8 +47,8 @@ public class UserInterfaceManager {
         this.mainDetailNotifier.notifyMessage(message);
     }
 
-    public void triggerDetialNotification(String message){
-        this.dialogueDetailNotifier.notifyMessageForPeriod(message,2);
+    public void triggerDetialNotification(String message) {
+        this.dialogueDetailNotifier.notifyMessageForPeriod(message, 2);
     }
 
     public void deactivateMainNotification() {
@@ -56,7 +56,7 @@ public class UserInterfaceManager {
     }
 
     public void draw(Graphics2D graphics2D) {
-        for (DrawableNotifier drawableNotifier: this.drawableNotifierList){
+        for (DrawableNotifier drawableNotifier : this.drawableNotifierList) {
             drawableNotifier.draw(graphics2D);
         }
     }

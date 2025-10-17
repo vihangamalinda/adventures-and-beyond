@@ -6,9 +6,9 @@ import ui.Notifiable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailNotifierFactoryImpl implements DetailNotifierFactory{
+public class DetailNotifierFactoryImpl implements DetailNotifierFactory {
 
-    private static final String[] definedTypes = {"PlayerNotifier","GameNotifier","MainNotifier","DialogueNotifier"};
+    private static final String[] definedTypes = {"PlayerNotifier", "GameNotifier", "MainNotifier", "DialogueNotifier"};
 
     private final List<DrawableNotifier> registeredDrawableNotifiers;
 
@@ -18,11 +18,11 @@ public class DetailNotifierFactoryImpl implements DetailNotifierFactory{
 
     @Override
     public Notifiable create(String creationType) {
-        return switch (creationType){
-            case "MainNotifier"-> getMainDetailNotifier() ;
-            case "DialogueNotifier"-> getDialogueDetailNotifier();
-            case "GameNotifier"-> getGameDetailNotifier();
-            case "PlayerNotifier"-> getPlayerDetailNotifier() ;
+        return switch (creationType) {
+            case "MainNotifier" -> getMainDetailNotifier();
+            case "DialogueNotifier" -> getDialogueDetailNotifier();
+            case "GameNotifier" -> getGameDetailNotifier();
+            case "PlayerNotifier" -> getPlayerDetailNotifier();
             default -> null;
         };
     }
@@ -33,11 +33,11 @@ public class DetailNotifierFactoryImpl implements DetailNotifierFactory{
     }
 
     @Override
-    public List<DrawableNotifier> getRegisteredDrawableNotifiers(){
+    public List<DrawableNotifier> getRegisteredDrawableNotifiers() {
         return this.registeredDrawableNotifiers;
     }
 
-    private  Notifiable getDialogueDetailNotifier() {
+    private Notifiable getDialogueDetailNotifier() {
         AbstractDetailNotifier notifier = new DialogueDetailNotifier(false);
         appendDrawableItems(notifier);
         return notifier;
@@ -55,7 +55,7 @@ public class DetailNotifierFactoryImpl implements DetailNotifierFactory{
         return notifier;
     }
 
-    private  Notifiable getPlayerDetailNotifier() {
+    private Notifiable getPlayerDetailNotifier() {
         AbstractDetailNotifier notifier = new PlayerDetailNotifier(true);
         appendDrawableItems(notifier);
         return notifier;

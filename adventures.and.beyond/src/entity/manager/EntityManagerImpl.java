@@ -18,7 +18,7 @@ import static helper.Constant.TILE_SIZE;
 public class EntityManagerImpl implements EntityManager {
     private Player mainEntity;
 
-    private  List<UpdatableNonPlayerCharacter> secondaryUpdatables;
+    private List<UpdatableNonPlayerCharacter> secondaryUpdatables;
     private List<DrawableNonPlayerCharacter> secondaryDrawables;
 
 
@@ -37,14 +37,14 @@ public class EntityManagerImpl implements EntityManager {
 
     private void registerSecondaryEntities() {
         NonPlayerCharacterFactory nonPlayerCharacterFactory = new NonPlayerCharacterFactoryImpl();
-        String[] characterTypes =nonPlayerCharacterFactory.getCharacterTypes();
+        String[] characterTypes = nonPlayerCharacterFactory.getCharacterTypes();
 
-        nonPlayerCharacterFactory.register(characterTypes[0],28 * TILE_SIZE, 12 * TILE_SIZE, Direction.FACING_FORWARD, false, DialogueKey.DIALOGUE_01);
-        nonPlayerCharacterFactory.register(characterTypes[0],37 * TILE_SIZE, 12 * TILE_SIZE, Direction.FACING_FORWARD, false,DialogueKey.DIALOGUE_02);
-        nonPlayerCharacterFactory.register(characterTypes[0],23 * TILE_SIZE, 12 * TILE_SIZE, Direction.FACING_FORWARD, false, DialogueKey.DIALOGUE_01);
+        nonPlayerCharacterFactory.register(characterTypes[0], 28 * TILE_SIZE, 12 * TILE_SIZE, Direction.FACING_FORWARD, false, DialogueKey.DIALOGUE_01);
+        nonPlayerCharacterFactory.register(characterTypes[0], 37 * TILE_SIZE, 12 * TILE_SIZE, Direction.FACING_FORWARD, false, DialogueKey.DIALOGUE_02);
+        nonPlayerCharacterFactory.register(characterTypes[0], 23 * TILE_SIZE, 12 * TILE_SIZE, Direction.FACING_FORWARD, false, DialogueKey.DIALOGUE_01);
 
 
-        this.secondaryUpdatables =nonPlayerCharacterFactory.getUpdatableNonPlayerCharacterList();
+        this.secondaryUpdatables = nonPlayerCharacterFactory.getUpdatableNonPlayerCharacterList();
         this.secondaryDrawables = nonPlayerCharacterFactory.getDrawableNonPlayerCharacterList();
     }
 

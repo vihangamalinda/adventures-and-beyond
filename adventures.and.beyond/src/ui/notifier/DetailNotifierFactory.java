@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface DetailNotifierFactory {
     Notifiable create(String creationType);
+
     String[] getTypeList();
 
     List<DrawableNotifier> getRegisteredDrawableNotifiers();
