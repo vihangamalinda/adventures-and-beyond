@@ -19,7 +19,7 @@ public class PlayerDetailNotifier extends AbstractDetailNotifier {
     private final int height;
 
     public PlayerDetailNotifier(boolean isActive) {
-        super(isActive,CustomColours.BLACK_01_LOW_OPACITY);
+        super(isActive,CustomColours.BLACK_01_LOW_OPACITY,STANDARD_ARIAL);
         this.player = EntityManagerFactory.getInstance().getPlayer();
         this.starterX=10;
         this.starterY=10;
@@ -68,7 +68,6 @@ public class PlayerDetailNotifier extends AbstractDetailNotifier {
 
     @Override
     protected void drawContent(Graphics2D graphics2D) {
-        graphics2D.setFont(STANDARD_ARIAL);
         graphics2D.setColor(Color.WHITE);
         graphics2D.drawImage(ICON_KEY_IMAGE, TILE_SIZE / 4, TILE_SIZE / 2, null);
         updatedMessage();

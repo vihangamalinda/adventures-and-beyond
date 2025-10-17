@@ -20,8 +20,7 @@ public class GameDetailNotifier extends AbstractDetailNotifier {
 
 
     public GameDetailNotifier(boolean isActive) {
-
-        super(isActive, CustomColours.BLACK_01_LOW_OPACITY);
+        super(isActive, CustomColours.BLACK_01_LOW_OPACITY,PlAIN_ARIAL_XSM);
         this.starterX=10;
         this.starterY=(TILE_SIZE * 4) - 30;
     }
@@ -34,10 +33,6 @@ public class GameDetailNotifier extends AbstractDetailNotifier {
     public void notifyMessage(String message) {
         this.setMessage(message);
         this.setActive(true);
-    }
-
-    private void setFont(Font font) {
-        this.font = font;
     }
 
     protected int getStarterX() {
@@ -58,7 +53,6 @@ public class GameDetailNotifier extends AbstractDetailNotifier {
     }
 
     private void configureBackgroundHeightAndWidth(Graphics2D graphics2D) {
-        graphics2D.setFont(this.font);
         Rectangle2D stringBounds = graphics2D.getFontMetrics().getStringBounds(this.getMessage(), graphics2D);
         int textLength = (int) stringBounds.getWidth();
         int textHeight = (int) stringBounds.getHeight();
@@ -105,7 +99,6 @@ public class GameDetailNotifier extends AbstractDetailNotifier {
 
     @Override
     protected void drawContent(Graphics2D graphics2D) {
-        this.setFont(PlAIN_ARIAL_XSM);
         graphics2D.setColor(Color.WHITE);
         graphics2D.drawString(this.getMessage(), this.getStarterX()+6, this.getStarterY()+30);
     }

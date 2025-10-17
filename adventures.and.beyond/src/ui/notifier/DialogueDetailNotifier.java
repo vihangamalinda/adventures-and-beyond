@@ -8,7 +8,6 @@ import static helper.Constant.*;
 import static ui.RegisteredFonts.STANDARD_ARIAL;
 
 public class DialogueDetailNotifier extends AbstractDetailNotifier {
-    private Font font;
 
     private int startX;
     private int startY;
@@ -16,8 +15,7 @@ public class DialogueDetailNotifier extends AbstractDetailNotifier {
     private int height;
 
     public DialogueDetailNotifier(boolean isActive) {
-        super(isActive, CustomColours.BLACK_01_LOW_OPACITY);
-        this.font = STANDARD_ARIAL;
+        super(isActive, CustomColours.BLACK_01_LOW_OPACITY,STANDARD_ARIAL);
         this.configureBackgroundSize();
     }
 
@@ -74,7 +72,6 @@ public class DialogueDetailNotifier extends AbstractDetailNotifier {
     @Override
     protected void drawBackgroud(Graphics2D graphics2D) {
         graphics2D.setColor(this.getBackgroundColour());
-
         graphics2D.fillRect(this.getStartX(), this.getStartY(), this.getWidth(), this.getHeight());
     }
 
@@ -88,7 +85,6 @@ public class DialogueDetailNotifier extends AbstractDetailNotifier {
 
     @Override
     protected void drawContent(Graphics2D graphics2D) {
-        graphics2D.setFont(this.font);
         graphics2D.setColor(Color.BLACK);
         int starterX =this.getStartX() +TILE_SIZE;
         int starterY = this.getStartY()+TILE_SIZE;

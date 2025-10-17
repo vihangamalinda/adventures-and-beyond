@@ -9,9 +9,6 @@ import static helper.Constant.*;
 import static ui.RegisteredFonts.BOLD_ARIAL_XXL;
 
 public class MainDetailNotifier extends AbstractDetailNotifier {
-
-    private Font font;
-
     private int backgroundWidth;
     private int backgroundHeight;
     private final int starterX;
@@ -19,19 +16,9 @@ public class MainDetailNotifier extends AbstractDetailNotifier {
 
 
     public MainDetailNotifier(boolean isActive) {
-        super(isActive, CustomColours.BLACK_01_LOW_OPACITY);
+        super(isActive, CustomColours.BLACK_01_LOW_OPACITY,BOLD_ARIAL_XXL);
         this.starterX=(WINDOW_MAX_SCREEN_WIDTH / 4) - 20;
         this.starterY=(WINDOW_MAX_SCREEN_HEIGHT / 2) - 100;
-    }
-
-    public void triggerNotification(String message) {
-        this.setActive(true);
-        this.setMessage(message);
-        this.setFont(BOLD_ARIAL_XXL);
-    }
-
-    private void setFont(Font font) {
-        this.font = font;
     }
 
     public int getStarterX() {
@@ -47,7 +34,6 @@ public class MainDetailNotifier extends AbstractDetailNotifier {
     public void notifyMessage(String message) {
         this.setActive(true);
         this.setMessage(message);
-        this.setFont(BOLD_ARIAL_XXL);
     }
 
     @Override
@@ -60,7 +46,6 @@ public class MainDetailNotifier extends AbstractDetailNotifier {
     }
 
     private void configureBackgroundHeightAndWidth(Graphics2D graphics2D) {
-        graphics2D.setFont(this.font);
         Rectangle2D stringBounds = graphics2D.getFontMetrics().getStringBounds(this.getMessage(), graphics2D);
         int textLength = (int) stringBounds.getWidth();
         int textHeight = (int) stringBounds.getHeight();

@@ -12,11 +12,21 @@ public abstract class AbstractDetailNotifier implements Notifiable, DrawableNoti
     private boolean isActive;
     private String message;
     private Color backgroundColour;
+    private Font font;
 
-    AbstractDetailNotifier(boolean isActive,Color backgroundColour) {
+    AbstractDetailNotifier(boolean isActive,Color backgroundColour,Font font) {
         this.isActive = isActive;
         this.message = "";
         this.backgroundColour =backgroundColour;
+        this.font= font;
+    }
+
+    protected Font getFont() {
+        return font;
+    }
+
+    protected void setFont(Font font) {
+        this.font = font;
     }
 
     protected Color getBackgroundColour(){
@@ -48,6 +58,7 @@ public abstract class AbstractDetailNotifier implements Notifiable, DrawableNoti
 
     public void draw(Graphics2D graphics2D){
         if(this.isActive()){
+            graphics2D.setFont(this.getFont());
             this.drawBackgroud(graphics2D);
             this.drawContent(graphics2D);
             this.drawBackgroundBorder(graphics2D);
