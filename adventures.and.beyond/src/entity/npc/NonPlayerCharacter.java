@@ -13,7 +13,7 @@ import static directionEnum.Direction.*;
 import static directionEnum.Direction.FACING_LEFTWARD;
 import static helper.Constant.TILE_SIZE;
 
-public abstract class NonPlayerCharacter extends Entity {
+public abstract class NonPlayerCharacter extends Entity implements DrawableNonPlayerCharacter,UpdatableNonPlayerCharacter{
 
     private final String characterAnimationKey;
     private boolean isOnCollisionWithPlayer;
@@ -27,6 +27,7 @@ public abstract class NonPlayerCharacter extends Entity {
         this.isOnCollisionWithPlayer = false;
     }
 
+    @Override
     public void update() {
         checkForCollisions();
 
@@ -92,6 +93,7 @@ public abstract class NonPlayerCharacter extends Entity {
 
     public abstract void performInteraction();
 
+    @Override
     public void draw(Graphics2D graphics2D, Player player) {
         BufferedImage image = getCurrentSpriteImage();
 
