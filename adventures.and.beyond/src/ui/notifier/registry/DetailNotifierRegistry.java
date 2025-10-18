@@ -7,8 +7,11 @@ import java.util.List;
 
 public interface DetailNotifierRegistry {
     Notifiable getPlayerDetailNotifier();
+
     Notifiable getGameDetailNotifier();
+
     Notifiable getMainDetailNotifier();
+
     Notifiable getDialogueDetailNotifier();
 
     List<DrawableNotifier> getRegisteredDrawableNotifierList();

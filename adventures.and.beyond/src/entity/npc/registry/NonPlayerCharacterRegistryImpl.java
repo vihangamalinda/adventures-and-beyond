@@ -12,13 +12,13 @@ import java.util.List;
 
 import static helper.Constant.TILE_SIZE;
 
-public class NonPlayerCharacterRegistryImpl implements NonPlayerCharacterRegistry{
+public class NonPlayerCharacterRegistryImpl implements NonPlayerCharacterRegistry {
 
     private final List<UpdatableNonPlayerCharacter> updatableNonPlayerCharacterList;
     private final List<DrawableNonPlayerCharacter> drawableNonPlayerCharacterList;
     private final NonPlayerCharacterFactoryImpl nonPlayerCharacterFactory;
 
-    public NonPlayerCharacterRegistryImpl(){
+    public NonPlayerCharacterRegistryImpl() {
         this.drawableNonPlayerCharacterList = new ArrayList<>();
         this.updatableNonPlayerCharacterList = new ArrayList<>();
         this.nonPlayerCharacterFactory = new NonPlayerCharacterFactoryImpl();
@@ -34,26 +34,26 @@ public class NonPlayerCharacterRegistryImpl implements NonPlayerCharacterRegistr
     }
 
     private void registerCharacter(String characterType, int worldPositionX, int worldPositionY, Direction direction, boolean onCollision, String dialogueKey) {
-        NonPlayerCharacter character=nonPlayerCharacterFactory.create(characterType, worldPositionX, worldPositionY, direction, onCollision, dialogueKey);
+        NonPlayerCharacter character = nonPlayerCharacterFactory.create(characterType, worldPositionX, worldPositionY, direction, onCollision, dialogueKey);
         registerDrawable(character);
         registerUpdatable(character);
     }
 
-    private void registerDrawable(NonPlayerCharacter nonPlayerCharacter){
+    private void registerDrawable(NonPlayerCharacter nonPlayerCharacter) {
         this.drawableNonPlayerCharacterList.add(nonPlayerCharacter);
     }
 
-    private void registerUpdatable(NonPlayerCharacter nonPlayerCharacter){
+    private void registerUpdatable(NonPlayerCharacter nonPlayerCharacter) {
         this.updatableNonPlayerCharacterList.add(nonPlayerCharacter);
     }
 
     @Override
-    public List<UpdatableNonPlayerCharacter> getRegisteredUpdatableList(){
-       return this.updatableNonPlayerCharacterList;
+    public List<UpdatableNonPlayerCharacter> getRegisteredUpdatableList() {
+        return this.updatableNonPlayerCharacterList;
     }
 
     @Override
-    public List<DrawableNonPlayerCharacter> getRegisteredDrawableList(){
+    public List<DrawableNonPlayerCharacter> getRegisteredDrawableList() {
         return this.drawableNonPlayerCharacterList;
     }
 

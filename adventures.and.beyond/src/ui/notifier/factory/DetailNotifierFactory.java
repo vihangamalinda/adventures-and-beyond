@@ -1,7 +1,8 @@
-package ui.notifier;
+package ui.notifier.factory;
 
 import ui.DrawableNotifier;
 import ui.Notifiable;
+import ui.notifier.AbstractDetailNotifier;
 
 import java.util.List;
 

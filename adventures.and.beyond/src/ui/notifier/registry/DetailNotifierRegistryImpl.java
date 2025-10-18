@@ -3,14 +3,14 @@ package ui.notifier.registry;
 import ui.DrawableNotifier;
 import ui.Notifiable;
 import ui.notifier.AbstractDetailNotifier;
-import ui.notifier.DetailNotifierFactory;
-import ui.notifier.DetailNotifierFactoryImpl;
+import ui.notifier.factory.DetailNotifierFactory;
+import ui.notifier.factory.DetailNotifierFactoryImpl;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailNotifierRegistryImpl implements DetailNotifierRegistry{
+public class DetailNotifierRegistryImpl implements DetailNotifierRegistry {
     private Notifiable playerDetailNotifier;
     private Notifiable gameDetailNotifier;
     private Notifiable mainDetailNotifier;
@@ -19,7 +19,7 @@ public class DetailNotifierRegistryImpl implements DetailNotifierRegistry{
     private final List<DrawableNotifier> drawableNotifierList;
     private final DetailNotifierFactory detailNotifierFactory;
 
-    public DetailNotifierRegistryImpl(){
+    public DetailNotifierRegistryImpl() {
         this.detailNotifierFactory = new DetailNotifierFactoryImpl();
         this.drawableNotifierList = new ArrayList<>();
         this.registerNotifiers();
@@ -28,7 +28,7 @@ public class DetailNotifierRegistryImpl implements DetailNotifierRegistry{
     private void registerNotifiers() {
         String[] notifierTypes = detailNotifierFactory.getTypeList();
         this.playerDetailNotifier = this.createAndRegisterNotifier(notifierTypes[0]);
-        this.gameDetailNotifier =  this.createAndRegisterNotifier(notifierTypes[1]);
+        this.gameDetailNotifier = this.createAndRegisterNotifier(notifierTypes[1]);
         this.mainDetailNotifier = this.createAndRegisterNotifier(notifierTypes[2]);
         this.dialogueDetailNotifier = this.createAndRegisterNotifier(notifierTypes[3]);
 
@@ -40,7 +40,7 @@ public class DetailNotifierRegistryImpl implements DetailNotifierRegistry{
         return detailNotifier;
     }
 
-    private void appendDrawable(AbstractDetailNotifier detailNotifier){
+    private void appendDrawable(AbstractDetailNotifier detailNotifier) {
         this.drawableNotifierList.add(detailNotifier);
     }
 

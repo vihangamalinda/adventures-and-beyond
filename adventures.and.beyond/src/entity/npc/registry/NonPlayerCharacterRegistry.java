@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface NonPlayerCharacterRegistry {
     List<UpdatableNonPlayerCharacter> getRegisteredUpdatableList();
+
     List<DrawableNonPlayerCharacter> getRegisteredDrawableList();
 }

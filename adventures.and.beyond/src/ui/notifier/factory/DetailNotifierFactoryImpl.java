@@ -1,10 +1,6 @@
-package ui.notifier;
+package ui.notifier.factory;
 
-import ui.DrawableNotifier;
-import ui.Notifiable;
-
-import java.util.ArrayList;
-import java.util.List;
+import ui.notifier.*;
 
 public class DetailNotifierFactoryImpl implements DetailNotifierFactory {
 
