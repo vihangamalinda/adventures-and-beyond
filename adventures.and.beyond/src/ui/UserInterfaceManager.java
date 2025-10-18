@@ -1,40 +1,52 @@
 package ui;
 
-import ui.notifier.GameDetailNotifier;
-import ui.notifier.MainDetailNotifier;
-import ui.notifier.PlayerDetailNotifier;
+import ui.notifier.registry.DetailNotifierRegistry;
+import ui.notifier.registry.DetailNotifierRegistryImpl;
 
 import java.awt.*;
+import java.util.List;
 
 public class UserInterfaceManager {
 
-    private final PlayerDetailNotifier playerDetailNotifier;
+    private final Notifiable playerDetailNotifier;
 
     // Add game notifier related logic
-    private final GameDetailNotifier gameDetailNotifier;
+    private final Notifiable gameDetailNotifier;
 
-    private final MainDetailNotifier mainDetailNotifier;
+    private final Notifiable mainDetailNotifier;
+
+    private final Notifiable dialogueDetailNotifier;
+
+    private final List<DrawableNotifier> drawableNotifierList;
 
     private static class Holder {
         private static final UserInterfaceManager INSTANCE = new UserInterfaceManager();
     }
 
     private UserInterfaceManager() {
-        this.playerDetailNotifier = new PlayerDetailNotifier(true);
-        this.gameDetailNotifier = new GameDetailNotifier(false);
-        this.mainDetailNotifier = new MainDetailNotifier(false);
+        DetailNotifierRegistry detailNotifierRegistry = new DetailNotifierRegistryImpl();
+        this.playerDetailNotifier = detailNotifierRegistry.getPlayerDetailNotifier();
+        this.gameDetailNotifier = detailNotifierRegistry.getGameDetailNotifier();
+        this.mainDetailNotifier = detailNotifierRegistry.getMainDetailNotifier();
+        this.dialogueDetailNotifier = detailNotifierRegistry.getDialogueDetailNotifier();
+        this.drawableNotifierList = detailNotifierRegistry.getRegisteredDrawableNotifierList();
     }
+
 
     public static UserInterfaceManager getInstance() {
         return Holder.INSTANCE;
     }
 
     public void notifyGameDetails(String message) {
-        this.gameDetailNotifier.notifyForPeriod(message, 1);
+        this.gameDetailNotifier.notifyMessageForPeriod(message, 1);
     }
 
     public void triggerMainNotification(String message) {
-        this.mainDetailNotifier.triggerNotification(message);
+        this.mainDetailNotifier.notifyMessage(message);
+    }
+
+    public void triggerDetailNotification(String message) {
+        this.dialogueDetailNotifier.notifyMessageForPeriod(message, 2);
     }
 
     public void deactivateMainNotification() {
@@ -42,8 +54,8 @@ public class UserInterfaceManager {
     }
 
     public void draw(Graphics2D graphics2D) {
-        this.playerDetailNotifier.draw(graphics2D);
-        this.gameDetailNotifier.draw(graphics2D);
-        this.mainDetailNotifier.draw(graphics2D);
+        for (DrawableNotifier drawableNotifier : this.drawableNotifierList) {
+            drawableNotifier.draw(graphics2D);
+        }
     }
 }

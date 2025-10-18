@@ -27,6 +27,7 @@ public class GamePanel extends JPanel implements Runnable {
     int playerSpeed = 4;
 
     private final EntityManager entityManager;
+    private final UserInterfaceManager userInterfaceManager;
 
     private static class Holder {
         private static final GamePanel INSTANCE = new GamePanel();
@@ -40,6 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(KeyHandler.getInstance());
         this.setFocusable(true);
         this.entityManager = EntityManagerFactory.getInstance();
+        this.userInterfaceManager = UserInterfaceManager.getInstance();
         playThemeMusic();
     }
 
@@ -130,7 +132,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void stopGame() {
-        UserInterfaceManager.getInstance().triggerMainNotification("You won the game");
+        this.userInterfaceManager.triggerMainNotification("You won the game");
         this.gameThread = null;
     }
 
@@ -147,7 +149,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.entityManager.drawEntities(graphics2D);
 
         // Notify
-        UserInterfaceManager.getInstance().draw(graphics2D);
+        this.userInterfaceManager.draw(graphics2D);
 
         Timer.evaluvateTimeSpent(startTime);
         //Disposes of this graphics context and releases any system resources that it is using.
@@ -155,7 +157,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     private void showPauseModal() {
-        UserInterfaceManager.getInstance().triggerMainNotification("Game on Pause");
+        this.userInterfaceManager.triggerMainNotification("Game on Pause");
     }
 
     public void playThemeMusic() {

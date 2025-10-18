@@ -1,23 +1,28 @@
 package entity.manager;
 
-import directionEnum.Direction;
-import entity.npc.NonPlayerCharacter;
-import entity.npc.character.Human;
-import entity.npc.sprite.CharacterSpriteKey;
+import entity.npc.DrawableNonPlayerCharacter;
+import entity.npc.UpdatableNonPlayerCharacter;
+import entity.npc.registry.NonPlayerCharacterRegistry;
+import entity.npc.registry.NonPlayerCharacterRegistryImpl;
 import entity.player.Player;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 import static helper.Constant.TILE_SIZE;
 
 public class EntityManagerImpl implements EntityManager {
+
     private Player mainEntity;
-    private final List<NonPlayerCharacter> secondaryEntities;
+
+    private List<UpdatableNonPlayerCharacter> secondaryUpdatableList;
+    private List<DrawableNonPlayerCharacter> secondaryDrawableList;
+
+    private NonPlayerCharacterRegistry nonPlayerCharacterRegistry;
+
 
     public EntityManagerImpl() {
-        this.secondaryEntities = new ArrayList<>();
+        this.nonPlayerCharacterRegistry = new NonPlayerCharacterRegistryImpl();
         this.registerEntities();
     }
 
@@ -31,18 +36,14 @@ public class EntityManagerImpl implements EntityManager {
     }
 
     private void registerSecondaryEntities() {
-        NonPlayerCharacter human = new Human(28 * TILE_SIZE, 12 * TILE_SIZE, Direction.FACING_FORWARD, false, CharacterSpriteKey.HUMAN_CYAN);
-        NonPlayerCharacter human2 = new Human(37 * TILE_SIZE, 12 * TILE_SIZE, Direction.FACING_FORWARD, false, CharacterSpriteKey.HUMAN_CYAN);
-
-        this.secondaryEntities.add(human);
-        this.secondaryEntities.add(human2);
-
+        this.secondaryUpdatableList = nonPlayerCharacterRegistry.getRegisteredUpdatableList();
+        this.secondaryDrawableList = nonPlayerCharacterRegistry.getRegisteredDrawableList();
     }
 
     public void drawEntities(Graphics2D graphics2D) {
         this.mainEntity.draw(graphics2D);
 
-        for (NonPlayerCharacter character : this.secondaryEntities) {
+        for (DrawableNonPlayerCharacter character : this.secondaryDrawableList) {
             character.draw(graphics2D, this.getPlayer());
         }
     }
@@ -50,7 +51,7 @@ public class EntityManagerImpl implements EntityManager {
     public void updateEntities() {
         this.mainEntity.update();
 
-        for (NonPlayerCharacter character : this.secondaryEntities) {
+        for (UpdatableNonPlayerCharacter character : this.secondaryUpdatableList) {
             character.update();
         }
     }

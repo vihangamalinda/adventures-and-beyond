@@ -13,8 +13,9 @@ import static directionEnum.Direction.*;
 import static directionEnum.Direction.FACING_LEFTWARD;
 import static helper.Constant.TILE_SIZE;
 
-public abstract class NonPlayerCharacter extends Entity {
+public abstract class NonPlayerCharacter extends Entity implements DrawableNonPlayerCharacter, UpdatableNonPlayerCharacter {
 
+    public static final CharacterSpriteManager CHARACTER_SPRITE_MANAGER = CharacterSpriteManager.getInstance();
     private final String characterAnimationKey;
     private boolean isOnCollisionWithPlayer;
 
@@ -27,6 +28,7 @@ public abstract class NonPlayerCharacter extends Entity {
         this.isOnCollisionWithPlayer = false;
     }
 
+    @Override
     public void update() {
         checkForCollisions();
 
@@ -92,6 +94,7 @@ public abstract class NonPlayerCharacter extends Entity {
 
     public abstract void performInteraction();
 
+    @Override
     public void draw(Graphics2D graphics2D, Player player) {
         BufferedImage image = getCurrentSpriteImage();
 
@@ -151,7 +154,7 @@ public abstract class NonPlayerCharacter extends Entity {
 
     private BufferedImage getCurrentSpriteImage() {
 
-        BufferedImage[] currentAnimationArr = CharacterSpriteManager.getInstance().getAnimationArray(this.getCharacterAnimationKey(), this.getDirection(), this.isIdle());
+        BufferedImage[] currentAnimationArr = CHARACTER_SPRITE_MANAGER.getAnimationArray(this.getCharacterAnimationKey(), this.getDirection(), this.isIdle());
 
         if (shouldUpdateFrameIndex()) {
             updateCurrentFrameIndex();
@@ -180,7 +183,7 @@ public abstract class NonPlayerCharacter extends Entity {
     }
 
     private void updateCurrentFrameIndex() {
-        int maxFrameLimit = CharacterSpriteManager.getInstance().getCharacterMaxFrameLimit(this.getCharacterAnimationKey());
+        int maxFrameLimit = CHARACTER_SPRITE_MANAGER.getCharacterMaxFrameLimit(this.getCharacterAnimationKey());
         if (this.currentFrameIndex >= maxFrameLimit - 1) {
             this.currentFrameIndex = 0;
         } else {
