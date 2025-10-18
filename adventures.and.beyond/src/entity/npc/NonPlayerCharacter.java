@@ -15,6 +15,7 @@ import static helper.Constant.TILE_SIZE;
 
 public abstract class NonPlayerCharacter extends Entity implements DrawableNonPlayerCharacter, UpdatableNonPlayerCharacter {
 
+    public static final CharacterSpriteManager CHARACTER_SPRITE_MANAGER = CharacterSpriteManager.getInstance();
     private final String characterAnimationKey;
     private boolean isOnCollisionWithPlayer;
 
@@ -153,7 +154,7 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
 
     private BufferedImage getCurrentSpriteImage() {
 
-        BufferedImage[] currentAnimationArr = CharacterSpriteManager.getInstance().getAnimationArray(this.getCharacterAnimationKey(), this.getDirection(), this.isIdle());
+        BufferedImage[] currentAnimationArr = CHARACTER_SPRITE_MANAGER.getAnimationArray(this.getCharacterAnimationKey(), this.getDirection(), this.isIdle());
 
         if (shouldUpdateFrameIndex()) {
             updateCurrentFrameIndex();
@@ -182,7 +183,7 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
     }
 
     private void updateCurrentFrameIndex() {
-        int maxFrameLimit = CharacterSpriteManager.getInstance().getCharacterMaxFrameLimit(this.getCharacterAnimationKey());
+        int maxFrameLimit = CHARACTER_SPRITE_MANAGER.getCharacterMaxFrameLimit(this.getCharacterAnimationKey());
         if (this.currentFrameIndex >= maxFrameLimit - 1) {
             this.currentFrameIndex = 0;
         } else {
