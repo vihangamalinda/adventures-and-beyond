@@ -1,9 +1,9 @@
 package ui;
 
-import ui.notifier.*;
+import ui.notifier.registry.DetailNotifierRegistry;
+import ui.notifier.registry.DetailNotifierRegistryImpl;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserInterfaceManager {
@@ -24,14 +24,12 @@ public class UserInterfaceManager {
     }
 
     private UserInterfaceManager() {
-        DetailNotifierFactory detailNotifierFactory = new DetailNotifierFactoryImpl();
-        String[] definedTypes = detailNotifierFactory.getTypeList();
-
-        this.playerDetailNotifier = detailNotifierFactory.create(definedTypes[0]);
-        this.gameDetailNotifier = detailNotifierFactory.create(definedTypes[1]);
-        this.mainDetailNotifier = detailNotifierFactory.create(definedTypes[2]);
-        this.dialogueDetailNotifier = detailNotifierFactory.create(definedTypes[3]);
-        this.drawableNotifierList = detailNotifierFactory.getRegisteredDrawableNotifiers();
+        DetailNotifierRegistry detailNotifierRegistry = new DetailNotifierRegistryImpl();
+        this.playerDetailNotifier = detailNotifierRegistry.getPlayerDetailNotifier();
+        this.gameDetailNotifier = detailNotifierRegistry.getGameDetailNotifier();
+        this.mainDetailNotifier = detailNotifierRegistry.getMainDetailNotifier();
+        this.dialogueDetailNotifier = detailNotifierRegistry.getDialogueDetailNotifier();
+        this.drawableNotifierList = detailNotifierRegistry.getRegisteredDrawableNotifierList();
     }
 
 
@@ -47,7 +45,7 @@ public class UserInterfaceManager {
         this.mainDetailNotifier.notifyMessage(message);
     }
 
-    public void triggerDetialNotification(String message) {
+    public void triggerDetailNotification(String message) {
         this.dialogueDetailNotifier.notifyMessageForPeriod(message, 2);
     }
 
