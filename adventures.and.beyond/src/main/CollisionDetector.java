@@ -8,6 +8,8 @@ import object.InteractableObjectManager;
 import object.interactable.objects.InteractableObject;
 import tile.Tile;
 import tile.TileManager;
+import tile.registry.TileRegistry;
+import tile.registry.TileRegistryFactory;
 
 import java.awt.*;
 
@@ -71,10 +73,9 @@ public class CollisionDetector {
         if (isAtIdle) {
             entity.setOnCollision(false);
         } else {
-            Tile tileType1 = tileManager.getTileByIndex(tileTypeNum1);
-            Tile tileType2 = tileManager.getTileByIndex(tileTypeNum2);
-            boolean collideOne = tileType1.isCanCollide();
-            boolean collideTwo = tileType2.isCanCollide();
+            TileRegistry tileRegistry = TileRegistryFactory.getInstance();
+            boolean collideOne = tileRegistry.couldTileTypeBeCollided(tileTypeNum1);
+            boolean collideTwo =tileRegistry.couldTileTypeBeCollided(tileTypeNum2);
 
             boolean canCollied = collideOne && collideTwo;
             entity.setOnCollision(!canCollied);
