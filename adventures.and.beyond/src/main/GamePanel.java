@@ -123,7 +123,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    public void update() {
+    private void update() {
         if (KeyHandler.getInstance().isOnPause()) {
             showPauseModal();
         } else {
@@ -137,7 +137,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     @Override
-    public void paintComponent(Graphics graphic) {
+    protected void paintComponent(Graphics graphic) {
         super.paintComponent(graphic);
         long startTime = Timer.getStartingTime();
 
@@ -160,7 +160,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.userInterfaceManager.triggerMainNotification("Game on Pause");
     }
 
-    public void playThemeMusic() {
+    private void playThemeMusic() {
         SoundManager.getInstance().performMainMusicSound(THEME_1_KEY);
     }
 
