@@ -2,6 +2,7 @@ package object.interactable.objects;
 
 import entity.player.Player;
 import main.GamePanel;
+import object.interactable.objects.builder.TreasureObjectBuilder;
 import sound.SoundKey;
 import sound.SoundManager;
 import ui.UserInterfaceManager;
@@ -16,6 +17,10 @@ public class TreasureObject extends InteractableObject {
         super(TREASURE_IMG_PATH, "Treasure", onCollision, worldPositionX, worldPositionY, isActive);
         this.treasureNumber = treasureNumber;
         this.openCode = openCode;
+    }
+
+    public static TreasureObjectBuilder getBuilder(){
+        return new TreasureObjectBuilder();
     }
 
     @Override

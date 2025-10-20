@@ -1,6 +1,7 @@
 package object.interactable.objects;
 
 import entity.player.Player;
+import object.interactable.objects.builder.DoorObjectBuilder;
 import sound.SoundKey;
 import sound.SoundManager;
 import ui.UserInterfaceManager;
@@ -15,6 +16,10 @@ public class DoorObject extends InteractableObject {
         super(DOOR_IMG_PATH, "door", onCollision, worldPositionX, worldPositionY, isActive);
         this.doorNumber = doorNumber;
         this.openCode = openCode;
+    }
+
+    public static DoorObjectBuilder getBuilder(){
+        return new DoorObjectBuilder();
     }
 
     @Override

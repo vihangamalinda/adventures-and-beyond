@@ -1,6 +1,7 @@
 package object.interactable.objects;
 
 import entity.player.Player;
+import object.interactable.objects.builder.KeyObjectBuilder;
 import sound.SoundKey;
 import sound.SoundManager;
 import ui.UserInterfaceManager;
@@ -13,6 +14,10 @@ public class KeyObject extends InteractableObject {
     public KeyObject(boolean onCollision, int worldPositionX, int worldPositionY, String keyCode, boolean isActive) {
         super(KEY_IMG_PATH, "key", onCollision, worldPositionX, worldPositionY, isActive);
         this.keyCode = keyCode;
+    }
+
+    public static KeyObjectBuilder getBuilder(){
+        return  new KeyObjectBuilder();
     }
 
     @Override
