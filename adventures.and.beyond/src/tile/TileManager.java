@@ -4,19 +4,20 @@ import entity.manager.EntityManagerFactory;
 import entity.player.Player;
 import helper.Constant;
 import helper.Loader;
-import main.GamePanel;
 import tile.registry.TileRegistry;
+import tile.registry.TileRegistryFactory;
+import tile.registry.TileRegistryImpl;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static helper.Constant.*;
 import static helper.ImageScaler.getStandardScaledImage;
-import static java.util.Objects.isNull;
 
 
 public class TileManager {
     private int[][] mapTileMatrix;
+    private final TileRegistry tileRegistry;
 
     private static class Holder {
         private static TileManager INSTANCE = new TileManager();
@@ -24,38 +25,11 @@ public class TileManager {
 
     private TileManager() {
         this.mapTileMatrix = loadMapMatrix();
+        this.tileRegistry = TileRegistryFactory.getInstance();
     }
 
     public static TileManager getInstance() {
         return Holder.INSTANCE;
-    }
-
-    public int[][] getMapTileMatrix() {
-        return mapTileMatrix;
-    }
-
-    public void setMapTileMatrix(int[][] mapTileMatrix) {
-        this.mapTileMatrix = mapTileMatrix;
-    }
-
-    public Tile getTileByIndex(int tileKey) {
-
-        Tile tile = TileRegistry.getInstance().getTileByKey(tileKey);
-        if (isNull(tile)) {
-            System.out.println("Custom Error: Given tile key is not registered. Tile key " + tileKey);
-            return null;
-        }
-        return tile;
-    }
-
-    private Tile createTile(String imgPath, boolean canCollide) {
-        BufferedImage original = Loader.getImage(imgPath);
-        BufferedImage image = getScaledImage(original);
-        return new Tile(image, canCollide);
-    }
-
-    private BufferedImage getScaledImage(BufferedImage originalImage) {
-        return getStandardScaledImage(originalImage);
     }
 
     public void draw(Graphics2D graphics2D) {
@@ -86,7 +60,7 @@ public class TileManager {
                 int windowPositionY = windowRow * TILE_SIZE;
                 int tileKey = columValues[currentMapColumn];
 
-                BufferedImage image = TileRegistry.getInstance().getTileByKey(tileKey).getBufferedImage();
+                BufferedImage image = this.tileRegistry.getImageByTileKey(tileKey);
 
                 graphics2D.drawImage(image, windowPositionX, windowPositionY, null);
 
