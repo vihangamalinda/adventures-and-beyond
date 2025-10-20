@@ -6,10 +6,9 @@ import entity.npc.NonPlayerCharacter;
 import entity.player.Player;
 import object.InteractableObjectManager;
 import object.interactable.objects.InteractableObject;
-import tile.Tile;
-import tile.TileManager;
 import tile.registry.TileRegistry;
 import tile.registry.TileRegistryFactory;
+import world.WorldMapManager;
 
 import java.awt.*;
 
@@ -44,28 +43,28 @@ public class CollisionDetector {
         int tileTypeNum2 = -1;
 
         int speed = entity.getSpeed();
-        TileManager tileManager = TileManager.getInstance();
+        WorldMapManager worldMapManager =WorldMapManager.getInstance();
 
         switch (entity.getDirection()) {
             case FACING_BACKWARD -> {
                 int nextRow = (entityTopWorldY - speed) / TILE_SIZE;
-                tileTypeNum1 = tileManager.getTileTypeIndexByRowAndCol(nextRow, entityLeftCol);
-                tileTypeNum2 = tileManager.getTileTypeIndexByRowAndCol(nextRow, entityRightCol);
+                tileTypeNum1 = worldMapManager.getTileKeyByRowAndCol(nextRow, entityLeftCol);
+                tileTypeNum2 = worldMapManager.getTileKeyByRowAndCol(nextRow, entityRightCol);
             }
             case FACING_FORWARD -> {
                 int nextRow = (entityBottomWorldY + speed) / TILE_SIZE;
-                tileTypeNum1 = tileManager.getTileTypeIndexByRowAndCol(nextRow, entityLeftCol);
-                tileTypeNum2 = tileManager.getTileTypeIndexByRowAndCol(nextRow, entityRightCol);
+                tileTypeNum1 = worldMapManager.getTileKeyByRowAndCol(nextRow, entityLeftCol);
+                tileTypeNum2 = worldMapManager.getTileKeyByRowAndCol(nextRow, entityRightCol);
             }
             case FACING_LEFTWARD -> {
                 int nextCol = (entityLeftWorldX - speed) / TILE_SIZE;
-                tileTypeNum1 = tileManager.getTileTypeIndexByRowAndCol(entityTopRow, nextCol);
-                tileTypeNum2 = tileManager.getTileTypeIndexByRowAndCol(entityBottomRow, nextCol);
+                tileTypeNum1 = worldMapManager.getTileKeyByRowAndCol(entityTopRow, nextCol);
+                tileTypeNum2 = worldMapManager.getTileKeyByRowAndCol(entityBottomRow, nextCol);
             }
             case FACING_RIGHTWARD -> {
                 int nextCol = (entityRightWorldX + speed) / TILE_SIZE;
-                tileTypeNum1 = tileManager.getTileTypeIndexByRowAndCol(entityTopRow, nextCol);
-                tileTypeNum2 = tileManager.getTileTypeIndexByRowAndCol(entityBottomRow, nextCol);
+                tileTypeNum1 = worldMapManager.getTileKeyByRowAndCol(entityTopRow, nextCol);
+                tileTypeNum2 = worldMapManager.getTileKeyByRowAndCol(entityBottomRow, nextCol);
             }
         }
 
