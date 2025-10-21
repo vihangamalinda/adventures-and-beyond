@@ -6,10 +6,10 @@ import entity.manager.EntityManagerFactory;
 import helper.Constant;
 
 import helper.Timer;
-import object.InteractableObjectManager;
 import sound.SoundManager;
-import tile.TileManager;
+//import tile.TileManager;
 import ui.UserInterfaceManager;
+import world.WorldMapManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
         this.entityManager = EntityManagerFactory.getInstance();
         this.userInterfaceManager = UserInterfaceManager.getInstance();
-        playThemeMusic();
+//        playThemeMusic();
     }
 
     public static GamePanel getInstance() {
@@ -143,8 +143,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D graphics2D = (Graphics2D) graphic;
 
-        TileManager.getInstance().draw(graphics2D);
-        InteractableObjectManager.getInstance().drawInteractiveObjects(graphics2D);
+        WorldMapManager.getInstance().draw(graphics2D);
 
         this.entityManager.drawEntities(graphics2D);
 
