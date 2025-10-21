@@ -4,7 +4,6 @@ import entity.Entity;
 import entity.manager.EntityManagerFactory;
 import entity.npc.NonPlayerCharacter;
 import entity.player.Player;
-import object.InteractableObjectManager;
 import object.interactable.objects.InteractableObject;
 import tile.registry.TileRegistry;
 import tile.registry.TileRegistryFactory;
@@ -83,7 +82,9 @@ public class CollisionDetector {
 
     public void checkObjectCollision(Player player) {
 
-        InteractableObject[] interactableObjects = InteractableObjectManager.getInstance().getInteractableObjects();
+        InteractableObject[] interactableObjects =  WorldMapManager.getInstance().getInteractableObject();;
+//        InteractableObject[] interactableObjects = InteractableObjectManager.getInstance().getInteractableObjects();
+
         for (int i = 0; i < interactableObjects.length; i++) {
             InteractableObject obj = interactableObjects[i];
 

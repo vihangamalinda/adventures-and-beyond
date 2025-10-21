@@ -20,6 +20,10 @@ public class WorldMapManager {
         AbstractWorldMap worldMap = new WorldMap(loadMapMatrix(),"worldMap_01");
         this.drawableWorldMap = worldMap;
         this.worldMapInformation =worldMap;
+
+    }
+    public InteractableObject[] getInteractableObject(){
+        return this.worldMapInformation.getInteractableObjects();
     }
 
     public void draw(Graphics2D graphics2D){
