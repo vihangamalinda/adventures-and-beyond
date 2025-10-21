@@ -9,12 +9,11 @@ import helper.Timer;
 import sound.SoundManager;
 //import tile.TileManager;
 import ui.UserInterfaceManager;
-import world.WorldMapManager;
+import world.manager.WorldMapManagerImpl;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static helper.Constant.TILE_SIZE;
 import static sound.SoundKey.THEME_1_KEY;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -143,7 +142,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D graphics2D = (Graphics2D) graphic;
 
-        WorldMapManager.getInstance().draw(graphics2D);
+        WorldMapManagerImpl.getInstance().draw(graphics2D);
 
         this.entityManager.drawEntities(graphics2D);
 

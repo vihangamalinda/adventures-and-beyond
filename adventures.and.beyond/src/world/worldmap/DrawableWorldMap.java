@@ -1,4 +1,4 @@
-package world;
+package world.worldmap;
 
 import java.awt.*;
 

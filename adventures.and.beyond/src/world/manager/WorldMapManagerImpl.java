@@ -1,22 +1,26 @@
-package world;
+package world.manager;
 
 import helper.Loader;
 import object.interactable.objects.InteractableObject;
+import world.worldmap.AbstractWorldMap;
+import world.worldmap.DrawableWorldMap;
+import world.worldmap.WorldMap;
+import world.worldmap.WorldMapInformation;
 
 import java.awt.*;
 
-public class WorldMapManager {
+public class WorldMapManagerImpl {
     private DrawableWorldMap drawableWorldMap;
     private WorldMapInformation worldMapInformation;
 
     static class  Holder{
-        private static final WorldMapManager INSTANCE = new WorldMapManager();
+        private static final WorldMapManagerImpl INSTANCE = new WorldMapManagerImpl();
     }
 
-    public static WorldMapManager getInstance(){
+    public static WorldMapManagerImpl getInstance(){
         return Holder.INSTANCE;
     }
-    private WorldMapManager(){
+    private WorldMapManagerImpl(){
         AbstractWorldMap worldMap = new WorldMap(loadMapMatrix(),"worldMap_01");
         this.drawableWorldMap = worldMap;
         this.worldMapInformation =worldMap;

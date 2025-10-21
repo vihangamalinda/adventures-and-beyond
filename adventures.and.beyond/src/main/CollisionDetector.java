@@ -7,7 +7,7 @@ import entity.player.Player;
 import object.interactable.objects.InteractableObject;
 import tile.registry.TileRegistry;
 import tile.registry.TileRegistryFactory;
-import world.WorldMapManager;
+import world.manager.WorldMapManagerImpl;
 
 import java.awt.*;
 
@@ -42,28 +42,28 @@ public class CollisionDetector {
         int tileTypeNum2 = -1;
 
         int speed = entity.getSpeed();
-        WorldMapManager worldMapManager =WorldMapManager.getInstance();
+        WorldMapManagerImpl worldMapManagerImpl = WorldMapManagerImpl.getInstance();
 
         switch (entity.getDirection()) {
             case FACING_BACKWARD -> {
                 int nextRow = (entityTopWorldY - speed) / TILE_SIZE;
-                tileTypeNum1 = worldMapManager.getTileKeyByRowAndCol(nextRow, entityLeftCol);
-                tileTypeNum2 = worldMapManager.getTileKeyByRowAndCol(nextRow, entityRightCol);
+                tileTypeNum1 = worldMapManagerImpl.getTileKeyByRowAndCol(nextRow, entityLeftCol);
+                tileTypeNum2 = worldMapManagerImpl.getTileKeyByRowAndCol(nextRow, entityRightCol);
             }
             case FACING_FORWARD -> {
                 int nextRow = (entityBottomWorldY + speed) / TILE_SIZE;
-                tileTypeNum1 = worldMapManager.getTileKeyByRowAndCol(nextRow, entityLeftCol);
-                tileTypeNum2 = worldMapManager.getTileKeyByRowAndCol(nextRow, entityRightCol);
+                tileTypeNum1 = worldMapManagerImpl.getTileKeyByRowAndCol(nextRow, entityLeftCol);
+                tileTypeNum2 = worldMapManagerImpl.getTileKeyByRowAndCol(nextRow, entityRightCol);
             }
             case FACING_LEFTWARD -> {
                 int nextCol = (entityLeftWorldX - speed) / TILE_SIZE;
-                tileTypeNum1 = worldMapManager.getTileKeyByRowAndCol(entityTopRow, nextCol);
-                tileTypeNum2 = worldMapManager.getTileKeyByRowAndCol(entityBottomRow, nextCol);
+                tileTypeNum1 = worldMapManagerImpl.getTileKeyByRowAndCol(entityTopRow, nextCol);
+                tileTypeNum2 = worldMapManagerImpl.getTileKeyByRowAndCol(entityBottomRow, nextCol);
             }
             case FACING_RIGHTWARD -> {
                 int nextCol = (entityRightWorldX + speed) / TILE_SIZE;
-                tileTypeNum1 = worldMapManager.getTileKeyByRowAndCol(entityTopRow, nextCol);
-                tileTypeNum2 = worldMapManager.getTileKeyByRowAndCol(entityBottomRow, nextCol);
+                tileTypeNum1 = worldMapManagerImpl.getTileKeyByRowAndCol(entityTopRow, nextCol);
+                tileTypeNum2 = worldMapManagerImpl.getTileKeyByRowAndCol(entityBottomRow, nextCol);
             }
         }
 
@@ -82,7 +82,7 @@ public class CollisionDetector {
 
     public void checkObjectCollision(Player player) {
 
-        InteractableObject[] interactableObjects =  WorldMapManager.getInstance().getInteractableObject();;
+        InteractableObject[] interactableObjects =  WorldMapManagerImpl.getInstance().getInteractableObject();;
 //        InteractableObject[] interactableObjects = InteractableObjectManager.getInstance().getInteractableObjects();
 
         for (int i = 0; i < interactableObjects.length; i++) {
