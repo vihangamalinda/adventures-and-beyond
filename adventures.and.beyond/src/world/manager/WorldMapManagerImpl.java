@@ -9,7 +9,7 @@ import world.worldmap.WorldMapInformation;
 
 import java.awt.*;
 
-public class WorldMapManagerImpl {
+public class WorldMapManagerImpl implements WorldMapManager {
     private DrawableWorldMap drawableWorldMap;
     private WorldMapInformation worldMapInformation;
 
@@ -26,6 +26,7 @@ public class WorldMapManagerImpl {
         this.worldMapInformation =worldMap;
 
     }
+    @Override
     public InteractableObject[] getInteractableObject(){
         return this.worldMapInformation.getInteractableObjects();
     }
@@ -34,10 +35,12 @@ public class WorldMapManagerImpl {
         drawableWorldMap.draw(graphics2D);
     }
 
+   @Override
    public int getTileKeyByRowAndCol(int rowIndex, int colIndex){
        return this.worldMapInformation.getTileKey(rowIndex,colIndex);
     }
 
+    @Override
    public  boolean canTileBeCollided(int rowIndex, int colIndex){
         return this.worldMapInformation.canTileBeCollided(rowIndex,colIndex);
    }
