@@ -13,14 +13,7 @@ public class WorldMapManagerImpl implements WorldMapManager {
     private DrawableWorldMap drawableWorldMap;
     private WorldMapInformation worldMapInformation;
 
-    static class  Holder{
-        private static final WorldMapManagerImpl INSTANCE = new WorldMapManagerImpl();
-    }
-
-    public static WorldMapManagerImpl getInstance(){
-        return Holder.INSTANCE;
-    }
-    private WorldMapManagerImpl(){
+    WorldMapManagerImpl(){
         AbstractWorldMap worldMap = new WorldMap(loadMapMatrix(),"worldMap_01");
         this.drawableWorldMap = worldMap;
         this.worldMapInformation =worldMap;
@@ -31,6 +24,7 @@ public class WorldMapManagerImpl implements WorldMapManager {
         return this.worldMapInformation.getInteractableObjects();
     }
 
+    @Override
     public void draw(Graphics2D graphics2D){
         drawableWorldMap.draw(graphics2D);
     }
