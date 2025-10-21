@@ -1,6 +1,7 @@
 package world;
 
 import helper.Loader;
+import object.interactable.objects.InteractableObject;
 
 import java.awt.*;
 
@@ -16,7 +17,7 @@ public class WorldMapManager {
         return Holder.INSTANCE;
     }
     private WorldMapManager(){
-        AbstractWorldMap worldMap = new WorldMap(loadMapMatrix());
+        AbstractWorldMap worldMap = new WorldMap(loadMapMatrix(),"worldMap_01");
         this.drawableWorldMap = worldMap;
         this.worldMapInformation =worldMap;
     }
