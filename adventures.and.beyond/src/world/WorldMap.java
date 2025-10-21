@@ -9,8 +9,8 @@ import static helper.Constant.MAX_SCREEN_COLUMN;
 import static helper.Constant.TILE_SIZE;
 
 public class WorldMap extends AbstractWorldMap{
-    protected WorldMap(int[][] mapTileMatrix) {
-        super(mapTileMatrix);
+    protected WorldMap(int[][] mapTileMatrix,String worldMapKey) {
+        super(mapTileMatrix,worldMapKey);
     }
 
     @Override

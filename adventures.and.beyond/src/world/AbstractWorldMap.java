@@ -3,6 +3,8 @@ package world;
 import entity.manager.EntityManager;
 import entity.manager.EntityManagerFactory;
 import entity.player.Player;
+import object.InteractableObjectManagerFactory;
+import object.interactable.objects.InteractableObject;
 import tile.registry.TileRegistry;
 import tile.registry.TileRegistryFactory;
 
@@ -71,12 +73,22 @@ public abstract class AbstractWorldMap implements DrawableWorldMap,WorldMapInfor
 
 
         int drawMapRow = getDrawMapStarterRow(player);
-
+        // drawing map
         drawWorldMap(graphics2D, drawMapRow, drawMapCol);
-
+        // drawing intractable objects
+        drawInteractiveObjects(graphics2D);
     }
 
     protected abstract void drawWorldMap(Graphics2D graphics2D,int drawMapRow,int drawMapCol);
+
+    public void drawInteractiveObjects(Graphics2D graphics2D) {
+        Player player = EntityManagerFactory.getInstance().getPlayer();
+
+        for (int currentIndex = 0; currentIndex <= this.interactableObjects.length - 1; currentIndex++) {
+            InteractableObject obj = this.interactableObjects[currentIndex];
+            obj.draw(graphics2D, player);
+        }
+    }
 
 
     protected int getTileKeyByRowAndCol(int row, int col) {
