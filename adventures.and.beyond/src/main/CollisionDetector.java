@@ -17,6 +17,7 @@ import static helper.Constant.TILE_SIZE;
 
 public class CollisionDetector {
 
+
     private static class Holder {
         private static final CollisionDetector INSTANCE = new CollisionDetector();
     }
@@ -29,6 +30,8 @@ public class CollisionDetector {
     }
 
     public void checkTileCollision(Entity entity) {
+        if(entity.isIdle())return;
+
         Rectangle solidArea = entity.getSolidArea();
         int entityLeftWorldX = entity.getWorldPositionX() + solidArea.x;
         int entityRightWorldX = entity.getWorldPositionX() + solidArea.x + solidArea.width;
@@ -40,46 +43,37 @@ public class CollisionDetector {
         int entityTopRow = entityTopWorldY / TILE_SIZE;
         int entityBottomRow = entityBottomWorldY / TILE_SIZE;
 
-        int tileTypeNum1 = -1;
-        int tileTypeNum2 = -1;
 
         int speed = entity.getSpeed();
         WorldMapManager worldMapManager = WorldMapManagerFactory.getInstance();
+        boolean collideOne =false;
+        boolean collideTwo =false;
 
         switch (entity.getDirection()) {
             case FACING_BACKWARD -> {
                 int nextRow = (entityTopWorldY - speed) / TILE_SIZE;
-                tileTypeNum1 = worldMapManager.getTileKeyByRowAndCol(nextRow, entityLeftCol);
-                tileTypeNum2 = worldMapManager.getTileKeyByRowAndCol(nextRow, entityRightCol);
+                collideOne = worldMapManager.canTileBeCollided(nextRow,entityLeftCol);
+                collideTwo = worldMapManager.canTileBeCollided(nextRow,entityRightCol);
             }
             case FACING_FORWARD -> {
                 int nextRow = (entityBottomWorldY + speed) / TILE_SIZE;
-                tileTypeNum1 = worldMapManager.getTileKeyByRowAndCol(nextRow, entityLeftCol);
-                tileTypeNum2 = worldMapManager.getTileKeyByRowAndCol(nextRow, entityRightCol);
+                collideOne = worldMapManager.canTileBeCollided(nextRow,entityLeftCol);
+                collideTwo = worldMapManager.canTileBeCollided(nextRow,entityRightCol);
             }
             case FACING_LEFTWARD -> {
                 int nextCol = (entityLeftWorldX - speed) / TILE_SIZE;
-                tileTypeNum1 = worldMapManager.getTileKeyByRowAndCol(entityTopRow, nextCol);
-                tileTypeNum2 = worldMapManager.getTileKeyByRowAndCol(entityBottomRow, nextCol);
+                collideOne = worldMapManager.canTileBeCollided(entityTopRow,nextCol);
+                collideTwo = worldMapManager.canTileBeCollided(entityBottomRow,nextCol);
             }
             case FACING_RIGHTWARD -> {
                 int nextCol = (entityRightWorldX + speed) / TILE_SIZE;
-                tileTypeNum1 = worldMapManager.getTileKeyByRowAndCol(entityTopRow, nextCol);
-                tileTypeNum2 = worldMapManager.getTileKeyByRowAndCol(entityBottomRow, nextCol);
+                collideOne = worldMapManager.canTileBeCollided(entityTopRow,nextCol);
+                collideTwo = worldMapManager.canTileBeCollided(entityBottomRow,nextCol);
             }
         }
 
-        boolean isAtIdle = tileTypeNum1 == -1 && tileTypeNum2 == -1;
-        if (isAtIdle) {
-            entity.setOnCollision(false);
-        } else {
-            TileRegistry tileRegistry = TileRegistryFactory.getInstance();
-            boolean collideOne = tileRegistry.couldTileTypeBeCollided(tileTypeNum1);
-            boolean collideTwo =tileRegistry.couldTileTypeBeCollided(tileTypeNum2);
-
             boolean canCollied = collideOne && collideTwo;
             entity.setOnCollision(!canCollied);
-        }
     }
 
     public void checkObjectCollision(Player player) {
