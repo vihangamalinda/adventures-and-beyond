@@ -15,13 +15,18 @@ public abstract class AbstractWorldMap implements DrawableWorldMap,WorldMapInfor
     private final int[][] mapTileMatrix;
     private final EntityManager entityManager;
     private final TileRegistry tileRegistry;
-
-    protected AbstractWorldMap(int[][] mapTileMatrix) {
+    private final InteractableObject[] interactableObjects;
+    protected AbstractWorldMap(int[][] mapTileMatrix,String worldMapKey) {
         this.mapTileMatrix = mapTileMatrix;
         this.entityManager = EntityManagerFactory.getInstance();
         this.tileRegistry = TileRegistryFactory.getInstance();
+        this.interactableObjects = InteractableObjectManagerFactory.getInstance().getInteratableObjectsByWorldMapKey(worldMapKey);
     }
 
+    @Override
+    public InteractableObject[] getInteractableObjects() {
+        return interactableObjects;
+    }
 
     protected int getDrawMapStarterRow(Player player) {
         int drawMapRow = (player.getCurrentRowOnWorldMap() - (MAX_SCREEN_ROW / 2));
