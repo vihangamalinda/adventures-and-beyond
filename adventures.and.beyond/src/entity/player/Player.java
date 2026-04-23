@@ -3,8 +3,9 @@ package entity.player;
 import directionEnum.Direction;
 import entity.Entity;
 import helper.Constant;
+import keyhandler.state.ReadKeyState;
 import main.CollisionDetector;
-import main.KeyHandler;
+import keyhandler.KeyHandler;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -95,28 +96,21 @@ public class Player extends Entity {
     }
 
     private void checkIdleState() {
-        KeyHandler keyHandler = KeyHandler.getInstance();
-        boolean hasUpPressed = keyHandler.isUpPressed();
-        boolean hasDownPressed = keyHandler.isDownPressed();
-        boolean hasLeftPressed = keyHandler.isLeftPressed();
-        boolean hasRightPressed = keyHandler.isRightPressed();
-
-//        boolean isIdle = !hasUpPressed && !hasDownPressed && !hasLeftPressed && !hasRightPressed;
-        boolean isIdle = !keyHandler.isAnyMovementDirectionKeyPressed();
+        boolean isIdle = !KeyHandler.getInstance().isAnyMovementDirectionKeyPressed();
         setIdle(isIdle);
     }
 
     private void changeDirection() {
         Direction direction = this.getDirection();
-        KeyHandler keyHandler = KeyHandler.getInstance();
+        ReadKeyState registeredKeyState = KeyHandler.getInstance().getRegisteredKeyState();
 
-        if (keyHandler.isUpPressed()) {
+        if (registeredKeyState.isUpPressed()) {
             direction = Direction.FACING_BACKWARD;
-        } else if (keyHandler.isDownPressed()) {
+        } else if (registeredKeyState.isDownPressed()) {
             direction = Direction.FACING_FORWARD;
-        } else if (keyHandler.isLeftPressed()) {
+        } else if (registeredKeyState.isLeftPressed()) {
             direction = Direction.FACING_LEFTWARD;
-        } else if (keyHandler.isRightPressed()) {
+        } else if (registeredKeyState.isRightPressed()) {
             direction = Direction.FACING_RIGHTWARD;
         }
         if (!this.isIdle()) {
@@ -125,14 +119,15 @@ public class Player extends Entity {
     }
 
     private void performMovement() {
-        KeyHandler keyHandler = KeyHandler.getInstance();
-        if (keyHandler.isUpPressed()) {
+        ReadKeyState registeredKeyState = KeyHandler.getInstance().getRegisteredKeyState();
+
+        if (registeredKeyState.isUpPressed()) {
             this.moveUpDirection();
-        } else if (keyHandler.isDownPressed()) {
+        } else if (registeredKeyState.isDownPressed()) {
             this.moveDownDirection();
-        } else if (keyHandler.isLeftPressed()) {
+        } else if (registeredKeyState.isLeftPressed()) {
             this.moveLeftDirection();
-        } else if (keyHandler.isRightPressed()) {
+        } else if (registeredKeyState.isRightPressed()) {
             this.moveRightDirection();
         }
     }
