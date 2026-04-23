@@ -6,6 +6,7 @@ import entity.manager.EntityManagerFactory;
 import helper.Constant;
 
 import helper.Timer;
+import keyhandler.KeyHandler;
 import sound.SoundManager;
 //import tile.TileManager;
 import ui.UserInterfaceManager;
@@ -124,7 +125,8 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     private void update() {
-        if (KeyHandler.getInstance().isOnPause()) {
+        boolean onPause = KeyHandler.getInstance().getRegisteredKeyState().isOnPause();
+        if (onPause) {
             showPauseModal();
         } else {
             this.entityManager.updateEntities();
