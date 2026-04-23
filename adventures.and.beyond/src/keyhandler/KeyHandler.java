@@ -1,14 +1,24 @@
 package keyhandler;
 
+import keyhandler.inputservice.DefaultKeyControlService;
+import keyhandler.inputservice.KeyControlService;
+import keyhandler.state.ReadKeyState;
+import keyhandler.state.RegisteredKeyState;
+import keyhandler.state.RegisteredKeyStateImpl;
 import ui.UserInterfaceManager;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
-    private boolean upPressed, downPressed, leftPressed, rightPressed, onDevMood, onPause;
+    private final RegisteredKeyState registeredKeyState;
+    private final KeyControlService defaultKeyControlService;
+    private KeyControlService activeKeyControlService;
 
     private KeyHandler() {
+        this.registeredKeyState = new RegisteredKeyStateImpl();
+        this.defaultKeyControlService = new DefaultKeyControlService(this.registeredKeyState);
+        this.activeKeyControlService = this.defaultKeyControlService;
     }
 
     private static class Holder {
@@ -19,28 +29,12 @@ public class KeyHandler implements KeyListener {
         return Holder.INSTANCE;
     }
 
-    public boolean isUpPressed() {
-        return this.upPressed;
+    public ReadKeyState getRegisteredKeyState() {
+        return this.registeredKeyState;
     }
 
-    public boolean isDownPressed() {
-        return this.downPressed;
-    }
-
-    public boolean isLeftPressed() {
-        return this.leftPressed;
-    }
-
-    public boolean isRightPressed() {
-        return this.rightPressed;
-    }
-
-    public boolean isOnDevMood() {
-        return this.onDevMood;
-    }
-
-    public boolean isOnPause() {
-        return onPause;
+    public void setActiveKeyControlService(KeyControlService activeKeyControlService) {
+        this.activeKeyControlService = activeKeyControlService;
     }
 
     @Override
@@ -49,59 +43,16 @@ public class KeyHandler implements KeyListener {
     }
 
     public boolean isAnyMovementDirectionKeyPressed() {
-        return this.upPressed || this.downPressed || this.leftPressed || this.rightPressed;
+        return this.registeredKeyState.isAnyMovementDirectionKeyPressed();
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        int code = e.getKeyCode();
-
-        switch (code) {
-            case KeyEvent.VK_W:
-                this.upPressed = true;
-                break;
-            case KeyEvent.VK_S:
-                this.downPressed = true;
-                break;
-            case KeyEvent.VK_A:
-                this.leftPressed = true;
-                break;
-            case KeyEvent.VK_D:
-                this.rightPressed = true;
-                break;
-            case KeyEvent.VK_I:
-                this.onDevMood = !this.onDevMood;
-                break;
-            case KeyEvent.VK_P:
-                boolean isOnPause = this.onPause;
-                if (isOnPause) {
-                    UserInterfaceManager.getInstance().deactivateMainNotification();
-                }
-                this.onPause = !isOnPause;
-            default:
-
-        }
+        this.defaultKeyControlService.keyPressed(e);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        int code = e.getKeyCode();
-
-        switch (code) {
-            case KeyEvent.VK_W:
-                this.upPressed = false;
-                break;
-            case KeyEvent.VK_S:
-                this.downPressed = false;
-                break;
-            case KeyEvent.VK_A:
-                this.leftPressed = false;
-                break;
-            case KeyEvent.VK_D:
-                this.rightPressed = false;
-                break;
-            default:
-
-        }
+        this.activeKeyControlService.keyReleased(e);
     }
 }
