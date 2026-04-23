@@ -101,7 +101,8 @@ public class Player extends Entity {
         boolean hasLeftPressed = keyHandler.isLeftPressed();
         boolean hasRightPressed = keyHandler.isRightPressed();
 
-        boolean isIdle = !hasUpPressed && !hasDownPressed && !hasLeftPressed && !hasRightPressed;
+//        boolean isIdle = !hasUpPressed && !hasDownPressed && !hasLeftPressed && !hasRightPressed;
+        boolean isIdle = !keyHandler.isAnyMovementDirectionKeyPressed();
         setIdle(isIdle);
     }
 

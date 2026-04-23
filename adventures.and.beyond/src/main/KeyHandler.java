@@ -48,6 +48,10 @@ public class KeyHandler implements KeyListener {
 
     }
 
+    public boolean isAnyMovementDirectionKeyPressed() {
+        return this.upPressed || this.downPressed || this.leftPressed || this.rightPressed;
+    }
+
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
