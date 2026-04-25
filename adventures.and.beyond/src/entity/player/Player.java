@@ -132,12 +132,12 @@ public class Player extends Entity {
         return this.frameIndex;
     }
 
-    public int setCounter(int counter) {
-        return this.counter = counter;
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 
-    public int setFrameIndex(int frameIndex) {
-        return this.frameIndex = frameIndex;
+    public void setFrameIndex(int frameIndex) {
+        this.frameIndex = frameIndex;
     }
 
     @Override
