@@ -1,11 +1,19 @@
 package entity.player;
 
+import collision.detector.object.ObjectCollisionDetector;
+import collision.detector.object.ObjectCollisionDetectorImpl;
+import collision.detector.tile.TileCollisionDetector;
+import collision.detector.tile.TileCollisionDetectorImpl;
 import directionEnum.Direction;
 import entity.Entity;
 import helper.Constant;
+import keyhandler.playerinputstate.playerinputreader.PlayerInputReader;
+import keyhandler.playerinputstate.playerinputreader.PlayerInputReaderImpl;
+import keyhandler.playerinputstate.registeredplayerinput.RegisteredPlayerInput;
 import keyhandler.state.ReadKeyState;
-import main.CollisionDetector;
 import keyhandler.KeyHandler;
+import movement.player.PlayerMovementService;
+import movement.player.PlayerMovementServiceImpl;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -44,31 +52,51 @@ public class Player extends Entity {
     int frameIndex = 0;
     int counter = 0;
 
+    private final TileCollisionDetector tileCollisionDetector;
+    private final ObjectCollisionDetector objectCollisionDetector;
+    private final PlayerMovementService playerMovementService;
+
+    private final PlayerInputReader playerInputReader;
+
 
     public Player(int positionX, int positionY) {
         super(positionX, positionY, movementSpeed, Direction.FACING_FORWARD, true, new Rectangle(PLAYER_SOLID_AREA_START_X, PLAYER_SOLID_AREA_START_Y, PLAYER_SOLID_AREA_WIDTH, PLAYER_SOLID_AREA_HEIGHT), false);
         this.collectedKeyCode = new ArrayList<>();
         this.initializeCentralizeCamera();
+        this.tileCollisionDetector = new TileCollisionDetectorImpl();
+        this.objectCollisionDetector = new ObjectCollisionDetectorImpl();
+        this.playerMovementService= new PlayerMovementServiceImpl();
+        ReadKeyState readKeyState = KeyHandler.getInstance().readRegisteredKeyState();
+        this.playerInputReader = new PlayerInputReaderImpl(readKeyState);
     }
 
     public void update() {
         // handle idle or not
-        checkIdleState();
+        RegisteredPlayerInput registeredPlayerInput = this.playerInputReader.readPlayerInput();
+        this.playerMovementService.updateDirectionAndIdleState(this,registeredPlayerInput);
+//        checkIdleState();
+//
+//        changeDirection();
 
-        changeDirection();
-
-        CollisionDetector collisionDetector = CollisionDetector.getInstance();
-        collisionDetector.checkTileCollision(this);
-        collisionDetector.checkObjectCollision(this);
+//        CollisionDetector collisionDetector = new CollisionDetector();
+        checkForCollision();
+//        collisionDetector.checkTileCollision(this);
+//        collisionDetector.checkObjectCollision(this);
 
 //        System.out.println(!this.isOnCollision());
-        if (!this.isOnCollision()) {
-            performMovement();
-        }
+//        if (!this.isOnCollision()) {
+//            performMovement();
+//        }
+        this.playerMovementService.updateWorldPosition(this,registeredPlayerInput);
 
 
         counter++;
 
+    }
+
+    private void checkForCollision() {
+        this.tileCollisionDetector.checkTileCollision(this);
+        this.objectCollisionDetector.checkObjectCollision(this);
     }
 
     public ArrayList<String> getCollectedKeyCode() {
