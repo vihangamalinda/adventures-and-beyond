@@ -15,12 +15,12 @@ import static helper.Constant.*;
 public abstract class AbstractWorldMap implements DrawableWorldMap,WorldMapInformation{
 
     private final int[][] mapTileMatrix;
-    private final EntityManager entityManager;
+//    private final EntityManager entityManager;
     private final TileRegistry tileRegistry;
     private final InteractableObject[] interactableObjects;
     protected AbstractWorldMap(int[][] mapTileMatrix,String worldMapKey) {
         this.mapTileMatrix = mapTileMatrix;
-        this.entityManager = EntityManagerFactory.getInstance();
+//        this.entityManager = EntityManagerFactory.getInstance();
         this.tileRegistry = TileRegistryFactory.getInstance();
         this.interactableObjects = InteractableObjectManagerFactory.getInstance().getInteratableObjectsByWorldMapKey(worldMapKey);
     }
@@ -53,9 +53,9 @@ public abstract class AbstractWorldMap implements DrawableWorldMap,WorldMapInfor
         return drawMapCol;
     }
 
-    protected EntityManager getEntityManager() {
-        return entityManager;
-    }
+//    protected EntityManager getEntityManager() {
+//        return entityManager;
+//    }
 
     protected int[][] getMapTileMatrix() {
         return mapTileMatrix;
@@ -67,7 +67,7 @@ public abstract class AbstractWorldMap implements DrawableWorldMap,WorldMapInfor
 
     @Override
     public void draw(Graphics2D graphics2D) {
-        Player player =this.getEntityManager().getPlayer();;
+        Player player =EntityManagerFactory.getInstance().getPlayer();;
 
         int drawMapCol = getDrawMapStarterCol(player);
 
