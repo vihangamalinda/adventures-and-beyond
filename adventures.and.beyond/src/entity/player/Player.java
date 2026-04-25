@@ -8,6 +8,8 @@ import directionEnum.Direction;
 import entity.Entity;
 import entity.animation.service.player.PlayerAnimationService;
 import entity.animation.service.player.PlayerAnimationServiceImpl;
+import entity.drawable.service.player.PlayerDrawService;
+import entity.drawable.service.player.PlayerDrawServiceImpl;
 import helper.Constant;
 import keyhandler.playerinputstate.playerinputreader.PlayerInputReader;
 import keyhandler.playerinputstate.playerinputreader.PlayerInputReaderImpl;
@@ -46,6 +48,7 @@ public class Player extends Entity {
 
     private final PlayerInputReader playerInputReader;
     private final PlayerAnimationService playerAnimationService;
+    private final PlayerDrawService playerDrawService;
 
 
     public Player(int positionX, int positionY) {
@@ -58,6 +61,7 @@ public class Player extends Entity {
         ReadKeyState readKeyState = KeyHandler.getInstance().readRegisteredKeyState();
         this.playerInputReader = new PlayerInputReaderImpl(readKeyState);
         this.playerAnimationService = new PlayerAnimationServiceImpl();
+        this.playerDrawService = new PlayerDrawServiceImpl();
     }
 
     public void update() {
@@ -160,37 +164,7 @@ public class Player extends Entity {
     }
 
     public void draw(Graphics2D graphics2D) {
-//        if (counter % 30 == 0) {
-//            if (frameIndex >= 5) {
-//                frameIndex = 0;
-//            } else {
-//                frameIndex++;
-//            }
-//            counter = 0;
-//        }
-
-        int scaledPlayer = 48 * PLAYER_UP_SCALE;
-//        graphics2D.setColor(Color.WHITE);
-//        graphics2D.fillRect( this.screenPositionX,  this.screenPositionY, scaledPlayer, scaledPlayer);
-        BufferedImage image = getPlayerImageByIndex(this.getDirection(), this.isIdle(), this.frameIndex);
-//        BufferedImage image =imageArr[index];
-
-
-//        graphics2D.drawImage(image, this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer, null);
-        graphics2D.setColor(Color.WHITE);
-        graphics2D.drawRect(this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer);
-
-//        graphics2D.drawImage(image, this.screenPositionX, this.screenPositionY, null);
-        graphics2D.drawImage(this.getCurrentPlayerImage(), this.screenPositionX, this.screenPositionY, null);
-
-        drawSolidArea(graphics2D);
-//        logPlayerCurrentRowAndCol();
-//        logPlayerScreenColRow();
-
-//        graphics2D.setColor(Color.WHITE);
-//        graphics2D.fillRect(this.getPositionX() +200, this.getPositionY() +300, Helper.TILE_SIZE, Helper.TILE_SIZE);
-//        BufferedImage blueImg =Helper.blueImg;
-//        graphics2D.drawImage(blueImg,this.getPositionX() +200,this.getPositionY() +300,Helper.TILE_SIZE,Helper.TILE_SIZE,null);
+        this.playerDrawService.draw(graphics2D,this);
     }
 
 
