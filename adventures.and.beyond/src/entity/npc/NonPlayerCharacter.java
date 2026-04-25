@@ -1,10 +1,16 @@
 package entity.npc;
 
+import collision.detector.CollisionDetector;
+import collision.detector.npc.NonPlayerCharacterCollisionDetector;
+import collision.detector.npc.NonPlayerCharacterCollisionDetectorImpl;
+import collision.detector.tile.TileCollisionDetector;
+import collision.detector.tile.TileCollisionDetectorImpl;
 import directionEnum.Direction;
 import entity.Entity;
 import entity.player.Player;
 import helper.DrawHelper;
-import main.CollisionDetector;
+import movement.nonplayer.NonPlayerMovementService;
+import movement.nonplayer.NonPlayerMovementServiceImpl;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -22,24 +28,34 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
     private int frameCounter = 0;
     private int currentFrameIndex = 0;
 
+    private final TileCollisionDetector tileCollisionDetector;
+    private final NonPlayerCharacterCollisionDetector nonPlayerCharacterCollisionDetector;
+    private final NonPlayerMovementService nonPlayerMovementService;
+
     public NonPlayerCharacter(int worldPositionX, int worldPositionY, int speed, Direction direction, boolean isIdle, Rectangle solidArea, boolean onCollision, String characterAnimationKey) {
         super(worldPositionX, worldPositionY, speed, direction, isIdle, solidArea, onCollision);
         this.characterAnimationKey = characterAnimationKey;
         this.isOnCollisionWithPlayer = false;
+        this.tileCollisionDetector = new TileCollisionDetectorImpl();
+        this.nonPlayerCharacterCollisionDetector = new NonPlayerCharacterCollisionDetectorImpl();
+        this.nonPlayerMovementService = new NonPlayerMovementServiceImpl();
+
     }
 
     @Override
     public void update(Player player) {
         checkForCollisions(player);
 
-        if (shouldUpdatePosition()) {
-            updatePosition();
-        }
 
-        if (shouldChangeDirection()) {
-            changeDirection();
-            this.resetFrameCounter();
-        }
+//        if (shouldUpdatePosition()) {
+//            updatePosition();
+//        }
+//
+//        if (shouldChangeDirection()) {
+//            changeDirection();
+//            this.resetFrameCounter();
+//        }
+        this.nonPlayerMovementService.updatePositionAndDirection(this);
 
         if (!isOnCollisionWithPlayer()) {
             this.frameCounter++;
@@ -114,10 +130,14 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
 
     }
 
-    private void checkForCollisions() {
-        CollisionDetector collisionDetector = CollisionDetector.getInstance();
-        collisionDetector.checkTileCollision(this);
-        collisionDetector.checkCharacterPlayerCollision(this);
+    private void checkForCollisions(Player player) {
+//        CollisionDetector collisionDetector = new CollisionDetector();
+//        TileCollisionDetector tileCollisionDetector = new TileCollisionDetectorImpl();
+        this.tileCollisionDetector.checkTileCollision(this);
+        this.nonPlayerCharacterCollisionDetector.checkCharacterPlayerCollision(this,player);
+
+//        collisionDetector.checkTileCollision(this);
+//        collisionDetector.checkCharacterPlayerCollision(this);
     }
 
     private boolean shouldUpdatePosition() {
