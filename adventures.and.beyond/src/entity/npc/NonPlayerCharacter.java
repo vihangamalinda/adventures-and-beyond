@@ -57,9 +57,9 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
 //        }
         this.nonPlayerMovementService.updatePositionAndDirection(this);
 
-        if (!isOnCollisionWithPlayer()) {
+//        if (!isOnCollisionWithPlayer()) {
             this.frameCounter++;
-        }
+//        }
     }
 
     public String getCharacterAnimationKey() {

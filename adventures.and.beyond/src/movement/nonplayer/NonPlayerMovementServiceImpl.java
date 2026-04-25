@@ -17,7 +17,7 @@ public class NonPlayerMovementServiceImpl implements NonPlayerMovementService {
         // Remember to consider factors like collision detection and interaction with the player when updating the non-player character's movement.
         // This method can be further expanded to include more complex movement patterns or behaviors based on the game's requirements.
         // Overall, this method serves as a central point for managing the movement of non-player characters in the game world.
-
+        if(nonPlayerCharacter.isOnCollisionWithPlayer()) return;
 
         if(this.shouldUpdatePosition(nonPlayerCharacter)){
             this.updateNonPlayerCharacterPosition(nonPlayerCharacter);
