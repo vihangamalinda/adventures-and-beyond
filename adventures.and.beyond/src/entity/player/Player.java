@@ -6,6 +6,8 @@ import collision.detector.tile.TileCollisionDetector;
 import collision.detector.tile.TileCollisionDetectorImpl;
 import directionEnum.Direction;
 import entity.Entity;
+import entity.animation.service.player.PlayerAnimationService;
+import entity.animation.service.player.PlayerAnimationServiceImpl;
 import helper.Constant;
 import keyhandler.playerinputstate.playerinputreader.PlayerInputReader;
 import keyhandler.playerinputstate.playerinputreader.PlayerInputReaderImpl;
@@ -34,14 +36,16 @@ public class Player extends Entity {
     private static final int movementSpeed = 4;
 
 
-    int frameIndex = 0;
-    int counter = 0;
+    private int frameIndex = 0;
+    private int counter = 0;
+    private BufferedImage currentPlayerImage;
 
     private final TileCollisionDetector tileCollisionDetector;
     private final ObjectCollisionDetector objectCollisionDetector;
     private final PlayerMovementService playerMovementService;
 
     private final PlayerInputReader playerInputReader;
+    private final PlayerAnimationService playerAnimationService;
 
 
     public Player(int positionX, int positionY) {
@@ -53,6 +57,7 @@ public class Player extends Entity {
         this.playerMovementService= new PlayerMovementServiceImpl();
         ReadKeyState readKeyState = KeyHandler.getInstance().readRegisteredKeyState();
         this.playerInputReader = new PlayerInputReaderImpl(readKeyState);
+        this.playerAnimationService = new PlayerAnimationServiceImpl();
     }
 
     public void update() {
@@ -75,7 +80,9 @@ public class Player extends Entity {
         this.playerMovementService.updateWorldPosition(this,registeredPlayerInput);
 
 
-        counter++;
+
+//        counter++;
+        playerAnimationService.updateAnimation(this);
 
     }
 
@@ -145,15 +152,22 @@ public class Player extends Entity {
 //        }
 //    }
 
+    public BufferedImage getCurrentPlayerImage() {
+        return this.currentPlayerImage;
+    }
+    public void setCurrentPlayerImage(BufferedImage currentPlayerImage) {
+        this.currentPlayerImage = currentPlayerImage;
+    }
+
     public void draw(Graphics2D graphics2D) {
-        if (counter % 30 == 0) {
-            if (frameIndex >= 5) {
-                frameIndex = 0;
-            } else {
-                frameIndex++;
-            }
-            counter = 0;
-        }
+//        if (counter % 30 == 0) {
+//            if (frameIndex >= 5) {
+//                frameIndex = 0;
+//            } else {
+//                frameIndex++;
+//            }
+//            counter = 0;
+//        }
 
         int scaledPlayer = 48 * PLAYER_UP_SCALE;
 //        graphics2D.setColor(Color.WHITE);
@@ -166,7 +180,9 @@ public class Player extends Entity {
         graphics2D.setColor(Color.WHITE);
         graphics2D.drawRect(this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer);
 
-        graphics2D.drawImage(image, this.screenPositionX, this.screenPositionY, null);
+//        graphics2D.drawImage(image, this.screenPositionX, this.screenPositionY, null);
+        graphics2D.drawImage(this.getCurrentPlayerImage(), this.screenPositionX, this.screenPositionY, null);
+
         drawSolidArea(graphics2D);
 //        logPlayerCurrentRowAndCol();
 //        logPlayerScreenColRow();
@@ -200,6 +216,18 @@ public class Player extends Entity {
         if (isWithinRange) {
             super.setWorldPositionX(worldPositionX);
         }
+    }
+    public int getCounter(){
+        return this.counter;
+    }
+    public int getFrameIndex(){
+        return this.frameIndex;
+    }
+    public int setCounter(int counter){
+        return this.counter=counter;
+    }
+    public int setFrameIndex(int frameIndex){
+        return this.frameIndex=frameIndex;
     }
 
     @Override
