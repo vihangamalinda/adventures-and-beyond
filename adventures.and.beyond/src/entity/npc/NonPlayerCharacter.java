@@ -3,6 +3,8 @@ package entity.npc;
 import collision.detector.CollisionDetector;
 import collision.detector.npc.NonPlayerCharacterCollisionDetector;
 import collision.detector.npc.NonPlayerCharacterCollisionDetectorImpl;
+import collision.detector.service.NonPlayerCharacterCollisionService;
+import collision.detector.service.NonPlayerCharacterCollisionServiceImpl;
 import collision.detector.tile.TileCollisionDetector;
 import collision.detector.tile.TileCollisionDetectorImpl;
 import directionEnum.Direction;
@@ -27,18 +29,16 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
 
     private int frameCounter = 0;
     private int currentFrameIndex = 0;
-
-    private final TileCollisionDetector tileCollisionDetector;
-    private final NonPlayerCharacterCollisionDetector nonPlayerCharacterCollisionDetector;
     private final NonPlayerMovementService nonPlayerMovementService;
+
+    private final NonPlayerCharacterCollisionService nonPlayerCharacterCollisionService;
 
     public NonPlayerCharacter(int worldPositionX, int worldPositionY, int speed, Direction direction, boolean isIdle, Rectangle solidArea, boolean onCollision, String characterAnimationKey) {
         super(worldPositionX, worldPositionY, speed, direction, isIdle, solidArea, onCollision);
         this.characterAnimationKey = characterAnimationKey;
         this.isOnCollisionWithPlayer = false;
-        this.tileCollisionDetector = new TileCollisionDetectorImpl();
-        this.nonPlayerCharacterCollisionDetector = new NonPlayerCharacterCollisionDetectorImpl();
         this.nonPlayerMovementService = new NonPlayerMovementServiceImpl();
+        this.nonPlayerCharacterCollisionService = new NonPlayerCharacterCollisionServiceImpl();
 
     }
 
@@ -133,8 +133,10 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
     private void checkForCollisions(Player player) {
 //        CollisionDetector collisionDetector = new CollisionDetector();
 //        TileCollisionDetector tileCollisionDetector = new TileCollisionDetectorImpl();
-        this.tileCollisionDetector.checkTileCollision(this);
-        this.nonPlayerCharacterCollisionDetector.checkCharacterPlayerCollision(this,player);
+//        this.tileCollisionDetector.checkTileCollision(this);
+//        this.nonPlayerCharacterCollisionDetector.checkCharacterPlayerCollision(this,player);
+
+        this.nonPlayerCharacterCollisionService.checkCollision(this, player);
 
 //        collisionDetector.checkTileCollision(this);
 //        collisionDetector.checkCharacterPlayerCollision(this);
