@@ -1,9 +1,8 @@
 package entity.player;
 
-import collision.detector.object.ObjectCollisionDetector;
-import collision.detector.object.ObjectCollisionDetectorImpl;
-import collision.detector.tile.TileCollisionDetector;
-import collision.detector.tile.TileCollisionDetectorImpl;
+
+import collision.detector.service.PlayerCollisionService;
+import collision.detector.service.PlayerCollisionServiceImpl;
 import directionEnum.Direction;
 import entity.Entity;
 import entity.animation.service.player.PlayerAnimationService;
@@ -25,14 +24,9 @@ import java.util.ArrayList;
 
 import static entity.player.PlayerConstant.*;
 import static helper.Constant.*;
-import static entity.player.PlayerSpriteManager.getPlayerImageByIndex;
-
 public class Player extends Entity {
-//    private KeyHandler keyHandler;
-
 
     private ArrayList<String> collectedKeyCode;
-
     private int screenPositionX;
     private int screenPositionY;
     private static final int movementSpeed = 4;
@@ -41,40 +35,32 @@ public class Player extends Entity {
     private int frameIndex = 0;
     private int counter = 0;
     private BufferedImage currentPlayerImage;
-
-    private final TileCollisionDetector tileCollisionDetector;
-    private final ObjectCollisionDetector objectCollisionDetector;
     private final PlayerMovementService playerMovementService;
 
     private final PlayerInputReader playerInputReader;
     private final PlayerAnimationService playerAnimationService;
     private final PlayerDrawService playerDrawService;
+    private final PlayerCollisionService playerCollisionService;
 
 
     public Player(int positionX, int positionY) {
         super(positionX, positionY, movementSpeed, Direction.FACING_FORWARD, true, new Rectangle(PLAYER_SOLID_AREA_START_X, PLAYER_SOLID_AREA_START_Y, PLAYER_SOLID_AREA_WIDTH, PLAYER_SOLID_AREA_HEIGHT), false);
         this.collectedKeyCode = new ArrayList<>();
         this.initializeCentralizeCamera();
-        this.tileCollisionDetector = new TileCollisionDetectorImpl();
-        this.objectCollisionDetector = new ObjectCollisionDetectorImpl();
         this.playerMovementService = new PlayerMovementServiceImpl();
         ReadKeyState readKeyState = KeyHandler.getInstance().readRegisteredKeyState();
         this.playerInputReader = new PlayerInputReaderImpl(readKeyState);
         this.playerAnimationService = new PlayerAnimationServiceImpl();
         this.playerDrawService = new PlayerDrawServiceImpl();
+        this.playerCollisionService = new PlayerCollisionServiceImpl();
     }
 
     public void update() {
         RegisteredPlayerInput registeredPlayerInput = this.playerInputReader.readPlayerInput();
         this.playerMovementService.updateDirectionAndIdleState(this, registeredPlayerInput);
-        checkForCollision();
+        this.playerCollisionService.checkCollision(this);
         this.playerMovementService.updateWorldPosition(this, registeredPlayerInput);
-        playerAnimationService.updateAnimation(this);
-    }
-
-    private void checkForCollision() {
-        this.tileCollisionDetector.checkTileCollision(this);
-        this.objectCollisionDetector.checkObjectCollision(this);
+        this.playerAnimationService.updateAnimation(this);
     }
 
     public ArrayList<String> getCollectedKeyCode() {
