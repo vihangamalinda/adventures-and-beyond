@@ -66,7 +66,7 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
         return this.characterAnimationKey;
     }
 
-    private boolean isOnCollisionWithPlayer() {
+    public boolean isOnCollisionWithPlayer() {
         return isOnCollisionWithPlayer;
     }
 
@@ -167,7 +167,7 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
         return updateRate && !this.isOnCollisionWithPlayer();
     }
 
-    private void resetFrameCounter() {
+    public void resetFrameCounter() {
         this.setFrameCounter(0);
     }
 
@@ -185,6 +185,10 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
 
     private boolean shouldUpdateFrameIndex() {
         return this.frameCounter % 20 == 0;
+    }
+
+    public int getFrameCounter() {
+        return this.frameCounter;
     }
 
     protected abstract void changeDirection();
