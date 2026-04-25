@@ -125,7 +125,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     private void update() {
-        boolean onPause = KeyHandler.getInstance().getRegisteredKeyState().isOnPause();
+        boolean onPause = KeyHandler.getInstance().readRegisteredKeyState().isOnPause();
         if (onPause) {
             showPauseModal();
         } else {
