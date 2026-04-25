@@ -2,7 +2,7 @@ package movement.player;
 
 import directionEnum.Direction;
 import entity.player.Player;
-import keyhandler.playerinputstate.registeredplayerinput.RegisteredPlayerInput;
+import input.model.player.RegisteredPlayerInput;
 
 public class PlayerMovementServiceImpl implements PlayerMovementService {
 

@@ -1,4 +1,4 @@
-package keyhandler.inputservice;
+package input.service;
 
 import java.awt.event.KeyEvent;
 

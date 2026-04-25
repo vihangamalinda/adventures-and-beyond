@@ -10,11 +10,11 @@ import animation.service.player.PlayerAnimationServiceImpl;
 import drawable.service.player.PlayerDrawService;
 import drawable.service.player.PlayerDrawServiceImpl;
 import helper.Constant;
-import keyhandler.playerinputstate.playerinputreader.PlayerInputReader;
-import keyhandler.playerinputstate.playerinputreader.PlayerInputReaderImpl;
-import keyhandler.playerinputstate.registeredplayerinput.RegisteredPlayerInput;
-import keyhandler.state.ReadKeyState;
-import keyhandler.KeyHandler;
+import input.KeyHandler;
+import input.model.player.RegisteredPlayerInput;
+import input.reader.PlayerInputReader;
+import input.reader.PlayerInputReaderImpl;
+import input.state.ReadKeyState;
 import movement.player.PlayerMovementService;
 import movement.player.PlayerMovementServiceImpl;
 

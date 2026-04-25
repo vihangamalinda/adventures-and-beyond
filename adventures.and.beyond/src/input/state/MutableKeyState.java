@@ -1,4 +1,4 @@
-package keyhandler.state;
+package input.state;
 
 public interface MutableKeyState{
     void setUpPressed(boolean upPressed);

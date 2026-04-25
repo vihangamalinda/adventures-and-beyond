@@ -1,6 +1,6 @@
 package helper;
 
-import keyhandler.KeyHandler;
+import input.KeyHandler;
 
 public class Timer {
     public static long getStartingTime() {

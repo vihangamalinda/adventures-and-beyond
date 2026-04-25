@@ -1,4 +1,4 @@
-package keyhandler.state;
+package input.state;
 
 public class RegisteredKeyStateImpl implements RegisteredKeyState {
     private boolean upPressed;

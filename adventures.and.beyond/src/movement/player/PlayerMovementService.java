@@ -1,7 +1,7 @@
 package movement.player;
 
 import entity.player.Player;
-import keyhandler.playerinputstate.registeredplayerinput.RegisteredPlayerInput;
+import input.model.player.RegisteredPlayerInput;
 
 public interface PlayerMovementService {
     void updateDirectionAndIdleState(Player player, RegisteredPlayerInput registeredPlayerInput);

@@ -1,4 +1,4 @@
-package keyhandler.playerinputstate.registeredplayerinput;
+package input.model.player;
 
 public class RegisteredPlayerInput {
     public final boolean upPressed;

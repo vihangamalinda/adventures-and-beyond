@@ -1,6 +1,7 @@
-package keyhandler.inputservice;
+package input.service;
 
-import keyhandler.state.RegisteredKeyState;
+;
+import input.state.RegisteredKeyState;
 import ui.UserInterfaceManager;
 
 import java.awt.event.KeyEvent;

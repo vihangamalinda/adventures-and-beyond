@@ -1,8 +1,7 @@
-package keyhandler.playerinputstate.playerinputreader;
+package input.reader;
 
-
-import keyhandler.playerinputstate.registeredplayerinput.RegisteredPlayerInput;
-import keyhandler.state.ReadKeyState;
+import input.model.player.RegisteredPlayerInput;
+import input.state.ReadKeyState;
 
 public class PlayerInputReaderImpl implements PlayerInputReader {
     private final ReadKeyState readKeyState;

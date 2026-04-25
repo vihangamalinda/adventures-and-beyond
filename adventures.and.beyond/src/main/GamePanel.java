@@ -6,7 +6,7 @@ import entity.manager.EntityManagerFactory;
 import helper.Constant;
 
 import helper.Timer;
-import keyhandler.KeyHandler;
+import input.KeyHandler;
 import sound.SoundManager;
 //import tile.TileManager;
 import ui.UserInterfaceManager;
