@@ -1,16 +1,13 @@
-package main;
+package collision.detector;
 
 import entity.Entity;
+import entity.manager.EntityManager;
 import entity.manager.EntityManagerFactory;
 import entity.npc.NonPlayerCharacter;
 import entity.player.Player;
 import object.interactable.objects.InteractableObject;
-import tile.registry.TileRegistry;
-import tile.registry.TileRegistryFactory;
 import world.manager.WorldMapManager;
 import world.manager.WorldMapManagerFactory;
-import world.manager.WorldMapManagerImpl;
-
 import java.awt.*;
 
 import static helper.Constant.TILE_SIZE;
@@ -18,16 +15,22 @@ import static helper.Constant.TILE_SIZE;
 public class CollisionDetector {
 
 
-    private static class Holder {
-        private static final CollisionDetector INSTANCE = new CollisionDetector();
-    }
+//    private static class Holder {
+//        private static final CollisionDetector INSTANCE = new CollisionDetector();
+//    }
+
+    private final WorldMapManager worldMapManager;
+    private final EntityManager entityManager;
 
     public CollisionDetector() {
+        this.worldMapManager = WorldMapManagerFactory.getInstance();
+        this.entityManager = EntityManagerFactory.getInstance();
+
     }
 
-    public static CollisionDetector getInstance() {
-        return Holder.INSTANCE;
-    }
+//    public static CollisionDetector getInstance() {
+//        return Holder.INSTANCE;
+//    }
 
     public void checkTileCollision(Entity entity) {
         if(entity.isIdle())return;
@@ -45,7 +48,7 @@ public class CollisionDetector {
 
 
         int speed = entity.getSpeed();
-        WorldMapManager worldMapManager = WorldMapManagerFactory.getInstance();
+//        WorldMapManager worldMapManager = WorldMapManagerFactory.getInstance();
         boolean collideOne =false;
         boolean collideTwo =false;
 
@@ -77,7 +80,8 @@ public class CollisionDetector {
     }
 
     public void checkObjectCollision(Player player) {
-        InteractableObject[] interactableObjects =  WorldMapManagerFactory.getInstance().getInteractableObject();;
+//        WorldMapManager worldMapManager = WorldMapManagerFactory.getInstance();
+        InteractableObject[] interactableObjects = worldMapManager.getInteractableObject();;
 //        InteractableObject[] interactableObjects = InteractableObjectManager.getInstance().getInteractableObjects();
 
         for (int i = 0; i < interactableObjects.length; i++) {
@@ -92,9 +96,8 @@ public class CollisionDetector {
     }
 
     public void checkCharacterPlayerCollision(NonPlayerCharacter character) {
-
-
-        Player player = EntityManagerFactory.getInstance().getPlayer();
+//        EntityManager entityManager = EntityManagerFactory.getInstance();
+        Player player = entityManager.getPlayer();
         boolean isColliding = character.doCollideWithPlayer(player);
 
 
