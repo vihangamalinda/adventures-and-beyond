@@ -57,7 +57,7 @@ public class Player extends Entity {
         this.initializeCentralizeCamera();
         this.tileCollisionDetector = new TileCollisionDetectorImpl();
         this.objectCollisionDetector = new ObjectCollisionDetectorImpl();
-        this.playerMovementService= new PlayerMovementServiceImpl();
+        this.playerMovementService = new PlayerMovementServiceImpl();
         ReadKeyState readKeyState = KeyHandler.getInstance().readRegisteredKeyState();
         this.playerInputReader = new PlayerInputReaderImpl(readKeyState);
         this.playerAnimationService = new PlayerAnimationServiceImpl();
@@ -65,29 +65,11 @@ public class Player extends Entity {
     }
 
     public void update() {
-        // handle idle or not
         RegisteredPlayerInput registeredPlayerInput = this.playerInputReader.readPlayerInput();
-        this.playerMovementService.updateDirectionAndIdleState(this,registeredPlayerInput);
-//        checkIdleState();
-//
-//        changeDirection();
-
-//        CollisionDetector collisionDetector = new CollisionDetector();
+        this.playerMovementService.updateDirectionAndIdleState(this, registeredPlayerInput);
         checkForCollision();
-//        collisionDetector.checkTileCollision(this);
-//        collisionDetector.checkObjectCollision(this);
-
-//        System.out.println(!this.isOnCollision());
-//        if (!this.isOnCollision()) {
-//            performMovement();
-//        }
-        this.playerMovementService.updateWorldPosition(this,registeredPlayerInput);
-
-
-
-//        counter++;
+        this.playerMovementService.updateWorldPosition(this, registeredPlayerInput);
         playerAnimationService.updateAnimation(this);
-
     }
 
     private void checkForCollision() {
@@ -119,52 +101,16 @@ public class Player extends Entity {
         }
     }
 
-//    private void checkIdleState() {
-//        boolean isIdle = !KeyHandler.getInstance().isAnyMovementDirectionKeyPressed();
-//        setIdle(isIdle);
-//    }
-
-//    private void changeDirection() {
-//        Direction direction = this.getDirection();
-//        ReadKeyState registeredKeyState = KeyHandler.getInstance().readRegisteredKeyState();
-//
-//        if (registeredKeyState.isUpPressed()) {
-//            direction = Direction.FACING_BACKWARD;
-//        } else if (registeredKeyState.isDownPressed()) {
-//            direction = Direction.FACING_FORWARD;
-//        } else if (registeredKeyState.isLeftPressed()) {
-//            direction = Direction.FACING_LEFTWARD;
-//        } else if (registeredKeyState.isRightPressed()) {
-//            direction = Direction.FACING_RIGHTWARD;
-//        }
-//        if (!this.isIdle()) {
-//            this.setDirection(direction);
-//        }
-//    }
-
-//    private void performMovement() {
-//        ReadKeyState registeredKeyState = KeyHandler.getInstance().readRegisteredKeyState();
-//
-//        if (registeredKeyState.isUpPressed()) {
-//            this.moveUpDirection();
-//        } else if (registeredKeyState.isDownPressed()) {
-//            this.moveDownDirection();
-//        } else if (registeredKeyState.isLeftPressed()) {
-//            this.moveLeftDirection();
-//        } else if (registeredKeyState.isRightPressed()) {
-//            this.moveRightDirection();
-//        }
-//    }
-
     public BufferedImage getCurrentPlayerImage() {
         return this.currentPlayerImage;
     }
+
     public void setCurrentPlayerImage(BufferedImage currentPlayerImage) {
         this.currentPlayerImage = currentPlayerImage;
     }
 
     public void draw(Graphics2D graphics2D) {
-        this.playerDrawService.draw(graphics2D,this);
+        this.playerDrawService.draw(graphics2D, this);
     }
 
 
@@ -191,17 +137,21 @@ public class Player extends Entity {
             super.setWorldPositionX(worldPositionX);
         }
     }
-    public int getCounter(){
+
+    public int getCounter() {
         return this.counter;
     }
-    public int getFrameIndex(){
+
+    public int getFrameIndex() {
         return this.frameIndex;
     }
-    public int setCounter(int counter){
-        return this.counter=counter;
+
+    public int setCounter(int counter) {
+        return this.counter = counter;
     }
-    public int setFrameIndex(int frameIndex){
-        return this.frameIndex=frameIndex;
+
+    public int setFrameIndex(int frameIndex) {
+        return this.frameIndex = frameIndex;
     }
 
     @Override
@@ -224,51 +174,10 @@ public class Player extends Entity {
         System.out.println(message);
     }
 
-    private void drawSolidArea(Graphics2D graphics2D) {
-        graphics2D.setColor(Color.RED);
-        Rectangle rectangle = this.getSolidArea();
-        graphics2D.drawRect(this.screenPositionX + rectangle.x, this.screenPositionY + rectangle.y, rectangle.width, rectangle.height);
-    }
-
     private void initializeCentralizeCamera() {
         this.screenPositionX = (Constant.WINDOW_MAX_SCREEN_WIDTH) / 2 - (this.getPlayerCenterX());
         this.screenPositionY = (Constant.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (this.getPlayerCenterY());
-//        this.screenPositionX = (Constant.WINDOW_MAX_SCREEN_WIDTH) / 2 - (centerX);
-//        this.screenPositionY = (Constant.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (centerY);
     }
-
-//    private void moveUpDirection() {
-//        int newPositionY = this.getWorldPositionY() - this.getSpeed();
-//        this.setWorldPositionY(newPositionY);
-//    }
-//
-//    private void moveDownDirection() {
-//        int newPositionY = this.getWorldPositionY() + this.getSpeed();
-//        this.setWorldPositionY(newPositionY);
-//    }
-//
-//    private void moveLeftDirection() {
-//        int newPositionX = this.getWorldPositionX() - this.getSpeed();
-//        this.setWorldPositionX(newPositionX);
-//    }
-//
-//    private void moveRightDirection() {
-//        int newPositionX = this.getWorldPositionX() + this.getSpeed();
-//        this.setWorldPositionX(newPositionX);
-//    }
-
-//    public KeyHandler getKeyHandler() {
-//        return keyHandler;
-//    }
-
-//    public void setKeyHandler(KeyHandler keyHandler) {
-//        this.keyHandler = keyHandler;
-//    }
-
-//    public int getPlayerAbsoluteCenterX() {
-//        int centerX = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
-//        return this.getWorldPositionX() + centerX;
-//    }
 
     public int getCurrentColOnWorldMap() {
         return (this.getWorldPositionX() + getPlayerCenterX()) / TILE_SIZE;
