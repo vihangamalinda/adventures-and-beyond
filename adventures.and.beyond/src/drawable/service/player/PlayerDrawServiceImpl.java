@@ -1,4 +1,4 @@
-package entity.drawable.service.player;
+package drawable.service.player;
 
 import entity.player.Player;
 

@@ -1,4 +1,4 @@
-package entity.animation.service.player;
+package animation.service.player;
 
 import entity.player.Player;
 import entity.player.PlayerSpriteManager;
