@@ -24,7 +24,7 @@ import static helper.Constant.*;
 import static entity.player.PlayerSpriteManager.getPlayerImageByIndex;
 
 public class Player extends Entity {
-    private KeyHandler keyHandler;
+//    private KeyHandler keyHandler;
 
 
     private ArrayList<String> collectedKeyCode;
@@ -33,21 +33,6 @@ public class Player extends Entity {
     private int screenPositionY;
     private static final int movementSpeed = 4;
 
-    public int getScreenPositionX() {
-        return screenPositionX;
-    }
-
-    public void setScreenPositionX(int screenPositionX) {
-        this.screenPositionX = screenPositionX;
-    }
-
-    public int getScreenPositionY() {
-        return screenPositionY;
-    }
-
-    public void setScreenPositionY(int screenPositionY) {
-        this.screenPositionY = screenPositionY;
-    }
 
     int frameIndex = 0;
     int counter = 0;
@@ -192,6 +177,23 @@ public class Player extends Entity {
 //        graphics2D.drawImage(blueImg,this.getPositionX() +200,this.getPositionY() +300,Helper.TILE_SIZE,Helper.TILE_SIZE,null);
     }
 
+
+    public int getScreenPositionX() {
+        return screenPositionX;
+    }
+
+    public void setScreenPositionX(int screenPositionX) {
+        this.screenPositionX = screenPositionX;
+    }
+
+    public int getScreenPositionY() {
+        return screenPositionY;
+    }
+
+    public void setScreenPositionY(int screenPositionY) {
+        this.screenPositionY = screenPositionY;
+    }
+
     @Override
     public void setWorldPositionX(int worldPositionX) {
         boolean isWithinRange = worldPositionX - WINDOW_MAX_SCREEN_WIDTH / 2 > 0 && worldPositionX + WINDOW_MAX_SCREEN_WIDTH / 2 < WORLD_MAP_WIDTH;
@@ -253,13 +255,13 @@ public class Player extends Entity {
 //        this.setWorldPositionX(newPositionX);
 //    }
 
-    public KeyHandler getKeyHandler() {
-        return keyHandler;
-    }
+//    public KeyHandler getKeyHandler() {
+//        return keyHandler;
+//    }
 
-    public void setKeyHandler(KeyHandler keyHandler) {
-        this.keyHandler = keyHandler;
-    }
+//    public void setKeyHandler(KeyHandler keyHandler) {
+//        this.keyHandler = keyHandler;
+//    }
 
 //    public int getPlayerAbsoluteCenterX() {
 //        int centerX = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
