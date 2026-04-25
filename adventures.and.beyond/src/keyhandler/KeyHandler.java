@@ -29,7 +29,7 @@ public class KeyHandler implements KeyListener {
         return Holder.INSTANCE;
     }
 
-    public ReadKeyState getRegisteredKeyState() {
+    public ReadKeyState readRegisteredKeyState() {
         return this.registeredKeyState;
     }
 
