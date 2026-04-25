@@ -4,15 +4,13 @@ import directionEnum.Direction;
 
 import java.awt.*;
 
-import static helper.Constant.*;
-
 public class Entity {
     private int worldPositionX;
     private int worldPositionY;
     private int speed;
     private Direction direction;
     private boolean isIdle;
-    private Rectangle solidArea;
+    private final Rectangle solidArea;
     private boolean onCollision;
 
     public Entity(int worldPositionX, int worldPositionY, int speed, Direction direction, boolean isIdle, Rectangle solidArea, boolean onCollision) {

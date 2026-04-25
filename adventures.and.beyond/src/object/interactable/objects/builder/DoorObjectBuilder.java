@@ -12,39 +12,46 @@ public class DoorObjectBuilder {
     private String openCode;
     private boolean isActive;
 
-    public DoorObjectBuilder(){}
+    public DoorObjectBuilder() {
+    }
 
-    public DoorObjectBuilder onCollision(boolean onCollision){
-        this.onCollision =onCollision;
+    public DoorObjectBuilder onCollision(boolean onCollision) {
+        this.onCollision = onCollision;
         return this;
     }
-    public DoorObjectBuilder worldPositionX(int worldPositionX){
-        this.worldPositionX=worldPositionX;
+
+    public DoorObjectBuilder worldPositionX(int worldPositionX) {
+        this.worldPositionX = worldPositionX;
         return this;
     }
-    public DoorObjectBuilder worldPositionY(int worldPositionY){
-        this.worldPositionY=worldPositionY;
+
+    public DoorObjectBuilder worldPositionY(int worldPositionY) {
+        this.worldPositionY = worldPositionY;
         return this;
     }
-    public DoorObjectBuilder doorNumber(String doorNumber){
-        this.doorNumber=doorNumber;
+
+    public DoorObjectBuilder doorNumber(String doorNumber) {
+        this.doorNumber = doorNumber;
         return this;
     }
-    public DoorObjectBuilder openCode(String openCode){
-        this.openCode =openCode;
+
+    public DoorObjectBuilder openCode(String openCode) {
+        this.openCode = openCode;
         return this;
     }
-    public DoorObjectBuilder isActive(boolean isActive){
+
+    public DoorObjectBuilder isActive(boolean isActive) {
         this.isActive = isActive;
         return this;
     }
-    public DoorObject build(){
+
+    public DoorObject build() {
         validate();
-        return  new DoorObject(this.onCollision,this.worldPositionX,this.worldPositionY,this.doorNumber,this.openCode,this.isActive);
+        return new DoorObject(this.onCollision, this.worldPositionX, this.worldPositionY, this.doorNumber, this.openCode, this.isActive);
     }
 
     private void validate() {
-        if(isNull(this.doorNumber) ||isNull(this.openCode)){
+        if (isNull(this.doorNumber) || isNull(this.openCode)) {
             throw new RuntimeException("Necessary parameters are not fully initialize");
         }
     }

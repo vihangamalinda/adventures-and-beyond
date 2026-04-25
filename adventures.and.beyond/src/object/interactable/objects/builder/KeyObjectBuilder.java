@@ -11,38 +11,38 @@ public class KeyObjectBuilder {
     private String keyCode;
     private boolean isActive;
 
-    public KeyObjectBuilder onCollision(boolean onCollision){
-        this.onCollision =onCollision;
+    public KeyObjectBuilder onCollision(boolean onCollision) {
+        this.onCollision = onCollision;
         return this;
     }
 
-    public KeyObjectBuilder worldPositionX(int worldPositionX){
-        this.worldPositionX =worldPositionX;
+    public KeyObjectBuilder worldPositionX(int worldPositionX) {
+        this.worldPositionX = worldPositionX;
         return this;
     }
 
-    public KeyObjectBuilder worldPositionY(int worldPositionY){
-        this.worldPositionY =worldPositionY;
+    public KeyObjectBuilder worldPositionY(int worldPositionY) {
+        this.worldPositionY = worldPositionY;
         return this;
     }
 
-    public KeyObjectBuilder keyCode(String keyCode){
-        this.keyCode =keyCode;
+    public KeyObjectBuilder keyCode(String keyCode) {
+        this.keyCode = keyCode;
         return this;
     }
 
-    public KeyObjectBuilder isActive(boolean isActive){
-        this.isActive =isActive;
+    public KeyObjectBuilder isActive(boolean isActive) {
+        this.isActive = isActive;
         return this;
     }
 
-    public KeyObject build(){
+    public KeyObject build() {
         validate();
-        return  new KeyObject(this.onCollision,this.worldPositionX,this.worldPositionY,this.keyCode,this.isActive);
+        return new KeyObject(this.onCollision, this.worldPositionX, this.worldPositionY, this.keyCode, this.isActive);
     }
 
     private void validate() {
-        if(isNull(this.keyCode)){
+        if (isNull(this.keyCode)) {
             throw new RuntimeException("Necessary parameters are not fully initialize");
         }
     }

@@ -2,16 +2,12 @@ package main;
 
 import entity.manager.EntityManager;
 import entity.manager.EntityManagerFactory;
-
 import helper.Constant;
-
 import helper.Timer;
 import input.KeyHandler;
 import sound.SoundManager;
-//import tile.TileManager;
 import ui.UserInterfaceManager;
 import world.manager.WorldMapManagerFactory;
-import world.manager.WorldMapManagerImpl;
 
 import javax.swing.*;
 import java.awt.*;

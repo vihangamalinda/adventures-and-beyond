@@ -5,8 +5,7 @@ import helper.CustomColours;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-
-import static helper.Constant.*;
+import static helper.Constant.TILE_SIZE;
 import static ui.RegisteredFonts.PlAIN_ARIAL_XSM;
 
 public class GameDetailNotifier extends AbstractDetailNotifier {

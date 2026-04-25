@@ -10,7 +10,7 @@ import static helper.Constant.TILE_SIZE;
 
 public class TileCollisionDetectorImpl implements TileCollisionDetector {
 
-    private  final WorldMapManager worldMapManager;
+    private final WorldMapManager worldMapManager;
 
 
     public TileCollisionDetectorImpl() {
@@ -18,8 +18,8 @@ public class TileCollisionDetectorImpl implements TileCollisionDetector {
     }
 
     @Override
-    public void checkTileCollision(Entity entity){
-        if(entity.isIdle())return;
+    public void checkTileCollision(Entity entity) {
+        if (entity.isIdle()) return;
 
         Rectangle solidArea = entity.getSolidArea();
         int entityLeftWorldX = entity.getWorldPositionX() + solidArea.x;
@@ -35,29 +35,29 @@ public class TileCollisionDetectorImpl implements TileCollisionDetector {
 
         int speed = entity.getSpeed();
 //        WorldMapManager worldMapManager = WorldMapManagerFactory.getInstance();
-        boolean collideOne =false;
-        boolean collideTwo =false;
+        boolean collideOne = false;
+        boolean collideTwo = false;
 
         switch (entity.getDirection()) {
             case FACING_BACKWARD -> {
                 int nextRow = (entityTopWorldY - speed) / TILE_SIZE;
-                collideOne = this.worldMapManager.canTileBeCollided(nextRow,entityLeftCol);
-                collideTwo = this.worldMapManager.canTileBeCollided(nextRow,entityRightCol);
+                collideOne = this.worldMapManager.canTileBeCollided(nextRow, entityLeftCol);
+                collideTwo = this.worldMapManager.canTileBeCollided(nextRow, entityRightCol);
             }
             case FACING_FORWARD -> {
                 int nextRow = (entityBottomWorldY + speed) / TILE_SIZE;
-                collideOne = this.worldMapManager.canTileBeCollided(nextRow,entityLeftCol);
-                collideTwo = this.worldMapManager.canTileBeCollided(nextRow,entityRightCol);
+                collideOne = this.worldMapManager.canTileBeCollided(nextRow, entityLeftCol);
+                collideTwo = this.worldMapManager.canTileBeCollided(nextRow, entityRightCol);
             }
             case FACING_LEFTWARD -> {
                 int nextCol = (entityLeftWorldX - speed) / TILE_SIZE;
-                collideOne = this.worldMapManager.canTileBeCollided(entityTopRow,nextCol);
-                collideTwo = this.worldMapManager.canTileBeCollided(entityBottomRow,nextCol);
+                collideOne = this.worldMapManager.canTileBeCollided(entityTopRow, nextCol);
+                collideTwo = this.worldMapManager.canTileBeCollided(entityBottomRow, nextCol);
             }
             case FACING_RIGHTWARD -> {
                 int nextCol = (entityRightWorldX + speed) / TILE_SIZE;
-                collideOne = this.worldMapManager.canTileBeCollided(entityTopRow,nextCol);
-                collideTwo = this.worldMapManager.canTileBeCollided(entityBottomRow,nextCol);
+                collideOne = this.worldMapManager.canTileBeCollided(entityTopRow, nextCol);
+                collideTwo = this.worldMapManager.canTileBeCollided(entityBottomRow, nextCol);
             }
         }
 

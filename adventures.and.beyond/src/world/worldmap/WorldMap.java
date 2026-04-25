@@ -8,9 +8,9 @@ import java.awt.image.BufferedImage;
 import static helper.Constant.MAX_SCREEN_COLUMN;
 import static helper.Constant.TILE_SIZE;
 
-public class WorldMap extends AbstractWorldMap{
-    public WorldMap(int[][] mapTileMatrix,String worldMapKey) {
-        super(mapTileMatrix,worldMapKey);
+public class WorldMap extends AbstractWorldMap {
+    public WorldMap(int[][] mapTileMatrix, String worldMapKey) {
+        super(mapTileMatrix, worldMapKey);
     }
 
     @Override
@@ -18,8 +18,8 @@ public class WorldMap extends AbstractWorldMap{
         return this.getTileKeyByRowAndCol(rowIndex, colIndex);
     }
 
-    public boolean canTileBeCollided(int rowIndex, int colIndex){
-        int tileKey =this.getTileKeyByRowAndCol(rowIndex,colIndex);
+    public boolean canTileBeCollided(int rowIndex, int colIndex) {
+        int tileKey = this.getTileKeyByRowAndCol(rowIndex, colIndex);
         return this.getTileRegistry().couldTileTypeBeCollided(tileKey);
     }
 

@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 public abstract class AbstractDetailNotifier implements Notifiable, DrawableNotifier {
     private boolean isActive;
     private String message;
-    private Color backgroundColour;
+    private final Color backgroundColour;
     private Font font;
 
     AbstractDetailNotifier(boolean isActive, Color backgroundColour, Font font) {
@@ -95,5 +95,4 @@ public abstract class AbstractDetailNotifier implements Notifiable, DrawableNoti
         this.resetAttributes();
     }
 
-    ;
 }

@@ -1,6 +1,5 @@
 package input.service;
 
-;
 import input.state.RegisteredKeyState;
 import ui.UserInterfaceManager;
 

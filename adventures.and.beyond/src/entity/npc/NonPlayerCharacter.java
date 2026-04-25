@@ -1,12 +1,7 @@
 package entity.npc;
 
-import collision.detector.CollisionDetector;
-import collision.detector.npc.NonPlayerCharacterCollisionDetector;
-import collision.detector.npc.NonPlayerCharacterCollisionDetectorImpl;
 import collision.detector.service.NonPlayerCharacterCollisionService;
 import collision.detector.service.NonPlayerCharacterCollisionServiceImpl;
-import collision.detector.tile.TileCollisionDetector;
-import collision.detector.tile.TileCollisionDetectorImpl;
 import directionEnum.Direction;
 import entity.Entity;
 import entity.player.Player;
@@ -18,7 +13,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static directionEnum.Direction.*;
-import static directionEnum.Direction.FACING_LEFTWARD;
 import static helper.Constant.TILE_SIZE;
 
 public abstract class NonPlayerCharacter extends Entity implements DrawableNonPlayerCharacter, UpdatableNonPlayerCharacter {
@@ -58,7 +52,7 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
         this.nonPlayerMovementService.updatePositionAndDirection(this);
 
 //        if (!isOnCollisionWithPlayer()) {
-            this.frameCounter++;
+        this.frameCounter++;
 //        }
     }
 

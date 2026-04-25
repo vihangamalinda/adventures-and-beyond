@@ -6,7 +6,6 @@ import ui.notifier.AbstractDetailNotifier;
 import ui.notifier.factory.DetailNotifierFactory;
 import ui.notifier.factory.DetailNotifierFactoryImpl;
 
-
 import java.util.ArrayList;
 import java.util.List;
 

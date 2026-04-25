@@ -5,7 +5,7 @@ public class TileRegistryFactory {
         private static final TileRegistry INSTANCE = new TileRegistryImpl();
     }
 
-    public static TileRegistry getInstance(){
+    public static TileRegistry getInstance() {
         return Holder.INSTANCE;
     }
 }

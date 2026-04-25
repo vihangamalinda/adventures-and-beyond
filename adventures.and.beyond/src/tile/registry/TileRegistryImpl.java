@@ -9,17 +9,18 @@ import java.util.HashMap;
 import static helper.ImageScaler.getStandardScaledImage;
 import static java.util.Objects.isNull;
 
-public class TileRegistryImpl implements TileRegistry{
+public class TileRegistryImpl implements TileRegistry {
 
     private final HashMap<String, Tile> tileHashMap;
 
     @Override
-    public boolean couldTileTypeBeCollided(int tileType){
-        Tile tile =this.getTileByKey(tileType);
+    public boolean couldTileTypeBeCollided(int tileType) {
+        Tile tile = this.getTileByKey(tileType);
         return tile.isCanCollide();
     }
+
     @Override
-    public BufferedImage getImageByTileKey(int tileType){
+    public BufferedImage getImageByTileKey(int tileType) {
         Tile tile = this.getTileByKey(tileType);
         return tile.getBufferedImage();
     }

@@ -1,16 +1,9 @@
 package collision.detector;
 
-import entity.Entity;
 import entity.manager.EntityManager;
 import entity.manager.EntityManagerFactory;
-import entity.npc.NonPlayerCharacter;
-import entity.player.Player;
-import object.interactable.objects.InteractableObject;
 import world.manager.WorldMapManager;
 import world.manager.WorldMapManagerFactory;
-import java.awt.*;
-
-import static helper.Constant.TILE_SIZE;
 
 public class CollisionDetector {
 

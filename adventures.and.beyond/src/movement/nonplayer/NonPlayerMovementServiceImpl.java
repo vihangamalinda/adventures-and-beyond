@@ -4,12 +4,11 @@ import entity.npc.NonPlayerCharacter;
 import entity.npc.character.Human;
 
 import static directionEnum.Direction.*;
-import static directionEnum.Direction.FACING_LEFTWARD;
 
 public class NonPlayerMovementServiceImpl implements NonPlayerMovementService {
 
     @Override
-    public void  updatePositionAndDirection(NonPlayerCharacter nonPlayerCharacter){
+    public void updatePositionAndDirection(NonPlayerCharacter nonPlayerCharacter) {
         // Implement the logic to update the non-player character's position and direction based on certain conditions, such as collision status or update rate.
         // This method can be called in the game loop to continuously update the non-player character's movement.
         // For example, you can iterate through a list of non-player characters and call this method for each character to update their position and direction accordingly.
@@ -17,18 +16,19 @@ public class NonPlayerMovementServiceImpl implements NonPlayerMovementService {
         // Remember to consider factors like collision detection and interaction with the player when updating the non-player character's movement.
         // This method can be further expanded to include more complex movement patterns or behaviors based on the game's requirements.
         // Overall, this method serves as a central point for managing the movement of non-player characters in the game world.
-        if(nonPlayerCharacter.isOnCollisionWithPlayer()) return;
+        if (nonPlayerCharacter.isOnCollisionWithPlayer()) return;
 
-        if(this.shouldUpdatePosition(nonPlayerCharacter)){
+        if (this.shouldUpdatePosition(nonPlayerCharacter)) {
             this.updateNonPlayerCharacterPosition(nonPlayerCharacter);
         }
 
 
-        if(this.shouldChangeDirection(nonPlayerCharacter)){
+        if (this.shouldChangeDirection(nonPlayerCharacter)) {
             this.changeNonPlayerCharacterDirection(nonPlayerCharacter);
             nonPlayerCharacter.resetFrameCounter();
         }
     }
+
     private void updateNonPlayerCharacterPosition(NonPlayerCharacter nonPlayerCharacter) {
         // Implement the logic to update the non-player character's position based on its current direction and speed.
         int currentPositionX = nonPlayerCharacter.getWorldPositionX();
@@ -36,10 +36,14 @@ public class NonPlayerMovementServiceImpl implements NonPlayerMovementService {
         int speed = nonPlayerCharacter.getSpeed();
 
         switch (nonPlayerCharacter.getDirection()) {
-            case FACING_BACKWARD -> nonPlayerCharacter.setWorldPositionY(currentPositionY - speed);
-            case FACING_FORWARD -> nonPlayerCharacter.setWorldPositionY(currentPositionY + speed);
-            case FACING_LEFTWARD -> nonPlayerCharacter.setWorldPositionX(currentPositionX - speed);
-            case FACING_RIGHTWARD -> nonPlayerCharacter.setWorldPositionX(currentPositionX + speed);
+            case FACING_BACKWARD ->
+                    nonPlayerCharacter.setWorldPositionY(currentPositionY - speed);
+            case FACING_FORWARD ->
+                    nonPlayerCharacter.setWorldPositionY(currentPositionY + speed);
+            case FACING_LEFTWARD ->
+                    nonPlayerCharacter.setWorldPositionX(currentPositionX - speed);
+            case FACING_RIGHTWARD ->
+                    nonPlayerCharacter.setWorldPositionX(currentPositionX + speed);
         }
     }
 

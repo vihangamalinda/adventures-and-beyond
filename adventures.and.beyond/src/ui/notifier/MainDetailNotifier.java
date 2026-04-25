@@ -5,7 +5,8 @@ import helper.CustomColours;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-import static helper.Constant.*;
+import static helper.Constant.WINDOW_MAX_SCREEN_HEIGHT;
+import static helper.Constant.WINDOW_MAX_SCREEN_WIDTH;
 import static ui.RegisteredFonts.BOLD_ARIAL_XXL;
 
 public class MainDetailNotifier extends AbstractDetailNotifier {

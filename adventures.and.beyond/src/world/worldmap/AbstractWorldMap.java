@@ -1,6 +1,5 @@
 package world.worldmap;
 
-import entity.manager.EntityManager;
 import entity.manager.EntityManagerFactory;
 import entity.player.Player;
 import object.InteractableObjectManagerFactory;
@@ -12,13 +11,14 @@ import java.awt.*;
 
 import static helper.Constant.*;
 
-public abstract class AbstractWorldMap implements DrawableWorldMap,WorldMapInformation{
+public abstract class AbstractWorldMap implements DrawableWorldMap, WorldMapInformation {
 
     private final int[][] mapTileMatrix;
-//    private final EntityManager entityManager;
+    //    private final EntityManager entityManager;
     private final TileRegistry tileRegistry;
     private final InteractableObject[] interactableObjects;
-    protected AbstractWorldMap(int[][] mapTileMatrix,String worldMapKey) {
+
+    protected AbstractWorldMap(int[][] mapTileMatrix, String worldMapKey) {
         this.mapTileMatrix = mapTileMatrix;
 //        this.entityManager = EntityManagerFactory.getInstance();
         this.tileRegistry = TileRegistryFactory.getInstance();
@@ -67,7 +67,7 @@ public abstract class AbstractWorldMap implements DrawableWorldMap,WorldMapInfor
 
     @Override
     public void draw(Graphics2D graphics2D) {
-        Player player =EntityManagerFactory.getInstance().getPlayer();;
+        Player player = EntityManagerFactory.getInstance().getPlayer();
 
         int drawMapCol = getDrawMapStarterCol(player);
 
@@ -79,7 +79,7 @@ public abstract class AbstractWorldMap implements DrawableWorldMap,WorldMapInfor
         drawInteractiveObjects(graphics2D);
     }
 
-    protected abstract void drawWorldMap(Graphics2D graphics2D,int drawMapRow,int drawMapCol);
+    protected abstract void drawWorldMap(Graphics2D graphics2D, int drawMapRow, int drawMapCol);
 
     public void drawInteractiveObjects(Graphics2D graphics2D) {
         Player player = EntityManagerFactory.getInstance().getPlayer();

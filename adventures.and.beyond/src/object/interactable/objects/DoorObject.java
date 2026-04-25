@@ -18,7 +18,7 @@ public class DoorObject extends InteractableObject {
         this.openCode = openCode;
     }
 
-    public static DoorObjectBuilder getBuilder(){
+    public static DoorObjectBuilder getBuilder() {
         return new DoorObjectBuilder();
     }
 

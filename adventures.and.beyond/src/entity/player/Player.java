@@ -1,14 +1,14 @@
 package entity.player;
 
 
+import animation.service.player.PlayerAnimationService;
+import animation.service.player.PlayerAnimationServiceImpl;
 import collision.detector.service.PlayerCollisionService;
 import collision.detector.service.PlayerCollisionServiceImpl;
 import directionEnum.Direction;
-import entity.Entity;
-import animation.service.player.PlayerAnimationService;
-import animation.service.player.PlayerAnimationServiceImpl;
 import drawable.service.player.PlayerDrawService;
 import drawable.service.player.PlayerDrawServiceImpl;
+import entity.Entity;
 import helper.Constant;
 import input.KeyHandler;
 import input.model.player.RegisteredPlayerInput;
@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 import static entity.player.PlayerConstant.*;
 import static helper.Constant.*;
+
 public class Player extends Entity {
 
     private ArrayList<String> collectedKeyCode;

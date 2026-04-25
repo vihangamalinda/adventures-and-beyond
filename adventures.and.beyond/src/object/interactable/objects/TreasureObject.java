@@ -19,7 +19,7 @@ public class TreasureObject extends InteractableObject {
         this.openCode = openCode;
     }
 
-    public static TreasureObjectBuilder getBuilder(){
+    public static TreasureObjectBuilder getBuilder() {
         return new TreasureObjectBuilder();
     }
 

@@ -10,7 +10,7 @@ public class PlayerAnimationServiceImpl implements PlayerAnimationService {
     private final int MAX_FRAME_INDEX = 5;
 
     @Override
-    public void updateAnimation(Player player){
+    public void updateAnimation(Player player) {
         this.updateAnimationState(player);
         this.updateAnimationImage(player);
     }
@@ -31,7 +31,7 @@ public class PlayerAnimationServiceImpl implements PlayerAnimationService {
         }
     }
 
-    private void updateAnimationImage(Player player){
+    private void updateAnimationImage(Player player) {
         BufferedImage currentPlayerImage = PlayerSpriteManager.getPlayerImageByIndex(player.getDirection(), player.isIdle(), player.getFrameIndex());
         player.setCurrentPlayerImage(currentPlayerImage);
     }

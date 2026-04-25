@@ -1,4 +1,4 @@
 package input.state;
 
-public interface RegisteredKeyState extends  MutableKeyState, ReadKeyState {
+public interface RegisteredKeyState extends MutableKeyState, ReadKeyState {
 }

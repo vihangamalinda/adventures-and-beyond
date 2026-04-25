@@ -4,8 +4,8 @@ import dialogue.manager.DialogueKey;
 import directionEnum.Direction;
 import entity.npc.DrawableNonPlayerCharacter;
 import entity.npc.NonPlayerCharacter;
-import entity.npc.factory.NonPlayerCharacterFactoryImpl;
 import entity.npc.UpdatableNonPlayerCharacter;
+import entity.npc.factory.NonPlayerCharacterFactoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;

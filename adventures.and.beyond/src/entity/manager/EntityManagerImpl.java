@@ -18,7 +18,7 @@ public class EntityManagerImpl implements EntityManager {
     private List<UpdatableNonPlayerCharacter> secondaryUpdatableList;
     private List<DrawableNonPlayerCharacter> secondaryDrawableList;
 
-    private NonPlayerCharacterRegistry nonPlayerCharacterRegistry;
+    private final NonPlayerCharacterRegistry nonPlayerCharacterRegistry;
 
 
     public EntityManagerImpl() {

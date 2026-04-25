@@ -4,9 +4,7 @@ import directionEnum.Direction;
 import entity.npc.sprite.CharacterSprite;
 import entity.npc.sprite.CharacterSpriteRegistry;
 
-
 import java.awt.image.BufferedImage;
-
 
 import static java.util.Objects.isNull;
 
@@ -36,8 +34,6 @@ public class CharacterSpriteManager {
         }
         return null;
     }
-
-    ;
 
     private CharacterSprite getCharacterSprite(String characterAnimationKey) {
         CharacterSprite sprite = CharacterSpriteRegistry.getInstance().getCharacterSpriteHashMap().get(characterAnimationKey);

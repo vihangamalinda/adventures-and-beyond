@@ -9,7 +9,7 @@ public class NonPlayerCharacterCollisionDetectorImpl implements NonPlayerCharact
     }
 
     @Override
-    public void checkCharacterPlayerCollision(NonPlayerCharacter character,Player player) {
+    public void checkCharacterPlayerCollision(NonPlayerCharacter character, Player player) {
         boolean isColliding = this.doCharacterCollideWithPlayer(character, player);
 
 
