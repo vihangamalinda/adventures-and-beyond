@@ -52,7 +52,7 @@ public class EntityManagerImpl implements EntityManager {
         this.mainEntity.update();
 
         for (UpdatableNonPlayerCharacter character : this.secondaryUpdatableList) {
-            character.update();
+            character.update(this.mainEntity);
         }
     }
 

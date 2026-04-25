@@ -29,8 +29,8 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
     }
 
     @Override
-    public void update() {
-        checkForCollisions();
+    public void update(Player player) {
+        checkForCollisions(player);
 
         if (shouldUpdatePosition()) {
             updatePosition();
