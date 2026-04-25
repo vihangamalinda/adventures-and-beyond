@@ -103,9 +103,9 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
         return new Rectangle(this.getWorldPositionX() + x, this.getWorldPositionY() + y, currentSolidArea.width, currentSolidArea.height);
     }
 
-    public boolean doCollideWithPlayer(Player player) {
-        return player.getSolidAreaWithWorldPositions().intersects(getSolidAreaWithWorldPositions());
-    }
+//    public boolean doCollideWithPlayer(Player player) {
+//        return player.getSolidAreaWithWorldPositions().intersects(getSolidAreaWithWorldPositions());
+//    }
 
 
     public abstract void performInteraction();
@@ -140,32 +140,32 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
 //        collisionDetector.checkCharacterPlayerCollision(this);
     }
 
-    private boolean shouldUpdatePosition() {
-        boolean onUpdateRate = this.frameCounter % 5 == 0;
-        return onUpdateRate && !this.isOnCollision() && !this.isOnCollisionWithPlayer();
-    }
+//    private boolean shouldUpdatePosition() {
+//        boolean onUpdateRate = this.frameCounter % 5 == 0;
+//        return onUpdateRate && !this.isOnCollision() && !this.isOnCollisionWithPlayer();
+//    }
 
-    private void updatePosition() {
-        int currentPositionX = this.getWorldPositionX();
-        int currentPositionY = this.getWorldPositionY();
-        int speed = this.getSpeed();
-        switch (this.getDirection()) {
-            case FACING_BACKWARD -> this.setWorldPositionY(currentPositionY - speed);
-            case FACING_FORWARD -> this.setWorldPositionY(currentPositionY + speed);
-            case FACING_LEFTWARD -> this.setWorldPositionX(currentPositionX - speed);
-            case FACING_RIGHTWARD -> this.setWorldPositionX(currentPositionX + speed);
-        }
-    }
+//    private void updatePosition() {
+//        int currentPositionX = this.getWorldPositionX();
+//        int currentPositionY = this.getWorldPositionY();
+//        int speed = this.getSpeed();
+//        switch (this.getDirection()) {
+//            case FACING_BACKWARD -> this.setWorldPositionY(currentPositionY - speed);
+//            case FACING_FORWARD -> this.setWorldPositionY(currentPositionY + speed);
+//            case FACING_LEFTWARD -> this.setWorldPositionX(currentPositionX - speed);
+//            case FACING_RIGHTWARD -> this.setWorldPositionX(currentPositionX + speed);
+//        }
+//    }
 
     private void setFrameCounter(int frameCounter) {
         this.frameCounter = frameCounter;
     }
 
-
-    private boolean shouldChangeDirection() {
-        boolean updateRate = this.frameCounter % 150 == 0;
-        return updateRate && !this.isOnCollisionWithPlayer();
-    }
+//
+//    private boolean shouldChangeDirection() {
+//        boolean updateRate = this.frameCounter % 150 == 0;
+//        return updateRate && !this.isOnCollisionWithPlayer();
+//    }
 
     public void resetFrameCounter() {
         this.setFrameCounter(0);
