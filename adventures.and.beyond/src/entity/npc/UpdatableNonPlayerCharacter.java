@@ -1,5 +1,7 @@
 package entity.npc;
 
+import entity.player.Player;
+
 public interface UpdatableNonPlayerCharacter {
-    void update();
+    void update(Player player);
 }
