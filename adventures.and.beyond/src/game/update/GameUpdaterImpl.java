@@ -1,10 +1,7 @@
 package game.update;
 
 import entity.manager.EntityManager;
-import input.KeyHandler;
 import input.reader.UIInputReader;
-import input.reader.UIInputReaderImpl;
-import input.state.ReadKeyState;
 import ui.UserInterfaceManager;
 
 public class GameUpdaterImpl implements GameUpdater {
@@ -13,11 +10,10 @@ public class GameUpdaterImpl implements GameUpdater {
     private final UserInterfaceManager userInterfaceManager;
     private final UIInputReader uiInputReader;
 
-    public GameUpdaterImpl(EntityManager entityManager, UserInterfaceManager userInterfaceManager) {
+    public GameUpdaterImpl(EntityManager entityManager, UserInterfaceManager userInterfaceManager, UIInputReader uiInputReader) {
         this.entityManager = entityManager;
         this.userInterfaceManager = userInterfaceManager;
-        ReadKeyState readKeyState = KeyHandler.getInstance().readRegisteredKeyState();
-        this.uiInputReader = new UIInputReaderImpl(readKeyState);
+        this.uiInputReader = uiInputReader;
     }
 
 

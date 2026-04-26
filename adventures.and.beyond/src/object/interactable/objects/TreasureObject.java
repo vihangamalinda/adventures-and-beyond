@@ -1,7 +1,6 @@
 package object.interactable.objects;
 
 import entity.player.Player;
-import main.GamePanel;
 import object.interactable.objects.builder.TreasureObjectBuilder;
 import sound.SoundKey;
 import sound.SoundManager;
