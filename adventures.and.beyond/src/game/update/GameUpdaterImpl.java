@@ -10,7 +10,9 @@ public class GameUpdaterImpl implements GameUpdater {
     private final UserInterfaceManager userInterfaceManager;
     private final UIInputReader uiInputReader;
 
-    public GameUpdaterImpl(EntityManager entityManager, UserInterfaceManager userInterfaceManager, UIInputReader uiInputReader) {
+    public GameUpdaterImpl(EntityManager entityManager,
+                           UserInterfaceManager userInterfaceManager,
+                           UIInputReader uiInputReader) {
         this.entityManager = entityManager;
         this.userInterfaceManager = userInterfaceManager;
         this.uiInputReader = uiInputReader;

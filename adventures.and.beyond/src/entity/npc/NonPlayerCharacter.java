@@ -27,8 +27,21 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
 
     private final NonPlayerCharacterCollisionService nonPlayerCharacterCollisionService;
 
-    public NonPlayerCharacter(int worldPositionX, int worldPositionY, int speed, Direction direction, boolean isIdle, Rectangle solidArea, boolean onCollision, String characterAnimationKey) {
-        super(worldPositionX, worldPositionY, speed, direction, isIdle, solidArea, onCollision);
+    public NonPlayerCharacter(int worldPositionX,
+                              int worldPositionY,
+                              int speed,
+                              Direction direction,
+                              boolean isIdle,
+                              Rectangle solidArea,
+                              boolean onCollision,
+                              String characterAnimationKey) {
+        super(worldPositionX,
+              worldPositionY,
+              speed,
+              direction,
+              isIdle,
+              solidArea,
+              onCollision);
         this.characterAnimationKey = characterAnimationKey;
         this.isOnCollisionWithPlayer = false;
         this.nonPlayerMovementService = new NonPlayerMovementServiceImpl();
@@ -94,7 +107,10 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
                 default -> System.out.println("Custom error");
             }
         }
-        return new Rectangle(this.getWorldPositionX() + x, this.getWorldPositionY() + y, currentSolidArea.width, currentSolidArea.height);
+        return new Rectangle(this.getWorldPositionX() + x,
+                             this.getWorldPositionY() + y,
+                             currentSolidArea.width,
+                             currentSolidArea.height);
     }
 
 //    public boolean doCollideWithPlayer(Player player) {
@@ -105,19 +121,29 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
     public abstract void performInteraction();
 
     @Override
-    public void draw(Graphics2D graphics2D, Player player) {
+    public void draw(Graphics2D graphics2D,
+                     Player player) {
         BufferedImage image = getCurrentSpriteImage();
 
-        boolean isWithinWindowRange = DrawHelper.isWithinWindow(this.getWorldPositionX(), this.getWorldPositionY(), player);
+        boolean isWithinWindowRange = DrawHelper.isWithinWindow(this.getWorldPositionX(),
+                                                                this.getWorldPositionY(),
+                                                                player);
         if (isWithinWindowRange) {
 //            if (this.isActive) {
-            int windowPositionX = DrawHelper.getObjWindowPositionXRespectiveToPlayer(this.getWorldPositionX(), player);
-            int windowPositionY = DrawHelper.getObjWindowPositionYRespectiveToPlayer(this.getWorldPositionY(), player);
+            int windowPositionX = DrawHelper.getObjWindowPositionXRespectiveToPlayer(this.getWorldPositionX(),
+                                                                                     player);
+            int windowPositionY = DrawHelper.getObjWindowPositionYRespectiveToPlayer(this.getWorldPositionY(),
+                                                                                     player);
 
             int width = (int) (TILE_SIZE * 1);
             int height = (int) (TILE_SIZE * 1);
 
-            graphics2D.drawImage(image, windowPositionX, windowPositionY, width, height, null);
+            graphics2D.drawImage(image,
+                                 windowPositionX,
+                                 windowPositionY,
+                                 width,
+                                 height,
+                                 null);
 //            }
 
         }
@@ -130,7 +156,8 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
 //        this.tileCollisionDetector.checkTileCollision(this);
 //        this.nonPlayerCharacterCollisionDetector.checkCharacterPlayerCollision(this,player);
 
-        this.nonPlayerCharacterCollisionService.checkCollision(this, player);
+        this.nonPlayerCharacterCollisionService.checkCollision(this,
+                                                               player);
 
 //        collisionDetector.checkTileCollision(this);
 //        collisionDetector.checkCharacterPlayerCollision(this);
@@ -170,7 +197,9 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
 
     private BufferedImage getCurrentSpriteImage() {
 
-        BufferedImage[] currentAnimationArr = CHARACTER_SPRITE_MANAGER.getAnimationArray(this.getCharacterAnimationKey(), this.getDirection(), this.isIdle());
+        BufferedImage[] currentAnimationArr = CHARACTER_SPRITE_MANAGER.getAnimationArray(this.getCharacterAnimationKey(),
+                                                                                         this.getDirection(),
+                                                                                         this.isIdle());
 
         if (shouldUpdateFrameIndex()) {
             updateCurrentFrameIndex();

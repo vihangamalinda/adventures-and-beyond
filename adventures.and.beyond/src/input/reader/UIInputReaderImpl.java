@@ -5,6 +5,7 @@ import input.state.ReadKeyState;
 
 public class UIInputReaderImpl implements UIInputReader {
     private final ReadKeyState readKeyState;
+
     public UIInputReaderImpl(ReadKeyState readKeyState) {
         this.readKeyState = readKeyState;
     }

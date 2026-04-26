@@ -47,7 +47,12 @@ public class DoorObjectBuilder {
 
     public DoorObject build() {
         validate();
-        return new DoorObject(this.onCollision, this.worldPositionX, this.worldPositionY, this.doorNumber, this.openCode, this.isActive);
+        return new DoorObject(this.onCollision,
+                              this.worldPositionX,
+                              this.worldPositionY,
+                              this.doorNumber,
+                              this.openCode,
+                              this.isActive);
     }
 
     private void validate() {

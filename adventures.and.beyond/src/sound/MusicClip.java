@@ -47,7 +47,9 @@ public class MusicClip {
 
         this.playForOnce();
 
-        scheduledExecutorService.schedule(task, seconds, TimeUnit.SECONDS);
+        scheduledExecutorService.schedule(task,
+                                          seconds,
+                                          TimeUnit.SECONDS);
         scheduledExecutorService.shutdown();
     }
 }

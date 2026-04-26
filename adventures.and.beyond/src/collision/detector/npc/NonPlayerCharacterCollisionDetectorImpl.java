@@ -9,8 +9,10 @@ public class NonPlayerCharacterCollisionDetectorImpl implements NonPlayerCharact
     }
 
     @Override
-    public void checkCharacterPlayerCollision(NonPlayerCharacter character, Player player) {
-        boolean isColliding = this.doCharacterCollideWithPlayer(character, player);
+    public void checkCharacterPlayerCollision(NonPlayerCharacter character,
+                                              Player player) {
+        boolean isColliding = this.doCharacterCollideWithPlayer(character,
+                                                                player);
 
 
         if (isColliding) {
@@ -21,7 +23,8 @@ public class NonPlayerCharacterCollisionDetectorImpl implements NonPlayerCharact
         }
     }
 
-    private boolean doCharacterCollideWithPlayer(NonPlayerCharacter character, Player player) {
+    private boolean doCharacterCollideWithPlayer(NonPlayerCharacter character,
+                                                 Player player) {
         return player.getSolidAreaWithWorldPositions().intersects(character.getSolidAreaWithWorldPositions());
     }
 }

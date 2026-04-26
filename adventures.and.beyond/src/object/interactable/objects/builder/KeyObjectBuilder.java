@@ -38,7 +38,11 @@ public class KeyObjectBuilder {
 
     public KeyObject build() {
         validate();
-        return new KeyObject(this.onCollision, this.worldPositionX, this.worldPositionY, this.keyCode, this.isActive);
+        return new KeyObject(this.onCollision,
+                             this.worldPositionX,
+                             this.worldPositionY,
+                             this.keyCode,
+                             this.isActive);
     }
 
     private void validate() {

@@ -1,7 +1,8 @@
 package ui;
 
 public interface Notifiable {
-    void notifyMessageForPeriod(String message, int seconds);
+    void notifyMessageForPeriod(String message,
+                                int seconds);
 
     void notifyMessage(String message);
 

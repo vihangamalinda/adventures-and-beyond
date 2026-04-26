@@ -2,7 +2,7 @@ package window;
 
 import javax.swing.*;
 
-public class GameWindowImpl implements GameWindow{
+public class GameWindowImpl implements GameWindow {
     private final JFrame window;
 
     public GameWindowImpl(String title) {

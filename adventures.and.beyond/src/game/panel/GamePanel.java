@@ -1,9 +1,9 @@
 package game.panel;
+
 import game.render.GameRenderer;
 import helper.Constant;
 import input.KeyHandler;
 import sound.SoundManager;
-
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,15 +13,16 @@ import static sound.SoundKey.THEME_1_KEY;
 public class GamePanel extends JPanel {
 
 
-
     // Set Player's default position
     int playerX = 100;
     int playerY = 100;
     int playerSpeed = 4;
     private final GameRenderer gameRenderer;
 
-    public GamePanel(GameRenderer gameRenderer,KeyHandler keyHandler) {
-        this.setPreferredSize(new Dimension(Constant.WINDOW_MAX_SCREEN_WIDTH, Constant.WINDOW_MAX_SCREEN_HEIGHT));// defining panel size
+    public GamePanel(GameRenderer gameRenderer,
+                     KeyHandler keyHandler) {
+        this.setPreferredSize(new Dimension(Constant.WINDOW_MAX_SCREEN_WIDTH,
+                                            Constant.WINDOW_MAX_SCREEN_HEIGHT));// defining panel size
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true); // improve game's rendering performance
         // Registering key handler to component
@@ -47,9 +48,10 @@ public class GamePanel extends JPanel {
 }
 
 
-
 /**
- Game loop iteration is control by **Thread sleeping technique**
+ * Game loop iteration is control by **Thread sleeping technique**
+ * <p>
+ * Game loop iteration is control by Delta time (Accumulator)
  **/
 //    @Override
 //    public void run() {

@@ -38,7 +38,8 @@ public class UserInterfaceManager {
     }
 
     public void notifyGameDetails(String message) {
-        this.gameDetailNotifier.notifyMessageForPeriod(message, 1);
+        this.gameDetailNotifier.notifyMessageForPeriod(message,
+                                                       1);
     }
 
     public void triggerMainNotification(String message) {
@@ -46,7 +47,8 @@ public class UserInterfaceManager {
     }
 
     public void triggerDetailNotification(String message) {
-        this.dialogueDetailNotifier.notifyMessageForPeriod(message, 2);
+        this.dialogueDetailNotifier.notifyMessageForPeriod(message,
+                                                           2);
     }
 
     public void deactivateMainNotification() {

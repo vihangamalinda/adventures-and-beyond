@@ -6,7 +6,8 @@ public class Tile {
     BufferedImage bufferedImage;
     boolean canCollide;
 
-    public Tile(BufferedImage bufferedImage, boolean canCollide) {
+    public Tile(BufferedImage bufferedImage,
+                boolean canCollide) {
         this.bufferedImage = bufferedImage;
         this.canCollide = canCollide;
     }

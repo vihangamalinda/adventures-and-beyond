@@ -18,8 +18,10 @@ public class NonPlayerCharacterCollisionServiceImpl implements NonPlayerCharacte
     }
 
     @Override
-    public void checkCollision(NonPlayerCharacter nonPlayerCharacter, Player player) {
+    public void checkCollision(NonPlayerCharacter nonPlayerCharacter,
+                               Player player) {
         this.tileCollisionDetector.checkTileCollision(nonPlayerCharacter);
-        this.nonPlayerCharacterCollisionDetector.checkCharacterPlayerCollision(nonPlayerCharacter, player);
+        this.nonPlayerCharacterCollisionDetector.checkCharacterPlayerCollision(nonPlayerCharacter,
+                                                                               player);
     }
 }

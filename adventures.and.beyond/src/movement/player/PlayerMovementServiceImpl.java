@@ -13,12 +13,16 @@ public class PlayerMovementServiceImpl implements PlayerMovementService {
     }
 
     @Override
-    public void updateDirectionAndIdleState(Player player, RegisteredPlayerInput registeredPlayerInput) {
-        this.updatePlayerIdleState(player, registeredPlayerInput);
-        this.updateDirection(player, registeredPlayerInput);
+    public void updateDirectionAndIdleState(Player player,
+                                            RegisteredPlayerInput registeredPlayerInput) {
+        this.updatePlayerIdleState(player,
+                                   registeredPlayerInput);
+        this.updateDirection(player,
+                             registeredPlayerInput);
     }
 
-    private void updateDirection(Player player, RegisteredPlayerInput registeredPlayerInput) {
+    private void updateDirection(Player player,
+                                 RegisteredPlayerInput registeredPlayerInput) {
 
         Direction direction = player.getDirection();
 
@@ -40,12 +44,14 @@ public class PlayerMovementServiceImpl implements PlayerMovementService {
     }
 
 
-    private void updatePlayerIdleState(Player player, RegisteredPlayerInput registeredPlayerInput) {
+    private void updatePlayerIdleState(Player player,
+                                       RegisteredPlayerInput registeredPlayerInput) {
         player.setIdle(registeredPlayerInput.isAtIdle);
     }
 
     @Override
-    public void updateWorldPosition(Player player, RegisteredPlayerInput registeredPlayerInput) {
+    public void updateWorldPosition(Player player,
+                                    RegisteredPlayerInput registeredPlayerInput) {
         if (player.isOnCollision()) {
             return;
         }

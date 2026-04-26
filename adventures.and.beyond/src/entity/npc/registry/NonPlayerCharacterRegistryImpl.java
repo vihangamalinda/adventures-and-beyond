@@ -28,13 +28,38 @@ public class NonPlayerCharacterRegistryImpl implements NonPlayerCharacterRegistr
     private void registerCharacters() {
         String[] characterTypes = nonPlayerCharacterFactory.getCharacterTypes();
 
-        registerCharacter(characterTypes[0], 28 * TILE_SIZE, 12 * TILE_SIZE, Direction.FACING_FORWARD, false, DialogueKey.DIALOGUE_01);
-        registerCharacter(characterTypes[0], 37 * TILE_SIZE, 12 * TILE_SIZE, Direction.FACING_FORWARD, false, DialogueKey.DIALOGUE_02);
-        registerCharacter(characterTypes[0], 23 * TILE_SIZE, 12 * TILE_SIZE, Direction.FACING_FORWARD, false, DialogueKey.DIALOGUE_01);
+        registerCharacter(characterTypes[0],
+                          28 * TILE_SIZE,
+                          12 * TILE_SIZE,
+                          Direction.FACING_FORWARD,
+                          false,
+                          DialogueKey.DIALOGUE_01);
+        registerCharacter(characterTypes[0],
+                          37 * TILE_SIZE,
+                          12 * TILE_SIZE,
+                          Direction.FACING_FORWARD,
+                          false,
+                          DialogueKey.DIALOGUE_02);
+        registerCharacter(characterTypes[0],
+                          23 * TILE_SIZE,
+                          12 * TILE_SIZE,
+                          Direction.FACING_FORWARD,
+                          false,
+                          DialogueKey.DIALOGUE_01);
     }
 
-    private void registerCharacter(String characterType, int worldPositionX, int worldPositionY, Direction direction, boolean onCollision, String dialogueKey) {
-        NonPlayerCharacter character = nonPlayerCharacterFactory.create(characterType, worldPositionX, worldPositionY, direction, onCollision, dialogueKey);
+    private void registerCharacter(String characterType,
+                                   int worldPositionX,
+                                   int worldPositionY,
+                                   Direction direction,
+                                   boolean onCollision,
+                                   String dialogueKey) {
+        NonPlayerCharacter character = nonPlayerCharacterFactory.create(characterType,
+                                                                        worldPositionX,
+                                                                        worldPositionY,
+                                                                        direction,
+                                                                        onCollision,
+                                                                        dialogueKey);
         registerDrawable(character);
         registerUpdatable(character);
     }

@@ -27,10 +27,14 @@ public class SoundManager {
     private HashMap<String, URL> initializeSoundEffects() {
         HashMap<String, URL> map = new HashMap<>();
 
-        map.put(SoundKey.THEME_1_KEY, getResourceURL(SoundResourcePath.THEME_1_PATH));
-        map.put(SoundKey.KEY_COLLECTED, getResourceURL(SoundResourcePath.KEY_COLLECTED));
-        map.put((SoundKey.DOOR_OPENING), getResourceURL(SoundResourcePath.DOOR_OPENING));
-        map.put((SoundKey.TREASURE_BOX_OPENING), getResourceURL(SoundResourcePath.TREASURE_BOX_OPENING));
+        map.put(SoundKey.THEME_1_KEY,
+                getResourceURL(SoundResourcePath.THEME_1_PATH));
+        map.put(SoundKey.KEY_COLLECTED,
+                getResourceURL(SoundResourcePath.KEY_COLLECTED));
+        map.put((SoundKey.DOOR_OPENING),
+                getResourceURL(SoundResourcePath.DOOR_OPENING));
+        map.put((SoundKey.TREASURE_BOX_OPENING),
+                getResourceURL(SoundResourcePath.TREASURE_BOX_OPENING));
         return map;
     }
 
@@ -48,7 +52,8 @@ public class SoundManager {
         this.soundEffectMusicClip.playForTimePeriod(seconds);
     }
 
-    public void performSoundEffects(String soundKey, int seconds) {
+    public void performSoundEffects(String soundKey,
+                                    int seconds) {
         this.setSoundEffectMusicClipFile(soundKey);
         this.playSoundEffectForPeriod(seconds);
     }

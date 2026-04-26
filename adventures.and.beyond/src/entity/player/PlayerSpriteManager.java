@@ -25,37 +25,62 @@ public class PlayerSpriteManager {
 
 
     public static void initializeSpriteMap() {
-        spriteMap.put(movementKeys[0], getImageArray("forward", "idle"));
-        spriteMap.put(movementKeys[1], getImageArray("forward", "walking"));
-        spriteMap.put(movementKeys[2], getImageArray("backward", "idle"));
-        spriteMap.put(movementKeys[3], getImageArray("backward", "walking"));
-        spriteMap.put(movementKeys[4], getImageArray("left", "idle"));
-        spriteMap.put(movementKeys[5], getImageArray("left", "walking"));
-        spriteMap.put(movementKeys[6], getImageArray("right", "idle"));
-        spriteMap.put(movementKeys[7], getImageArray("right", "walking"));
+        spriteMap.put(movementKeys[0],
+                      getImageArray("forward",
+                                    "idle"));
+        spriteMap.put(movementKeys[1],
+                      getImageArray("forward",
+                                    "walking"));
+        spriteMap.put(movementKeys[2],
+                      getImageArray("backward",
+                                    "idle"));
+        spriteMap.put(movementKeys[3],
+                      getImageArray("backward",
+                                    "walking"));
+        spriteMap.put(movementKeys[4],
+                      getImageArray("left",
+                                    "idle"));
+        spriteMap.put(movementKeys[5],
+                      getImageArray("left",
+                                    "walking"));
+        spriteMap.put(movementKeys[6],
+                      getImageArray("right",
+                                    "idle"));
+        spriteMap.put(movementKeys[7],
+                      getImageArray("right",
+                                    "walking"));
     }
 
-    private static BufferedImage[] getImageArray(String direction, String state) {
+    private static BufferedImage[] getImageArray(String direction,
+                                                 String state) {
         BufferedImage[] arr = new BufferedImage[lastIndex + 1];
         for (int i = 0; i <= lastIndex; i++) {
-            BufferedImage original = getImage(getPath(direction, state, i));
+            BufferedImage original = getImage(getPath(direction,
+                                                      state,
+                                                      i));
             arr[i] = getScaledImage(original);
         }
         return arr;
     }
 
 
-    private static String getPath(String direction, String state, int index) {
+    private static String getPath(String direction,
+                                  String state,
+                                  int index) {
         return "/player" + "/" + direction + "/" + state + "/" + index + ".png";
     }
 
-    public static BufferedImage getPlayerImageByIndex(Direction direction, boolean idle, int frameIndex) {
-        int keyIndex = getMovementKeyIndex(direction, idle);
+    public static BufferedImage getPlayerImageByIndex(Direction direction,
+                                                      boolean idle,
+                                                      int frameIndex) {
+        int keyIndex = getMovementKeyIndex(direction,
+                                           idle);
 
         return spriteMap.get(movementKeys[keyIndex])[frameIndex];
     }
 
-    private static int getMovementKeyIndex(Direction direction, boolean idle) {
+    private static int getMovementKeyIndex(Direction direction,
+                                           boolean idle) {
         int keyIndex = 0;
         if (Direction.FACING_FORWARD.equals(direction)) {
             if (idle) {

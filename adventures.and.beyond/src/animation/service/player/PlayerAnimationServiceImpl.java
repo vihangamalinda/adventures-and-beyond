@@ -32,7 +32,9 @@ public class PlayerAnimationServiceImpl implements PlayerAnimationService {
     }
 
     private void updateAnimationImage(Player player) {
-        BufferedImage currentPlayerImage = PlayerSpriteManager.getPlayerImageByIndex(player.getDirection(), player.isIdle(), player.getFrameIndex());
+        BufferedImage currentPlayerImage = PlayerSpriteManager.getPlayerImageByIndex(player.getDirection(),
+                                                                                     player.isIdle(),
+                                                                                     player.getFrameIndex());
         player.setCurrentPlayerImage(currentPlayerImage);
     }
 

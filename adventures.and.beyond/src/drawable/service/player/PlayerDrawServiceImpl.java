@@ -12,20 +12,32 @@ public class PlayerDrawServiceImpl implements PlayerDrawService {
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, Player player) {
+    public void draw(Graphics2D graphics2D,
+                     Player player) {
         // Implement the logic to draw the player on the screen
         // This may involve rendering the player's sprite, animations, and any associated effects
         int scaledPlayer = 48 * PLAYER_UP_SCALE;
         graphics2D.setColor(Color.WHITE);
-        graphics2D.drawRect(player.getScreenPositionX(), player.getScreenPositionY(), scaledPlayer, scaledPlayer);
-        graphics2D.drawImage(player.getCurrentPlayerImage(), player.getScreenPositionX(), player.getScreenPositionY(), null);
-        drawSolidArea(graphics2D, player);
+        graphics2D.drawRect(player.getScreenPositionX(),
+                            player.getScreenPositionY(),
+                            scaledPlayer,
+                            scaledPlayer);
+        graphics2D.drawImage(player.getCurrentPlayerImage(),
+                             player.getScreenPositionX(),
+                             player.getScreenPositionY(),
+                             null);
+        drawSolidArea(graphics2D,
+                      player);
     }
 
-    private void drawSolidArea(Graphics2D graphics2D, Player player) {
+    private void drawSolidArea(Graphics2D graphics2D,
+                               Player player) {
         graphics2D.setColor(Color.RED);
         Rectangle rectangle = player.getSolidArea();
-        graphics2D.drawRect(player.getScreenPositionX() + rectangle.x, player.getScreenPositionY() + rectangle.y, rectangle.width, rectangle.height);
+        graphics2D.drawRect(player.getScreenPositionX() + rectangle.x,
+                            player.getScreenPositionY() + rectangle.y,
+                            rectangle.width,
+                            rectangle.height);
     }
 /*
     @Override

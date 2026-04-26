@@ -6,7 +6,9 @@ import static helper.Constant.*;
 
 public class DrawHelper {
 
-    public static boolean isWithinWindow(int worldPositionX, int worldPositionY, Player player) {
+    public static boolean isWithinWindow(int worldPositionX,
+                                         int worldPositionY,
+                                         Player player) {
         int objectColumn = worldPositionX / TILE_SIZE;
         int objectRow = worldPositionY / TILE_SIZE;
 
@@ -39,7 +41,8 @@ public class DrawHelper {
         return player.getCurrentColOnWorldMap() - MAX_SCREEN_COLUMN / 2;
     }
 
-    public static int getObjWindowPositionYRespectiveToPlayer(int positionY, Player player) {
+    public static int getObjWindowPositionYRespectiveToPlayer(int positionY,
+                                                              Player player) {
         int objPlayerMapDifferance = player.getCurrentRowOnWorldMap() - (positionY / TILE_SIZE);
         int playerScreenCol = (player.getPlayerAbsoluteScreenY()) / TILE_SIZE;
 
@@ -54,7 +57,8 @@ public class DrawHelper {
         return value * TILE_SIZE;
     }
 
-    public static int getObjWindowPositionXRespectiveToPlayer(int positionX, Player player) {
+    public static int getObjWindowPositionXRespectiveToPlayer(int positionX,
+                                                              Player player) {
         int objPlayerMapDifferance = player.getCurrentColOnWorldMap() - (positionX / TILE_SIZE);
 //        System.out.println("objPlayerMapDifferance"+objPlayerMapDifferance);
         int playerScreenRow = (player.getPlayerAbsoluteScreenX()) / TILE_SIZE;

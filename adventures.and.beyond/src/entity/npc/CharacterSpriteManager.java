@@ -26,7 +26,9 @@ public class CharacterSpriteManager {
         return characterSprite.getMaxFrameLimit();
     }
 
-    public BufferedImage[] getAnimationArray(String characterAnimationKey, Direction currentDirection, boolean isIdle) {
+    public BufferedImage[] getAnimationArray(String characterAnimationKey,
+                                             Direction currentDirection,
+                                             boolean isIdle) {
         CharacterSprite characterSprite = this.getCharacterSprite(characterAnimationKey);
 
         if (!isIdle) {

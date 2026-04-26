@@ -13,7 +13,13 @@ public class Entity {
     private final Rectangle solidArea;
     private boolean onCollision;
 
-    public Entity(int worldPositionX, int worldPositionY, int speed, Direction direction, boolean isIdle, Rectangle solidArea, boolean onCollision) {
+    public Entity(int worldPositionX,
+                  int worldPositionY,
+                  int speed,
+                  Direction direction,
+                  boolean isIdle,
+                  Rectangle solidArea,
+                  boolean onCollision) {
         this.worldPositionX = worldPositionX;
         this.worldPositionY = worldPositionY;
         this.speed = speed;

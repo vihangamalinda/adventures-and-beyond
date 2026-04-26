@@ -22,8 +22,6 @@ import window.GameWindowImpl;
 import world.manager.WorldMapManager;
 import world.manager.WorldMapManagerFactory;
 
-import javax.swing.*;
-
 public class Main {
     public static void main(String[] args) {
         PlayerSpriteManager.initializeSpriteMap();
@@ -44,12 +42,18 @@ public class Main {
         ReadKeyState readKeyState = keyHandler.readRegisteredKeyState();
         UIInputReader uiInputReader = new UIInputReaderImpl(readKeyState);
 
-        GameUpdater gameUpdater = new GameUpdaterImpl(entityManager, userInterfaceManager, uiInputReader);
+        GameUpdater gameUpdater = new GameUpdaterImpl(entityManager,
+                                                      userInterfaceManager,
+                                                      uiInputReader);
         GameLoop gameLoop = new GameLoopImpl(gameUpdater);
-        GameRenderer gameRenderer = new GameRendererImpl(entityManager, userInterfaceManager, worldMapManager);
-        GamePanel gamePanel = new GamePanel(gameRenderer, keyHandler);
+        GameRenderer gameRenderer = new GameRendererImpl(entityManager,
+                                                         userInterfaceManager,
+                                                         worldMapManager);
+        GamePanel gamePanel = new GamePanel(gameRenderer,
+                                            keyHandler);
 
-        return new GameControllerImpl(gameLoop, gamePanel);
+        return new GameControllerImpl(gameLoop,
+                                      gamePanel);
     }
 }
 

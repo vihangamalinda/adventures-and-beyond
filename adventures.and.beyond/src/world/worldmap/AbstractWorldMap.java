@@ -18,7 +18,8 @@ public abstract class AbstractWorldMap implements DrawableWorldMap, WorldMapInfo
     private final TileRegistry tileRegistry;
     private final InteractableObject[] interactableObjects;
 
-    protected AbstractWorldMap(int[][] mapTileMatrix, String worldMapKey) {
+    protected AbstractWorldMap(int[][] mapTileMatrix,
+                               String worldMapKey) {
         this.mapTileMatrix = mapTileMatrix;
 //        this.entityManager = EntityManagerFactory.getInstance();
         this.tileRegistry = TileRegistryFactory.getInstance();
@@ -74,27 +75,35 @@ public abstract class AbstractWorldMap implements DrawableWorldMap, WorldMapInfo
 
         int drawMapRow = getDrawMapStarterRow(player);
         // drawing map
-        drawWorldMap(graphics2D, drawMapRow, drawMapCol);
+        drawWorldMap(graphics2D,
+                     drawMapRow,
+                     drawMapCol);
         // drawing intractable objects
         drawInteractiveObjects(graphics2D);
     }
 
-    protected abstract void drawWorldMap(Graphics2D graphics2D, int drawMapRow, int drawMapCol);
+    protected abstract void drawWorldMap(Graphics2D graphics2D,
+                                         int drawMapRow,
+                                         int drawMapCol);
 
     public void drawInteractiveObjects(Graphics2D graphics2D) {
         Player player = EntityManagerFactory.getInstance().getPlayer();
 
         for (int currentIndex = 0; currentIndex <= this.interactableObjects.length - 1; currentIndex++) {
             InteractableObject obj = this.interactableObjects[currentIndex];
-            obj.draw(graphics2D, player);
+            obj.draw(graphics2D,
+                     player);
         }
     }
 
 
-    protected int getTileKeyByRowAndCol(int row, int col) {
+    protected int getTileKeyByRowAndCol(int row,
+                                        int col) {
         boolean isInvalid = row < 0 || col < 0 || row > MAX_WORLD_ROWS - 1 || col > MAX_WORLD_COLUMNS - 1;
         if (isInvalid) {
-            String message = String.format("Custom Error Given row and col are not within range. Row: %d, Col: %d", row, col);
+            String message = String.format("Custom Error Given row and col are not within range. Row: %d, Col: %d",
+                                           row,
+                                           col);
             throw new RuntimeException(message);
         }
         return this.mapTileMatrix[row][col];

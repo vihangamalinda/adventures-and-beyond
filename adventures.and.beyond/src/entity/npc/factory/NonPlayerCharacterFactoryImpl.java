@@ -12,18 +12,41 @@ public class NonPlayerCharacterFactoryImpl implements NonPlayerCharacterFactory 
     }
 
     @Override
-    public NonPlayerCharacter create(String characterType, int worldPositionX, int worldPositionY, Direction direction, boolean onCollision, String dialogueKey) {
+    public NonPlayerCharacter create(String characterType,
+                                     int worldPositionX,
+                                     int worldPositionY,
+                                     Direction direction,
+                                     boolean onCollision,
+                                     String dialogueKey) {
         return switch (characterType) {
-            case "Human_Cyan" ->
-                    createHuman(worldPositionX, worldPositionY, direction, onCollision, CharacterSpriteKey.HUMAN_CYAN, dialogueKey);
-            case "Human_Blue" ->
-                    createHuman(worldPositionX, worldPositionY, direction, onCollision, CharacterSpriteKey.HUMAN_CYAN, dialogueKey);
+            case "Human_Cyan" -> createHuman(worldPositionX,
+                                             worldPositionY,
+                                             direction,
+                                             onCollision,
+                                             CharacterSpriteKey.HUMAN_CYAN,
+                                             dialogueKey);
+            case "Human_Blue" -> createHuman(worldPositionX,
+                                             worldPositionY,
+                                             direction,
+                                             onCollision,
+                                             CharacterSpriteKey.HUMAN_CYAN,
+                                             dialogueKey);
             default -> null;
         };
     }
 
-    private NonPlayerCharacter createHuman(int worldPositionX, int worldPositionY, Direction direction, boolean onCollision, String characterAnimationKey, String dialogueKey) {
-        return new Human(worldPositionX, worldPositionY, direction, onCollision, characterAnimationKey, dialogueKey);
+    private NonPlayerCharacter createHuman(int worldPositionX,
+                                           int worldPositionY,
+                                           Direction direction,
+                                           boolean onCollision,
+                                           String characterAnimationKey,
+                                           String dialogueKey) {
+        return new Human(worldPositionX,
+                         worldPositionY,
+                         direction,
+                         onCollision,
+                         characterAnimationKey,
+                         dialogueKey);
     }
 
     public String[] getCharacterTypes() {

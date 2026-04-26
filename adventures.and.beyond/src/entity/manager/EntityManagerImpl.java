@@ -32,7 +32,8 @@ public class EntityManagerImpl implements EntityManager {
     }
 
     private void registerMainEntity() {
-        this.mainEntity = new Player(28 * TILE_SIZE, 12 * TILE_SIZE);
+        this.mainEntity = new Player(28 * TILE_SIZE,
+                                     12 * TILE_SIZE);
     }
 
     private void registerSecondaryEntities() {
@@ -44,7 +45,8 @@ public class EntityManagerImpl implements EntityManager {
         this.mainEntity.draw(graphics2D);
 
         for (DrawableNonPlayerCharacter character : this.secondaryDrawableList) {
-            character.draw(graphics2D, this.getPlayer());
+            character.draw(graphics2D,
+                           this.getPlayer());
         }
     }
 

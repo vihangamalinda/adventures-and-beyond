@@ -10,7 +10,9 @@ public class CharacterSprite {
     private final HashMap<Direction, BufferedImage[]> movingMotionAnimation;
     private final int maxFrameLimit;
 
-    public CharacterSprite(String name, HashMap<Direction, BufferedImage[]> movingMotionAnimation, int maxFrameLimit) {
+    public CharacterSprite(String name,
+                           HashMap<Direction, BufferedImage[]> movingMotionAnimation,
+                           int maxFrameLimit) {
         this.name = name;
         this.movingMotionAnimation = movingMotionAnimation;
         this.maxFrameLimit = maxFrameLimit;

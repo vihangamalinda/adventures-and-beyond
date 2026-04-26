@@ -18,7 +18,8 @@ public class InteractableObjectRegistryImpl implements InteractableObjectRegistr
     }
 
     private void register() {
-        this.interactableObjectMap.put("worldMap_01", this.createWorldMapOneInteractableObjects());
+        this.interactableObjectMap.put("worldMap_01",
+                                       this.createWorldMapOneInteractableObjects());
     }
 
     private InteractableObject[] createWorldMapOneInteractableObjects() {

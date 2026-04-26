@@ -44,7 +44,12 @@ public class TreasureObjectBuilder {
 
     public TreasureObject build() {
         validate();
-        return new TreasureObject(this.onCollision, this.worldPositionX, this.worldPositionY, this.treasureNumber, this.openCode, this.isActive);
+        return new TreasureObject(this.onCollision,
+                                  this.worldPositionX,
+                                  this.worldPositionY,
+                                  this.treasureNumber,
+                                  this.openCode,
+                                  this.isActive);
     }
 
     private void validate() {

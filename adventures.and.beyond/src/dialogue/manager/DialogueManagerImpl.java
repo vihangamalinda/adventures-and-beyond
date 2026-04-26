@@ -14,12 +14,16 @@ public class DialogueManagerImpl implements DialogueManager {
     }
 
     private void registerDialogue() {
-        register(DialogueKey.DIALOGUE_01, DialogueMessage.DIALOGUE_01_MESSAGE);
-        register(DialogueKey.DIALOGUE_02, DialogueMessage.DIALOGUE_02_MESSAGE);
+        register(DialogueKey.DIALOGUE_01,
+                 DialogueMessage.DIALOGUE_01_MESSAGE);
+        register(DialogueKey.DIALOGUE_02,
+                 DialogueMessage.DIALOGUE_02_MESSAGE);
     }
 
-    private void register(String key, String message) {
-        this.dialogues.put(key, message);
+    private void register(String key,
+                          String message) {
+        this.dialogues.put(key,
+                           message);
     }
 
     @Override

@@ -14,7 +14,8 @@ public class WorldMapManagerImpl implements WorldMapManager {
     private final WorldMapInformation worldMapInformation;
 
     WorldMapManagerImpl() {
-        AbstractWorldMap worldMap = new WorldMap(loadMapMatrix(), "worldMap_01");
+        AbstractWorldMap worldMap = new WorldMap(loadMapMatrix(),
+                                                 "worldMap_01");
         this.drawableWorldMap = worldMap;
         this.worldMapInformation = worldMap;
 
@@ -31,13 +32,17 @@ public class WorldMapManagerImpl implements WorldMapManager {
     }
 
     @Override
-    public int getTileKeyByRowAndCol(int rowIndex, int colIndex) {
-        return this.worldMapInformation.getTileKey(rowIndex, colIndex);
+    public int getTileKeyByRowAndCol(int rowIndex,
+                                     int colIndex) {
+        return this.worldMapInformation.getTileKey(rowIndex,
+                                                   colIndex);
     }
 
     @Override
-    public boolean canTileBeCollided(int rowIndex, int colIndex) {
-        return this.worldMapInformation.canTileBeCollided(rowIndex, colIndex);
+    public boolean canTileBeCollided(int rowIndex,
+                                     int colIndex) {
+        return this.worldMapInformation.canTileBeCollided(rowIndex,
+                                                          colIndex);
     }
 
     private int[][] loadMapMatrix() {

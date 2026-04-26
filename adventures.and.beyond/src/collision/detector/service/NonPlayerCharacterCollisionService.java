@@ -4,5 +4,6 @@ import entity.npc.NonPlayerCharacter;
 import entity.player.Player;
 
 public interface NonPlayerCharacterCollisionService {
-    void checkCollision(NonPlayerCharacter nonPlayerCharacter, Player player);
+    void checkCollision(NonPlayerCharacter nonPlayerCharacter,
+                        Player player);
 }

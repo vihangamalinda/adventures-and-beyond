@@ -14,7 +14,9 @@ public abstract class AbstractDetailNotifier implements Notifiable, DrawableNoti
     private final Color backgroundColour;
     private Font font;
 
-    AbstractDetailNotifier(boolean isActive, Color backgroundColour, Font font) {
+    AbstractDetailNotifier(boolean isActive,
+                           Color backgroundColour,
+                           Font font) {
         this.isActive = isActive;
         this.message = "";
         this.backgroundColour = backgroundColour;
@@ -66,7 +68,8 @@ public abstract class AbstractDetailNotifier implements Notifiable, DrawableNoti
         }
     }
 
-    public void notifyMessageForPeriod(String message, int seconds) {
+    public void notifyMessageForPeriod(String message,
+                                       int seconds) {
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
 
         Runnable task = () -> {
@@ -76,7 +79,9 @@ public abstract class AbstractDetailNotifier implements Notifiable, DrawableNoti
 
         notifyMessage(message);
 
-        scheduledExecutorService.schedule(task, seconds, TimeUnit.SECONDS);
+        scheduledExecutorService.schedule(task,
+                                          seconds,
+                                          TimeUnit.SECONDS);
         scheduledExecutorService.shutdown();
     }
 

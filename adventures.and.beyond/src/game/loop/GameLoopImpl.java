@@ -3,7 +3,7 @@ package game.loop;
 import game.update.GameUpdater;
 import helper.Constant;
 
-public class GameLoopImpl implements GameLoop,Runnable {
+public class GameLoopImpl implements GameLoop, Runnable {
     private Thread gameLoopThread;
     private final GameUpdater gameUpdater;
     private Runnable repaintAction;
@@ -14,12 +14,13 @@ public class GameLoopImpl implements GameLoop,Runnable {
 
     @Override
     public void start(Runnable repaintAction) {
-        this.repaintAction =repaintAction;
+        this.repaintAction = repaintAction;
         this.gameLoopThread = new Thread(this);
         this.gameLoopThread.start();
     }
+
     @Override
-    public void stop(){
+    public void stop() {
         this.gameLoopThread = null;
     }
 

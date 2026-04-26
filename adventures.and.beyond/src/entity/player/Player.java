@@ -44,8 +44,18 @@ public class Player extends Entity {
     private final PlayerCollisionService playerCollisionService;
 
 
-    public Player(int positionX, int positionY) {
-        super(positionX, positionY, movementSpeed, Direction.FACING_FORWARD, true, new Rectangle(PLAYER_SOLID_AREA_START_X, PLAYER_SOLID_AREA_START_Y, PLAYER_SOLID_AREA_WIDTH, PLAYER_SOLID_AREA_HEIGHT), false);
+    public Player(int positionX,
+                  int positionY) {
+        super(positionX,
+              positionY,
+              movementSpeed,
+              Direction.FACING_FORWARD,
+              true,
+              new Rectangle(PLAYER_SOLID_AREA_START_X,
+                            PLAYER_SOLID_AREA_START_Y,
+                            PLAYER_SOLID_AREA_WIDTH,
+                            PLAYER_SOLID_AREA_HEIGHT),
+              false);
         this.collectedKeyCode = new ArrayList<>();
         this.initializeCentralizeCamera();
         this.playerMovementService = new PlayerMovementServiceImpl();
@@ -58,9 +68,11 @@ public class Player extends Entity {
 
     public void update() {
         RegisteredPlayerInput registeredPlayerInput = this.playerInputReader.readPlayerInput();
-        this.playerMovementService.updateDirectionAndIdleState(this, registeredPlayerInput);
+        this.playerMovementService.updateDirectionAndIdleState(this,
+                                                               registeredPlayerInput);
         this.playerCollisionService.checkCollision(this);
-        this.playerMovementService.updateWorldPosition(this, registeredPlayerInput);
+        this.playerMovementService.updateWorldPosition(this,
+                                                       registeredPlayerInput);
         this.playerAnimationService.updateAnimation(this);
     }
 
@@ -97,7 +109,8 @@ public class Player extends Entity {
     }
 
     public void draw(Graphics2D graphics2D) {
-        this.playerDrawService.draw(graphics2D, this);
+        this.playerDrawService.draw(graphics2D,
+                                    this);
     }
 
 
@@ -150,14 +163,18 @@ public class Player extends Entity {
     }
 
     private void logPlayerCurrentRowAndCol() {
-        String message = String.format("Player current (Row,Col):(%d,%d)", getCurrentRowOnWorldMap(), getCurrentColOnWorldMap());
+        String message = String.format("Player current (Row,Col):(%d,%d)",
+                                       getCurrentRowOnWorldMap(),
+                                       getCurrentColOnWorldMap());
         System.out.println(message);
         int firstRowDrawnOnColumn = (this.getWorldPositionX() - (WINDOW_MAX_SCREEN_HEIGHT) / 2) / TILE_SIZE;
         System.out.println("Should start from row: " + firstRowDrawnOnColumn);
     }
 
     private void logPlayerScreenColRow() {
-        String message = String.format("Player Screen (Row,Col):(%d,%d)", this.getPlayerAbsoluteScreenY() / TILE_SIZE, this.getPlayerAbsoluteScreenX() / TILE_SIZE);
+        String message = String.format("Player Screen (Row,Col):(%d,%d)",
+                                       this.getPlayerAbsoluteScreenY() / TILE_SIZE,
+                                       this.getPlayerAbsoluteScreenX() / TILE_SIZE);
         System.out.println(message);
     }
 
@@ -211,7 +228,10 @@ public class Player extends Entity {
         }
 
 
-        return new Rectangle(this.getPlayerAbsoluteWorldPositionX() + x, this.getPlayerAbsoluteWorldPositionY() + y, currentSolidArea.width, currentSolidArea.height);
+        return new Rectangle(this.getPlayerAbsoluteWorldPositionX() + x,
+                             this.getPlayerAbsoluteWorldPositionY() + y,
+                             currentSolidArea.width,
+                             currentSolidArea.height);
     }
 
     private int getPlayerAbsoluteWorldPositionY() {
