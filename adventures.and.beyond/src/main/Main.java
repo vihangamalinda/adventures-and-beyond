@@ -17,6 +17,8 @@ import input.reader.UIInputReader;
 import input.reader.UIInputReaderImpl;
 import input.state.ReadKeyState;
 import ui.UserInterfaceManager;
+import window.GameWindow;
+import window.GameWindowImpl;
 import world.manager.WorldMapManager;
 import world.manager.WorldMapManagerFactory;
 
@@ -25,20 +27,12 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
         PlayerSpriteManager.initializeSpriteMap();
-        JFrame window = new JFrame();
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setResizable(false);
-        window.setTitle("Adventures and Beyond");
+
+        String title = "Adventures and Beyond";
 
         GameController gameController = createGameController();
-
-        window.add(gameController.getGamePanel());
-        //to inform window to be sized to fit the preferred size and layouts of subcomponents( gamePanel)
-        window.pack();
-
-        window.setLocationRelativeTo(null);
-        window.setVisible(true);
-
+        GameWindow gameWindow = new GameWindowImpl(title);
+        gameWindow.initialize(gameController.getGamePanel());
         gameController.startGame();
     }
 
