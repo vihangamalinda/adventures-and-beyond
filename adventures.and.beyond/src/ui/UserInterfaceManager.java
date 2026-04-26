@@ -53,6 +53,10 @@ public class UserInterfaceManager {
         this.mainDetailNotifier.deactivate();
     }
 
+    public void pauseGameModal() {
+        this.triggerMainNotification("Game on Pause");
+    }
+
     public void draw(Graphics2D graphics2D) {
         for (DrawableNotifier drawableNotifier : this.drawableNotifierList) {
             drawableNotifier.draw(graphics2D);
