@@ -27,8 +27,9 @@ public class WorldMapManagerImpl implements WorldMapManager {
     }
 
     @Override
-    public void draw(Graphics2D graphics2D) {
-        drawableWorldMap.draw(graphics2D);
+    public void draw(Graphics2D graphics2D,
+                     Player player) {
+        drawableWorldMap.draw(graphics2D,player);
     }
 
     @Override
@@ -45,7 +46,7 @@ public class WorldMapManagerImpl implements WorldMapManager {
                                                           colIndex);
     }
 
-    private int[][] loadMapMatrix() {
+    public static int[][] loadMapMatrix() {
         return Loader.getMapMatrix("/maps/updated/world_map_01.txt");
     }
 }

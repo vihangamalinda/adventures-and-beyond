@@ -24,6 +24,8 @@ public class GameRendererImpl implements GameRenderer {
     public void render(Graphics2D graphics2D) {
         long startTime = Timer.getStartingTime();
         this.worldMapManager.draw(graphics2D);
+        Player player = this.entityManager.getPlayer();
+        this.worldMapManager.draw(graphics2D,player);
 
         this.entityManager.drawEntities(graphics2D);
 

@@ -1,5 +1,6 @@
 package world.worldmap;
 
+import entity.manager.EntityManager;
 import entity.manager.EntityManagerFactory;
 import entity.player.Player;
 import object.InteractableObjectManagerFactory;
@@ -67,8 +68,7 @@ public abstract class AbstractWorldMap implements DrawableWorldMap, WorldMapInfo
     }
 
     @Override
-    public void draw(Graphics2D graphics2D) {
-        Player player = EntityManagerFactory.getInstance().getPlayer();
+    public void draw(Graphics2D graphics2D,Player player) {
 
         int drawMapCol = getDrawMapStarterCol(player);
 
@@ -79,16 +79,14 @@ public abstract class AbstractWorldMap implements DrawableWorldMap, WorldMapInfo
                      drawMapRow,
                      drawMapCol);
         // drawing intractable objects
-        drawInteractiveObjects(graphics2D);
+        drawInteractiveObjects(graphics2D,player);
     }
 
     protected abstract void drawWorldMap(Graphics2D graphics2D,
                                          int drawMapRow,
                                          int drawMapCol);
 
-    public void drawInteractiveObjects(Graphics2D graphics2D) {
-        Player player = EntityManagerFactory.getInstance().getPlayer();
-
+    public void drawInteractiveObjects(Graphics2D graphics2D,Player player) {
         for (int currentIndex = 0; currentIndex <= this.interactableObjects.length - 1; currentIndex++) {
             InteractableObject obj = this.interactableObjects[currentIndex];
             obj.draw(graphics2D,
