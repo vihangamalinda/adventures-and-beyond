@@ -3,7 +3,13 @@ package helper;
 import input.KeyHandler;
 
 public class Timer {
-    public static long getStartingTime() {
+    private KeyHandler keyHandler;
+
+    public Timer(KeyHandler keyHandler){
+        this.keyHandler = keyHandler;
+    }
+
+    public  long getStartingTime() {
         return System.nanoTime();
     }
 
