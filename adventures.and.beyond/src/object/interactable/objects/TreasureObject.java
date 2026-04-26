@@ -30,7 +30,7 @@ public class TreasureObject extends InteractableObject {
             SoundManager.getInstance().performSoundEffects(SoundKey.TREASURE_BOX_OPENING, 2);
             player.removeKey(openCode);
             this.setActive(false);
-            GamePanel.getInstance().stopGame();
+//            GamePanel.getInstance().stopGame(); // temporarily commenting this code
         } else {
             String message = "Player does not have correct key: " + this.openCode;
             UserInterfaceManager.getInstance().notifyGameDetails(message);
