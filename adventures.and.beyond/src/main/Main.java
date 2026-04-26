@@ -23,3 +23,13 @@ public class Main {
         gamePanel.startGameThread();
     }
 }
+
+/**
+ * Responsibility Map of Game classes
+ * <p>
+ * GameController = "brain"
+ * GameLoop       = "heartbeat"
+ * GameUpdater    = "logic"
+ * GameRenderer   = "eyes"
+ * GamePanel      = "body"
+ **/
