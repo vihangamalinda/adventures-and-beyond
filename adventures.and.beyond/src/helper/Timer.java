@@ -13,8 +13,9 @@ public class Timer {
         return System.nanoTime();
     }
 
-    public static void evaluvateTimeSpent(long startTime) {
-        boolean isOnDevMood = KeyHandler.getInstance().readRegisteredKeyState().isOnDevMood();
+
+    public  void evaluvateTimeSpent(long startTime) {
+        boolean isOnDevMood = this.keyHandler.readRegisteredKeyState().isOnDevMood();
         if (isOnDevMood) {
             System.out.println("Time spent" + (System.nanoTime() - startTime));
         }

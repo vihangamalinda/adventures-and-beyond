@@ -22,8 +22,7 @@ public class GameRendererImpl implements GameRenderer {
 
     @Override
     public void render(Graphics2D graphics2D) {
-        long startTime = Timer.getStartingTime();
-        this.worldMapManager.draw(graphics2D);
+        long startTime = this.timer.getStartingTime();
         Player player = this.entityManager.getPlayer();
         this.worldMapManager.draw(graphics2D,player);
 
@@ -32,6 +31,6 @@ public class GameRendererImpl implements GameRenderer {
         // Notify
         this.userInterfaceManager.draw(graphics2D);
 
-        Timer.evaluvateTimeSpent(startTime);
+        this.timer.evaluvateTimeSpent(startTime);
     }
 }
