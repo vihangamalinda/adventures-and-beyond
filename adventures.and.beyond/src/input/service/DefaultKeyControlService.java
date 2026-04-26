@@ -36,7 +36,7 @@ public class DefaultKeyControlService implements KeyControlService {
             case KeyEvent.VK_P:
                 boolean isOnPause = this.registeredKeyState.isOnPause();
                 if (isOnPause) {
-                    UserInterfaceManager.getInstance().deactivateMainNotification();
+//                    UserInterfaceManager.getInstance().deactivateMainNotification();
                 }
                 updateOnPause(!isOnPause);
             default:

@@ -19,4 +19,5 @@ public class RegisteredPlayerInput {
         this.isAtIdle = isAtIdle;
     }
 
+
 }
