@@ -9,8 +9,8 @@ public class ObjectCollisionDetectorImpl implements ObjectCollisionDetector {
 
     private final WorldMapManager worldMapManager;
 
-    public ObjectCollisionDetectorImpl() {
-        this.worldMapManager = WorldMapManagerFactory.getInstance();
+    public ObjectCollisionDetectorImpl(WorldMapManager worldMapManager) {
+        this.worldMapManager = worldMapManager;
     }
 
     @Override

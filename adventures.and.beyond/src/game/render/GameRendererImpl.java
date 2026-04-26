@@ -1,6 +1,7 @@
 package game.render;
 
 import entity.manager.EntityManager;
+import entity.player.Player;
 import helper.Timer;
 import ui.UserInterfaceManager;
 import world.manager.WorldMapManager;
@@ -11,13 +12,16 @@ public class GameRendererImpl implements GameRenderer {
     private final EntityManager entityManager;
     private final UserInterfaceManager userInterfaceManager;
     private final WorldMapManager worldMapManager;
+    private final Timer timer;
 
     public GameRendererImpl(EntityManager entityManager,
                             UserInterfaceManager userInterfaceManager,
-                            WorldMapManager worldMapManager) {
+                            WorldMapManager worldMapManager,
+                            Timer timer) {
         this.entityManager = entityManager;
         this.userInterfaceManager = userInterfaceManager;
         this.worldMapManager = worldMapManager;
+        this.timer = timer;
     }
 
     @Override

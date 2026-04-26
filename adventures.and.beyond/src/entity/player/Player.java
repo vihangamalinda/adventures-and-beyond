@@ -45,7 +45,13 @@ public class Player extends Entity {
 
 
     public Player(int positionX,
-                  int positionY) {
+                  int positionY,
+                  PlayerMovementService playerMovementService,
+                  PlayerInputReader playerInputReader,
+                  PlayerAnimationService playerAnimationService,
+                  PlayerDrawService playerDrawService,
+                  PlayerCollisionService playerCollisionService
+    ) {
         super(positionX,
               positionY,
               movementSpeed,
@@ -58,12 +64,11 @@ public class Player extends Entity {
               false);
         this.collectedKeyCode = new ArrayList<>();
         this.initializeCentralizeCamera();
-        this.playerMovementService = new PlayerMovementServiceImpl();
-        ReadKeyState readKeyState = KeyHandler.getInstance().readRegisteredKeyState();
-        this.playerInputReader = new PlayerInputReaderImpl(readKeyState);
-        this.playerAnimationService = new PlayerAnimationServiceImpl();
-        this.playerDrawService = new PlayerDrawServiceImpl();
-        this.playerCollisionService = new PlayerCollisionServiceImpl();
+        this.playerMovementService = playerMovementService;
+        this.playerInputReader =playerInputReader;
+        this.playerAnimationService = playerAnimationService;
+        this.playerDrawService = playerDrawService;
+        this.playerCollisionService = playerCollisionService;
     }
 
     public void update() {

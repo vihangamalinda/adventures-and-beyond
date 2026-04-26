@@ -1,5 +1,6 @@
 package entity.npc.factory;
 
+import collision.detector.service.NonPlayerCharacterCollisionService;
 import directionEnum.Direction;
 import entity.npc.NonPlayerCharacter;
 import entity.npc.character.Human;
@@ -7,8 +8,10 @@ import entity.npc.sprite.CharacterSpriteKey;
 
 public class NonPlayerCharacterFactoryImpl implements NonPlayerCharacterFactory {
     private static final String[] characterTypes = {"Human_Cyan", "Human_Blue"};
+    private final NonPlayerCharacterCollisionService nonPlayerCharacterCollisionService;
 
-    public NonPlayerCharacterFactoryImpl() {
+    public NonPlayerCharacterFactoryImpl(NonPlayerCharacterCollisionService nonPlayerCharacterCollisionService) {
+        this.nonPlayerCharacterCollisionService = nonPlayerCharacterCollisionService;
     }
 
     @Override
@@ -46,9 +49,12 @@ public class NonPlayerCharacterFactoryImpl implements NonPlayerCharacterFactory 
                          direction,
                          onCollision,
                          characterAnimationKey,
-                         dialogueKey);
+                         dialogueKey,
+                         this.nonPlayerCharacterCollisionService
+        );
     }
 
+    @Override
     public String[] getCharacterTypes() {
         return characterTypes;
     }

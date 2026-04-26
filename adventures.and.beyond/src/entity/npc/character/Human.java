@@ -1,5 +1,6 @@
 package entity.npc.character;
 
+import collision.detector.service.NonPlayerCharacterCollisionService;
 import dialogue.DialogueManagerFactory;
 import directionEnum.Direction;
 import entity.npc.NonPlayerCharacter;
@@ -17,7 +18,8 @@ public class Human extends NonPlayerCharacter {
                  Direction direction,
                  boolean onCollision,
                  String characterAnimationKey,
-                 String dialogueKey) {
+                 String dialogueKey,
+                 NonPlayerCharacterCollisionService nonPlayerCharacterCollisionService) {
         super(worldPositionX,
               worldPositionY,
               speed,
@@ -28,7 +30,8 @@ public class Human extends NonPlayerCharacter {
                             30,
                             30),
               onCollision,
-              characterAnimationKey);
+              characterAnimationKey,
+              nonPlayerCharacterCollisionService);
         this.dialogueKey = dialogueKey;
     }
 

@@ -5,6 +5,7 @@ import directionEnum.Direction;
 import entity.npc.DrawableNonPlayerCharacter;
 import entity.npc.NonPlayerCharacter;
 import entity.npc.UpdatableNonPlayerCharacter;
+import entity.npc.factory.NonPlayerCharacterFactory;
 import entity.npc.factory.NonPlayerCharacterFactoryImpl;
 
 import java.util.ArrayList;
@@ -16,12 +17,12 @@ public class NonPlayerCharacterRegistryImpl implements NonPlayerCharacterRegistr
 
     private final List<UpdatableNonPlayerCharacter> updatableNonPlayerCharacterList;
     private final List<DrawableNonPlayerCharacter> drawableNonPlayerCharacterList;
-    private final NonPlayerCharacterFactoryImpl nonPlayerCharacterFactory;
+    private final NonPlayerCharacterFactory nonPlayerCharacterFactory;
 
-    public NonPlayerCharacterRegistryImpl() {
+    public NonPlayerCharacterRegistryImpl(NonPlayerCharacterFactory nonPlayerCharacterFactory) {
         this.drawableNonPlayerCharacterList = new ArrayList<>();
         this.updatableNonPlayerCharacterList = new ArrayList<>();
-        this.nonPlayerCharacterFactory = new NonPlayerCharacterFactoryImpl();
+        this.nonPlayerCharacterFactory = nonPlayerCharacterFactory;
         this.registerCharacters();
     }
 

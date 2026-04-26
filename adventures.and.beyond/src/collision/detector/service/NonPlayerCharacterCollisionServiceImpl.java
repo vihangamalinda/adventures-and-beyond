@@ -12,9 +12,10 @@ public class NonPlayerCharacterCollisionServiceImpl implements NonPlayerCharacte
     private final TileCollisionDetector tileCollisionDetector;
     private final NonPlayerCharacterCollisionDetector nonPlayerCharacterCollisionDetector;
 
-    public NonPlayerCharacterCollisionServiceImpl() {
-        this.tileCollisionDetector = new TileCollisionDetectorImpl();
-        this.nonPlayerCharacterCollisionDetector = new NonPlayerCharacterCollisionDetectorImpl();
+    public NonPlayerCharacterCollisionServiceImpl(TileCollisionDetector tileCollisionDetector,
+                                                  NonPlayerCharacterCollisionDetector nonPlayerCharacterCollisionDetector) {
+        this.tileCollisionDetector = tileCollisionDetector;
+        this.nonPlayerCharacterCollisionDetector = nonPlayerCharacterCollisionDetector;
     }
 
     @Override

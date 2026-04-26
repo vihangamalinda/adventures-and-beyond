@@ -10,9 +10,10 @@ public class PlayerCollisionServiceImpl implements PlayerCollisionService {
     private final TileCollisionDetector tileCollisionDetector;
     private final ObjectCollisionDetector objectCollisionDetector;
 
-    public PlayerCollisionServiceImpl() {
-        this.tileCollisionDetector = new TileCollisionDetectorImpl();
-        this.objectCollisionDetector = new ObjectCollisionDetectorImpl();
+    public PlayerCollisionServiceImpl(TileCollisionDetector tileCollisionDetector,
+                                      ObjectCollisionDetector objectCollisionDetector) {
+        this.tileCollisionDetector = tileCollisionDetector;
+        this.objectCollisionDetector = objectCollisionDetector;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package entity.manager;
 
+import entity.factory.player.PlayerFactory;
 import entity.npc.DrawableNonPlayerCharacter;
 import entity.npc.UpdatableNonPlayerCharacter;
 import entity.npc.registry.NonPlayerCharacterRegistry;
@@ -19,10 +20,13 @@ public class EntityManagerImpl implements EntityManager {
     private List<DrawableNonPlayerCharacter> secondaryDrawableList;
 
     private final NonPlayerCharacterRegistry nonPlayerCharacterRegistry;
+    private final PlayerFactory playerFactory;
 
 
-    public EntityManagerImpl() {
-        this.nonPlayerCharacterRegistry = new NonPlayerCharacterRegistryImpl();
+
+    public EntityManagerImpl(PlayerFactory playerFactory,NonPlayerCharacterRegistry nonPlayerCharacterRegistry) {
+        this.playerFactory =  playerFactory;
+        this.nonPlayerCharacterRegistry = nonPlayerCharacterRegistry;
         this.registerEntities();
     }
 
@@ -32,8 +36,9 @@ public class EntityManagerImpl implements EntityManager {
     }
 
     private void registerMainEntity() {
-        this.mainEntity = new Player(28 * TILE_SIZE,
-                                     12 * TILE_SIZE);
+        // temporary passing null for all the services
+        this.mainEntity = playerFactory.createPlayer(28 * TILE_SIZE,
+                                           12 * TILE_SIZE);
     }
 
     private void registerSecondaryEntities() {

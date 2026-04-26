@@ -1,12 +1,16 @@
 package ui.notifier.factory;
 
+import entity.manager.EntityManager;
+import entity.player.Player;
 import ui.notifier.*;
 
 public class DetailNotifierFactoryImpl implements DetailNotifierFactory {
 
     private static final String[] definedTypes = {"PlayerNotifier", "GameNotifier", "MainNotifier", "DialogueNotifier"};
+    private final Player player;
 
-    public DetailNotifierFactoryImpl() {
+    public DetailNotifierFactoryImpl(EntityManager entityManager) {
+        this.player = entityManager.getPlayer();
     }
 
     @Override
@@ -40,6 +44,6 @@ public class DetailNotifierFactoryImpl implements DetailNotifierFactory {
     }
 
     private AbstractDetailNotifier getPlayerDetailNotifier() {
-        return new PlayerDetailNotifier(true);
+        return new PlayerDetailNotifier(true,player);
     }
 }

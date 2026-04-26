@@ -1,5 +1,6 @@
 package world.manager;
 
+import entity.player.Player;
 import helper.Loader;
 import object.interactable.objects.InteractableObject;
 import world.worldmap.AbstractWorldMap;
@@ -13,9 +14,8 @@ public class WorldMapManagerImpl implements WorldMapManager {
     private final DrawableWorldMap drawableWorldMap;
     private final WorldMapInformation worldMapInformation;
 
-    WorldMapManagerImpl() {
-        AbstractWorldMap worldMap = new WorldMap(loadMapMatrix(),
-                                                 "worldMap_01");
+   public WorldMapManagerImpl(WorldMap worldMap) {
+//        AbstractWorldMap worldMap =worldMap1;
         this.drawableWorldMap = worldMap;
         this.worldMapInformation = worldMap;
 

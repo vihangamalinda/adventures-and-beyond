@@ -1,5 +1,6 @@
 package world.manager;
 
+import entity.player.Player;
 import object.interactable.objects.InteractableObject;
 
 import java.awt.*;
@@ -14,5 +15,6 @@ public interface WorldMapManager {
     boolean canTileBeCollided(int rowIndex,
                               int colIndex);
 
-    void draw(Graphics2D graphics2D);
+    void draw(Graphics2D graphics2D,
+              Player player);
 }

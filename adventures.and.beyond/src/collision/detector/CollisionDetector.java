@@ -12,14 +12,14 @@ public class CollisionDetector {
 //        private static final CollisionDetector INSTANCE = new CollisionDetector();
 //    }
 
-    private final WorldMapManager worldMapManager;
-    private final EntityManager entityManager;
-
-    public CollisionDetector() {
-        this.worldMapManager = WorldMapManagerFactory.getInstance();
-        this.entityManager = EntityManagerFactory.getInstance();
-
-    }
+//    private final WorldMapManager worldMapManager;
+//    private final EntityManager entityManager;
+//
+//    public CollisionDetector() {
+//        this.worldMapManager = WorldMapManagerFactory.getInstance();
+//        this.entityManager = EntityManagerFactory.getInstance();
+//
+//    }
 
 //    public static CollisionDetector getInstance() {
 //        return Holder.INSTANCE;

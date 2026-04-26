@@ -13,8 +13,8 @@ public class TileCollisionDetectorImpl implements TileCollisionDetector {
     private final WorldMapManager worldMapManager;
 
 
-    public TileCollisionDetectorImpl() {
-        this.worldMapManager = WorldMapManagerFactory.getInstance();
+    public TileCollisionDetectorImpl(WorldMapManager worldMapManager) {
+        this.worldMapManager = worldMapManager;
     }
 
     @Override

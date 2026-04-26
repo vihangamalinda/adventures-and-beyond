@@ -19,12 +19,7 @@ public class UserInterfaceManager {
 
     private final List<DrawableNotifier> drawableNotifierList;
 
-    private static class Holder {
-        private static final UserInterfaceManager INSTANCE = new UserInterfaceManager();
-    }
-
-    private UserInterfaceManager() {
-        DetailNotifierRegistry detailNotifierRegistry = new DetailNotifierRegistryImpl();
+    public UserInterfaceManager(DetailNotifierRegistry detailNotifierRegistry) {
         this.playerDetailNotifier = detailNotifierRegistry.getPlayerDetailNotifier();
         this.gameDetailNotifier = detailNotifierRegistry.getGameDetailNotifier();
         this.mainDetailNotifier = detailNotifierRegistry.getMainDetailNotifier();
@@ -32,10 +27,6 @@ public class UserInterfaceManager {
         this.drawableNotifierList = detailNotifierRegistry.getRegisteredDrawableNotifierList();
     }
 
-
-    public static UserInterfaceManager getInstance() {
-        return Holder.INSTANCE;
-    }
 
     public void notifyGameDetails(String message) {
         this.gameDetailNotifier.notifyMessageForPeriod(message,

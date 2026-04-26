@@ -18,8 +18,8 @@ public class DetailNotifierRegistryImpl implements DetailNotifierRegistry {
     private final List<DrawableNotifier> drawableNotifierList;
     private final DetailNotifierFactory detailNotifierFactory;
 
-    public DetailNotifierRegistryImpl() {
-        this.detailNotifierFactory = new DetailNotifierFactoryImpl();
+    public DetailNotifierRegistryImpl(DetailNotifierFactory detailNotifierFactory) {
+        this.detailNotifierFactory = detailNotifierFactory;
         this.drawableNotifierList = new ArrayList<>();
         this.registerNotifiers();
     }

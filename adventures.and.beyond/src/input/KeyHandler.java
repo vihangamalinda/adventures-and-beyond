@@ -14,19 +14,20 @@ public class KeyHandler implements KeyListener {
     private final KeyControlService defaultKeyControlService;
     private KeyControlService activeKeyControlService;
 
-    private KeyHandler() {
-        this.registeredKeyState = new RegisteredKeyStateImpl();
-        this.defaultKeyControlService = new DefaultKeyControlService(this.registeredKeyState);
+    public KeyHandler(RegisteredKeyState registeredKeyState,
+                       KeyControlService defaultKeyControlService) {
+        this.registeredKeyState = registeredKeyState;
+        this.defaultKeyControlService =defaultKeyControlService;
         this.activeKeyControlService = this.defaultKeyControlService;
     }
-
-    private static class Holder {
-        private final static KeyHandler INSTANCE = new KeyHandler();
-    }
-
-    public static KeyHandler getInstance() {
-        return Holder.INSTANCE;
-    }
+//
+//    private static class Holder {
+//        private final static KeyHandler INSTANCE = new KeyHandler();
+//    }
+//
+//    public static KeyHandler getInstance() {
+//        return Holder.INSTANCE;
+//    }
 
     public ReadKeyState readRegisteredKeyState() {
         return this.registeredKeyState;

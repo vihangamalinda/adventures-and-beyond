@@ -34,7 +34,8 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
                               boolean isIdle,
                               Rectangle solidArea,
                               boolean onCollision,
-                              String characterAnimationKey) {
+                              String characterAnimationKey,
+                              NonPlayerCharacterCollisionService nonPlayerCharacterCollisionService) {
         super(worldPositionX,
               worldPositionY,
               speed,
@@ -45,7 +46,7 @@ public abstract class NonPlayerCharacter extends Entity implements DrawableNonPl
         this.characterAnimationKey = characterAnimationKey;
         this.isOnCollisionWithPlayer = false;
         this.nonPlayerMovementService = new NonPlayerMovementServiceImpl();
-        this.nonPlayerCharacterCollisionService = new NonPlayerCharacterCollisionServiceImpl();
+        this.nonPlayerCharacterCollisionService = nonPlayerCharacterCollisionService;
 
     }
 

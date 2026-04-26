@@ -18,11 +18,12 @@ public class PlayerDetailNotifier extends AbstractDetailNotifier {
     private final int width;
     private final int height;
 
-    public PlayerDetailNotifier(boolean isActive) {
+    public PlayerDetailNotifier(boolean isActive,
+                                Player player) {
         super(isActive,
               CustomColours.BLACK_01_LOW_OPACITY,
               STANDARD_ARIAL);
-        this.player = EntityManagerFactory.getInstance().getPlayer();
+        this.player = player;
         this.starterX = 10;
         this.starterY = 10;
         this.width = TILE_SIZE * 4;
