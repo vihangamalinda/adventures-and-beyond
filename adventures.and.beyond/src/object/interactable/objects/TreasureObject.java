@@ -43,7 +43,7 @@ public class TreasureObject extends InteractableObject {
 //            GamePanel.getInstance().stopGame(); // temporarily commenting this code
         } else {
             String message = "Player does not have correct key: " + this.openCode;
-            UserInterfaceManager.getInstance().notifyGameDetails(message);
+//            UserInterfaceManager.getInstance().notifyGameDetails(message);
             player.setOnCollision(true);
         }
     }

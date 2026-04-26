@@ -41,7 +41,7 @@ public class Human extends NonPlayerCharacter {
     @Override
     public void performInteraction() {
         String dialogue = DialogueManagerFactory.getInstance().getDialogueByDialogueKey(this.dialogueKey);
-        UserInterfaceManager.getInstance().triggerDetailNotification(dialogue);
+//        UserInterfaceManager.getInstance().triggerDetailNotification(dialogue);
         System.out.println(dialogue);
     }
 
