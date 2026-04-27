@@ -1,10 +1,22 @@
 package entity.player;
 
+
+import animation.service.player.PlayerAnimationService;
+import animation.service.player.PlayerAnimationServiceImpl;
+import collision.detector.service.PlayerCollisionService;
+import collision.detector.service.PlayerCollisionServiceImpl;
 import directionEnum.Direction;
+import drawable.service.player.PlayerDrawService;
+import drawable.service.player.PlayerDrawServiceImpl;
 import entity.Entity;
 import helper.Constant;
-import main.CollisionDetector;
-import main.KeyHandler;
+import input.KeyHandler;
+import input.model.player.RegisteredPlayerInput;
+import input.reader.PlayerInputReader;
+import input.reader.PlayerInputReaderImpl;
+import input.state.ReadKeyState;
+import movement.player.PlayerMovementService;
+import movement.player.PlayerMovementServiceImpl;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,62 +24,61 @@ import java.util.ArrayList;
 
 import static entity.player.PlayerConstant.*;
 import static helper.Constant.*;
-import static entity.player.PlayerSpriteManager.getPlayerImageByIndex;
 
 public class Player extends Entity {
-    private KeyHandler keyHandler;
-
 
     private ArrayList<String> collectedKeyCode;
-
     private int screenPositionX;
     private int screenPositionY;
     private static final int movementSpeed = 4;
 
-    public int getScreenPositionX() {
-        return screenPositionX;
-    }
 
-    public void setScreenPositionX(int screenPositionX) {
-        this.screenPositionX = screenPositionX;
-    }
+    private int frameIndex = 0;
+    private int counter = 0;
+    private BufferedImage currentPlayerImage;
+    private final PlayerMovementService playerMovementService;
 
-    public int getScreenPositionY() {
-        return screenPositionY;
-    }
-
-    public void setScreenPositionY(int screenPositionY) {
-        this.screenPositionY = screenPositionY;
-    }
-
-    int frameIndex = 0;
-    int counter = 0;
+    private final PlayerInputReader playerInputReader;
+    private final PlayerAnimationService playerAnimationService;
+    private final PlayerDrawService playerDrawService;
+    private final PlayerCollisionService playerCollisionService;
 
 
-    public Player(int positionX, int positionY) {
-        super(positionX, positionY, movementSpeed, Direction.FACING_FORWARD, true, new Rectangle(PLAYER_SOLID_AREA_START_X, PLAYER_SOLID_AREA_START_Y, PLAYER_SOLID_AREA_WIDTH, PLAYER_SOLID_AREA_HEIGHT), false);
+    public Player(int positionX,
+                  int positionY,
+                  PlayerMovementService playerMovementService,
+                  PlayerInputReader playerInputReader,
+                  PlayerAnimationService playerAnimationService,
+                  PlayerDrawService playerDrawService,
+                  PlayerCollisionService playerCollisionService
+    ) {
+        super(positionX,
+              positionY,
+              movementSpeed,
+              Direction.FACING_FORWARD,
+              true,
+              new Rectangle(PLAYER_SOLID_AREA_START_X,
+                            PLAYER_SOLID_AREA_START_Y,
+                            PLAYER_SOLID_AREA_WIDTH,
+                            PLAYER_SOLID_AREA_HEIGHT),
+              false);
         this.collectedKeyCode = new ArrayList<>();
         this.initializeCentralizeCamera();
+        this.playerMovementService = playerMovementService;
+        this.playerInputReader =playerInputReader;
+        this.playerAnimationService = playerAnimationService;
+        this.playerDrawService = playerDrawService;
+        this.playerCollisionService = playerCollisionService;
     }
 
     public void update() {
-        // handle idle or not
-        checkIdleState();
-
-        changeDirection();
-
-        CollisionDetector collisionDetector = CollisionDetector.getInstance();
-        collisionDetector.checkTileCollision(this);
-        collisionDetector.checkObjectCollision(this);
-
-//        System.out.println(!this.isOnCollision());
-        if (!this.isOnCollision()) {
-            performMovement();
-        }
-
-
-        counter++;
-
+        RegisteredPlayerInput registeredPlayerInput = this.playerInputReader.readPlayerInput();
+        this.playerMovementService.updateDirectionAndIdleState(this,
+                                                               registeredPlayerInput);
+        this.playerCollisionService.checkCollision(this);
+        this.playerMovementService.updateWorldPosition(this,
+                                                       registeredPlayerInput);
+        this.playerAnimationService.updateAnimation(this);
     }
 
     public ArrayList<String> getCollectedKeyCode() {
@@ -94,78 +105,34 @@ public class Player extends Entity {
         }
     }
 
-    private void checkIdleState() {
-        KeyHandler keyHandler = KeyHandler.getInstance();
-        boolean hasUpPressed = keyHandler.isUpPressed();
-        boolean hasDownPressed = keyHandler.isDownPressed();
-        boolean hasLeftPressed = keyHandler.isLeftPressed();
-        boolean hasRightPressed = keyHandler.isRightPressed();
-
-        boolean isIdle = !hasUpPressed && !hasDownPressed && !hasLeftPressed && !hasRightPressed;
-        setIdle(isIdle);
+    public BufferedImage getCurrentPlayerImage() {
+        return this.currentPlayerImage;
     }
 
-    private void changeDirection() {
-        Direction direction = this.getDirection();
-        KeyHandler keyHandler = KeyHandler.getInstance();
-
-        if (keyHandler.isUpPressed()) {
-            direction = Direction.FACING_BACKWARD;
-        } else if (keyHandler.isDownPressed()) {
-            direction = Direction.FACING_FORWARD;
-        } else if (keyHandler.isLeftPressed()) {
-            direction = Direction.FACING_LEFTWARD;
-        } else if (keyHandler.isRightPressed()) {
-            direction = Direction.FACING_RIGHTWARD;
-        }
-        if (!this.isIdle()) {
-            this.setDirection(direction);
-        }
-    }
-
-    private void performMovement() {
-        KeyHandler keyHandler = KeyHandler.getInstance();
-        if (keyHandler.isUpPressed()) {
-            this.moveUpDirection();
-        } else if (keyHandler.isDownPressed()) {
-            this.moveDownDirection();
-        } else if (keyHandler.isLeftPressed()) {
-            this.moveLeftDirection();
-        } else if (keyHandler.isRightPressed()) {
-            this.moveRightDirection();
-        }
+    public void setCurrentPlayerImage(BufferedImage currentPlayerImage) {
+        this.currentPlayerImage = currentPlayerImage;
     }
 
     public void draw(Graphics2D graphics2D) {
-        if (counter % 30 == 0) {
-            if (frameIndex >= 5) {
-                frameIndex = 0;
-            } else {
-                frameIndex++;
-            }
-            counter = 0;
-        }
-
-        int scaledPlayer = 48 * PLAYER_UP_SCALE;
-//        graphics2D.setColor(Color.WHITE);
-//        graphics2D.fillRect( this.screenPositionX,  this.screenPositionY, scaledPlayer, scaledPlayer);
-        BufferedImage image = getPlayerImageByIndex(this.getDirection(), this.isIdle(), this.frameIndex);
-//        BufferedImage image =imageArr[index];
+        this.playerDrawService.draw(graphics2D,
+                                    this);
+    }
 
 
-//        graphics2D.drawImage(image, this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer, null);
-        graphics2D.setColor(Color.WHITE);
-        graphics2D.drawRect(this.screenPositionX, this.screenPositionY, scaledPlayer, scaledPlayer);
+    public int getScreenPositionX() {
+        return screenPositionX;
+    }
 
-        graphics2D.drawImage(image, this.screenPositionX, this.screenPositionY, null);
-        drawSolidArea(graphics2D);
-//        logPlayerCurrentRowAndCol();
-//        logPlayerScreenColRow();
+    public void setScreenPositionX(int screenPositionX) {
+        this.screenPositionX = screenPositionX;
+    }
 
-//        graphics2D.setColor(Color.WHITE);
-//        graphics2D.fillRect(this.getPositionX() +200, this.getPositionY() +300, Helper.TILE_SIZE, Helper.TILE_SIZE);
-//        BufferedImage blueImg =Helper.blueImg;
-//        graphics2D.drawImage(blueImg,this.getPositionX() +200,this.getPositionY() +300,Helper.TILE_SIZE,Helper.TILE_SIZE,null);
+    public int getScreenPositionY() {
+        return screenPositionY;
+    }
+
+    public void setScreenPositionY(int screenPositionY) {
+        this.screenPositionY = screenPositionY;
     }
 
     @Override
@@ -174,6 +141,22 @@ public class Player extends Entity {
         if (isWithinRange) {
             super.setWorldPositionX(worldPositionX);
         }
+    }
+
+    public int getCounter() {
+        return this.counter;
+    }
+
+    public int getFrameIndex() {
+        return this.frameIndex;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
+    public void setFrameIndex(int frameIndex) {
+        this.frameIndex = frameIndex;
     }
 
     @Override
@@ -185,62 +168,25 @@ public class Player extends Entity {
     }
 
     private void logPlayerCurrentRowAndCol() {
-        String message = String.format("Player current (Row,Col):(%d,%d)", getCurrentRowOnWorldMap(), getCurrentColOnWorldMap());
+        String message = String.format("Player current (Row,Col):(%d,%d)",
+                                       getCurrentRowOnWorldMap(),
+                                       getCurrentColOnWorldMap());
         System.out.println(message);
         int firstRowDrawnOnColumn = (this.getWorldPositionX() - (WINDOW_MAX_SCREEN_HEIGHT) / 2) / TILE_SIZE;
         System.out.println("Should start from row: " + firstRowDrawnOnColumn);
     }
 
     private void logPlayerScreenColRow() {
-        String message = String.format("Player Screen (Row,Col):(%d,%d)", this.getPlayerAbsoluteScreenY() / TILE_SIZE, this.getPlayerAbsoluteScreenX() / TILE_SIZE);
+        String message = String.format("Player Screen (Row,Col):(%d,%d)",
+                                       this.getPlayerAbsoluteScreenY() / TILE_SIZE,
+                                       this.getPlayerAbsoluteScreenX() / TILE_SIZE);
         System.out.println(message);
-    }
-
-    private void drawSolidArea(Graphics2D graphics2D) {
-        graphics2D.setColor(Color.RED);
-        Rectangle rectangle = this.getSolidArea();
-        graphics2D.drawRect(this.screenPositionX + rectangle.x, this.screenPositionY + rectangle.y, rectangle.width, rectangle.height);
     }
 
     private void initializeCentralizeCamera() {
         this.screenPositionX = (Constant.WINDOW_MAX_SCREEN_WIDTH) / 2 - (this.getPlayerCenterX());
         this.screenPositionY = (Constant.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (this.getPlayerCenterY());
-//        this.screenPositionX = (Constant.WINDOW_MAX_SCREEN_WIDTH) / 2 - (centerX);
-//        this.screenPositionY = (Constant.WINDOW_MAX_SCREEN_HEIGHT) / 2 - (centerY);
     }
-
-    private void moveUpDirection() {
-        int newPositionY = this.getWorldPositionY() - this.getSpeed();
-        this.setWorldPositionY(newPositionY);
-    }
-
-    private void moveDownDirection() {
-        int newPositionY = this.getWorldPositionY() + this.getSpeed();
-        this.setWorldPositionY(newPositionY);
-    }
-
-    private void moveLeftDirection() {
-        int newPositionX = this.getWorldPositionX() - this.getSpeed();
-        this.setWorldPositionX(newPositionX);
-    }
-
-    private void moveRightDirection() {
-        int newPositionX = this.getWorldPositionX() + this.getSpeed();
-        this.setWorldPositionX(newPositionX);
-    }
-
-    public KeyHandler getKeyHandler() {
-        return keyHandler;
-    }
-
-    public void setKeyHandler(KeyHandler keyHandler) {
-        this.keyHandler = keyHandler;
-    }
-
-//    public int getPlayerAbsoluteCenterX() {
-//        int centerX = (Constant.TILE_SIZE / 2) * PLAYER_UP_SCALE;
-//        return this.getWorldPositionX() + centerX;
-//    }
 
     public int getCurrentColOnWorldMap() {
         return (this.getWorldPositionX() + getPlayerCenterX()) / TILE_SIZE;
@@ -287,7 +233,10 @@ public class Player extends Entity {
         }
 
 
-        return new Rectangle(this.getPlayerAbsoluteWorldPositionX() + x, this.getPlayerAbsoluteWorldPositionY() + y, currentSolidArea.width, currentSolidArea.height);
+        return new Rectangle(this.getPlayerAbsoluteWorldPositionX() + x,
+                             this.getPlayerAbsoluteWorldPositionY() + y,
+                             currentSolidArea.width,
+                             currentSolidArea.height);
     }
 
     private int getPlayerAbsoluteWorldPositionY() {

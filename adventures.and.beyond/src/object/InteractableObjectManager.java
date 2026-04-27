@@ -1,51 +1,7 @@
 package object;
 
-import entity.manager.EntityManagerFactory;
-import entity.player.Player;
-import object.interactable.objects.DoorObject;
 import object.interactable.objects.InteractableObject;
-import object.interactable.objects.KeyObject;
-import object.interactable.objects.TreasureObject;
 
-import java.awt.*;
-
-import static helper.Constant.TILE_SIZE;
-
-public class InteractableObjectManager {
-    private final InteractableObject[] interactableObjects;
-
-    private static class Holder {
-        private static final InteractableObjectManager INSTANCE = new InteractableObjectManager();
-    }
-
-    private InteractableObjectManager() {
-        this.interactableObjects = initializeInteractableObjects();
-    }
-
-    public static InteractableObjectManager getInstance() {
-        return Holder.INSTANCE;
-    }
-
-    private InteractableObject[] initializeInteractableObjects() {
-        InteractableObject key = new KeyObject(false, 28 * TILE_SIZE, 17 * TILE_SIZE, "KEY_07", true);
-        InteractableObject door = new DoorObject(false, 22 * TILE_SIZE, 25 * TILE_SIZE, "DOOR_5", "KEY_07", true);
-
-        InteractableObject treasure = new TreasureObject(false, 22 * TILE_SIZE, 27 * TILE_SIZE, "TREASURE_05", "KEY_08", true);
-        InteractableObject key2 = new KeyObject(false, 16 * TILE_SIZE, 11 * TILE_SIZE, "KEY_08", true);
-
-        return new InteractableObject[]{key, door, treasure, key2};
-    }
-
-    public void drawInteractiveObjects(Graphics2D graphics2D) {
-        Player player = EntityManagerFactory.getInstance().getPlayer();
-
-        for (int currentIndex = 0; currentIndex <= this.interactableObjects.length - 1; currentIndex++) {
-            InteractableObject obj = this.interactableObjects[currentIndex];
-            obj.draw(graphics2D, player);
-        }
-    }
-
-    public InteractableObject[] getInteractableObjects() {
-        return interactableObjects;
-    }
+public interface InteractableObjectManager {
+    InteractableObject[] getInteratableObjectsByWorldMapKey(String key);
 }

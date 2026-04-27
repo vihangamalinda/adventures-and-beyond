@@ -1,14 +1,21 @@
 package helper;
 
-import main.KeyHandler;
+import input.KeyHandler;
 
 public class Timer {
-    public static long getStartingTime() {
+    private KeyHandler keyHandler;
+
+    public Timer(KeyHandler keyHandler){
+        this.keyHandler = keyHandler;
+    }
+
+    public  long getStartingTime() {
         return System.nanoTime();
     }
 
-    public static void evaluvateTimeSpent(long startTime) {
-        boolean isOnDevMood = KeyHandler.getInstance().isOnDevMood();
+
+    public  void evaluvateTimeSpent(long startTime) {
+        boolean isOnDevMood = this.keyHandler.readRegisteredKeyState().isOnDevMood();
         if (isOnDevMood) {
             System.out.println("Time spent" + (System.nanoTime() - startTime));
         }

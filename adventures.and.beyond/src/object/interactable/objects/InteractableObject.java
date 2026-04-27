@@ -18,9 +18,17 @@ public abstract class InteractableObject {
 
     private boolean isActive;
 
-    private final Rectangle solidArea = new Rectangle(0, 0, TILE_SIZE, TILE_SIZE);
+    private final Rectangle solidArea = new Rectangle(0,
+                                                      0,
+                                                      TILE_SIZE,
+                                                      TILE_SIZE);
 
-    public InteractableObject(String imagePath, String name, boolean onCollision, int worldPositionX, int worldPositionY, boolean isActive) {
+    public InteractableObject(String imagePath,
+                              String name,
+                              boolean onCollision,
+                              int worldPositionX,
+                              int worldPositionY,
+                              boolean isActive) {
         this.image = Loader.getImage(imagePath);
         this.name = name;
         this.onCollision = onCollision;
@@ -81,21 +89,34 @@ public abstract class InteractableObject {
 
     private Rectangle getSolidAreaWithWorldPositions() {
         Rectangle currentSolidArea = this.solidArea;
-        return new Rectangle(this.worldPositionX, this.worldPositionY, currentSolidArea.width, currentSolidArea.height);
+        return new Rectangle(this.worldPositionX,
+                             this.worldPositionY,
+                             currentSolidArea.width,
+                             currentSolidArea.height);
     }
 
     public boolean doCollideWithPlayer(Player player) {
         return player.getSolidAreaWithWorldPositions().intersects(getSolidAreaWithWorldPositions());
     }
 
-    public void draw(Graphics2D graphics2D, Player player) {
-        boolean isWithinWindowRange = DrawHelper.isWithinWindow(this.worldPositionX, this.worldPositionY, player);
+    public void draw(Graphics2D graphics2D,
+                     Player player) {
+        boolean isWithinWindowRange = DrawHelper.isWithinWindow(this.worldPositionX,
+                                                                this.worldPositionY,
+                                                                player);
         if (isWithinWindowRange) {
             if (this.isActive) {
-                int windowPositionX = DrawHelper.getObjWindowPositionXRespectiveToPlayer(this.worldPositionX, player);
-                int windowPositionY = DrawHelper.getObjWindowPositionYRespectiveToPlayer(this.worldPositionY, player);
+                int windowPositionX = DrawHelper.getObjWindowPositionXRespectiveToPlayer(this.worldPositionX,
+                                                                                         player);
+                int windowPositionY = DrawHelper.getObjWindowPositionYRespectiveToPlayer(this.worldPositionY,
+                                                                                         player);
 
-                graphics2D.drawImage(this.image, windowPositionX, windowPositionY, TILE_SIZE, TILE_SIZE, null);
+                graphics2D.drawImage(this.image,
+                                     windowPositionX,
+                                     windowPositionY,
+                                     TILE_SIZE,
+                                     TILE_SIZE,
+                                     null);
             }
 
         }

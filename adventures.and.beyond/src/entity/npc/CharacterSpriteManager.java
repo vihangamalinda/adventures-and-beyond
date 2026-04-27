@@ -4,9 +4,7 @@ import directionEnum.Direction;
 import entity.npc.sprite.CharacterSprite;
 import entity.npc.sprite.CharacterSpriteRegistry;
 
-
 import java.awt.image.BufferedImage;
-
 
 import static java.util.Objects.isNull;
 
@@ -28,7 +26,9 @@ public class CharacterSpriteManager {
         return characterSprite.getMaxFrameLimit();
     }
 
-    public BufferedImage[] getAnimationArray(String characterAnimationKey, Direction currentDirection, boolean isIdle) {
+    public BufferedImage[] getAnimationArray(String characterAnimationKey,
+                                             Direction currentDirection,
+                                             boolean isIdle) {
         CharacterSprite characterSprite = this.getCharacterSprite(characterAnimationKey);
 
         if (!isIdle) {
@@ -36,8 +36,6 @@ public class CharacterSpriteManager {
         }
         return null;
     }
-
-    ;
 
     private CharacterSprite getCharacterSprite(String characterAnimationKey) {
         CharacterSprite sprite = CharacterSpriteRegistry.getInstance().getCharacterSpriteHashMap().get(characterAnimationKey);

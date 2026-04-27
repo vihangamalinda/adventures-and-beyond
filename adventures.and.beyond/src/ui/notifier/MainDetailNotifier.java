@@ -5,7 +5,8 @@ import helper.CustomColours;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-import static helper.Constant.*;
+import static helper.Constant.WINDOW_MAX_SCREEN_HEIGHT;
+import static helper.Constant.WINDOW_MAX_SCREEN_WIDTH;
 import static ui.RegisteredFonts.BOLD_ARIAL_XXL;
 
 public class MainDetailNotifier extends AbstractDetailNotifier {
@@ -16,7 +17,9 @@ public class MainDetailNotifier extends AbstractDetailNotifier {
 
 
     public MainDetailNotifier(boolean isActive) {
-        super(isActive, CustomColours.BLACK_01_LOW_OPACITY, BOLD_ARIAL_XXL);
+        super(isActive,
+              CustomColours.BLACK_01_LOW_OPACITY,
+              BOLD_ARIAL_XXL);
         this.starterX = (WINDOW_MAX_SCREEN_WIDTH / 4) - 20;
         this.starterY = (WINDOW_MAX_SCREEN_HEIGHT / 2) - 100;
     }
@@ -42,11 +45,15 @@ public class MainDetailNotifier extends AbstractDetailNotifier {
 
         configureBackgroundHeightAndWidth(graphics2D);
 
-        graphics2D.fillRect(this.getStarterX(), this.getStarterY(), this.getBackgroundWidth(), this.getBackgroundHeight());
+        graphics2D.fillRect(this.getStarterX(),
+                            this.getStarterY(),
+                            this.getBackgroundWidth(),
+                            this.getBackgroundHeight());
     }
 
     private void configureBackgroundHeightAndWidth(Graphics2D graphics2D) {
-        Rectangle2D stringBounds = graphics2D.getFontMetrics().getStringBounds(this.getMessage(), graphics2D);
+        Rectangle2D stringBounds = graphics2D.getFontMetrics().getStringBounds(this.getMessage(),
+                                                                               graphics2D);
         int textLength = (int) stringBounds.getWidth();
         int textHeight = (int) stringBounds.getHeight();
         setBackgroundWidth(textLength + 40);
@@ -84,12 +91,19 @@ public class MainDetailNotifier extends AbstractDetailNotifier {
     protected void drawBackgroundBorder(Graphics2D graphics2D) {
         graphics2D.setStroke(new BasicStroke(5));
         graphics2D.setColor(CustomColours.GOLD_01);
-        graphics2D.drawRoundRect(this.getStarterX(), this.getStarterY(), this.getBackgroundWidth(), this.getBackgroundHeight(), 10, 10);
+        graphics2D.drawRoundRect(this.getStarterX(),
+                                 this.getStarterY(),
+                                 this.getBackgroundWidth(),
+                                 this.getBackgroundHeight(),
+                                 10,
+                                 10);
     }
 
     @Override
     protected void drawContent(Graphics2D graphics2D) {
         graphics2D.setColor(Color.BLACK);
-        graphics2D.drawString(this.getMessage(), this.getStarterX() + 20, this.getStarterY() + 100);
+        graphics2D.drawString(this.getMessage(),
+                              this.getStarterX() + 20,
+                              this.getStarterY() + 100);
     }
 }

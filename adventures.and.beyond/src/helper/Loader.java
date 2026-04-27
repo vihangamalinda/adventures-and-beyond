@@ -46,13 +46,15 @@ public class Loader {
             InputStream resource = Loader.class.getResourceAsStream(filePath);
 
             if (resource == null) {
-                String message = String.format("Image resource is null.Given path: %s", filePath);
+                String message = String.format("Image resource is null.Given path: %s",
+                                               filePath);
                 throw new IOException(getErrorMessage(message));
             }
 
             return new BufferedReader(new InputStreamReader(resource));
         } catch (Exception exception) {
-            String message = String.format("Error occurred when loading the map. Given File path: %s", filePath);
+            String message = String.format("Error occurred when loading the map. Given File path: %s",
+                                           filePath);
             System.out.println(getErrorMessage(message));
             exception.fillInStackTrace();
         }
@@ -63,7 +65,8 @@ public class Loader {
         try {
             InputStream resource = Loader.class.getResourceAsStream(imgPath);
             if (resource == null) {
-                String message = String.format("Image resource is null.Given path: %s", imgPath);
+                String message = String.format("Image resource is null.Given path: %s",
+                                               imgPath);
                 throw new IOException(getErrorMessage(message));
             }
 
@@ -76,7 +79,8 @@ public class Loader {
 
     private static String getErrorMessage(String message) {
 
-        return String.format("Custom Error: %s", message);
+        return String.format("Custom Error: %s",
+                             message);
     }
 
     public static Clip loadSoundFile(URL urlPath) {
@@ -86,7 +90,8 @@ public class Loader {
             clip.open(inputStream);
             return clip;
         } catch (Exception exception) {
-            String message = String.format("Error occurred when loading & opening sound files. url path: %s ", urlPath);
+            String message = String.format("Error occurred when loading & opening sound files. url path: %s ",
+                                           urlPath);
             System.out.println(getErrorMessage(message));
         }
         return null;

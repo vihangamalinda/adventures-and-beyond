@@ -43,24 +43,37 @@ public class CharacterSpriteRegistry {
 
 
         int imgCount = 5;
-        BufferedImage[] backward = getImages(HUMAN_CYAN_MOVING_FACE_BACKWARD, imgCount);
-        BufferedImage[] forward = getImages(HUMAN_CYAN_MOVING_FACE_FORWARD, imgCount);
-        BufferedImage[] leftward = getImages(HUMAN_CYAN_MOVING_FACE_LEFTWARD, imgCount);
-        BufferedImage[] rightward = getImages(HUMAN_CYAN_MOVING_FACE_RIGHTWARD, imgCount);
+        BufferedImage[] backward = getImages(HUMAN_CYAN_MOVING_FACE_BACKWARD,
+                                             imgCount);
+        BufferedImage[] forward = getImages(HUMAN_CYAN_MOVING_FACE_FORWARD,
+                                            imgCount);
+        BufferedImage[] leftward = getImages(HUMAN_CYAN_MOVING_FACE_LEFTWARD,
+                                             imgCount);
+        BufferedImage[] rightward = getImages(HUMAN_CYAN_MOVING_FACE_RIGHTWARD,
+                                              imgCount);
 
-        map.put(Direction.FACING_BACKWARD, backward);
-        map.put(Direction.FACING_FORWARD, forward);
-        map.put(Direction.FACING_LEFTWARD, leftward);
-        map.put(Direction.FACING_RIGHTWARD, rightward);
+        map.put(Direction.FACING_BACKWARD,
+                backward);
+        map.put(Direction.FACING_FORWARD,
+                forward);
+        map.put(Direction.FACING_LEFTWARD,
+                leftward);
+        map.put(Direction.FACING_RIGHTWARD,
+                rightward);
 
-        CharacterSprite characterSprite = new CharacterSprite(CharacterSpriteKey.HUMAN_CYAN, map, imgCount);
-        this.characterSpriteHashMap.put(characterSprite.getName(), characterSprite);
+        CharacterSprite characterSprite = new CharacterSprite(CharacterSpriteKey.HUMAN_CYAN,
+                                                              map,
+                                                              imgCount);
+        this.characterSpriteHashMap.put(characterSprite.getName(),
+                                        characterSprite);
     }
 
-    private BufferedImage[] getImages(String folderPath, int imgCount) {
+    private BufferedImage[] getImages(String folderPath,
+                                      int imgCount) {
         BufferedImage[] imgArr = new BufferedImage[imgCount];
         for (int i = 0; i < imgCount; i++) {
-            String imgPath = String.format("/%d.png", i);
+            String imgPath = String.format("/%d.png",
+                                           i);
 //            Need to call scaling
             BufferedImage image = getImage(folderPath + imgPath);
             imgArr[i] = image;

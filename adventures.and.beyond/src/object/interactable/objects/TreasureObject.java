@@ -1,7 +1,7 @@
 package object.interactable.objects;
 
 import entity.player.Player;
-import main.GamePanel;
+import object.interactable.objects.builder.TreasureObjectBuilder;
 import sound.SoundKey;
 import sound.SoundManager;
 import ui.UserInterfaceManager;
@@ -12,23 +12,38 @@ public class TreasureObject extends InteractableObject {
     private final String treasureNumber;
     private final String openCode;
 
-    public TreasureObject(boolean onCollision, int worldPositionX, int worldPositionY, String treasureNumber, String openCode, boolean isActive) {
-        super(TREASURE_IMG_PATH, "Treasure", onCollision, worldPositionX, worldPositionY, isActive);
+    public TreasureObject(boolean onCollision,
+                          int worldPositionX,
+                          int worldPositionY,
+                          String treasureNumber,
+                          String openCode,
+                          boolean isActive) {
+        super(TREASURE_IMG_PATH,
+              "Treasure",
+              onCollision,
+              worldPositionX,
+              worldPositionY,
+              isActive);
         this.treasureNumber = treasureNumber;
         this.openCode = openCode;
+    }
+
+    public static TreasureObjectBuilder getBuilder() {
+        return new TreasureObjectBuilder();
     }
 
     @Override
     public void performAction(Player player) {
         String openCode = this.openCode;
         if (player.hasKeyCode(openCode)) {
-            SoundManager.getInstance().performSoundEffects(SoundKey.TREASURE_BOX_OPENING, 2);
+            SoundManager.getInstance().performSoundEffects(SoundKey.TREASURE_BOX_OPENING,
+                                                           2);
             player.removeKey(openCode);
             this.setActive(false);
-            GamePanel.getInstance().stopGame();
+//            GamePanel.getInstance().stopGame(); // temporarily commenting this code
         } else {
             String message = "Player does not have correct key: " + this.openCode;
-            UserInterfaceManager.getInstance().notifyGameDetails(message);
+//            UserInterfaceManager.getInstance().notifyGameDetails(message);
             player.setOnCollision(true);
         }
     }

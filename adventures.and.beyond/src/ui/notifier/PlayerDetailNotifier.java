@@ -18,9 +18,12 @@ public class PlayerDetailNotifier extends AbstractDetailNotifier {
     private final int width;
     private final int height;
 
-    public PlayerDetailNotifier(boolean isActive) {
-        super(isActive, CustomColours.BLACK_01_LOW_OPACITY, STANDARD_ARIAL);
-        this.player = EntityManagerFactory.getInstance().getPlayer();
+    public PlayerDetailNotifier(boolean isActive,
+                                Player player) {
+        super(isActive,
+              CustomColours.BLACK_01_LOW_OPACITY,
+              STANDARD_ARIAL);
+        this.player = player;
         this.starterX = 10;
         this.starterY = 10;
         this.width = TILE_SIZE * 4;
@@ -40,7 +43,10 @@ public class PlayerDetailNotifier extends AbstractDetailNotifier {
     @Override
     protected void drawBackgroud(Graphics2D graphics2D) {
         graphics2D.setColor(this.getBackgroundColour());
-        graphics2D.fillRect(this.getStarterX(), this.getStarterY(), this.getWidth(), this.getHeight());
+        graphics2D.fillRect(this.getStarterX(),
+                            this.getStarterY(),
+                            this.getWidth(),
+                            this.getHeight());
     }
 
     public int getStarterX() {
@@ -63,14 +69,24 @@ public class PlayerDetailNotifier extends AbstractDetailNotifier {
     protected void drawBackgroundBorder(Graphics2D graphics2D) {
         graphics2D.setStroke(new BasicStroke(5));
         graphics2D.setColor(CustomColours.GOLD_01);
-        graphics2D.drawRoundRect(this.getStarterX(), this.getStarterY(), this.getWidth() + 5, this.getHeight() + 5, 10, 10);
+        graphics2D.drawRoundRect(this.getStarterX(),
+                                 this.getStarterY(),
+                                 this.getWidth() + 5,
+                                 this.getHeight() + 5,
+                                 10,
+                                 10);
     }
 
     @Override
     protected void drawContent(Graphics2D graphics2D) {
         graphics2D.setColor(Color.WHITE);
-        graphics2D.drawImage(ICON_KEY_IMAGE, TILE_SIZE / 4, TILE_SIZE / 2, null);
+        graphics2D.drawImage(ICON_KEY_IMAGE,
+                             TILE_SIZE / 4,
+                             TILE_SIZE / 2,
+                             null);
         updatedMessage();
-        graphics2D.drawString(this.getMessage(), this.starterX + 60, this.starterY + 50);
+        graphics2D.drawString(this.getMessage(),
+                              this.starterX + 60,
+                              this.starterY + 50);
     }
 }

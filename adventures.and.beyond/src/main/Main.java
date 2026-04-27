@@ -1,25 +1,30 @@
 package main;
 
+import configuration.AppConfiguration;
 import entity.player.PlayerSpriteManager;
-
-import javax.swing.*;
+import window.GameWindow;
+import window.GameWindowImpl;
 
 public class Main {
     public static void main(String[] args) {
         PlayerSpriteManager.initializeSpriteMap();
-        JFrame window = new JFrame();
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setResizable(false);
-        window.setTitle("Adventures and Beyond");
 
-        GamePanel gamePanel = GamePanel.getInstance();
-        window.add(gamePanel);
-        //to inform window to be sized to fit the preferred size and layouts of subcomponents( gamePanel)
-        window.pack();
+        String title = "Adventures and Beyond";
 
-        window.setLocationRelativeTo(null);
-        window.setVisible(true);
+        AppConfiguration appConfiguration = new AppConfiguration();
 
-        gamePanel.startGameThread();
+        GameWindow gameWindow = new GameWindowImpl(title);
+        gameWindow.initialize(appConfiguration.getGamePanel());
+        appConfiguration.getGameController().startGame();
     }
 }
+
+/**
+ * Responsibility Map of Game classes
+ * <p>
+ * GameController = "brain"
+ * GameLoop       = "heartbeat"
+ * GameUpdater    = "logic"
+ * GameRenderer   = "eyes"
+ * GamePanel      = "body"
+ **/

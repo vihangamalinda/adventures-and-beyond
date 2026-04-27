@@ -19,12 +19,7 @@ public class UserInterfaceManager {
 
     private final List<DrawableNotifier> drawableNotifierList;
 
-    private static class Holder {
-        private static final UserInterfaceManager INSTANCE = new UserInterfaceManager();
-    }
-
-    private UserInterfaceManager() {
-        DetailNotifierRegistry detailNotifierRegistry = new DetailNotifierRegistryImpl();
+    public UserInterfaceManager(DetailNotifierRegistry detailNotifierRegistry) {
         this.playerDetailNotifier = detailNotifierRegistry.getPlayerDetailNotifier();
         this.gameDetailNotifier = detailNotifierRegistry.getGameDetailNotifier();
         this.mainDetailNotifier = detailNotifierRegistry.getMainDetailNotifier();
@@ -33,12 +28,9 @@ public class UserInterfaceManager {
     }
 
 
-    public static UserInterfaceManager getInstance() {
-        return Holder.INSTANCE;
-    }
-
     public void notifyGameDetails(String message) {
-        this.gameDetailNotifier.notifyMessageForPeriod(message, 1);
+        this.gameDetailNotifier.notifyMessageForPeriod(message,
+                                                       1);
     }
 
     public void triggerMainNotification(String message) {
@@ -46,11 +38,16 @@ public class UserInterfaceManager {
     }
 
     public void triggerDetailNotification(String message) {
-        this.dialogueDetailNotifier.notifyMessageForPeriod(message, 2);
+        this.dialogueDetailNotifier.notifyMessageForPeriod(message,
+                                                           2);
     }
 
     public void deactivateMainNotification() {
         this.mainDetailNotifier.deactivate();
+    }
+
+    public void pauseGameModal() {
+        this.triggerMainNotification("Game on Pause");
     }
 
     public void draw(Graphics2D graphics2D) {

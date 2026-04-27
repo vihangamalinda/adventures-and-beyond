@@ -6,7 +6,6 @@ import ui.notifier.AbstractDetailNotifier;
 import ui.notifier.factory.DetailNotifierFactory;
 import ui.notifier.factory.DetailNotifierFactoryImpl;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +18,8 @@ public class DetailNotifierRegistryImpl implements DetailNotifierRegistry {
     private final List<DrawableNotifier> drawableNotifierList;
     private final DetailNotifierFactory detailNotifierFactory;
 
-    public DetailNotifierRegistryImpl() {
-        this.detailNotifierFactory = new DetailNotifierFactoryImpl();
+    public DetailNotifierRegistryImpl(DetailNotifierFactory detailNotifierFactory) {
+        this.detailNotifierFactory = detailNotifierFactory;
         this.drawableNotifierList = new ArrayList<>();
         this.registerNotifiers();
     }
